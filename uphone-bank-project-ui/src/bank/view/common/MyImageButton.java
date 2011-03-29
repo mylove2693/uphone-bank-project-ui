@@ -13,6 +13,8 @@ public class MyImageButton extends android.widget.ImageButton{
 	public MyImageButton(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		// TODO Auto-generated constructor stub
+		
+		
 	}
 
 	public MyImageButton(Context context) {

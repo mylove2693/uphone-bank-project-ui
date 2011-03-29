@@ -14,9 +14,10 @@ public class MyButton extends android.widget.Button{
 		super(context, attrs);
 		// TODO Auto-generated constructor stub
 		this.setText("自定义按钮");
-		this.setTextSize(30);
-		this.setHeight(80);
-		this.setWidth(300);
+		this.setTextSize(16);
+		this.setHeight(55);
+		this.setWidth(180);
+		this.setBackgroundResource(R.color.selector);
 		
 		
 	}
