@@ -13,11 +13,16 @@ public class MyButton extends android.widget.Button{
 	public MyButton(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		// TODO Auto-generated constructor stub
+		this.setText("自定义按钮");
+		this.setTextSize(30);
+		this.setHeight(80);
+		this.setWidth(300);
+		
+		
 	}
 
 	public MyButton(Context context) {
 		super(context);
 		// TODO Auto-generated constructor stub
 	}
-
 }
