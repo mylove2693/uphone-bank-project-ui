@@ -22,27 +22,27 @@ public class TestActivity extends Activity{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		Button n1=(Button)this.findViewById(R.id.btnbu).findViewById(R.id.button);
-		Button n2=(Button)this.findViewById(R.id.nn).findViewById(R.id.button);
-		n1.setText("上");
-		n2.setText("下");
-		n1.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				System.out.println("上");
-			}
-		});
-		
-		n2.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				System.out.println("下");
-			}
-		});
+//		Button n1=(Button)this.findViewById(R.id.btnbu).findViewById(R.id.button);
+//		Button n2=(Button)this.findViewById(R.id.nn).findViewById(R.id.button);
+//		n1.setText("上");
+//		n2.setText("下");
+//		n1.setOnClickListener(new OnClickListener() {
+//			
+//			@Override
+//			public void onClick(View v) {
+//				// TODO Auto-generated method stub
+//				System.out.println("上");
+//			}
+//		});
+//		
+//		n2.setOnClickListener(new OnClickListener() {
+//			
+//			@Override
+//			public void onClick(View v) {
+//				// TODO Auto-generated method stub
+//				System.out.println("下");
+//			}
+//		});
 	}
 //		Account_Select my_acc_select = new Account_Select(this);
 //		my_acc_select.AddTypeData(this, s);

@@ -1,46 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+	android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
-<bank.view.common.MyButton
-	android:id="@+id/myButton"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
+<include android:id="@+id/mybutton"		
+	layout="@xml/button"
+	android:text="自定义按钮"
 	/>
-<bank.view.common.MyImageButton
-	android:id="@+id/myImageButton"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:background="#00FFFFFF"
-	android:src="@drawable/icon"
+<include android:id="@+id/etuser"		
+	layout="@xml/et_user"
+	android:layout_below="@id/mybutton"
 	/>
-	<portfolio_control.Account_Select
-	android:id="@+id/My_Account_Select"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
+<include android:id="@+id/etpsd"		
+	layout="@xml/et_psd"
+	android:layout_below="@id/etuser"
 	/>
-	<RelativeLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	>
-	<include android:id="@+id/btnbu" layout="@layout/button"
-	
-	android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-	
-android:layout_alignParentTop="true"
-android:layout_alignParentLeft="true"
-
+<include android:id="@+id/etacc"	
+	layout="@xml/et_acc"
+	android:layout_below="@id/etpsd"
 	/>
-	<include android:id="@+id/nn" 
-	layout="@layout/button"
-	android:layout_below="@id/btnbu"
-	android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="70dip"
+<include android:id="@+id/etamt"	
+	layout="@xml/et_amt"
+	android:layout_below="@id/etacc"
 	/>
-	</RelativeLayout>
+<include android:id="@+id/myiv"
+	layout="@xml/imagebutton"
+	android:layout_below="@id/etamt"
+	/>
 </LinearLayout>
