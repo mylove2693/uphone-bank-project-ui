@@ -47,7 +47,7 @@ public class GeneralListActivity extends ListActivity implements IGeneralActivit
     //向Activity中添加新的布局
     public void addLayout(int layout){
     	LinearLayout line = (LinearLayout)findViewById(R.id.ListLinearLayout);
-    	View view=getLayoutInflater().inflate(R.layout.test, null);
+    	View view=getLayoutInflater().inflate(layout, null);
     	line.addView(view);
     }
     
