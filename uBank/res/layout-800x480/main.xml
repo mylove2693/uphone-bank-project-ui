@@ -5,8 +5,8 @@
     android:layout_height="fill_parent"
     android:background="@drawable/main_background_2"
     >
-	<include android:id="@+id/paymentabove" layout="@layout/main_bank_above" />
-	<include android:id="@+id/paymentbelow" layout="@layout/main_bank_bottom" />
+	<include android:id="@+id/paymentabove" layout="@xml/main_bank_above" />
+	<include android:id="@+id/paymentbelow" layout="@xml/main_bank_bottom" />
 	<LinearLayout
 	android:id="@+id/ListLinearLayout"
 	android:layout_width="fill_parent"
