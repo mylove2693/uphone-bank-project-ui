@@ -8,7 +8,7 @@
 	<!--
 提示账户类型选择
 	-->
-	<include android:id="@+id/AccTypText" layout="@layout/textview"
+	<include android:id="@+id/AccTypText" layout="@layout/text_view_18"
 		android:layout_width="wrap_content" android:layout_height="wrap_content" />
 	<!--
 		白线
@@ -23,7 +23,7 @@
 	<!--
 		提示账户帐号选择
 	-->
-	<include android:id="@+id/AccNumText" layout="@layout/textview"
+	<include android:id="@+id/AccNumText" layout="@layout/text_view_18"
 		android:layout_width="wrap_content" android:layout_height="wrap_content" />
 	<!--
 		白线
