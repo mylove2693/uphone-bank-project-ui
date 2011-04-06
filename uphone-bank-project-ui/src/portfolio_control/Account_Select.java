@@ -1,9 +1,5 @@
 package portfolio_control;
-
-import java.util.StringTokenizer;
-
 import bank.view.common.R;
-import android.R.string;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -11,6 +7,7 @@ import android.view.LayoutInflater;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 public class Account_Select extends LinearLayout {
 	/**
@@ -29,11 +26,13 @@ public class Account_Select extends LinearLayout {
 		super(context, attrs);
 		LayoutInflater.from(context).inflate(R.layout.account_select, this,
 				true);
-		// this.data=new String[]{"1","2","3","4"};
-		// AddTypeData();
 		// 获取两个spinner
+		TextView d=(TextView)findViewById(R.id.AccTypText).findViewById(R.id.Text_View);
+		d.setText("请选择账户的类型：");
 		AccTypSpinner = (Spinner) findViewById(R.id.spinnerAccTyp)
 				.findViewById(R.id.Spinner);
+		TextView s =(TextView)findViewById(R.id.AccNumText).findViewById(R.id.Text_View);
+		s.setText("请选择账户的帐号：");
 		AccNumSpinner = (Spinner) findViewById(R.id.spinnerAccNum)
 				.findViewById(R.id.Spinner);
 	}
@@ -80,10 +79,8 @@ public class Account_Select extends LinearLayout {
 		/**
 		 * 实例化一个适配器，为适配器添加样式 此处采用内部的
 		 */
-		adapter = new ArrayAdapter<String>(this.getContext(),
-				android.R.layout.simple_spinner_item);
-		adapter
-				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		adapter = new ArrayAdapter<String>(this.getContext(),android.R.layout.simple_spinner_item);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		// 向适配器中间加数据
 		for (int i = 0; i < data.length; i += 1) {
 			adapter.add(data[i]);
