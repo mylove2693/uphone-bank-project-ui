@@ -4,7 +4,7 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent">
   <TextView
-android:id="@+id/Text_View"
+  android:id="@+id/blue_Text_View"
   android:textSize="18dip"
   android:textColor="#253e81"
   android:layout_width="wrap_content" 
