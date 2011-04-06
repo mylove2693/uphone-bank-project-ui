@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- 尾部分 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/bottomLayout" android:layout_width="fill_parent"
+	android:orientation="horizontal" android:layout_weight="1"
+	android:layout_height="wrap_content" android:layout_alignParentBottom="true">
+	<ImageView android:id="@+id/btnMain" android:layout_width="160dip"
+		android:layout_height="47dip" android:src="@drawable/main_sjyh2"
+		android:layout_weight="1" android:scaleType="fitXY">
+	</ImageView>
+	<ImageView android:id="@+id/btnCoustom" android:layout_width="160dip"
+		android:layout_height="47dip" android:src="@drawable/cardbg_sy_w"
+		android:layout_weight="1" android:scaleType="fitXY"
+		android:visibility="gone">
+	</ImageView>
+	<ImageView android:id="@+id/btnHelper" android:layout_width="160dip"
+		android:layout_height="47dip" 
+		android:src="@drawable/main_jrzs2"
+		android:layout_weight="1" android:scaleType="fitXY">
+	</ImageView>
+
+</LinearLayout>
+
