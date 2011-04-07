@@ -27,6 +27,15 @@
 		<activity android:name=".ExchangeCalc">
 		</activity>
 		<!-- end punan's activity -->
+		
+		<!-- gsm's activity -->
+		<activity android:name="ubank.payment.AllPaymentSer">
+			<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+		</activity>
+		<!-- end gsm's activity -->
 
     </application>
 </manifest>
