@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bankbg"
+    >
+<include android:id="@+id/mainabove" layout="@xml/main_bank_above2" />
+<include android:id="@+id/mainbelow" layout="@xml/main_bank_bottom" />
+<LinearLayout
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:layout_below="@id/mainabove"
+	android:layout_above="@id/mainbelow"
+	>
+<GridView android:id="@+id/gv_main"
+	android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dip"
+    android:numColumns="3"
+    android:verticalSpacing="10dp"
+    android:horizontalSpacing="10dp"
+    android:stretchMode="columnWidth"
+    android:gravity="center"
+    />
+</LinearLayout>
+</RelativeLayout>
