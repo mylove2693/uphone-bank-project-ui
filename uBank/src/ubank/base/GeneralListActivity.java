@@ -98,11 +98,10 @@ public class GeneralListActivity extends ListActivity implements IGeneralActivit
     public SimpleAdapter createText_Text_Img(String[] value){
     	ArrayList<HashMap<String, Object>> mainlist = new ArrayList<HashMap<String, Object>>();
 
-		
 		for (int i = 0; i < value.length; i++) {
 			HashMap<String, Object> paylist1 = new HashMap<String, Object>();
 			paylist1.put("text1",value[i]);
-			paylist1.put("text2", value[i]);
+			paylist1.put("text2", value[++i]);
 			paylist1.put("Rimg", R.drawable.righticon);
 			mainlist.add(paylist1);
 		}
@@ -113,4 +112,18 @@ public class GeneralListActivity extends ListActivity implements IGeneralActivit
 		return adapter;
     }
 	
+    public SimpleAdapter createText_Text(String[] value){
+    	ArrayList<HashMap<String, Object>> mainlist = new ArrayList<HashMap<String, Object>>();
+
+		for (int i = 0; i < value.length; i++) {
+			HashMap<String, Object> paylist1 = new HashMap<String, Object>();
+			paylist1.put("text1",value[i]);
+			paylist1.put("text2", value[++i]);
+			mainlist.add(paylist1);
+		}
+		adapter = new SimpleAdapter(this, mainlist,
+				R.xml.bluetext_text, new String[] { "text1", "text2"}, new int[] { R.id.data_text1,
+						R.id.data_text2});
+		return adapter;
+    }
 }
