@@ -18,7 +18,7 @@ public class AccountQueryType extends GeneralActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		addLayout(R.layout.account_querytype);
+		addLayout(R.layout.account_type);
 		tvClassFirst.setVisibility(View.VISIBLE);
 		tvClassFirst.setText("首页>");
 		setListener(tvClassFirst, this, Login.class);
