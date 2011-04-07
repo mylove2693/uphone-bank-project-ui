@@ -4,4 +4,6 @@
     <string name="app_name">手机银行</string>
     <string name="next">下一步</string>
     <string name="confirm">确定</string>
+    <string name = "account_manager">账户管理</string>
+    
 </resources>
