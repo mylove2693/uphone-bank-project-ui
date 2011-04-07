@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/bankbg"
     >
-<include android:id="@+id/transabove" layout="@xml/main_bank_above2" />
-<TextView  
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:text="@string/hello"
-    />
-<include android:id="@+id/transbelow" layout="@xml/main_bank_bottom" />
+<include android:id="@+id/mainabove" layout="@xml/main_bank_above2" />
+<include android:id="@+id/mainbelow" layout="@xml/main_bank_bottom" />
+<LinearLayout
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:layout_below="@id/mainabove"
+	android:layout_above="@id/mainbelow"
+	>
+
 </LinearLayout>
+</RelativeLayout>
