@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/main_background_2">
+	<include android:id="@+id/paymentabove" layout="@xml/main_bank_above" />
+	<include android:id="@+id/paymentbelow" layout="@xml/main_bank_bottom" />
+	<LinearLayout
+	android:id="@+id/ListLinearLayout1"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical"
+	android:layout_below="@id/paymentabove"
+	>
+	</LinearLayout>
+	<include android:id="@+id/listview" layout="@xml/list_view"
+   	android:layout_height="wrap_content"
+    android:layout_width="fill_parent"
+    android:layout_below="@id/ListLinearLayout1"></include>
+    <LinearLayout
+	android:id="@+id/ListLinearLayout2"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical"
+	android:layout_below="@id/listview"
+	android:layout_above="@id/paymentbelow"
+	>
+	</LinearLayout>
+</RelativeLayout>
