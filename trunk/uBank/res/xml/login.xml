@@ -125,7 +125,7 @@ android:textSize = "32px"
 android:layout_below="@id/loginbox"
 android:layout_marginTop = "25px"
 android:layout_marginLeft = "155px"
-android:background="@color/selector"
+android:background="@color/btn_login"
 android:text="登录"
 />
 </RelativeLayout>
