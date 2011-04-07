@@ -10,9 +10,11 @@ public interface IGeneralActivity {
 	public void addLayout(int layout);
 	
 	//为导航栏的按钮添加监听
-	public void setListener(TextView tvButton,Activity fromActivity,Class<Activity> toActivity);
+	@SuppressWarnings("unchecked")
+	public void setListener(TextView tvButton,Activity fromActivity,Class toActivity);
 	
 	//为底部的图标按钮添加监听
-	public void setListener(ImageView btnButton,Activity fromActivity,Class<Activity> toActivity);
+	@SuppressWarnings("unchecked")
+	public void setListener(ImageView btnButton,Activity fromActivity,Class toActivity);
 	
 }

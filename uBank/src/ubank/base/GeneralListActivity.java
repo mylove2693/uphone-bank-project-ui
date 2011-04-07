@@ -52,12 +52,14 @@ public class GeneralListActivity extends ListActivity implements IGeneralActivit
     }
     
     //为导航栏的按钮添加监听
-	public void setListener(TextView tvButton,Activity fromActivity,Class<Activity> toActivity){
+    @SuppressWarnings("unchecked")
+	public void setListener(TextView tvButton,Activity fromActivity,Class toActivity){
 		tvButton.setOnClickListener(new Listener(fromActivity , toActivity));
 	}
 	
 	//为底部的图标按钮添加监听
-	public void setListener(ImageView btnButton,Activity fromActivity,Class<Activity> toActivity){
+    @SuppressWarnings("unchecked")
+	public void setListener(ImageView btnButton,Activity fromActivity,Class toActivity){
 		btnButton.setOnClickListener(new Listener(fromActivity, toActivity));
 	}
 	
