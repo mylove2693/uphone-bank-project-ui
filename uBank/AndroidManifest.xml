@@ -10,10 +10,7 @@
         <!-- punan's activity -->
         <!-- the first activity -->
 		<activity android:name=".FinanceAss">
-			<intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+			
 		</activity>
 		<activity android:name=".Login">
         </activity>
@@ -53,10 +50,7 @@
 		<activity android:name="ubank.account_manager.DeleteAccount"></activity>
 		<activity android:name="ubank.account_manager.FirstAccount"></activity>
 		<activity android:name="ubank.account_manager.ManagerHome">
-		<intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
 		</activity>
 		<activity android:name="ubank.account_manager.ReservationChangeCard"></activity>
 		<activity android:name="ubank.account_manager.SetAccountAlias"></activity>
@@ -65,14 +59,20 @@
 		
 		<!-- gsm's activity -->
 		<activity android:name="ubank.payment.AllPaymentSer">
-			
+			<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 		</activity>
 		<activity android:name="ubank.payment.WaitCost"/>
 		<activity android:name="ubank.payment.WaterCost"/>
 		<activity android:name="ubank.payment.ElectricityCost"/>
 		<activity android:name="ubank.payment.GasCost"/>
 		<activity android:name="ubank.payment.RentCost"/>
-		
+		<activity android:name="ubank.payment.Speedy"/>
+		<activity android:name="ubank.payment.Lately"/>
+		<activity android:name="ubank.payment.HistoryCost"/>
+		<activity android:name="ubank.payment.ManageCost"/>
 		<!-- end gsm's activity -->
 
 
