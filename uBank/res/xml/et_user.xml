@@ -15,6 +15,6 @@
 	android:singleLine="true"
 	android:maxLength="18"
 	android:background="@drawable/inputbg"
-	android:text="username"
+	android:text=""
 	/>
 </LinearLayout>

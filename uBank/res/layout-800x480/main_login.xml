@@ -13,6 +13,10 @@
 	android:layout_below="@id/mainabove"
 	android:layout_above="@id/mainbelow"
 	>
-
+<ubank.common.LoginBox
+	android:id="@+id/login_box"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	/>
 </LinearLayout>
 </RelativeLayout>

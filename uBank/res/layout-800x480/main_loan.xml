@@ -1,0 +1,186 @@
+<!-- 贷款利率 文本布局  距离上面的上外边距20dip-->
+<LinearLayout
+android:id="@+id/layout1"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation = "vertical"
+>
+
+
+<!-- 第一级 短期贷款   -->
+<LinearLayout
+	android:id = "@+id/loan_rate_one"
+	android:layout_width = "440px"
+	android:layout_height = "wrap_content"
+	android:layout_marginTop = "20px"
+	android:layout_marginLeft = "20px"
+	android:background = "@drawable/deposite_rate_two"
+	android:orientation = "vertical">
+	<TextView
+		android:layout_width = "fill_parent"
+		android:layout_height = "50px"
+		android:layout_marginLeft = "50px"
+		android:textColor = "#000000"
+		android:textSize = "24px"
+		android:gravity = "center_vertical"
+		android:text = "短期贷款"			
+		>
+	</TextView>
+		<TextView 
+			android:layout_width = "400px"
+			android:layout_height = "2dip"
+			android:layout_marginLeft = "20px"
+			android:background = "#808080ff">
+		</TextView>
+	<LinearLayout
+		android:layout_width = "fill_parent"
+		android:layout_height = "wrap_content"
+		android:orientation = "vertical">
+		
+		<LinearLayout
+			android:layout_width = "fill_parent"
+			android:layout_height = "wrap_content"
+			android:orientation = "horizontal">
+		<TextView
+		android:layout_width = "wrap_content"
+		android:layout_height = "40px"
+		android:layout_marginLeft = "80px"
+		android:text = "六个月以内（含六个月）"
+		android:gravity = "center_vertical"
+		android:textColor = "#000000"
+		android:textSize = "22px">
+	</TextView>
+	<TextView
+		android:id = "@+id/loan_one_1"
+		android:layout_width = "wrap_content"
+		android:layout_height = "40px"
+		android:layout_marginLeft = "30px"
+		android:textColor = "#000000"
+		android:gravity = "center_vertical"
+		android:text = "0.81%"
+		android:textSize = "22px">
+	</TextView>
+	</LinearLayout>
+	<TextView 
+			android:layout_width = "400px"
+			android:layout_height = "2dip"
+			android:layout_marginLeft = "20px"
+			android:background = "#808080ff">
+	</TextView>
+	<LinearLayout
+			android:layout_width = "fill_parent"
+			android:layout_height = "wrap_content"
+			android:orientation = "horizontal">
+			<TextView
+		android:layout_width = "wrap_content"
+		android:layout_height = "40px"
+		android:layout_marginLeft = "80px"
+		android:textColor = "#000000"
+		android:text = "六个月至一年（含一年）"
+		android:gravity = "center_vertical"
+		android:textSize = "22px">
+	</TextView>
+	<TextView
+		android:id = "@+id/loan_one_2"
+		android:layout_width = "wrap_content"
+		android:layout_height = "40px"
+		android:layout_marginLeft = "30px"
+		android:textColor = "#000000"
+		android:gravity = "center_vertical"
+		android:text = "1.35%"
+		android:textSize = "22px">
+	</TextView>
+	</LinearLayout>
+	</LinearLayout>
+	
+</LinearLayout>
+
+<!-- 第二级 中长期贷款  -->
+<LinearLayout
+	android:layout_width = "440px"
+	android:layout_height = "wrap_content"
+	android:layout_marginTop = "20px"
+	android:layout_marginLeft = "20px"
+	android:layout_below = "@id/loan_rate_one"
+	android:background = "@drawable/deposite_rate_two"
+	android:orientation = "vertical">
+	<TextView
+		android:layout_width = "fill_parent"
+		android:layout_height = "50px"
+		android:layout_marginLeft = "50px"
+		android:textColor = "#000000"
+		android:textSize = "24px"
+		android:gravity = "center_vertical"
+		android:text = "中长期贷款"			
+		>
+	</TextView>
+		<TextView 
+			android:layout_width = "400px"
+			android:layout_height = "2dip"
+			android:layout_marginLeft = "20px"
+			android:background = "#808080ff">
+		</TextView>
+	<LinearLayout
+		android:layout_width = "fill_parent"
+		android:layout_height = "wrap_content"
+		android:orientation = "vertical">
+		
+		<LinearLayout
+			android:layout_width = "fill_parent"
+			android:layout_height = "wrap_content"
+			android:orientation = "horizontal">
+		<TextView
+		android:layout_width = "wrap_content"
+		android:layout_height = "40px"
+		android:layout_marginLeft = "80px"
+		android:text = "一年至三年（含三年）"
+		android:gravity = "center_vertical"
+		android:textColor = "#000000"
+		android:textSize = "22px">
+	</TextView>
+	<TextView
+		android:id = "@+id/loan_two_1"
+		android:layout_width = "wrap_content"
+		android:layout_height = "40px"
+		android:layout_marginLeft = "45px"
+		android:textColor = "#000000"
+		android:gravity = "center_vertical"
+		android:text = "0.81%"
+		android:textSize = "22px">
+	</TextView>
+	</LinearLayout>
+	<TextView 
+			android:layout_width = "400px"
+			android:layout_height = "2dip"
+			android:layout_marginLeft = "20px"
+			android:background = "#808080ff">
+	</TextView>
+	<LinearLayout
+			android:layout_width = "fill_parent"
+			android:layout_height = "wrap_content"
+			android:orientation = "horizontal">
+			<TextView
+		android:layout_width = "wrap_content"
+		android:layout_height = "40px"
+		android:layout_marginLeft = "80px"
+		android:textColor = "#000000"
+		android:text = "三年至五年（含五年）"
+		android:gravity = "center_vertical"
+		android:textSize = "22px">
+	</TextView>
+	<TextView
+		android:id = "@+id/loan_two_2"
+		android:layout_width = "wrap_content"
+		android:layout_height = "40px"
+		android:layout_marginLeft = "45px"
+		android:textColor = "#000000"
+		android:text = "1.35%"
+		android:gravity = "center_vertical"
+		android:textSize = "22px">
+	</TextView>
+	</LinearLayout>
+	</LinearLayout>
+	
+</LinearLayout>
+</LinearLayout>
