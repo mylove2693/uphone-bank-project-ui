@@ -10,6 +10,7 @@ import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.Context;
 import android.content.Intent;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +25,7 @@ public class Time_Select extends LinearLayout {
 	Activity fromActivity = null;
 	@SuppressWarnings("unchecked")
 	Class toActivity = null;
+	Intent intent = new Intent();
 	  
 	// 通过一个类来获取当前的时间的年月日
 	final Calendar calendar = Calendar.getInstance();
@@ -70,6 +72,7 @@ public class Time_Select extends LinearLayout {
 				monthOfYear += 1;
 				StartTime = year + "-" + monthOfYear + "-" + dayOfMonth;
 				start.setText(StartTime);
+				intent.putExtra("start_time", StartTime);
 			}
 		};
 		/**
@@ -82,6 +85,7 @@ public class Time_Select extends LinearLayout {
 				monthOfYear += 1;
 				EndTime = year + "-" + monthOfYear + "-" + dayOfMonth;
 				end.setText(EndTime);
+				intent.putExtra("end_time", EndTime);
 			}
 		};
 
@@ -118,12 +122,17 @@ public class Time_Select extends LinearLayout {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void setButtonListener(Intent intent,Activity fromActivity,Class toActivity){
+	public void setButtonListener(Activity fromActivity,Class toActivity){
 		this.fromActivity = fromActivity;
 		this.toActivity = toActivity;
-		intent.putExtra("start_time", StartTime);
-		intent.putExtra("end_time", EndTime);
 		btn.setOnClickListener(new Listener(intent,fromActivity,toActivity));
+	}
+	
+	//设置传递的参数
+	public void setParams(String[] name,String[] value){
+		for(int i = 0;i < name.length;i++){
+			intent.putExtra(name[i], value[i]);
+		}
 	}
 	
 }
