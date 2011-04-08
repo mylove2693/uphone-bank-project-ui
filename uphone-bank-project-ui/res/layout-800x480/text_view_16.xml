@@ -9,8 +9,8 @@
     >
 <TextView
 android:id="@+id/Text_View_16"
-  android:textSize="18dip"
-  android:textColor="#ffffff"
+  android:textSize="16dip"
+  android:textColor="#000000"
   android:layout_width="wrap_content" 
   android:layout_height="wrap_content">
 </TextView>
