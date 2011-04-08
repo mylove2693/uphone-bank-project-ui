@@ -5,7 +5,18 @@
     <string name="next">下一步</string>
     <string name="confirm">确定</string>
     <string name = "account_manager">账户管理</string>
+
+    <string name = "account_info">账户信息</string>
+    <string name = "activation_account">激活账户</string>
+    <string name = "first_acc_set">首选账户设置</string>
+    <string name = "reservation_change_card">预约换卡</string>
+    <string name = "acc_report_loss">账户挂失</string>
+    <string name = "add_account">添加新账户</string>
+    <string name = "delete_account">删除已有账户</string>
+   
+
     <string name="accounNum">账号</string>
     <string name="accountType">账号类型</string>
     
+
 </resources>
