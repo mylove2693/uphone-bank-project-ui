@@ -26,7 +26,7 @@ public class AllPaymentSer extends GeneralListActivity {
 		super.onListItemClick(l, v, position, id);
 		if(id==0){//待缴费项目
 			Intent payment_intent=new Intent();
-			payment_intent.setClass(AllPaymentSer.this, WaitCost.class);
+			payment_intent.setClass(AllPaymentSer.this, WaitCostItem.class);
 			AllPaymentSer.this.startActivity(payment_intent);
 		}else if(id==1){//便捷服务
 			Intent speedy_intent=new Intent();
