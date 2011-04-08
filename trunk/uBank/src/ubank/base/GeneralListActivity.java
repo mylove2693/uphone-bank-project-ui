@@ -2,6 +2,7 @@ package ubank.base;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import ubank.main.R;
 import android.app.Activity;
@@ -111,6 +112,27 @@ public class GeneralListActivity extends ListActivity implements IGeneralActivit
 						R.id.data_text2, R.id.Right_img });
 		return adapter;
     }
+    
+    public SimpleAdapter createText_Text_Img(String[] name,String[] value,List<Integer> index){
+    	ArrayList<HashMap<String, Object>> mainlist = new ArrayList<HashMap<String, Object>>();
+    	HashMap<String, Object> paylist1 = null;
+		for (int i = 0; i < value.length; i++) {
+			paylist1 = new HashMap<String, Object>();
+			paylist1.put("text1",name[i]);
+			paylist1.put("text2", value[i]);
+			if (index.contains(Integer.valueOf(i))) {
+				paylist1.put("Rimg", R.drawable.righticon);
+			}else{
+				paylist1.put("Rimg", null);
+			}
+			mainlist.add(paylist1);
+		}
+		adapter = new SimpleAdapter(this, mainlist,
+				R.xml.text_text_img, new String[] { "text1", "text2",
+						"Rimg" }, new int[] { R.id.data_text1,
+						R.id.data_text2, R.id.Right_img });
+		return adapter;
+    }
 	
     public SimpleAdapter createText_Text(String[] name,String[] value){
     	ArrayList<HashMap<String, Object>> mainlist = new ArrayList<HashMap<String, Object>>();
@@ -126,4 +148,5 @@ public class GeneralListActivity extends ListActivity implements IGeneralActivit
 						R.id.data_txt2});
 		return adapter;
     }
+    
 }
