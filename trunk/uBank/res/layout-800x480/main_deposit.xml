@@ -1,0 +1,662 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="560px"
+	android:layout_marginTop = "20px"
+	>
+<LinearLayout
+
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginLeft = "20px"
+android:orientation = "vertical"
+xmlns:android="http://schemas.android.com/apk/res/android">
+
+<!-- 第一级 活期存款 -->
+<LinearLayout 	
+android:id = "@+id/liner_one"
+	android:layout_width = "440px"
+	android:layout_height = "90px"	
+	android:layout_marginLeft = "20px"
+	android:background = "@drawable/deposite_rate_one"
+	android:orientation = "vertical">
+	<TextView
+		android:layout_width = "wrap_content"
+		android:layout_height = "50px"
+		android:layout_marginLeft = "50px"
+		android:textSize = "24px"
+		android:textColor = "#000000"
+		android:gravity = "center_vertical"
+		android:text = "活期存款"	
+		>
+	</TextView>
+	<TextView 
+			android:layout_width = "400px"
+			android:layout_height = "2dip"
+			android:layout_marginLeft = "20px"
+			android:background = "#808080ff">
+	</TextView>
+	<LinearLayout
+		android:layout_width = "fill_parent"
+		android:layout_height = "fill_parent"
+		android:orientation = "horizontal">
+	<TextView
+		android:layout_width = "wrap_content"
+		android:layout_height = "40px"
+		android:layout_marginLeft = "100px"
+		android:text = "当前利率"
+		android:gravity = "center_vertical"
+		android:textColor = "#000000"
+		android:textSize = "22px">
+	</TextView>
+	<TextView
+		android:id = "@+id/current_rates"
+		android:layout_width = "wrap_content"
+		android:layout_height = "40px"
+		android:layout_marginLeft = "120px"
+		android:text = "0.36%"
+		android:gravity = "center_vertical"
+		android:textColor = "#000000"
+		android:textSize = "22px">
+	</TextView>
+	</LinearLayout>
+</LinearLayout>
+
+<!-- 第二级 定期存款 -->
+<LinearLayout 	  
+android:id = "@+id/liner_two"
+	android:layout_width = "440px"
+	android:layout_height = "wrap_content"	
+	android:layout_marginLeft = "20px"
+	android:layout_marginTop = "20px"
+	android:background = "@drawable/deposite_rate_three"
+	android:orientation = "vertical">
+<!-- 定期存款 -->
+<TextView
+	android:layout_width = "fill_parent"
+	android:layout_height = "50px"
+	android:textSize = "24px"
+	android:layout_marginLeft = "50px"
+	android:textColor = "#000000"
+	android:gravity = "center_vertical"
+	android:text = "定期存款"></TextView>
+<!-- 划线 -->
+<TextView 
+			android:layout_width = "400px"
+			android:layout_height = "2dip"
+			android:layout_marginLeft = "20px"
+			android:background = "#808080ff">
+	</TextView>
+       
+       <LinearLayout    
+       android:layout_width = "fill_parent"
+       android:layout_height = "wrap_content"
+       android:orientation = "vertical">
+       <!-- 整存零取 -->
+       <TextView
+       android:layout_width = "fill_parent"
+       android:layout_height = "40px"
+       android:layout_marginLeft = "100px"
+       android:textSize = "22px"
+       android:textColor = "#000000"
+      android:gravity = "center_vertical"
+       android:text = "整存零取"></TextView>
+       <!-- 划线 -->
+		<TextView 
+			android:layout_width = "400px"
+			android:layout_height = "2dip"
+			android:layout_marginLeft = "20px"
+			android:background = "#808080ff">
+	</TextView>
+       <LinearLayout     
+       android:layout_width = "fill_parent"
+       android:layout_height = "wrap_content"
+       android:orientation = "horizontal">
+       <!-- three month -->
+       <TextView
+       android:layout_width = "wrap_content"
+       android:layout_height = "30px"
+       android:layout_marginLeft = "150px"
+       android:textSize = "20px"
+       android:textColor = "#000000"
+       android:gravity = "center_vertical"
+       android:text = "三个月"></TextView>
+       <TextView
+       android:id = "@+id/two_1_1"
+       android:layout_width = "wrap_content"
+       android:layout_height = "30px"
+       android:layout_marginLeft = "100px"
+       android:textSize = "20px"
+       android:textColor = "#000000"
+       android:gravity = "center_vertical"
+       android:text = "0.12%"></TextView>
+       </LinearLayout>   
+       <!-- 划线 -->
+		<TextView 
+			android:layout_width = "400px"
+			android:layout_height = "2dip"
+			android:layout_marginLeft = "20px"
+			android:background = "#808080ff">
+	</TextView>
+       <LinearLayout   
+       android:layout_width = "fill_parent"
+       android:layout_height = "wrap_content"
+       android:orientation = "horizontal">
+       <!-- six month -->
+       <TextView
+       android:layout_width = "wrap_content"
+       android:layout_height = "30px"
+       android:layout_marginLeft = "150px"
+       android:textSize = "20px"
+       android:textColor = "#000000"
+       android:gravity = "center_vertical"
+       android:text = "六个月"></TextView>
+       <TextView
+       android:id = "@+id/two_1_2"
+       android:layout_width = "wrap_content"
+       android:layout_height = "30px"
+       android:layout_marginLeft = "100px"
+       android:textSize = "20px"
+       android:textColor = "#000000"
+       android:gravity = "center_vertical"
+       android:text = "0.12%"></TextView>
+       </LinearLayout>   
+       <!-- 划线 -->
+		<TextView 
+			android:layout_width = "400px"
+			android:layout_height = "2dip"
+			android:layout_marginLeft = "20px"
+			android:background = "#808080ff">
+	</TextView>
+       <LinearLayout    
+       android:layout_width = "fill_parent"
+       android:layout_height = "wrap_content"
+       android:orientation = "horizontal">
+       <!-- one year -->
+       <TextView
+       android:layout_width = "wrap_content"
+       android:layout_height = "30px"
+       android:layout_marginLeft = "150px"
+       android:textColor = "#000000"
+       android:textSize = "20px"
+       android:gravity = "center_vertical"
+       android:text = "一年"></TextView>
+       <TextView
+       android:id = "@+id/two_1_3"
+       android:layout_width = "wrap_content"
+       android:layout_height = "30px"
+       android:layout_marginLeft = "120px"
+       android:textColor = "#000000"
+       android:textSize = "20px"
+       android:gravity = "center_vertical"
+       android:text = "0.12%"></TextView>
+       </LinearLayout>   
+       <!-- 划线 -->
+		<TextView 
+			android:layout_width = "400px"
+			android:layout_height = "2dip"
+			android:layout_marginLeft = "20px"
+			android:background = "#808080ff">
+	</TextView>
+       <LinearLayout    
+       android:layout_width = "fill_parent"
+       android:layout_height = "wrap_content"
+       android:orientation = "horizontal">
+       <!-- two year -->
+       <TextView
+       android:layout_width = "wrap_content"
+       android:layout_height = "30px"
+       android:textColor = "#000000"
+       android:layout_marginLeft = "150px"
+       android:textSize = "20px"
+       android:gravity = "center_vertical"
+       android:text = "二年"></TextView>
+       <TextView
+       android:id = "@+id/two_1_4"
+       android:layout_width = "wrap_content"
+       android:layout_height = "30px"
+       android:layout_marginLeft = "120px"
+       android:textColor = "#000000"
+       android:textSize = "20px"
+       android:gravity = "center_vertical"
+       android:text = "0.12%"></TextView>
+       </LinearLayout>    
+       <!-- 划线 -->
+		<TextView 
+			android:layout_width = "400px"
+			android:layout_height = "2dip"
+			android:layout_marginLeft = "20px"
+			android:background = "#808080ff">
+	</TextView>
+       <LinearLayout    
+       android:layout_width = "fill_parent"
+       android:layout_height = "wrap_content"
+       android:orientation = "horizontal">
+       <!-- shree year -->
+       <TextView
+       android:layout_width = "wrap_content"
+       android:layout_height = "30px"
+       android:layout_marginLeft = "150px"
+       android:textColor = "#000000"
+       android:textSize = "20px"
+       android:gravity = "center_vertical"
+       android:text = "三年"></TextView>
+       <TextView
+       android:id = "@+id/two_1_5"
+       android:layout_width = "wrap_content"
+       android:layout_height = "30px"
+       android:layout_marginLeft = "120px"
+       android:textSize = "20px"
+       android:textColor = "#000000"
+       android:gravity = "center_vertical"
+       android:text = "0.12%"></TextView>
+       </LinearLayout>    
+       <!-- 划线 -->
+		<TextView 
+			android:layout_width = "400px"
+			android:layout_height = "2dip"
+			android:layout_marginLeft = "20px"
+			android:background = "#808080ff">
+	</TextView>
+       <LinearLayout    
+       android:layout_width = "fill_parent"
+       android:layout_height = "wrap_content"
+       android:orientation = "horizontal">
+       <!-- five year -->
+       <TextView
+       android:layout_width = "wrap_content"
+       android:layout_height = "30px"
+       android:textColor = "#000000"
+       android:layout_marginLeft = "150px"
+       android:textSize = "20px"
+       android:gravity = "center_vertical"
+       android:text = "五年"></TextView>
+       <TextView
+       android:id = "@+id/two_1_6"
+       android:layout_width = "wrap_content"
+       android:layout_height = "30px"
+       android:layout_marginLeft = "120px"
+       android:textSize = "20px"
+       android:textColor = "#000000"
+       android:gravity = "center_vertical"
+       android:text = "0.12%"></TextView>
+       </LinearLayout>   
+       </LinearLayout>   
+       
+       <!-- 零存整取 -->
+      <!-- 划线 -->
+<TextView 
+			android:layout_width = "400px"
+			android:layout_height = "2dip"
+			android:layout_marginLeft = "20px"
+			android:background = "#808080ff">
+	</TextView>
+       
+       <LinearLayout    
+       android:layout_width = "fill_parent"
+       android:layout_height = "wrap_content"
+       android:orientation = "vertical">
+       <!-- 整存零取 -->
+       <TextView
+       android:layout_width = "fill_parent"
+       android:layout_height = "40px"
+       android:layout_marginLeft = "100px"
+       android:textColor = "#000000"
+       android:textSize = "22px"
+       android:gravity = "center_vertical"
+       android:text = "零存整取"></TextView>
+       
+       <!-- 划线 -->
+		<TextView 
+			android:layout_width = "400px"
+			android:layout_height = "2dip"
+			android:layout_marginLeft = "20px"
+			android:background = "#808080ff">
+	</TextView>
+       <LinearLayout    
+       android:layout_width = "fill_parent"
+       android:layout_height = "wrap_content"
+       android:orientation = "horizontal">
+       <!-- one year -->
+       <TextView
+       android:layout_width = "wrap_content"
+       android:layout_height = "30px"
+       android:layout_marginLeft = "150px"
+       android:textColor = "#000000"
+       android:textSize = "20px"
+       android:gravity = "center_vertical"
+       android:text = "一年"></TextView>
+       <TextView
+       android:id = "@+id/two_2_1"
+       android:layout_width = "wrap_content"
+       android:layout_height = "30px"
+       android:layout_marginLeft = "120px"
+       android:textColor = "#000000"
+       android:textSize = "20px"
+       android:gravity = "center_vertical"
+       android:text = "0.12%"></TextView>
+       </LinearLayout>   
+       
+       <!-- 划线 -->
+		<TextView 
+			android:layout_width = "400px"
+			android:layout_height = "2dip"
+			android:layout_marginLeft = "20px"
+			android:background = "#808080ff">
+	</TextView>
+       <LinearLayout    
+       android:layout_width = "fill_parent"
+       android:layout_height = "wrap_content"
+       android:orientation = "horizontal">
+       <!-- shree year -->
+       <TextView
+       android:layout_width = "wrap_content"
+       android:layout_height = "30px"
+       android:layout_marginLeft = "150px"
+       android:textColor = "#000000"
+       android:textSize = "20px"
+       android:gravity = "center_vertical"
+       android:text = "三年"></TextView>
+       <TextView
+       android:id = "@+id/two_2_2"
+       android:layout_width = "wrap_content"
+       android:layout_height = "30px"
+       android:layout_marginLeft = "120px"
+       android:textColor = "#000000"
+       android:textSize = "20px"
+       android:gravity = "center_vertical"
+       android:text = "0.12%"></TextView>
+       </LinearLayout>    
+       <!-- 划线 -->
+		<TextView 
+			android:layout_width = "400px"
+			android:layout_height = "2dip"
+			android:layout_marginLeft = "20px"
+			android:background = "#808080ff">
+	</TextView>
+       <LinearLayout    
+       android:layout_width = "fill_parent"
+       android:layout_height = "wrap_content"
+       android:orientation = "horizontal">
+       <!-- five year -->
+       <TextView
+       android:layout_width = "wrap_content"
+       android:layout_height = "30px"
+       android:layout_marginLeft = "150px"
+       android:textColor = "#000000"
+       android:textSize = "20px"
+       android:gravity = "center_vertical"
+       android:text = "五年"></TextView>
+       <TextView
+       android:id = "@+id/two_2_3"
+       android:layout_width = "wrap_content"
+       android:layout_height = "30px"
+       android:layout_marginLeft = "120px"
+       android:textColor = "#000000"
+       android:textSize = "20px"
+       android:gravity = "center_vertical"
+       android:text = "0.12%"></TextView>
+       </LinearLayout>   
+       </LinearLayout>   
+
+       
+      
+       <!-- 划线 -->
+<TextView 
+			android:layout_width = "400px"
+			android:layout_height = "2dip"
+			android:layout_marginLeft = "20px"
+			android:background = "#808080ff">
+	</TextView>
+       
+       <LinearLayout    
+       android:layout_width = "fill_parent"
+       android:layout_height = "wrap_content"
+       android:orientation = "vertical">
+       <!-- 存本取息 -->
+       <TextView
+       android:layout_width = "fill_parent"
+       android:layout_height = "40px"
+       android:layout_marginLeft = "100px"
+       android:textColor = "#000000"
+       android:textSize = "22px"
+       android:gravity = "center_vertical"
+       android:text = "存本取息"></TextView>
+       
+       <!-- 划线 -->
+		<TextView 
+			android:layout_width = "400px"
+			android:layout_height = "2dip"
+			android:layout_marginLeft = "20px"
+			android:background = "#808080ff">
+	</TextView>
+       <LinearLayout    
+       android:layout_width = "fill_parent"
+       android:layout_height = "wrap_content"
+       android:orientation = "horizontal">
+       <!-- one year -->
+       <TextView
+       android:layout_width = "wrap_content"
+       android:layout_height = "30px"
+       android:textColor = "#000000"
+       android:layout_marginLeft = "150px"
+       android:textSize = "20px"
+       android:gravity = "center_vertical"
+       android:text = "一年"></TextView>
+       <TextView
+       android:id = "@+id/two_3_1"
+       android:layout_width = "wrap_content"
+       android:layout_height = "30px"
+       android:layout_marginLeft = "120px"
+       android:textColor = "#000000"
+       android:textSize = "20px"
+       android:gravity = "center_vertical"
+       android:text = "0.12%"></TextView>
+       </LinearLayout>   
+       
+       <!-- 划线 -->
+		<TextView 
+			android:layout_width = "400px"
+			android:layout_height = "2dip"
+			android:layout_marginLeft = "20px"
+			android:background = "#808080ff">
+	</TextView>
+       <LinearLayout    
+       android:layout_width = "fill_parent"
+       android:layout_height = "wrap_content"
+       android:orientation = "horizontal">
+       <!-- shree year -->
+       <TextView
+       android:layout_width = "wrap_content"
+       android:layout_height = "30px"
+       android:layout_marginLeft = "150px"
+       android:textColor = "#000000"
+       android:textSize = "20px"
+       android:gravity = "center_vertical"
+       android:text = "三年"></TextView>
+       <TextView
+       android:id = "@+id/two_3_2"
+       android:layout_width = "wrap_content"
+       android:layout_height = "30px"
+       android:layout_marginLeft = "120px"
+       android:textColor = "#000000"
+       android:textSize = "20px"
+       android:gravity = "center_vertical"
+       android:text = "0.12%"></TextView>
+       </LinearLayout>    
+       <!-- 划线 -->
+		<TextView 
+			android:layout_width = "400px"
+			android:layout_height = "2dip"
+			android:layout_marginLeft = "20px"
+			android:background = "#808080ff">
+	</TextView>
+       <LinearLayout    
+       android:layout_width = "fill_parent"
+       android:layout_height = "wrap_content"
+       android:orientation = "horizontal">
+       <!-- five year -->
+       <TextView
+       android:layout_width = "wrap_content"
+       android:layout_height = "30px"
+       android:layout_marginLeft = "150px"
+       android:textColor = "#000000"
+       android:textSize = "20px"
+       android:gravity = "center_vertical"
+       android:text = "五年"></TextView>
+       <TextView
+       android:id = "@+id/two_3_3"
+       android:layout_width = "wrap_content"
+       android:layout_height = "30px"
+       android:layout_marginLeft = "120px"
+       android:textColor = "#000000"
+       android:textSize = "20px"
+       android:gravity = "center_vertical"
+       android:text = "0.12%"></TextView>
+       </LinearLayout>   
+       </LinearLayout>   
+      
+      
+
+</LinearLayout>   
+
+<!-- 第三级 通知存款 -->
+<LinearLayout
+	android:layout_width = "440px"
+	android:layout_height = "wrap_content"
+	android:layout_marginTop = "20px"
+	android:layout_marginLeft = "20px"
+	android:background = "@drawable/deposite_rate_two"
+	android:orientation = "vertical"><!-- 通知存款 -->
+	<TextView
+		android:layout_width = "fill_parent"
+		android:layout_height = "50px"
+		android:layout_marginLeft = "50px"
+		android:textColor = "#000000"
+		android:textSize = "24px"
+		android:gravity = "center_vertical"
+		android:text = "通知存款"			
+		>
+	</TextView>
+		<TextView 
+			android:layout_width = "400px"
+			android:layout_height = "2dip"
+			android:layout_marginLeft = "20px"
+			android:background = "#808080ff">
+		</TextView>
+	<LinearLayout
+		android:layout_width = "fill_parent"
+		android:layout_height = "wrap_content"
+		android:orientation = "vertical">
+		
+		<LinearLayout
+			android:layout_width = "fill_parent"
+			android:layout_height = "wrap_content"
+			android:orientation = "horizontal">
+		<TextView
+		
+		android:layout_width = "wrap_content"
+		android:layout_height = "40px"
+		android:layout_marginLeft = "100px"
+		android:text = "一天"
+		android:gravity = "center_vertical"
+		android:textColor = "#000000"
+		android:textSize = "22px">
+	</TextView>
+	<TextView
+		android:id = "@+id/three_1"
+		android:layout_width = "wrap_content"
+		android:layout_height = "40px"
+		android:layout_marginLeft = "165px"
+		android:textColor = "#000000"
+		android:text = "0.81%"
+		android:gravity = "center_vertical"
+		android:textSize = "22px">
+	</TextView>
+	</LinearLayout>
+	<TextView 
+			android:layout_width = "400px"
+			android:layout_height = "2dip"
+			android:layout_marginLeft = "20px"
+			android:background = "#808080ff">
+	</TextView>
+	<LinearLayout
+			android:layout_width = "fill_parent"
+			android:layout_height = "wrap_content"
+			android:orientation = "horizontal">
+			<TextView
+		android:layout_width = "wrap_content"
+		android:layout_height = "40px"
+		android:layout_marginLeft = "100px"
+		android:textColor = "#000000"
+		android:text = "七天"
+		android:gravity = "center_vertical"
+		android:textSize = "22px">
+	</TextView>
+	<TextView
+		android:id = "@+id/three_2"
+		android:layout_width = "wrap_content"
+		android:layout_height = "40px"
+		android:layout_marginLeft = "165px"
+		android:textColor = "#000000"
+		android:text = "1.35%"
+		android:gravity = "center_vertical"
+		android:textSize = "22px">
+	</TextView>
+	</LinearLayout>
+	</LinearLayout>
+	
+</LinearLayout>
+
+<!-- 第四级 协定存款 -->
+<LinearLayout 
+	android:layout_width = "440px"
+	android:layout_height = "90px"
+	android:layout_marginTop = "20px"
+	android:layout_marginLeft = "20px"
+	android:background = "@drawable/deposite_rate_one"
+	android:orientation = "vertical">
+	<TextView
+		android:layout_width = "fill_parent"
+		android:layout_height = "50px"
+		android:layout_marginLeft = "50px"
+		android:textColor = "#000000"
+		android:textSize = "24px"
+		android:gravity = "center_vertical"
+		android:text = "协定存款"	
+		>
+	</TextView>
+	<TextView 
+			android:layout_width = "400px"
+			android:layout_height = "2dip"
+			android:layout_marginLeft = "20px"
+			android:background = "#808080ff">
+	</TextView>
+	<LinearLayout
+		android:layout_width = "fill_parent"	
+		android:layout_height = "wrap_content"
+		android:orientation = "horizontal">
+	<TextView
+		android:layout_width = "wrap_content"
+		android:layout_height = "40px"
+		android:layout_marginLeft = "100px"
+		android:textColor = "#000000"
+		android:text = "当前利率"
+		android:gravity = "center_vertical"
+		android:textSize = "22px">
+	</TextView>
+	<TextView
+		android:id = "@+id/four"
+		android:layout_width = "wrap_content"
+		android:layout_height = "40px"
+		android:layout_marginLeft = "120px"
+		android:textColor = "#000000"
+		android:text = "0.36%"
+		android:gravity = "center_vertical"
+		android:textSize = "22px">
+	</TextView>
+	</LinearLayout>
+	
+</LinearLayout>
+</LinearLayout>
+</ScrollView>
