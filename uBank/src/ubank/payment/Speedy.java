@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.ListView;
 
 public class Speedy extends GeneralListActivity {
-	private String[] name={"手机充值","Q充值","网易充值"};
 	private String[] value={"手机充值","Q充值","网易充值"};
 	  @Override
 	    public void onCreate(Bundle savedInstanceState) {
@@ -22,7 +21,7 @@ public class Speedy extends GeneralListActivity {
 	        tvClassThird.setVisibility(View.VISIBLE);
 	        tvClassThird.setText("便捷服务");
 	        
-	        this.setListAdapter(createText_Text_Img(name,value));
+	        this.setListAdapter(createText_Img(value));
 	  }
 	protected void onListItemClick(ListView l,View v,int position,long id){
 		
