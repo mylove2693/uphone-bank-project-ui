@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -27,14 +28,16 @@ public class Account_Select extends LinearLayout {
 		LayoutInflater.from(context).inflate(R.xml.account_select, this,
 				true);
 		// 获取两个spinner
-		TextView d=(TextView)findViewById(R.id.AccTypText).findViewById(R.id.Text_View);
+		TextView d=(TextView)findViewById(R.id.AccTypText).findViewById(R.id.Text_View_18);
 		d.setText("请选择账户的类型：");
 		AccTypSpinner = (Spinner) findViewById(R.id.spinnerAccTyp)
 				.findViewById(R.id.Spinner);
-		TextView s =(TextView)findViewById(R.id.AccNumText).findViewById(R.id.Text_View);
+		TextView s =(TextView)findViewById(R.id.AccNumText).findViewById(R.id.Text_View_18);
 		s.setText("请选择账户的帐号：");
 		AccNumSpinner = (Spinner) findViewById(R.id.spinnerAccNum)
 				.findViewById(R.id.Spinner);
+		DatePicker date1=new DatePicker(this.getContext());
+	
 	}
 
 	public Account_Select(Context context) {
