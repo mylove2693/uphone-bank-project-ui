@@ -22,8 +22,8 @@ public class AccountQueryInfo extends GeneralListActivity {
 		
 		Intent intent = this.getIntent();
 		String[] name = new String[]{"账户","账户类型","币种","余额","存期","起息月","利率"};
-		String[] value = new String[]{(String)intent.getCharSequenceExtra("accNumValue"),
-									  (String)intent.getCharSequenceExtra("accTypeValue"),
+		String[] value = new String[]{intent.getStringExtra("accNumValue"),
+									  intent.getStringExtra("accTypeValue"),
 									  "人民币","100000","三个月","2010-11",
 									  "1.5%"};
 		

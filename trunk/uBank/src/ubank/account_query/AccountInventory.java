@@ -4,6 +4,7 @@ import ubank.base.GeneralActivity;
 import ubank.common.Time_Select;
 import ubank.main.Login;
 import ubank.main.R;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -22,7 +23,9 @@ public class AccountInventory extends GeneralActivity {
 		tvClassThird.setVisibility(View.VISIBLE);
 		tvClassThird.setText("明细查询");
 		
-		time_select = (Time_Select)findViewById(R.id.time_select);
+		Intent intent = this.getIntent();
 		
+		time_select = (Time_Select)findViewById(R.id.time_select);
+		time_select.setButtonListener(intent, this, AccountInventoryList.class);
 	}
 }
