@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="match_parent">
+  <ubank.common.Time_Select
+    android:id="@+id/time_select"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content" 
+	android:paddingRight="10dip"
+	android:paddingTop="1dip"
+	android:paddingBottom="1dip"
+  ></ubank.common.Time_Select>
+</LinearLayout>
