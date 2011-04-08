@@ -6,7 +6,9 @@ import ubank.base.GeneralListActivity;
 import ubank.main.R;
 
 public class GasCost extends GeneralListActivity {
-	String[] s={"项目名称","缴费金额","收费方式","缴费合同号","缴费期限"};
+	private String[] name={"项目名称:","缴费金额:","收费方:","缴费合同号:","缴费期限:"};
+	private String[] value={"三月份煤气费","78.00元","无锡能源公司","s42526","2011-07-08"};
+	
 	  @Override
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
@@ -19,7 +21,6 @@ public class GasCost extends GeneralListActivity {
 	        tvClassThird.setVisibility(View.VISIBLE);
 	        tvClassThird.setText("待缴费项目");
 	        
-	        addLayout(R.layout.pay_all_list);
-	        this.setListAdapter(createImg_Text_ImgAdapter(s));
+	        this.setListAdapter(createText_Text(name,value));
 	  }
 }

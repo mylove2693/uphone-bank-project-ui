@@ -18,9 +18,7 @@ public class AllPaymentSer extends GeneralListActivity {
 	        tvClassSecond.setVisibility(View.VISIBLE);
 	        tvClassSecond.setText("自助缴费");
 	        
-	        addLayout(R.layout.pay_all_list);
 	        this.setListAdapter(createImg_Text_ImgAdapter(s));
-	       
 	  }
 	  
 	protected void onListItemClick(ListView l,View v,int position,long id){
@@ -30,7 +28,22 @@ public class AllPaymentSer extends GeneralListActivity {
 			Intent payment_intent=new Intent();
 			payment_intent.setClass(AllPaymentSer.this, WaitCost.class);
 			AllPaymentSer.this.startActivity(payment_intent);
-		}else if(id==1){
+		}else if(id==1){//便捷服务
+			Intent speedy_intent=new Intent();
+			speedy_intent.setClass(AllPaymentSer.this, Speedy.class);
+			AllPaymentSer.this.startActivity(speedy_intent);
+		}else if(id==2){//最近一个月缴费
+			Intent lately_intent=new Intent();
+			lately_intent.setClass(AllPaymentSer.this, Lately.class);
+			AllPaymentSer.this.startActivity(lately_intent);
+		}else if(id==3){//历史缴费记录
+			Intent history_intent=new Intent();
+			history_intent.setClass(AllPaymentSer.this, HistoryCost.class);
+			AllPaymentSer.this.startActivity(history_intent);
+		}else if(id==4){//缴费项目管理
+			Intent manage_intent=new Intent();
+			manage_intent.setClass(AllPaymentSer.this, ManageCost.class);
+			AllPaymentSer.this.startActivity(manage_intent);
 		}
 	}
 }

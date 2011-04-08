@@ -2,11 +2,14 @@ package ubank.payment;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import ubank.base.GeneralListActivity;
 import ubank.main.R;
 
 public class WaterCost extends GeneralListActivity {
-	String[] s={"项目名称","缴费金额","收费方式","缴费合同号","缴费期限"};
+	private String[] name={"项目名称:","缴费金额:","收费方:","缴费合同号:","缴费期限:"};
+	private String[] value={"三月份水费","30.00元","无锡自来水公司","s323454","2011-07-12"};
+	private Button btn=null;
 	  @Override
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
@@ -19,7 +22,9 @@ public class WaterCost extends GeneralListActivity {
 	        tvClassThird.setVisibility(View.VISIBLE);
 	        tvClassThird.setText("待缴费项目");
 	        
-	        addLayout(R.layout.pay_all_list);
-	        this.setListAdapter(createImg_Text_ImgAdapter(s));
+	        addLayoutBlow(R.layout.midle_btn);
+	        btn=(Button)findViewById(R.id.midle_btn).findViewById(R.id.button);
+	        btn.setText("前往缴费");
+	        this.setListAdapter(createText_Text(name,value));
 	  }
 }
