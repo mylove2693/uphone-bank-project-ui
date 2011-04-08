@@ -5,18 +5,28 @@
     <string name="next">下一步</string>
     <string name="confirm">确定</string>
     <string name = "account_manager">账户管理</string>
-
     <string name = "account_info">账户信息</string>
-    <string name = "activation_account">激活账户</string>
+	<string name = "currency">币种</string>
+	<string name = "balance">余额</string>
+    <string name = "account_type_select">请选择账户类型</string>
+    <string name = "account_no_select">请选择账户号</string>
+    <string name = "bind_account">绑定账户</string>
     <string name = "first_acc_set">首选账户设置</string>
     <string name = "reservation_change_card">预约换卡</string>
     <string name = "acc_report_loss">账户挂失</string>
     <string name = "add_account">添加新账户</string>
     <string name = "delete_account">删除已有账户</string>
-   
-
+    <string name = "home">首页</string>
+    <string name = "acc_info_continue">继续</string>
+	<string name = "account_state">账户状态</string>
+	<string name = "is_activation">是否绑定</string>
+	<string name = "opening_bank">开户行</string>
+	<string name = "account_opening_day">开户日</string>
+	<string name = "account_alias">账户别名</string>
     <string name="accounNum">账号</string>
     <string name="accountType">账号类型</string>
+    <string name = "input_password">请输入密码</string>
+    <string name = "bind">绑定</string>
     
 
 </resources>
