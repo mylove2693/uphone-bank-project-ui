@@ -1,7 +1,6 @@
 package ubank.payment;
 
 import ubank.base.GeneralListActivity;
-import ubank.main.R;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
