@@ -70,7 +70,7 @@ public class Time_Select extends LinearLayout {
 			public void onDateSet(DatePicker view, int year, int monthOfYear,
 					int dayOfMonth) {
 				monthOfYear += 1;
-				EndTime = year + "/" + monthOfYear + "/" + dayOfMonth;
+				EndTime = year + "-" + monthOfYear + "-" + dayOfMonth;
 				end.setText(EndTime);
 			}
 		};
