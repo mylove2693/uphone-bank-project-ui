@@ -18,12 +18,13 @@ public class WaitCost extends GeneralListActivity {
 	        super.onCreate(savedInstanceState);
 	        
 	        /**
-	         * 
+	         * 接收上一个Activity的值
 	         */
 	        Intent intent=getIntent();
 	        name=intent.getStringArrayExtra("name");
 	        value=intent.getStringArrayExtra("value");
 	        tvClassFirst.setVisibility(View.VISIBLE);
+	        
 	        tvClassFirst.setText("首页>");
 	        tvClassSecond.setVisibility(View.VISIBLE);
 	        tvClassSecond.setText("自助缴费>");
