@@ -1,48 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="ubank.main"
-      android:versionCode="1"
-      android:versionName="1.0">
-    <uses-sdk android:minSdkVersion="8" />
+	package="ubank.main" android:versionCode="1" android:versionName="1.0">
+	<uses-sdk android:minSdkVersion="8" />
 
-    <application android:icon="@drawable/icon" android:label="@string/app_name"
-      android:theme="@android:style/Theme.NoTitleBar">
-        
-        
-        <!-- punan's activity -->
 
-        <!-- the first activity -->
+	<!-- punan's activity -->
+	<application android:icon="@drawable/icon" android:label="@string/app_name"
+		android:theme="@android:style/Theme.NoTitleBar">
+
+		<!-- punan's activity -->
+
+		<!-- the first activity -->
 		<activity android:name=".FinanceAss">
-			<intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
 		</activity>
 		<activity android:name=".Login">
 
-        </activity>
+		</activity>
 		<activity android:name=".BankMain">
-			
+
 		</activity>
 		<activity android:name=".DepositRates">
-			
+
 		</activity>
 		<activity android:name=".LoanRates">
-		
+
 		</activity>
 		<activity android:name=".ExchangeCalc">
-		
+
 		</activity>
 		<!-- end punan's activity -->
-		
+
 		<!-- wangting's activity -->
 		<activity android:name="ubank.account_query.AccountQueryType">
-			  <!-- 
-			  <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-			  -->
+			<!-- <intent-filter> <action android:name="android.intent.action.MAIN" 
+				/> <category android:name="android.intent.category.LAUNCHER" /> </intent-filter> -->
 		</activity>
 		<activity android:name="ubank.account_query.AccountQuery">
 		</activity>
@@ -57,13 +49,13 @@
 		<activity android:name="ubank.account_query.AccountComeList">
 		</activity>
 		<!-- end wangting's activity -->
-		
+
 		<!-- ZXiaohui's activity -->
 		<activity android:name="ubank.account_manager.AccountBind">
 
 		</activity>
 		<activity android:name="ubank.account_manager.AccountInfo">
-		
+
 		</activity>
 		<activity android:name="ubank.account_manager.AccountInfoShow"></activity>
 		<activity android:name="ubank.account_manager.AccountReportLoss"></activity>
@@ -77,24 +69,29 @@
 		<activity android:name="ubank.account_manager.SetAccountAlias"></activity>
 		<!-- end ZXiaohui's activity -->
 
-		
+
 		<!-- gsm's activity -->
 		<activity android:name="ubank.payment.AllPaymentSer">
-			<!--  <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            -->
+			<!-- <intent-filter> <action android:name="android.intent.action.MAIN" 
+				/> <category android:name="android.intent.category.LAUNCHER" /> </intent-filter> -->
 		</activity>
-		<activity android:name="ubank.payment.WaitCost"/>
-		<activity android:name="ubank.payment.WaitCostItem"/>
-		<activity android:name="ubank.payment.Speedy"/>
-		<activity android:name="ubank.payment.Lately"/>
-		<activity android:name="ubank.payment.LatelyCost"/>
-		<activity android:name="ubank.payment.HistoryCost"/>
-		<activity android:name="ubank.payment.ManageCost"/>
+		<activity android:name="ubank.payment.WaitCost" />
+		<activity android:name="ubank.payment.WaitCostItem" />
+		<activity android:name="ubank.payment.Speedy" />
+		<activity android:name="ubank.payment.Lately" />
+		<activity android:name="ubank.payment.LatelyCost" />
+		<activity android:name="ubank.payment.HistoryCost" />
+		<activity android:name="ubank.payment.ManageCost" />
 		<!-- end gsm's activity -->
+		<!-- solo -->
+		<activity android:name="ubank.credit.CreditCardMain">
+			<!-- <intent-filter> <action android:name="android.intent.action.MAIN" 
+				/> <category android:name="android.intent.category.LAUNCHER" /> </intent-filter> -->
+		</activity>
+		<activity android:name="ubank.credit.CardRepayment"></activity>
+		<activity android:name="ubank.credit.CreditCardInfo"></activity>
+		<!-- end solo -->
 
+	</application>
 
-    </application>
 </manifest>
