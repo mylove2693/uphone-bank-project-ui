@@ -8,9 +8,7 @@ import ubank.base.GeneralListActivity;
 import ubank.main.R;
 
 public class LatelyCost extends GeneralListActivity {
-//	private String[] name={"缴费时间:","缴费项目:","缴费账号:","缴费金额:","项目合同号:"};
-//	private String[] value={"2011-07-11","电费","222222","30.00","s36575"};
-	private String[] name=null;
+	private String[] name={"缴费时间:","缴费项目:","缴费账号:","缴费金额:","项目合同号:"};
 	private String[] value=null;
 	private Button btn=null;
 	  @Override
@@ -21,7 +19,6 @@ public class LatelyCost extends GeneralListActivity {
 	         * 接收上一个Activity的值
 	         */
 	        Intent intent=getIntent();
-	        name=intent.getStringArrayExtra("name");
 	        value=intent.getStringArrayExtra("value");
 	        tvClassFirst.setVisibility(View.VISIBLE);
 	        
