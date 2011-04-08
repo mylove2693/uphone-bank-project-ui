@@ -34,10 +34,18 @@ public class Time_Select extends LinearLayout {
 		super(context, attrs);
 		this.con = context;
 		LayoutInflater.from(context).inflate(R.xml.time_select, this, true);
+		
+		
+		//提示栏
+		TextView information_textview=(TextView) findViewById(R.id.information_text).findViewById(
+				R.id.Text_View_18);
+		information_textview.setText("请选择你要查询的时间区间");
+		
 		TextView from_textview = (TextView) findViewById(R.id.from_text).findViewById(
 				R.id.Text_View_18);
 		from_textview.setText("从：");
 
+		
 		start = (Button) findViewById(R.id.Start_Time);
 		start.setBackgroundResource(R.drawable.selection);
 		start.setText("开始时间");
