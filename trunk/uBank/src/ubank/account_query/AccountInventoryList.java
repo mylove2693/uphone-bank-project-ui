@@ -1,9 +1,11 @@
 package ubank.account_query;
 
 import ubank.base.GeneralListActivity;
+import ubank.main.Login;
 import ubank.main.R;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 public class AccountInventoryList extends GeneralListActivity {
@@ -13,6 +15,14 @@ public class AccountInventoryList extends GeneralListActivity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		addLayout(R.layout.above_list_txt);
+		
+		tvClassFirst.setVisibility(View.VISIBLE);
+		tvClassFirst.setText("首页>");
+		setListener(tvClassFirst, this, Login.class);
+		tvClassSecond.setVisibility(View.VISIBLE);
+		tvClassSecond.setText("账户查询>");
+		tvClassThird.setVisibility(View.VISIBLE);
+		tvClassThird.setText("明细查询");
 		
 		Intent intent = this.getIntent();
 		
