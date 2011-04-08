@@ -1,13 +1,14 @@
 package ubank.main;
 
+import ubank.base.*;
 import android.app.Activity;
 import android.os.Bundle;
 
-public class LoanRates extends Activity {
+public class LoanRates extends GeneralActivity {
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_login);
+        addLayout(R.layout.main_loan);
     }
 }
