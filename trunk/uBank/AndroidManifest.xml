@@ -15,7 +15,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 		</activity>
-		
 		<activity android:name=".Login">
         </activity>
 		<activity android:name=".BankMain">
@@ -31,10 +30,18 @@
 		
 		<!-- wangting's activity -->
 		<activity android:name="ubank.account_query.AccountQueryType">
+			<!--  
+			<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
 		</activity>
 		<activity android:name="ubank.account_query.AccountQuery">
 		</activity>
 		<activity android:name="ubank.account_query.AccountQueryInfo">
+		</activity>
+		<activity android:name="ubank.account_query.Inventory">
 		</activity>
 		<!-- end wangting's activity -->
 		
