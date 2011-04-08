@@ -23,8 +23,11 @@ public class AccountInventoryList extends GeneralListActivity {
 		String title = accTypeValue + accNumValue + "在" + start_time + "到"
 						+ end_time + "之间的交易记录如下：";
 		
-		above_txt = (TextView)findViewById(R.id.above_list_txt).findViewById(R.id.Text_View_16);
-		
+		above_txt = (TextView)findViewById(R.id.above_list_txt).findViewById(R.id.Text_View_16_Gray);
 		above_txt.setText(title);
+		
+		String[] name = new String[]{"2011-3-8","2011-3-9","2011-3-10"};
+		String[] value = new String[]{"支出","收入","支出"};
+		setListAdapter(createText_Text_Img(name, value));
 	}
 }
