@@ -5,5 +5,7 @@
     <string name="next">下一步</string>
     <string name="confirm">确定</string>
     <string name = "account_manager">账户管理</string>
+    <string name="accounNum">账号</string>
+    <string name="accountType">账号类型</string>
     
 </resources>
