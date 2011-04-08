@@ -23,7 +23,7 @@ public class Lately extends GeneralListActivity {
 	       //监听
 	        setListener(tvClassSecond, this, AllPaymentSer.class);
 	        tvClassThird.setVisibility(View.VISIBLE);
-	        tvClassThird.setText("最近一个月缴费");
+	        tvClassThird.setText("历史缴费记录");
 	        addLayout(R.layout.above_list_txt);
 	        txt=(TextView)findViewById(R.id.above_list_txt).findViewById(R.id.Text_View_16_Gray);
 	        txt.setText("从2011-03-01到2011-03-19的历史缴费记录:");
@@ -34,15 +34,27 @@ public class Lately extends GeneralListActivity {
 		super.onListItemClick(l, v, position, id);
 		if(id==0){//水费
 			Intent water_intent=new Intent();
-			water_intent.setClass(Lately.this, LatelyWaterCost.class);
+			String[] name={"缴费时间:","缴费项目:","缴费账号:","缴费金额:","项目合同号:"};
+			String[] value={"2011-07-11","水费","111111","20.00","s32332"};
+			water_intent.putExtra("name", name);
+			water_intent.putExtra("value", value);
+			water_intent.setClass(Lately.this, LatelyCost.class);
 			Lately.this.startActivity(water_intent);
 		}else if(id==1){//电费
 			Intent electricity_intent=new Intent();
-			electricity_intent.setClass(Lately.this, LatelyElectricityCost.class);
+			String[] name={"缴费时间:","缴费项目:","缴费账号:","缴费金额:","项目合同号:"};
+			String[] value={"2011-07-11","电费","222222","30.00","s36575"};
+			electricity_intent.putExtra("name", name);
+			electricity_intent.putExtra("value", value);
+			electricity_intent.setClass(Lately.this, LatelyCost.class);
 			Lately.this.startActivity(electricity_intent);
 		}else if(id==2){//房租费
 			Intent rent_intent=new Intent();
-			rent_intent.setClass(Lately.this, LatelyRentCost.class);
+			String[] name={"缴费时间:","缴费项目:","缴费账号:","缴费金额:","项目合同号:"};
+			String[] value={"2011-07-19","房租","111111","200.00","s23421"};
+			rent_intent.putExtra("name", name);
+			rent_intent.putExtra("value", value);
+			rent_intent.setClass(Lately.this, LatelyCost.class);
 			Lately.this.startActivity(rent_intent);
 		}
 		

@@ -1,15 +1,14 @@
 package ubank.payment;
 
-import ubank.base.GeneralListActivity;
+import ubank.base.GeneralActivity;
+import ubank.common.Time_Select;
 import ubank.main.R;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ListView;
 
-public class HistoryCost extends GeneralListActivity {
-	private String[] name={"手机充值","Q充值","网易充值"};
-	private String[] value={"手机充值","Q充值","网易充值"};
+public class HistoryCost extends GeneralActivity {
+	private Time_Select time=null;
 	  @Override
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
@@ -17,36 +16,17 @@ public class HistoryCost extends GeneralListActivity {
 	        tvClassFirst.setText("首页>");
 	        tvClassSecond.setVisibility(View.VISIBLE);
 	        tvClassSecond.setText("自助缴费>");
+	        addLayout(R.layout.query_time);
+	        
 	       //监听
 	        setListener(tvClassSecond, this, AllPaymentSer.class);
 	        tvClassThird.setVisibility(View.VISIBLE);
-	        tvClassThird.setText("待缴费项目");
+	        tvClassThird.setText("历史缴费记录");
 	        
-	        this.setListAdapter(createText_Text_Img(name,value));
+	        time=(Time_Select)findViewById(R.id.time_select);
+	        time.setButtonListener(new Intent(), this, Lately.class);
+	        
 	  }
-	protected void onListItemClick(ListView l,View v,int position,long id){
-		
-		super.onListItemClick(l, v, position, id);
-		if(id==0){//三月份水费
-			Intent water_intent=new Intent();
-			water_intent.setClass(HistoryCost.this, WaterCost.class);
-			HistoryCost.this.startActivity(water_intent);
-		}else if(id==1){//三月份电费
-			Intent electricity_intent=new Intent();
-			electricity_intent.setClass(HistoryCost.this, ElectricityCost.class);
-			HistoryCost.this.startActivity(electricity_intent);
-		}else if(id==2){//三月份煤气费
-			Intent gas_intent=new Intent();
-			gas_intent.setClass(HistoryCost.this, GasCost.class);
-			HistoryCost.this.startActivity(gas_intent);
-		}
-		else if(id==3){//三月份房租费
-			Intent rent_intent=new Intent();
-			rent_intent.setClass(HistoryCost.this, RentCost.class);
-			HistoryCost.this.startActivity(rent_intent);
-		}
-		
-	}
 }
 
 

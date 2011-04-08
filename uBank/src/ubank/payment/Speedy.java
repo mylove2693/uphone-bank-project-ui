@@ -23,29 +23,6 @@ public class Speedy extends GeneralListActivity {
 	        
 	        this.setListAdapter(createText_Img(value));
 	  }
-	protected void onListItemClick(ListView l,View v,int position,long id){
-		
-		super.onListItemClick(l, v, position, id);
-		if(id==0){//三月份水费
-			Intent water_intent=new Intent();
-			water_intent.setClass(Speedy.this, WaterCost.class);
-			Speedy.this.startActivity(water_intent);
-		}else if(id==1){//三月份电费
-			Intent electricity_intent=new Intent();
-			electricity_intent.setClass(Speedy.this, ElectricityCost.class);
-			Speedy.this.startActivity(electricity_intent);
-		}else if(id==2){//三月份煤气费
-			Intent gas_intent=new Intent();
-			gas_intent.setClass(Speedy.this, GasCost.class);
-			Speedy.this.startActivity(gas_intent);
-		}
-		else if(id==3){//三月份房租费
-			Intent rent_intent=new Intent();
-			rent_intent.setClass(Speedy.this, RentCost.class);
-			Speedy.this.startActivity(rent_intent);
-		}
-		
-	}
 }
 
 
