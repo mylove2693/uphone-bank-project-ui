@@ -7,14 +7,15 @@
 
     <application android:icon="@drawable/icon" android:label="@string/app_name"
       android:theme="@android:style/Theme.NoTitleBar">
-      
         <!-- punan's activity -->
-		<activity android:name=".FinanceAss"><!-- the first activity -->
+        <!-- the first activity -->
+		<activity android:name=".FinanceAss">
 			<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 		</activity>
+		
 		<activity android:name=".Login">
         </activity>
 		<activity android:name=".BankMain">
@@ -27,7 +28,15 @@
 		<activity android:name=".ExchangeCalc">
 		</activity>
 		<!-- end punan's activity -->
-
+		
+		<!-- wangting's activity -->
+		<activity android:name="ubank.account_query.AccountQueryType">
+		</activity>
+		<activity android:name="ubank.account_query.AccountQuery">
+		</activity>
+		<activity android:name="ubank.account_query.AccountQueryInfo">
+		</activity>
+		<!-- end wangting's activity -->
 		
 		<!-- ZXiaohui's activity -->
 		<activity android:name="ubank.account_manager.AccountBind"></activity>
