@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" 
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+ <TextView  android:text=" "  android:gravity="center"/>
+<TableRow android:gravity="center">       
+	 <include android:id="@+id/midle_btn" layout="@xml/button"
+		android:layout_width="fill_parent" android:layout_height="wrap_content" 
+	/>   
+</TableRow>
+</TableLayout>
