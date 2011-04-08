@@ -10,7 +10,10 @@
       
         <!-- punan's activity -->
 		<activity android:name=".FinanceAss"><!-- the first activity -->
-			
+			<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 		</activity>
 		<activity android:name=".Login">
         </activity>
@@ -46,7 +49,14 @@
 		
 		<!-- gsm's activity -->
 		<activity android:name="ubank.payment.AllPaymentSer">
+			
 		</activity>
+		<activity android:name="ubank.payment.WaitCost"/>
+		<activity android:name="ubank.payment.WaterCost"/>
+		<activity android:name="ubank.payment.ElectricityCost"/>
+		<activity android:name="ubank.payment.GasCost"/>
+		<activity android:name="ubank.payment.RentCost"/>
+		
 		<!-- end gsm's activity -->
 
 
