@@ -3,5 +3,27 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="fill_parent"
   android:layout_height="fill_parent"
-  android:background = "@drawable/main_background_2">
+android:orientation= "vertical" 
+android:background = "@drawable/main_background_2">
+  <ubank.common.Account_Select
+	  android:id = "@+id/account_select"
+	  android:layout_width="wrap_content"
+	  android:layout_height="wrap_content"
+  ></ubank.common.Account_Select>
+  <include android:id = "@+id/text_psd"
+  	layout = "@xml/text_view_18"
+  	android:layout_width="wrap_content"
+  	android:layout_height="wrap_content"
+  	/>
+  	<include android:id= "@+id/psd" layout="@xml/et_psd"
+  	android:layout_width="wrap_content"
+  	android:layout_height="wrap_content"
+  	android:layout_marginLeft = "20dip"
+  	/>
+  	<include android:id="@+id/bind" layout="@xml/button"
+  	android:layout_width="wrap_content"
+  	android:layout_height="wrap_content"
+  	android:layout_marginTop="40dip"
+  	android:layout_gravity="center_horizontal"/>
+  	
 </LinearLayout>
