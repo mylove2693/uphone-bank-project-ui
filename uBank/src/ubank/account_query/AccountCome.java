@@ -1,5 +1,6 @@
 package ubank.account_query;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import ubank.base.GeneralActivity;
@@ -23,6 +24,12 @@ public class AccountCome extends GeneralActivity {
 		tvClassThird.setVisibility(View.VISIBLE);
 		tvClassThird.setText("来账查询");
 		
+		Intent intent = this.getIntent();
+		String[] name = new String[]{"accNumValue","accTypeValue"};
+		String[] value = new String[]{intent.getStringExtra("accNumValue"),intent.getStringExtra("accTypeValue")};
+		
 		time_select = (Time_Select)findViewById(R.id.time_select);
+		time_select.setParams(name, value);
+		time_select.setButtonListener(this, AccountComeList.class);
 	}
 }
