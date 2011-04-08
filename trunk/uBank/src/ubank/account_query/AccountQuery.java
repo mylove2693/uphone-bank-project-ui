@@ -8,7 +8,9 @@ import ubank.main.Login;
 import ubank.main.R;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 
 /**
@@ -16,6 +18,7 @@ import android.widget.TextView;
  *
  */
 public class AccountQuery extends GeneralListActivity {
+	private static String TAG = "ACCOUNT";
 	private TextView accNum = null;
 	private TextView accNumValue = null;
 	private TextView accType = null;
@@ -44,6 +47,22 @@ public class AccountQuery extends GeneralListActivity {
 		
 		String[] value = new String[]{"账户信息及余额查询","账户明细查询","账户来账查询"};
 		setListAdapter(createImg_Text_ImgAdapter(value));
+	}
+	
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		// TODO Auto-generated method stub
+		super.onListItemClick(l, v, position, id);
+		Intent intent = new Intent();
+		intent.putExtra("accNumValue", accNumValue.getText());
+		intent.putExtra("accTypeValue", accTypeValue.getText());
+		Log.i(TAG, String.valueOf(id));
+		if(id == 0){
+			intent.setClass(this, AccountQueryInfo.class);
+		}
+		
+		startActivity(intent);
+		
 	}
 
 }
