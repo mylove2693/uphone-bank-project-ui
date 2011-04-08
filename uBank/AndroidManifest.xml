@@ -47,8 +47,16 @@
 		<!-- end wangting's activity -->
 		
 		<!-- ZXiaohui's activity -->
-		<activity android:name="ubank.account_manager.AccountBind"></activity>
-		<activity android:name="ubank.account_manager.AccountInfo"></activity>
+		<activity android:name="ubank.account_manager.AccountBind">
+		<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+		</activity>
+		<activity android:name="ubank.account_manager.AccountInfo">
+		
+		</activity>
+		<activity android:name="ubank.account_manager.AccountInfoShow"></activity>
 		<activity android:name="ubank.account_manager.AccountReportLoss"></activity>
 		<activity android:name="ubank.account_manager.AddAccount"></activity>
 		<activity android:name="ubank.account_manager.DeleteAccount"></activity>
