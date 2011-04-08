@@ -21,6 +21,8 @@ public class Time_Select extends LinearLayout {
 	String StartTime = null, EndTime;
 	Button start, end;
 
+	
+	  
 	// 通过一个类来获取当前的时间的年月日
 	final Calendar calendar = Calendar.getInstance();
 	final int year = calendar.get(Calendar.YEAR);
