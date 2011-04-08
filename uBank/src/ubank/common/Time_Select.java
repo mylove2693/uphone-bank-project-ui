@@ -118,10 +118,9 @@ public class Time_Select extends LinearLayout {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void setButtonListener(Activity fromActivity,Class toActivity){
+	public void setButtonListener(Intent intent,Activity fromActivity,Class toActivity){
 		this.fromActivity = fromActivity;
 		this.toActivity = toActivity;
-		Intent intent = new Intent();
 		intent.putExtra("start_time", StartTime);
 		intent.putExtra("end_time", EndTime);
 		btn.setOnClickListener(new Listener(intent,fromActivity,toActivity));
