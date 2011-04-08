@@ -1,9 +1,12 @@
 package ubank.base;
 
+import ubank.main.BankMain;
+import ubank.main.FinanceAss;
 import ubank.main.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -41,6 +44,21 @@ public class GeneralActivity extends Activity implements IGeneralActivity{
         tvClassSecond = (TextView)findViewById(R.id.class_second);
         tvClassThird = (TextView)findViewById(R.id.class_third);
         tvClassFour = (TextView)findViewById(R.id.class_four);
+        
+        //为返回键添加监听
+        btnback.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				onBackPressed();
+			}
+		});
+        
+        //给底部的手机银行图片添加监听
+        setListener(btnbank, this, BankMain.class);
+        
+        //给底部的金融助手图片添加监听
+        setListener(btnhelper, this, FinanceAss.class);
     }
     
     //向Activity中添加新的布局
