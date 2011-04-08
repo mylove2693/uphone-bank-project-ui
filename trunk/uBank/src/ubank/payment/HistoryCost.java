@@ -24,7 +24,7 @@ public class HistoryCost extends GeneralActivity {
 	        tvClassThird.setText("历史缴费记录");
 	        
 	        time=(Time_Select)findViewById(R.id.time_select);
-	        time.setButtonListener(new Intent(), this, Lately.class);
+	        time.setButtonListener(this, Lately.class);
 	        
 	  }
 }
