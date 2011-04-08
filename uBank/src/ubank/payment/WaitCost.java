@@ -3,6 +3,7 @@ package ubank.payment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import ubank.base.GeneralListActivity;
 import ubank.main.R;
@@ -14,7 +15,7 @@ public class WaitCost extends GeneralListActivity {
 	  @Override
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
-	        
+	        addLayoutBlow(R.layout.midle_btn);
 	        /**
 	         * 接收上一个Activity的值
 	         */
@@ -25,14 +26,26 @@ public class WaitCost extends GeneralListActivity {
 	        tvClassFirst.setText("首页>");
 	        tvClassSecond.setVisibility(View.VISIBLE);
 	        tvClassSecond.setText("自助缴费>");
-	       //监听
+	        this.setListAdapter(createText_Text(name,value));
+	       
+	        //导航栏监听
 	        setListener(tvClassSecond, this, AllPaymentSer.class);
 	        tvClassThird.setVisibility(View.VISIBLE);
 	        tvClassThird.setText("待缴费项目");
 	        
-	        addLayoutBlow(R.layout.midle_btn);
+	        //前往缴费按钮
 	        btn=(Button)findViewById(R.id.midle_btn).findViewById(R.id.button);
 	        btn.setText("前往缴费");
-	        this.setListAdapter(createText_Text(name,value));
+	        btn.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					Intent intent=new Intent();
+					intent.setClass(WaitCost.this, SelectAcc.class);
+					WaitCost.this.startActivity(intent);
+				}
+			});
+	        
 	  }
+	  
 }
