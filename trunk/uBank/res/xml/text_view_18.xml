@@ -8,7 +8,7 @@
     android:layout_height="fill_parent"
     >
 <TextView
-android:id="@+id/Text_View"
+android:id="@+id/Text_View_18"
   android:textSize="18dip"
   android:textColor="#000000"
   android:layout_width="wrap_content" 
