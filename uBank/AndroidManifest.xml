@@ -7,21 +7,31 @@
 
     <application android:icon="@drawable/icon" android:label="@string/app_name"
       android:theme="@android:style/Theme.NoTitleBar">
+        
+        
         <!-- punan's activity -->
+
         <!-- the first activity -->
 		<activity android:name=".FinanceAss">
-			
+			<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 		</activity>
 		<activity android:name=".Login">
+
         </activity>
 		<activity android:name=".BankMain">
 			
 		</activity>
 		<activity android:name=".DepositRates">
+			
 		</activity>
 		<activity android:name=".LoanRates">
+		
 		</activity>
 		<activity android:name=".ExchangeCalc">
+		
 		</activity>
 		<!-- end punan's activity -->
 		
