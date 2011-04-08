@@ -17,6 +17,8 @@
 	<include android:id="@+id/listview" layout="@xml/list_view"
    	android:layout_height="wrap_content"
     android:layout_width="fill_parent"
+    android:layout_marginLeft="10dip"
+    android:layout_marginRight="10dip"
     android:layout_below="@id/ListLinearLayout1"></include>
     <LinearLayout
 	android:id="@+id/ListLinearLayout2"
