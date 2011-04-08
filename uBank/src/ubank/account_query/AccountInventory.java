@@ -24,8 +24,11 @@ public class AccountInventory extends GeneralActivity {
 		tvClassThird.setText("明细查询");
 		
 		Intent intent = this.getIntent();
+		String[] name = new String[]{"accNumValue","accTypeValue"};
+		String[] value = new String[]{intent.getStringExtra("accNumValue"),intent.getStringExtra("accTypeValue")};
 		
 		time_select = (Time_Select)findViewById(R.id.time_select);
-		time_select.setButtonListener(intent, this, AccountInventoryList.class);
+		time_select.setParams(name, value);
+		time_select.setButtonListener(this, AccountInventoryList.class);
 	}
 }
