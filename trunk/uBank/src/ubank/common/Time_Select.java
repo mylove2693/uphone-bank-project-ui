@@ -2,26 +2,28 @@ package ubank.common;
 
 import java.util.Calendar;
 
+import ubank.base.Listener;
 import ubank.main.R;
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.Context;
+import android.content.Intent;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
-
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class Time_Select extends LinearLayout {
 	OnDateSetListener onDateSetListener1, onDateSetListener2;
 	String StartTime = null, EndTime;
-	Button start, end;
-
-	
+	Button start, end, btn = null;
+	Activity fromActivity = null;
+	@SuppressWarnings("unchecked")
+	Class toActivity = null;
 	  
 	// 通过一个类来获取当前的时间的年月日
 	final Calendar calendar = Calendar.getInstance();
@@ -110,17 +112,19 @@ public class Time_Select extends LinearLayout {
 			}
 		});
 		// 查询按钮上的监听
-		Button bu = (Button) findViewById(R.id.query).findViewById(R.id.button);
-		bu.setText("查询");
-		bu.setOnClickListener(new OnClickListener() {
+		btn = (Button) findViewById(R.id.query).findViewById(R.id.button);
+		btn.setText("查询");
 
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				System.out.println("dasd");
-			}
-		});
-
-		// TODO Auto-generated constructor stub
 	}
+	
+	@SuppressWarnings("unchecked")
+	public void setButtonListener(Activity fromActivity,Class toActivity){
+		this.fromActivity = fromActivity;
+		this.toActivity = toActivity;
+		Intent intent = new Intent();
+		intent.putExtra("start_time", StartTime);
+		intent.putExtra("end_time", EndTime);
+		btn.setOnClickListener(new Listener(intent,fromActivity,toActivity));
+	}
+	
 }
