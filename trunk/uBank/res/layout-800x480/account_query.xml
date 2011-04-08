@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:paddingLeft="10dip"
+	android:paddingRight="10dip"
+	android:paddingTop="1dip"
+	android:paddingBottom="1dip">
+	<include android:id="@+id/accNum" 
+			 layout="@xml/blue_text_view"
+		     android:layout_width="120dip"
+		     android:layout_height="wrap_content"
+		     android:layout_alignParentLeft="true"></include>
+	<include android:id="@+id/accNumValue" 
+		     layout="@xml/text_view_18"
+		     android:layout_width="120dip"
+		     android:layout_height="wrap_content"
+		     android:layout_alignParentRight="true"
+		     android:layout_alignTop="@id/accNum"></include>
+	<include android:id="@+id/acc_line" 
+			 android:layout_width="fill_parent" 
+		     android:layout_height="wrap_content" 
+		     layout="@xml/white_line" 
+		     android:layout_below="@id/accNum"/>
+	<include android:id="@+id/accType"
+		     layout="@xml/blue_text_view" 
+		     android:layout_width="120dip"
+		     android:layout_height="wrap_content"
+		     android:layout_alignParentLeft="true"
+		     android:layout_below="@id/acc_line"></include>
+	<include android:id="@+id/accTypeValue" 
+		     layout="@xml/text_view_18"
+		     android:layout_width="120dip"
+		     android:layout_height="wrap_content"
+		     android:layout_alignParentRight="true"
+		     android:layout_alignTop="@id/accType"></include>
+	<include android:layout_width="fill_parent" 
+		     android:layout_height="wrap_content" 
+		     layout="@xml/white_line" 
+		     android:layout_below="@id/accType"/>	    		  
+</RelativeLayout>
+<!--<TableLayout 
+			xmlns:android="http://schemas.android.com/apk/res/android"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content" 
+			android:orientation="vertical" 
+			android:stretchColumns="1"
+		    android:paddingLeft="10dip"
+		    android:paddingRight="10dip"
+		    android:paddingTop="1dip"
+		    android:paddingBottom="1dip">
+		    <TableRow android:orientation="horizontal">
+		    	<include android:id="@+id/accNum" 
+		    			 android:layout_width="120dip"
+		    			 layout="@xml/blue_text_view"
+		    			 android:layout_height="wrap_content"></include>
+		    	<include android:id="@+id/accNumValue" 
+		    			 layout="@xml/text_view_18"
+		    			 android:layout_width="120dip"
+		    			 android:layout_height="wrap_content"></include>
+		    	<include  android:layout_width="fill_parent" 
+		    			  android:layout_height="wrap_content" 
+		    			  layout="@xml/white_line" />
+		    </TableRow>
+		    <TableRow>
+		    	<include  android:layout_width="fill_parent" android:layout_height="wrap_content" layout="@xml/white_line" />
+		    </TableRow>
+		    <TableRow android:orientation="horizontal">
+		    	<include android:id="@+id/accType"
+		    			 layout="@xml/blue_text_view" 
+		    			 android:layout_width="120dip"
+		    			 android:layout_height="wrap_content"></include>
+		    	<include android:id="@+id/accTypeValue" 
+		    			 layout="@xml/text_view_18"
+		    			 android:layout_width="120dip"
+		    			 android:layout_height="wrap_content"></include>
+		    </TableRow>
+</TableLayout>
+-->
