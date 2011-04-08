@@ -38,11 +38,11 @@ public class AccountQuery extends GeneralListActivity {
 		
 		accNum = (TextView)findViewById(R.id.accNum).findViewById(R.id.blue_Text_View);
 		accNum.setText(R.string.accounNum);
-		accNumValue = (TextView)findViewById(R.id.accNumValue).findViewById(R.id.Text_View);
+		accNumValue = (TextView)findViewById(R.id.accNumValue).findViewById(R.id.Text_View_18);
 		accNumValue.setText(intent.getCharSequenceExtra("accNumValue"));
 		accType = (TextView)findViewById(R.id.accType).findViewById(R.id.blue_Text_View);
 		accType.setText(R.string.accountType);
-		accTypeValue = (TextView)findViewById(R.id.accTypeValue).findViewById(R.id.Text_View);
+		accTypeValue = (TextView)findViewById(R.id.accTypeValue).findViewById(R.id.Text_View_18);
 		accTypeValue.setText(intent.getCharSequenceExtra("accTypeValue"));
 		
 		String[] value = new String[]{"账户信息及余额查询","账户明细查询","账户来账查询"};
