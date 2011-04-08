@@ -3,5 +3,5 @@
 	android:orientation="vertical" 
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
-<include android:id="@+id/above_list_txt" layout="@xml/text_view_16"></include>
+<include android:id="@+id/above_list_txt" layout="@xml/text_view_16_gray"></include>
 </LinearLayout>
