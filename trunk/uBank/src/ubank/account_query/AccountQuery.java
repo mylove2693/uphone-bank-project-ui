@@ -59,6 +59,8 @@ public class AccountQuery extends GeneralListActivity {
 		Log.i(TAG, String.valueOf(id));
 		if(id == 0){
 			intent.setClass(this, AccountQueryInfo.class);
+		}else if(id == 1){
+			intent.setClass(this, Inventory.class);
 		}
 		
 		startActivity(intent);
