@@ -58,7 +58,7 @@ public class Time_Select extends LinearLayout {
 			public void onDateSet(DatePicker view, int year, int monthOfYear,
 					int dayOfMonth) {
 				monthOfYear += 1;
-				StartTime = year + "/" + monthOfYear + "/" + dayOfMonth;
+				StartTime = year + "-" + monthOfYear + "-" + dayOfMonth;
 				start.setText(StartTime);
 			}
 		};
