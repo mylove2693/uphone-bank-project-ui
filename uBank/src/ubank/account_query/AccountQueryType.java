@@ -4,11 +4,11 @@ import ubank.base.GeneralActivity;
 import ubank.common.Account_Select;
 import ubank.main.Login;
 import ubank.main.R;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
+import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.AdapterView.OnItemSelectedListener;
 
 public class AccountQueryType extends GeneralActivity {
 	private Account_Select accountInfo = null;
@@ -33,23 +33,17 @@ public class AccountQueryType extends GeneralActivity {
 		
 		btnComfirm = (Button)findViewById(R.id.account_type_comfirm).findViewById(R.id.button);
 		btnComfirm.setText(R.string.confirm);
-	}
-	
-	class SpinnerListener implements OnItemSelectedListener{
-
-		@Override
-		public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
-				long arg3) {
-			// TODO Auto-generated method stub
+		btnComfirm.setOnClickListener(new OnClickListener() {
 			
-		}
-
-		@Override
-		public void onNothingSelected(AdapterView<?> arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-		
+			@Override
+			public void onClick(View v) {
+				Intent  intent = new Intent();
+				intent.putExtra("accNumValue", accountInfo.getAccNumValue());
+				intent.putExtra("accTypeValue", accountInfo.getAccTypValue());
+				intent.setClass(AccountQueryType.this, AccountQuery.class);
+				AccountQueryType.this.startActivity(intent);
+			}
+		});
 	}
 	
 }
