@@ -178,7 +178,7 @@ public class GeneralListActivity extends ListActivity implements IGeneralActivit
     	for (int i = 0; i < value.length; i++) {
 			paylist1 = new HashMap<String, Object>();
 			paylist1.put("text1",value[i]);
-			paylist1.put("img2", value[i]);
+			paylist1.put("img2", R.drawable.righticon);
 			mainlist.add(paylist1);
 		}
 		adapter = new SimpleAdapter(this, mainlist,
