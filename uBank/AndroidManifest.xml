@@ -10,10 +10,7 @@
       
         <!-- punan's activity -->
 		<activity android:name=".FinanceAss"><!-- the first activity -->
-			<intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+			
 		</activity>
 		<activity android:name=".Login">
         </activity>
@@ -27,11 +24,31 @@
 		<activity android:name=".ExchangeCalc">
 		</activity>
 		<!-- end punan's activity -->
+
+		
+		<!-- ZXiaohui's activity -->
+		<activity android:name="ubank.account_manager.AccountBind"></activity>
+		<activity android:name="ubank.account_manager.AccountInfo"></activity>
+		<activity android:name="ubank.account_manager.AccountReportLoss"></activity>
+		<activity android:name="ubank.account_manager.AddAccount"></activity>
+		<activity android:name="ubank.account_manager.DeleteAccount"></activity>
+		<activity android:name="ubank.account_manager.FirstAccount"></activity>
+		<activity android:name="ubank.account_manager.ManagerHome">
+		<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+		</activity>
+		<activity android:name="ubank.account_manager.ReservationChangeCard"></activity>
+		<activity android:name="ubank.account_manager.SetAccountAlias"></activity>
+		<!-- end ZXiaohui's activity -->
+
 		
 		<!-- gsm's activity -->
 		<activity android:name="ubank.payment.AllPaymentSer">
 		</activity>
 		<!-- end gsm's activity -->
+
 
     </application>
 </manifest>
