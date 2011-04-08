@@ -58,10 +58,7 @@
 		
 		<!-- ZXiaohui's activity -->
 		<activity android:name="ubank.account_manager.AccountBind">
-		<intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
 		</activity>
 		<activity android:name="ubank.account_manager.AccountInfo">
 		
@@ -81,18 +78,17 @@
 		
 		<!-- gsm's activity -->
 		<activity android:name="ubank.payment.AllPaymentSer">
-			<intent-filter>
+			<!--  <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            -->
 		</activity>
 		<activity android:name="ubank.payment.WaitCost"/>
-		<activity android:name="ubank.payment.WaterCost"/>
-		<activity android:name="ubank.payment.ElectricityCost"/>
-		<activity android:name="ubank.payment.GasCost"/>
-		<activity android:name="ubank.payment.RentCost"/>
+		<activity android:name="ubank.payment.WaitCostItem"/>
 		<activity android:name="ubank.payment.Speedy"/>
 		<activity android:name="ubank.payment.Lately"/>
+		<activity android:name="ubank.payment.LatelyCost"/>
 		<activity android:name="ubank.payment.HistoryCost"/>
 		<activity android:name="ubank.payment.ManageCost"/>
 		<!-- end gsm's activity -->
