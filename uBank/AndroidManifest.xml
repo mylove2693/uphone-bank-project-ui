@@ -8,10 +8,7 @@
       android:theme="@android:style/Theme.NoTitleBar">
         <!-- punan's activity -->
 		<activity android:name=".FinanceAss"> <!-- the first activity -->
-			<intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
 
 		</activity>
 		
@@ -74,8 +71,8 @@
 
 		<!-- gsm's activity -->
 		<activity android:name="ubank.payment.AllPaymentSer">
-			<!-- <intent-filter> <action android:name="android.intent.action.MAIN" 
-				/> <category android:name="android.intent.category.LAUNCHER" /> </intent-filter> -->
+
+		
 		</activity>
 		<activity android:name="ubank.payment.WaitCost" />
 		<activity android:name="ubank.payment.WaitCostItem" />
@@ -84,6 +81,7 @@
 		<activity android:name="ubank.payment.LatelyCost" />
 		<activity android:name="ubank.payment.HistoryCost" />
 		<activity android:name="ubank.payment.ManageCost" />
+		<activity android:name="ubank.payment.SelectAcc"/>
 		<!-- end gsm's activity -->
 		<!-- solo -->
 		<activity android:name="ubank.credit.CreditCardMain">
