@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+
 public class SelectAcc extends GeneralListActivity {
 	private String[] value={"首选账户","其他账户"};
 	private TextView txt=null;

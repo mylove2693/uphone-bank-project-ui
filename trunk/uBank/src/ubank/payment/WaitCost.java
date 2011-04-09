@@ -8,6 +8,7 @@ import android.widget.Button;
 import ubank.base.GeneralListActivity;
 import ubank.main.R;
 
+
 public class WaitCost extends GeneralListActivity {
 	private String[] name={"项目名称:","缴费金额:","收费方:","缴费合同号:","缴费期限:"};
 	private String[] value=null;
