@@ -8,11 +8,12 @@
       android:theme="@android:style/Theme.NoTitleBar">
         <!-- punan's activity -->
 		<activity android:name=".FinanceAss"> <!-- the first activity -->
-			<intent-filter> 
+			  
+			  <intent-filter> 
 				<action android:name="android.intent.action.MAIN"/> 
 				<category android:name="android.intent.category.LAUNCHER" /> 
 			</intent-filter>
-
+			
 		</activity>
 		
 		
@@ -35,8 +36,12 @@
 
 		<!-- wangting's activity -->
 		<activity android:name="ubank.account_query.AccountQueryType">
-			<!-- <intent-filter> <action android:name="android.intent.action.MAIN" 
-				/> <category android:name="android.intent.category.LAUNCHER" /> </intent-filter> -->
+<!--  
+			<intent-filter> 
+				<action android:name="android.intent.action.MAIN"/> 
+				<category android:name="android.intent.category.LAUNCHER" /> 
+			</intent-filter>
+-->
 		</activity>
 		<activity android:name="ubank.account_query.AccountQuery">
 		</activity>
@@ -58,7 +63,12 @@
 
 		<!-- ZXiaohui's activity -->
 		<activity android:name="ubank.account_manager.AccountBind">
-
+<!--  
+			<intent-filter> 
+				<action android:name="android.intent.action.MAIN"/> 
+				<category android:name="android.intent.category.LAUNCHER" /> 
+			</intent-filter>
+-->
 		</activity>
 		<activity android:name="ubank.account_manager.AccountInfo">
 
@@ -78,8 +88,12 @@
 
 		<!-- gsm's activity -->
 		<activity android:name="ubank.payment.AllPaymentSer">
-
-		
+<!--  
+			<intent-filter> 
+				<action android:name="android.intent.action.MAIN"/> 
+				<category android:name="android.intent.category.LAUNCHER" /> 
+			</intent-filter>
+-->			
 		</activity>
 		<activity android:name="ubank.payment.WaitCost" />
 		<activity android:name="ubank.payment.WaitCostItem" />
@@ -89,11 +103,19 @@
 		<activity android:name="ubank.payment.HistoryCost" />
 		<activity android:name="ubank.payment.ManageCost" />
 		<activity android:name="ubank.payment.SelectAcc"/>
+		<activity android:name="ubank.payment.InputPsw"/>
+		<activity android:name="ubank.payment.ElseAcc"/>
 		<!-- end gsm's activity -->
+		
+		
 		<!-- solo -->
 		<activity android:name="ubank.credit.CreditCardMain">
-			<!-- <intent-filter> <action android:name="android.intent.action.MAIN" 
-				/> <category android:name="android.intent.category.LAUNCHER" /> </intent-filter> -->
+<!--  
+			<intent-filter> 
+				<action android:name="android.intent.action.MAIN"/> 
+				<category android:name="android.intent.category.LAUNCHER" /> 
+			</intent-filter>
+-->
 		</activity>
 		<activity android:name="ubank.credit.CardRepayment"></activity>
 		<activity android:name="ubank.credit.CreditCardInfo"></activity>
