@@ -6,6 +6,7 @@ import ubank.main.R;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class AccountInventoryList extends GeneralListActivity {
@@ -39,5 +40,13 @@ public class AccountInventoryList extends GeneralListActivity {
 		String[] name = new String[]{"2011-3-8","2011-3-9","2011-3-10"};
 		String[] value = new String[]{"支出","收入","支出"};
 		setListAdapter(createText_Text_Img(name, value));
+	}
+	
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		// TODO Auto-generated method stub
+		Intent intent = new Intent();
+		intent.setClass(this, AccountInventoryDetail.class);
+		this.startActivity(intent);
 	}
 }
