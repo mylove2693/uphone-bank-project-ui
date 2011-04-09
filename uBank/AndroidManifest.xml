@@ -3,6 +3,16 @@
 	package="ubank.main" android:versionCode="1" android:versionName="1.0">
 	<uses-sdk android:minSdkVersion="8" />
 
+<<<<<<< .mine
+    <application android:icon="@drawable/icon" android:label="@string/app_name"
+      android:theme="@android:style/Theme.NoTitleBar">
+        <!-- punan's activity -->
+		<activity android:name=".FinanceAss"> <!-- the first activity -->
+			<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+=======
 
 	<!-- punan's activity -->
 	<application android:icon="@drawable/icon" android:label="@string/app_name"
@@ -13,7 +23,10 @@
 		<!-- the first activity -->
 		<activity android:name=".FinanceAss">
 
+>>>>>>> .r232
 		</activity>
+		
+		
 		<activity android:name=".Login">
 
 		</activity>
