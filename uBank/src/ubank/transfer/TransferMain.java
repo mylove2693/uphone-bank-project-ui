@@ -30,13 +30,20 @@ public class TransferMain extends GeneralListActivity{
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		// TODO Auto-generated method stub	
 		  super.onListItemClick(l, v, position, id);
-		if(id==0){//待缴费项目
+		  //取得listview中的文本的值
+		  TextView gettv=(TextView)v.findViewById(R.id.data_text);
+		if(id==0){//手机到手机转账			
 			Intent payment_intent=new Intent();
-			payment_intent.setClass(TransferMain.this, TransferPhToPh.class);
+			//取得的值作为下一个界面的导航栏
+			payment_intent.putExtra("title",gettv.getText().toString());
+//			System.out.println(gettv.getText().toString());
+			payment_intent.setClass(TransferMain.this, TransferAccSelect.class);
 			TransferMain.this.startActivity(payment_intent);
-		}else if(id==1){//便捷服务
+		}else if(id==1){//手机到签约账户转账
 			Intent speedy_intent=new Intent();
-			speedy_intent.setClass(TransferMain.this, TransferPhToSignedAcc.class);
+			speedy_intent.putExtra("title",gettv.getText().toString());
+//			System.out.println(gettv.getText().toString());
+			speedy_intent.setClass(TransferMain.this, TransferAccSelect.class);
 			TransferMain.this.startActivity(speedy_intent);
 		}
 	}
