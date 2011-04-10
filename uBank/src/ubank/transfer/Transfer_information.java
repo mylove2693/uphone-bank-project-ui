@@ -27,7 +27,10 @@ public class Transfer_information extends GeneralListActivity{
 	        tvClassFirst.setVisibility(View.VISIBLE);
 	        tvClassFirst.setText("首页>");
 	        tvClassSecond.setVisibility(View.VISIBLE);
-	        tvClassSecond.setText("转账汇款");	        
+	        tvClassSecond.setText("转账汇款>");
+	        //转账汇款的监听
+	        setListener(tvClassSecond, this, TransferMain.class);
+	        
 	        tvClassThird.setVisibility(View.VISIBLE);
 	        tvClassThird.setText(title);
 	        
