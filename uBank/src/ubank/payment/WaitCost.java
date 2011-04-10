@@ -10,7 +10,7 @@ import ubank.main.R;
 
 
 public class WaitCost extends GeneralListActivity {
-	private String[] name={"项目名称:","缴费金额:","收费方:","缴费合同号:","缴费期限:"};
+	private String[] name=null;
 	private String[] value=null;
 	private Button btn=null;
 	  @Override
@@ -21,6 +21,7 @@ public class WaitCost extends GeneralListActivity {
 	         * 接收上一个Activity的值
 	         */
 	        Intent intent=getIntent();
+	        name=intent.getStringArrayExtra("name");
 	        value=intent.getStringArrayExtra("value");
 	        tvClassFirst.setVisibility(View.VISIBLE);
 	        

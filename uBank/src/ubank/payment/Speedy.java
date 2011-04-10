@@ -23,6 +23,29 @@ public class Speedy extends GeneralListActivity {
 	        
 	        this.setListAdapter(createText_Img(value));
 	  }
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		// TODO Auto-generated method stub
+		super.onListItemClick(l, v, position, id);
+		if(id==0){//手机充值
+			Intent intent=new Intent();
+			intent.putExtra("num", "手机");
+			intent.setClass(Speedy.this, Cost.class);
+			Speedy.this.startActivity(intent);
+		}else if(id==1){//Q币充值
+			Intent intent=new Intent();
+			intent.putExtra("num", "QQ");
+			intent.setClass(Speedy.this, Cost.class);
+			Speedy.this.startActivity(intent);
+		}
+		else if(id==2){//Q网易充值
+			Intent intent=new Intent();
+			intent.putExtra("num", "网易");
+			intent.setClass(Speedy.this, Cost.class);
+			Speedy.this.startActivity(intent);
+		}
+	}
+	  
 }
 
 
