@@ -37,6 +37,7 @@ public class TransferAccSelect extends GeneralListActivity{
 	        tvClassSecond.setText("转账汇款>");
 	       //转账汇款的监听
 	        setListener(tvClassSecond, this, TransferMain.class);
+	        
 	        tvClassThird.setVisibility(View.VISIBLE);
 	        tvClassThird.setText(title);
 	        
