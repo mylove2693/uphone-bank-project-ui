@@ -16,7 +16,6 @@ import ubank.payment.WaitCost;
  *
  */
 public class TransferMain extends GeneralListActivity{
-	private TextView txt=null;
 	String[] s={"手机到手机转账","手机到签约账户转账"};
 	  @Override
 	    public void onCreate(Bundle savedInstanceState) {
@@ -24,20 +23,20 @@ public class TransferMain extends GeneralListActivity{
 	        tvClassFirst.setVisibility(View.VISIBLE);
 	        tvClassFirst.setText("首页>");
 	        tvClassSecond.setVisibility(View.VISIBLE);
-	        tvClassSecond.setText("自助缴费");	        
+	        tvClassSecond.setText("转账汇款");	        
 	        this.setListAdapter(createImg_Text_ImgAdapter(s));       
 	  }
 	  @Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
-		// TODO Auto-generated method stub
-		super.onListItemClick(l, v, position, id);
+		// TODO Auto-generated method stub	
+		  super.onListItemClick(l, v, position, id);
 		if(id==0){//待缴费项目
 			Intent payment_intent=new Intent();
-			payment_intent.setClass(TransferMain.this, WaitCost.class);
+			payment_intent.setClass(TransferMain.this, TransferPhToPh.class);
 			TransferMain.this.startActivity(payment_intent);
 		}else if(id==1){//便捷服务
 			Intent speedy_intent=new Intent();
-			speedy_intent.setClass(TransferMain.this, Speedy.class);
+			speedy_intent.setClass(TransferMain.this, TransferPhToSignedAcc.class);
 			TransferMain.this.startActivity(speedy_intent);
 		}
 	}
