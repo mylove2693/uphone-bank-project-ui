@@ -35,7 +35,7 @@ public class GeneralListActivity extends ListActivity implements IGeneralActivit
 	protected TextView tvClassFour;
 	
 	//向ListView中添加数据的适配器
-	private SimpleAdapter adapter = null;
+	protected SimpleAdapter adapter = null;
 	
     /** Called when the activity is first created. */
     @Override
