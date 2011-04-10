@@ -6,12 +6,12 @@ listview的
 	android:layout_width="match_parent" android:layout_height="match_parent"
 	android:orientation="vertical">
 	<ListView android:id="@id/android:list" android:layout_width="fill_parent"
-		android:divider="#cccccc" android:dividerHeight="2px"
+		android:divider="#c0c0c0" android:dividerHeight="2px"
 		android:layout_height="wrap_content" android:drawSelectorOnTop="true"
 		android:scrollbars="vertical" />
 	<!-- 
 		末尾的白线
 	-->
 	<include layout="@xml/white_line" android:layout_width="fill_parent"
-		android:layout_height="1px" />
+		android:layout_height="wrap_content" />
 </LinearLayout>
