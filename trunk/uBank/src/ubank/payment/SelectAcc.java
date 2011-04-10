@@ -38,8 +38,8 @@ public class SelectAcc extends GeneralListActivity {
 				/**
 				 * 将服务器上取得的值传给下一个Activity
 				 */
-				String account="222222";
-				String money="20";
+				String account="1111111";
+				String money="10";
 				intent.putExtra("account", account);
 				intent.putExtra("money", money);
 				intent.setClass(SelectAcc.this, InputPsw.class);
