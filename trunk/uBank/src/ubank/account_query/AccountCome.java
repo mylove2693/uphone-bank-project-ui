@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import ubank.base.GeneralActivity;
 import ubank.common.Time_Select;
-import ubank.main.Login;
+import ubank.main.BankMain;
 import ubank.main.R;
 
 public class AccountCome extends GeneralActivity {
@@ -18,9 +18,10 @@ public class AccountCome extends GeneralActivity {
 		
 		tvClassFirst.setVisibility(View.VISIBLE);
 		tvClassFirst.setText("首页>");
-		setListener(tvClassFirst, this, Login.class);
+		setListener(tvClassFirst, this, BankMain.class);
 		tvClassSecond.setVisibility(View.VISIBLE);
 		tvClassSecond.setText("账户查询>");
+		setListener(tvClassSecond, this, AccountQueryType.class);
 		tvClassThird.setVisibility(View.VISIBLE);
 		tvClassThird.setText("来账查询");
 		

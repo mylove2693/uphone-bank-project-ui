@@ -4,7 +4,7 @@
 package ubank.account_query;
 
 import ubank.base.GeneralListActivity;
-import ubank.main.Login;
+import ubank.main.BankMain;
 import ubank.main.R;
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,9 +30,10 @@ public class AccountQuery extends GeneralListActivity {
 		
 		tvClassFirst.setVisibility(View.VISIBLE);
 		tvClassFirst.setText("首页>");
-		setListener(tvClassFirst, this, Login.class);
+		setListener(tvClassFirst, this, BankMain.class);
 		tvClassSecond.setVisibility(View.VISIBLE);
 		tvClassSecond.setText("账户查询");
+		setListener(tvClassSecond, this, AccountQueryType.class);
 		
 		Intent intent = this.getIntent();
 		

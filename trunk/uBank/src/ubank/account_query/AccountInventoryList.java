@@ -1,7 +1,7 @@
 package ubank.account_query;
 
 import ubank.base.GeneralListActivity;
-import ubank.main.Login;
+import ubank.main.BankMain;
 import ubank.main.R;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,11 +19,13 @@ public class AccountInventoryList extends GeneralListActivity {
 		
 		tvClassFirst.setVisibility(View.VISIBLE);
 		tvClassFirst.setText("首页>");
-		setListener(tvClassFirst, this, Login.class);
+		setListener(tvClassFirst, this, BankMain.class);
 		tvClassSecond.setVisibility(View.VISIBLE);
 		tvClassSecond.setText("账户查询>");
+		setListener(tvClassSecond, this, AccountQueryType.class);
 		tvClassThird.setVisibility(View.VISIBLE);
 		tvClassThird.setText("明细查询");
+		setListener(tvClassThird, this, AccountInventory.class);
 		
 		Intent intent = this.getIntent();
 		
