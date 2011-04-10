@@ -63,7 +63,7 @@
 
 
 	<include android:id="@+id/next_btn" layout="@xml/button"
-	android:layout_marginTop="20dip"
+	 android:layout_marginTop="20dip"
 		android:layout_width="wrap_content" android:layout_gravity="center_horizontal"
 		android:layout_height="wrap_content" />
 </LinearLayout>
