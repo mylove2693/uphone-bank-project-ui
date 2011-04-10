@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<!--
+转账信息显示
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+	android:layout_width="match_parent" android:layout_height="match_parent">
+	<!--
+  重选账户
+  -->
+	<include android:id="@+id/Re_election_acc" layout="@xml/button"
+	android:layout_marginLeft="60dip"
+	android:layout_marginTop="10dip"
+		android:layout_width="wrap_content" android:layout_height="wrap_content">
+	</include>
+	<!--
+  继续转账
+  -->
+	<include android:id="@+id/Continue_transfer" layout="@xml/button"
+	android:layout_marginTop="10dip"
+	android:layout_marginLeft="40dip"
+		android:layout_width="wrap_content" android:layout_height="wrap_content">
+	</include>
+</LinearLayout>
