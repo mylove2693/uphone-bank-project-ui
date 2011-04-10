@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical" 
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
-<include android:id="@+id/above_list_txt" layout="@xml/text_view_16_gray"></include>
-</LinearLayout>
+<TableRow android:paddingTop="5dip" android:paddingLeft="10dip">       
+	 <include android:id="@+id/above_list_txt" layout="@xml/text_view_16_gray"></include>   
+</TableRow>
+</TableLayout>
