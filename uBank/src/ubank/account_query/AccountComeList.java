@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 import ubank.base.GeneralListActivity;
-import ubank.main.Login;
+import ubank.main.BankMain;
 import ubank.main.R;
 
 public class AccountComeList extends GeneralListActivity {
@@ -19,11 +19,13 @@ public class AccountComeList extends GeneralListActivity {
 		
 		tvClassFirst.setVisibility(View.VISIBLE);
 		tvClassFirst.setText("首页>");
-		setListener(tvClassFirst, this, Login.class);
+		setListener(tvClassFirst, this, BankMain.class);
 		tvClassSecond.setVisibility(View.VISIBLE);
 		tvClassSecond.setText("账户查询>");
+		setListener(tvClassSecond, this, AccountQueryType.class);
 		tvClassThird.setVisibility(View.VISIBLE);
 		tvClassThird.setText("来账查询");
+		setListener(tvClassThird, this, AccountCome.class);
 		
 		Intent intent = this.getIntent();
 		
