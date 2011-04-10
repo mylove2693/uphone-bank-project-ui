@@ -4,44 +4,45 @@
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
 <TableRow android:paddingTop="10dip" android:paddingLeft="10dip">       
-	 <include android:id="@+id/pws_txt_one" layout="@xml/text_view_20"
+	 <include android:id="@+id/txt_one" layout="@xml/text_view_20"
 		android:layout_width="fill_parent" android:layout_height="wrap_content" />   
 </TableRow>
 <!-- 白线 -->
-<include  layout="@xml/white_line"/>
-<TableRow android:paddingTop="10dip" android:paddingLeft="40dip">       
-	 <include android:id="@+id/pws_txt_two" layout="@xml/text_view_20"
-		android:layout_width="fill_parent" android:layout_height="wrap_content" />   
-</TableRow>
-<!-- 白线 -->
-<include  layout="@xml/white_line"/>
-<TableRow android:paddingTop="10dip" android:paddingLeft="10dip">      
-	 <include android:id="@+id/pws_txt_three" layout="@xml/text_view_20"
-		android:layout_width="fill_parent" android:layout_height="wrap_content" />   
-</TableRow>
-<!-- 白线 -->
-<include  layout="@xml/white_line"/>
-<TableRow android:paddingTop="10dip" android:paddingLeft="40dip">    
-	 <include android:id="@+id/pws_txt_four" layout="@xml/text_view_20"
+<include  layout="@xml/white_line"/> 
+
+<TableRow android:paddingTop="10dip" android:paddingLeft="5dip">       
+	 <include android:id="@+id/spinner_one" layout="@xml/spinner"
 		android:layout_width="fill_parent" android:layout_height="wrap_content" />   
 </TableRow>
 <!-- 白线 -->
 <include  layout="@xml/white_line"/>
 <TableRow android:paddingTop="10dip" android:paddingLeft="10dip">      
-	 <include android:id="@+id/pws_txt_five" layout="@xml/text_view_20"
+	 <include android:id="@+id/txt_two" layout="@xml/text_view_20"
 		android:layout_width="fill_parent" android:layout_height="wrap_content" />   
 </TableRow>
 <!-- 白线 -->
 <include  layout="@xml/white_line"/>
-<!-- 密码输入框 -->
-<TableRow android:paddingLeft="40dip">       
-	 <include android:id="@+id/pws" layout="@xml/et_psd"
+<TableRow android:paddingTop="10dip" android:paddingLeft="5dip">    
+	 <include android:id="@+id/spinner_two" layout="@xml/spinner"
+		android:layout_width="fill_parent" android:layout_height="wrap_content" /> 
+</TableRow>
+<!-- 白线 -->
+<include  layout="@xml/white_line"/>
+<TableRow android:paddingTop="10dip" android:paddingLeft="10dip">      
+	 <include android:id="@+id/txt_three" layout="@xml/text_view_20"
+		android:layout_width="fill_parent" android:layout_height="wrap_content" />   
+</TableRow>
+<!-- 白线 -->
+<include  layout="@xml/white_line"/>
+<!-- 号码输入框 -->
+<TableRow android:paddingLeft="20dip">       
+	 <include android:id="@+id/edit" layout="@xml/et_amt"
 		android:layout_width="fill_parent" android:layout_height="wrap_content" />   
 </TableRow>
 <!-- 白线 -->
 <include  layout="@xml/white_line"/>
 <!-- 按钮 -->
-<TableRow android:paddingTop="20dip" android:paddingLeft="120dip">      
+<TableRow android:paddingTop="20dip" android:paddingLeft="140dip">      
 	 <include android:id="@+id/ok_btn" layout="@xml/button"
 		android:layout_width="fill_parent" android:layout_height="wrap_content" />   
 </TableRow>
