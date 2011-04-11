@@ -32,7 +32,6 @@ public class ElseAcc extends GeneralActivity {
 	        
 	        //确认缴费按钮
 	        next_btn=(Button)findViewById(R.id.account_type_comfirm).findViewById(R.id.button);
-	        next_btn.setText("下一步");
 	        next_btn.setOnClickListener(new OnClickListener() {
 				
 				@Override
