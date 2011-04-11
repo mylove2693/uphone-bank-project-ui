@@ -31,7 +31,7 @@ public class PaymentResult extends Activity {
 		tvshow.setText(info);
 		btnok.setText("返回");
 
-//		btnok.setOnClickListener(new Listener(PaymentResult.this,AllPaymentSer.class));
+		btnok.setOnClickListener(new Listener(PaymentResult.this,AllPaymentSer.class));
 	}
 
 //	class BtnOkCL implements OnClickListener {

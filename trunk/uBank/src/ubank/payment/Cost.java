@@ -33,7 +33,9 @@ public class Cost extends GeneralActivity {
 	        setListener(tvClassSecond, this, AllPaymentSer.class);
 	        tvClassThird.setVisibility(View.VISIBLE);
 	        tvClassThird.setText("便捷服务");
-	        
+	        /**
+	         * 接收上一个Activity穿过来的 值
+	         */
 	        Intent intent=getIntent();
 	        num=intent.getStringExtra("num"); 
 	        //设置上面的字
