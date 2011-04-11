@@ -35,7 +35,7 @@ public class Transfer_information extends GeneralListActivity{
 	        tvClassThird.setText(title);
 	        
 	    //为list添加数据
-	        s=new String[]{"账户：","类型：","余额："};
+	        s=new String[]{"  账户：","  类型：","  余额："};
 	        data=new String[]{"532434","活期存储","100,000"}; 
 	        this.setListAdapter(createText_Text(s, data));
 	    //添加两个按钮    
