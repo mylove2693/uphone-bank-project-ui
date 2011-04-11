@@ -7,7 +7,7 @@
 	android:layout_width="match_parent" android:layout_height="50dip"
 	android:orientation="horizontal">
 	<TextView android:id="@+id/blue_data_txt1"
-		android:layout_marginLeft="25dip" android:textSize="18dip"
+		android:layout_marginLeft="15dip" android:textSize="18dip"
 		android:layout_gravity="center_vertical" android:layout_width="130dip"
 		android:textColor="#253e81" android:layout_height="wrap_content">
 	</TextView>
