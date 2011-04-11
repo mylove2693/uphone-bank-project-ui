@@ -51,7 +51,6 @@ public class Cost extends GeneralActivity {
 	        edit=(EditText)findViewById(R.id.edit).findViewById(R.id.et_amt);
 	        //下一步按钮
 	        next_btn=(Button)findViewById(R.id.ok_btn).findViewById(R.id.button);
-	        next_btn.setText("下一步");
 	        next_btn.setOnClickListener(new OnClickListener() {
 				
 				@Override
