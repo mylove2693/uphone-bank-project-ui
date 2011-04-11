@@ -3,39 +3,39 @@
 	android:orientation="vertical" 
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
-<TableRow android:paddingTop="10dip" android:paddingLeft="10dip">       
+<TableRow android:paddingTop="5dip" android:paddingLeft="10dip" android:paddingBottom="5dip">       
 	 <include android:id="@+id/txt_one" layout="@xml/text_view_20"
 		android:layout_width="fill_parent" android:layout_height="wrap_content" />   
 </TableRow>
 <!-- 白线 -->
 <include  layout="@xml/white_line"/> 
 
-<TableRow android:paddingTop="10dip" android:paddingLeft="5dip">       
+<TableRow android:paddingTop="5dip" android:paddingLeft="40dip" android:paddingBottom="5dip">       
 	 <include android:id="@+id/spinner_one" layout="@xml/spinner"
 		android:layout_width="fill_parent" android:layout_height="wrap_content" />   
 </TableRow>
 <!-- 白线 -->
 <include  layout="@xml/white_line"/>
-<TableRow android:paddingTop="10dip" android:paddingLeft="10dip">      
+<TableRow android:paddingTop="5dip" android:paddingLeft="10dip" android:paddingBottom="5dip">      
 	 <include android:id="@+id/txt_two" layout="@xml/text_view_20"
 		android:layout_width="fill_parent" android:layout_height="wrap_content" />   
 </TableRow>
 <!-- 白线 -->
 <include  layout="@xml/white_line"/>
-<TableRow android:paddingTop="10dip" android:paddingLeft="5dip">    
+<TableRow android:paddingTop="5dip" android:paddingLeft="40dip" android:paddingBottom="5dip">     
 	 <include android:id="@+id/spinner_two" layout="@xml/spinner"
 		android:layout_width="fill_parent" android:layout_height="wrap_content" /> 
 </TableRow>
 <!-- 白线 -->
 <include  layout="@xml/white_line"/>
-<TableRow android:paddingTop="10dip" android:paddingLeft="10dip">      
+<TableRow android:paddingTop="5dip" android:paddingLeft="10dip" android:paddingBottom="5dip">      
 	 <include android:id="@+id/txt_three" layout="@xml/text_view_20"
 		android:layout_width="fill_parent" android:layout_height="wrap_content" />   
 </TableRow>
 <!-- 白线 -->
 <include  layout="@xml/white_line"/>
 <!-- 号码输入框 -->
-<TableRow android:paddingLeft="20dip">       
+<TableRow android:paddingTop="1dip" android:paddingLeft="20dip" android:paddingBottom="1dip">       
 	 <include android:id="@+id/edit" layout="@xml/et_amt"
 		android:layout_width="fill_parent" android:layout_height="wrap_content" />   
 </TableRow>
