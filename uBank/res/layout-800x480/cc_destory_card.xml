@@ -12,10 +12,10 @@
 			<include android:id="@+id/cc_tv_openName" layout="@xml/blue_text_view"
 				android:layout_width="wrap_content" android:layout_height="wrap_content"
 				android:layout_marginLeft="15dip" android:layout_gravity="center_vertical"
-				android:layout_weight="1" />
+				android:layout_weight="3" />
 			<include android:id="@+id/cc_et_openName" layout="@xml/et_user"
 				android:layout_width="wrap_content" android:layout_height="wrap_content"
-				android:layout_weight="2" />
+				android:layout_weight="1" />
 		</TableRow>
 		<TableRow android:layout_width="fill_parent"
 			android:layout_height="wrap_content" android:orientation="horizontal">
@@ -29,11 +29,11 @@
 			android:layout_height="wrap_content" android:orientation="horizontal">
 			<include android:id="@+id/cc_tv_ccNo" layout="@xml/blue_text_view"
 				android:layout_width="wrap_content" android:layout_height="wrap_content"
-				android:layout_marginLeft="15dip" android:layout_weight="1"
+				android:layout_marginLeft="15dip" android:layout_weight="3"
 				android:layout_gravity="center_vertical" />
 			<include android:id="@+id/cc_spnr_ccNo" layout="@xml/small_spinner"
 				android:layout_width="wrap_content" android:layout_height="wrap_content"
-				android:layout_weight="2" />
+				android:layout_weight="1" />
 		</TableRow>
 		<TableRow android:layout_width="fill_parent"
 			android:layout_height="wrap_content" android:orientation="horizontal">
@@ -47,11 +47,11 @@
 			android:layout_height="wrap_content" android:orientation="horizontal">
 			<include android:id="@+id/cc_tv_idType" layout="@xml/blue_text_view"
 				android:layout_width="wrap_content" android:layout_height="wrap_content"
-				android:layout_marginLeft="15dip" android:layout_weight="1"
+				android:layout_marginLeft="15dip" android:layout_weight="3"
 				android:layout_gravity="center_vertical" />
 			<include android:id="@+id/cc_spnr_idType" layout="@xml/small_spinner"
 				android:layout_width="wrap_content" android:layout_height="wrap_content"
-				android:layout_weight="2" />
+				android:layout_weight="1" />
 		</TableRow>
 		<TableRow android:layout_width="fill_parent"
 			android:layout_height="wrap_content" android:orientation="horizontal">
@@ -66,10 +66,10 @@
 			<include android:id="@+id/cc_tv_id" layout="@xml/blue_text_view"
 				android:layout_width="wrap_content" android:layout_gravity="center_vertical"
 				android:layout_height="wrap_content" android:layout_marginLeft="15dip"
-				android:layout_weight="1" />
+				android:layout_weight="3" />
 			<include android:id="@+id/cc_et_id" layout="@xml/et_user"
 				android:layout_width="wrap_content" android:layout_height="wrap_content"
-				android:layout_weight="2" />
+				android:layout_weight="1" />
 		</TableRow>
 		<TableRow android:layout_width="fill_parent"
 			android:layout_height="wrap_content" android:orientation="horizontal">
@@ -84,10 +84,10 @@
 			<include android:id="@+id/cc_tv_phone" layout="@xml/blue_text_view"
 				android:layout_width="wrap_content" android:layout_gravity="center_vertical"
 				android:layout_height="wrap_content" android:layout_marginLeft="15dip"
-				android:layout_weight="1" />
+				android:layout_weight="3" />
 			<include android:id="@+id/cc_et_phone" layout="@xml/et_user"
 				android:layout_width="wrap_content" android:layout_height="wrap_content"
-				android:layout_weight="2" />
+				android:layout_weight="1" />
 		</TableRow>
 		<TableRow android:layout_width="fill_parent"
 			android:layout_height="wrap_content" android:orientation="horizontal">
@@ -102,10 +102,10 @@
 			<include android:id="@+id/cc_tv_pwd" layout="@xml/blue_text_view"
 				android:layout_width="wrap_content" android:layout_height="wrap_content"
 				android:layout_marginLeft="15dip" android:layout_gravity="center_vertical"
-				android:layout_weight="1" />
+				android:layout_weight="3" />
 			<include android:id="@+id/cc_et_pwd" layout="@xml/et_psd"
 				android:layout_width="wrap_content" android:layout_height="wrap_content"
-				android:layout_weight="2" />
+				android:layout_weight="1" />
 		</TableRow>
 		<TableRow android:layout_width="fill_parent"
 			android:layout_height="wrap_content" android:orientation="horizontal">

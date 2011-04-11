@@ -46,8 +46,8 @@ public class SelectRepaymentAcc extends GeneralActivity {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			// String accType = spnrAccType.getSelectedItem().toString().trim();
-			// String accNum = spnrAccNum.getSelectedItem().toString().trim();
+			// 检查是否有激活
+
 			String accType = accSelect.getAccTypValue();
 			String accNum = accSelect.getAccNumValue();
 			Intent intent = new Intent(SelectRepaymentAcc.this,
