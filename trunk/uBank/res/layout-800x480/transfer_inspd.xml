@@ -10,6 +10,7 @@
 	-->
 	<include android:id="@+id/acc_mation" layout="@xml/text_view_18"
 	android:layout_marginLeft="10dip" 
+	
 		android:layout_width="wrap_content" android:layout_height="wrap_content" />
 	<!--
 		具体的内容：（例如：活期存储卡：  62343243232）
