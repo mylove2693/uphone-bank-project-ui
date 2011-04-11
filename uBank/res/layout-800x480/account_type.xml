@@ -5,22 +5,16 @@
 			android:layout_height="wrap_content" 
 			android:orientation="vertical" 
 			android:stretchColumns="1"
-		    android:paddingLeft="10dip"
-		    android:paddingRight="10dip"
-		    android:paddingTop="1dip"
-		    android:paddingBottom="1dip">
+		    >
 		    <TableRow>
 		    	<ubank.common.Account_Select
 					android:id="@+id/account_select"
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content" 
-		    		android:paddingRight="10dip"
-		    		android:paddingTop="1dip"
-		    		android:paddingBottom="1dip"
 				/>
 		    </TableRow>
 		    <TableRow
-		     android:layout_marginLeft="100dip"
+		     android:layout_marginLeft="120dip"
 		     android:layout_marginTop="20dip">
 		    	<include android:id="@+id/account_type_comfirm" 
 			 		layout="@xml/button" ></include>
