@@ -3,6 +3,7 @@ package ubank.payment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import ubank.base.GeneralListActivity;
 import ubank.main.BankMain;
@@ -21,7 +22,6 @@ public class LatelyCost extends GeneralListActivity {
 	         */
 	        Intent intent=getIntent();
 	        value=intent.getStringArrayExtra("value");
-	        tvClassFirst.setVisibility(View.VISIBLE);
 	        
 	        tvClassFirst.setVisibility(View.VISIBLE);
 	        //监听
@@ -33,10 +33,19 @@ public class LatelyCost extends GeneralListActivity {
 	        setListener(tvClassSecond, this, AllPaymentSer.class);
 	        tvClassThird.setVisibility(View.VISIBLE);
 	        tvClassThird.setText("最近一个月缴费");
+	        this.setListAdapter(createText_Text(name,value));
 	        
 	        addLayoutBlow(R.layout.midle_btn);
 	        btn=(Button)findViewById(R.id.midle_btn).findViewById(R.id.button);
 	        btn.setText("返回");
-	        this.setListAdapter(createText_Text(name,value));
+	        btn.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					Intent intent=new Intent();
+					intent.setClass(LatelyCost.this, AllPaymentSer.class);
+					LatelyCost.this.startActivity(intent);
+				}
+			});
 	  }
 }
