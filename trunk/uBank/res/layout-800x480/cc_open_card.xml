@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent" android:layout_height="match_parent"
+	android:orientation="vertical">
+	<!-- 提示 -->
+
+	<!-- Table -->
+	<TableLayout android:id="@+id/widget34"
+		android:layout_width="fill_parent" android:layout_height="fill_parent"
+		xmlns:android="http://schemas.android.com/apk/res/android">
+		<!-- 开户名 -->
+		<TableRow android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:orientation="horizontal">
+			<include android:id="@+id/cc_tv_openName" layout="@xml/blue_text_view"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_marginLeft="15dip" android:layout_gravity="center_vertical"
+				android:layout_weight="1" />
+			<include android:id="@+id/cc_et_openName" layout="@xml/et_user"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_weight="2" />
+		</TableRow>
+		<TableRow android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:orientation="horizontal">
+			<include layout="@xml/white_line" android:layout_width="fill_parent"
+				android:layout_height="1px" />
+			<include layout="@xml/white_line" android:layout_width="fill_parent"
+				android:layout_height="1px" />
+		</TableRow>
+		<!-- 信用卡号 -->
+		<TableRow android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:orientation="horizontal">
+			<include android:id="@+id/cc_tv_ccNo" layout="@xml/blue_text_view"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_marginLeft="15dip" android:layout_weight="1"
+				android:layout_gravity="center_vertical" />
+			<include android:id="@+id/cc_et_ccNo" layout="@xml/et_user"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_weight="2" />
+		</TableRow>
+		<TableRow android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:orientation="horizontal">
+			<include layout="@xml/white_line" android:layout_width="fill_parent"
+				android:layout_height="1px" />
+			<include layout="@xml/white_line" android:layout_width="fill_parent"
+				android:layout_height="1px" />
+		</TableRow>
+		<!-- 卡号有效期 -->
+		<TableRow android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:orientation="horizontal">
+			<include android:id="@+id/cc_tv_noValid" layout="@xml/blue_text_view"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_marginLeft="15dip" android:layout_gravity="center_vertical"
+				android:layout_weight="1" />
+			<include android:id="@+id/cc_et_noValid" layout="@xml/et_user"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_weight="2" />
+		</TableRow>
+		<TableRow android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:orientation="horizontal">
+			<include layout="@xml/white_line" android:layout_width="fill_parent"
+				android:layout_height="1px" />
+			<include layout="@xml/white_line" android:layout_width="fill_parent"
+				android:layout_height="1px" />
+		</TableRow>
+		<!-- 证件类型 -->
+		<TableRow android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:orientation="horizontal">
+			<include android:id="@+id/cc_tv_idType" layout="@xml/blue_text_view"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_marginLeft="15dip" android:layout_weight="1"
+				android:layout_gravity="center_vertical" />
+			<include android:id="@+id/cc_spnr_idType" layout="@xml/small_spinner"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_weight="2" />
+		</TableRow>
+		<TableRow android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:orientation="horizontal">
+			<include layout="@xml/white_line" android:layout_width="fill_parent"
+				android:layout_height="1px" />
+			<include layout="@xml/white_line" android:layout_width="fill_parent"
+				android:layout_height="1px" />
+		</TableRow>
+		<!-- 证件号 -->
+		<TableRow android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:orientation="horizontal">
+			<include android:id="@+id/cc_tv_id" layout="@xml/blue_text_view"
+				android:layout_width="wrap_content" android:layout_gravity="center_vertical"
+				android:layout_height="wrap_content" android:layout_marginLeft="15dip"
+				android:layout_weight="1" />
+			<include android:id="@+id/cc_et_id" layout="@xml/et_user"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_weight="2" />
+		</TableRow>
+		<TableRow android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:orientation="horizontal">
+			<include layout="@xml/white_line" android:layout_width="fill_parent"
+				android:layout_height="1px" />
+			<include layout="@xml/white_line" android:layout_width="fill_parent"
+				android:layout_height="1px" />
+		</TableRow>
+		<!-- 手机号码 -->
+		<TableRow android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:orientation="horizontal">
+			<include android:id="@+id/cc_tv_phone" layout="@xml/blue_text_view"
+				android:layout_width="wrap_content" android:layout_gravity="center_vertical"
+				android:layout_height="wrap_content" android:layout_marginLeft="15dip"
+				android:layout_weight="1" />
+			<include android:id="@+id/cc_et_phone" layout="@xml/et_user"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_weight="2" />
+		</TableRow>
+		<TableRow android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:orientation="horizontal">
+			<include layout="@xml/white_line" android:layout_width="fill_parent"
+				android:layout_height="1px" />
+			<include layout="@xml/white_line" android:layout_width="fill_parent"
+				android:layout_height="1px" />
+		</TableRow>
+		<!-- 固定电话 -->
+		<TableRow android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:orientation="horizontal">
+			<include android:id="@+id/cc_tv_tel" layout="@xml/blue_text_view"
+				android:layout_width="wrap_content" android:layout_gravity="center_vertical"
+				android:layout_height="wrap_content" android:layout_marginLeft="15dip"
+				android:layout_weight="1" />
+			<include android:id="@+id/cc_et_tel" layout="@xml/et_user"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_weight="2" />
+		</TableRow>
+		<TableRow android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:orientation="horizontal">
+			<include layout="@xml/white_line" android:layout_width="fill_parent"
+				android:layout_height="1px" />
+			<include layout="@xml/white_line" android:layout_width="fill_parent"
+				android:layout_height="1px" />
+		</TableRow>
+		<!-- 账户密码 -->
+		<TableRow android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:orientation="horizontal">
+			<include android:id="@+id/cc_tv_pwd" layout="@xml/blue_text_view"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_marginLeft="15dip" android:layout_gravity="center_vertical"
+				android:layout_weight="1" />
+			<include android:id="@+id/cc_et_pwd" layout="@xml/et_psd"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_weight="2" />
+		</TableRow>
+		<TableRow android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:orientation="horizontal">
+			<include layout="@xml/white_line" android:layout_width="fill_parent"
+				android:layout_height="1px" />
+			<include layout="@xml/white_line" android:layout_width="fill_parent"
+				android:layout_height="1px" />
+		</TableRow>
+	</TableLayout>
+
+	<include android:id="@+id/cc_btn_next" layout="@xml/button"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:layout_gravity="center_horizontal" android:layout_marginTop="15dip" />
+
+</LinearLayout>

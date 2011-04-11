@@ -23,11 +23,22 @@ public class CreditCardMain extends GeneralListActivity {
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		// TODO Auto-generated method stub
 		super.onListItemClick(l, v, position, id);
-
+		Intent intent = null;
 		switch (position) {
+		case 3:
+			// 销卡
+			intent = new Intent(CreditCardMain.this, OpenCard.class);
+			startActivity(intent);
+			break;
+
+		case 4:
+			// 销卡
+			intent = new Intent(CreditCardMain.this, DestroyCard.class);
+			startActivity(intent);
+			break;
 		case 5:
-			Intent intent = new Intent();
-			intent.setClass(CreditCardMain.this, CardRepayment.class);
+			// 信用卡还款
+			intent = new Intent(CreditCardMain.this, CardRepayment.class);
 			startActivity(intent);
 			break;
 

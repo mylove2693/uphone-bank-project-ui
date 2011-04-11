@@ -117,6 +117,7 @@
 		
 		<!-- solo -->
 		<activity android:name="ubank.credit.CreditCardMain">
+
 <!--  
 			<intent-filter> 
 				<action android:name="android.intent.action.MAIN"/> 
@@ -126,6 +127,10 @@
 		</activity>
 		<activity android:name="ubank.credit.CardRepayment"></activity>
 		<activity android:name="ubank.credit.CreditCardInfo"></activity>
+		<activity android:name="ubank.credit.DestroyCard"></activity>
+		<activity android:name="ubank.credit.OpenCard"></activity>
+		<activity android:name="ubank.credit.SelectRepaymentAcc"></activity>
+		<activity android:name="ubank.credit.ConfrimRepayment"></activity>
 		<!-- end solo -->
 		
 		
