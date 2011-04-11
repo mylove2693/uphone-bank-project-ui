@@ -20,6 +20,7 @@
 账户类型选择的spinner
 	-->
 	<include android:id="@+id/spinnerAccTyp" layout="@xml/spinner"
+	android:layout_marginTop="3dip"
 	    android:layout_gravity="center_horizontal"
 		android:layout_width="wrap_content" android:layout_height="wrap_content" />
 	<!--
@@ -37,6 +38,7 @@
 	账户帐号选择的spinner	
 	-->
 	<include android:id="@+id/spinnerAccNum" layout="@xml/spinner"
+	android:layout_marginTop="3dip"
 	 android:layout_gravity="center_horizontal"
 		android:layout_width="wrap_content" android:layout_height="wrap_content" />
 </LinearLayout>
