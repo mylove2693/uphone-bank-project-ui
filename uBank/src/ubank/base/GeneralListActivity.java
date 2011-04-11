@@ -47,6 +47,14 @@ public class GeneralListActivity extends ListActivity implements IGeneralActivit
         btnbank = (ImageView)findViewById(R.id.paymentbelow).findViewById(R.id.btnMain);
         btnhelper = (ImageView)findViewById(R.id.paymentbelow).findViewById(R.id.btnHelper);
         
+
+		// btnback = (ImageView) (findViewById(R.id.paymentabove)
+		// .findViewById(R.id.returnToPre));
+		// btnbank = (ImageView) (findViewById(R.id.paymentbelow)
+		// .findViewById(R.id.btnMain));
+		// btnhelper = (ImageView) (findViewById(R.id.paymentbelow)
+		// .findViewById(R.id.btnHelper));
+        
         //获取TextView对象
         tvClassFirst = (TextView)findViewById(R.id.paymentabove).findViewById(R.id.class_first);
         tvClassSecond = (TextView)findViewById(R.id.paymentabove).findViewById(R.id.class_second);

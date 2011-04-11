@@ -6,15 +6,21 @@ import java.util.List;
 import ubank.base.GeneralActivity;
 import ubank.main.R;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ExpandableListView;
+import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -22,29 +28,77 @@ public class CardRepayment extends GeneralActivity {
 
 	private List<String> mGroupArray;
 	private List<List<String>> mChildArray;
+	private Button btnNext;
+	private EditText et;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		addLayout(R.layout.expandablelistview);
+		addLayout(R.layout.cc_card_repayment);
+
+		initializeData();// 初始化数据
 
 		ExpandableListView ev = (ExpandableListView) findViewById(R.id.expandList);
+		ev.setAdapter(new ExpandableAdapter(this));
+		ev.setOnChildClickListener(onClickListener);
+		btnNext.setOnClickListener(btnOnClick);
+
+	}
+
+	private void initializeData() {
+		// TODO 初始化数据
 
 		mGroupArray = new ArrayList<String>();
 		mChildArray = new ArrayList<List<String>>();
 		// 模拟接收到数据
 		String[] strings = new String[] { "11", "22", "33" };
 
-		mGroupArray.add("已绑定信用卡还款");
+		mGroupArray.add(getResources().getString(R.string.cc_isbindcc));// 已绑定信用卡号
 		List<String> itemArray = new ArrayList<String>();
 		for (String string : strings) {
 			itemArray.add(string);
 		}
 		mChildArray.add(itemArray);
 
-		ev.setAdapter(new ExpandableAdapter(this));
+		((TextView) findViewById(R.id.cc_tv_otherCC).findViewById(
+				R.id.Text_View_18)).setText(R.string.cc_other_cc_repayment);// 其他信用卡还款
+		((TextView) findViewById(R.id.cc_tv_cc_num).findViewById(
+				R.id.Text_View_18)).setText(R.string.cc_ccNo);// 信用卡号
+		btnNext = (Button) findViewById(R.id.cc_btn_next).findViewById(
+				R.id.button);
+		btnNext.setText(R.string.cc_next);// 下一步
+		et = (EditText) findViewById(R.id.cc_et_cc).findViewById(R.id.et_acc);
 	}
+
+	private OnClickListener btnOnClick = new OnClickListener() {
+
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			Intent intent = new Intent(CardRepayment.this, CreditCardInfo.class);
+			intent.putExtra("creditcard", et.getText().toString().trim());
+			startActivity(intent);
+		}
+
+	};
+
+	// 字节点的监听器
+	private OnChildClickListener onClickListener = new OnChildClickListener() {
+
+		@Override
+		public boolean onChildClick(ExpandableListView parent, View v,
+				int groupPosition, int childPosition, long id) {
+			// TODO Auto-generated method stub
+			TextView tv = (TextView) v;
+			Intent intent = new Intent();
+			intent.putExtra("creditcard", tv.getText());
+			intent.setClass(CardRepayment.this, CreditCardInfo.class);
+			startActivity(intent);
+			return false;
+		}
+
+	};
 
 	// 内部类，Expandable适配器
 	public class ExpandableAdapter extends BaseExpandableListAdapter {

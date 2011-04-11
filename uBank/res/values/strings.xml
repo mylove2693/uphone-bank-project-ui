@@ -31,6 +31,10 @@
     <string name="accountType">账号类型</string>
     <string name = "input_password">请输入密码</string>
     <string name = "bind">绑定</string>
+    <string name="cc_ccNo">信用卡号</string>
+    <string name="cc_isbindcc">已绑定信用卡还款</string>
+    <string name="cc_next">下一步</string>
+    <string name="cc_other_cc_repayment">其他信用卡还款</string>
     <string name = "re_election_acc">重选账户</string>
     <string name = "continue_transfer">继续转账</string>
 </resources>
