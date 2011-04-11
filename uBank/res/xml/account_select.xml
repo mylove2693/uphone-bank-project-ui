@@ -9,21 +9,24 @@
 提示账户类型选择
 	-->
 	<include android:id="@+id/AccTypText" layout="@xml/text_view_18"
-		android:layout_width="wrap_content" android:layout_height="wrap_content" />
+	    android:layout_marginLeft="10dip"
+		android:layout_width="fill_parent" android:layout_height="wrap_content" />
 	<!--
 		白线
 	-->
-	<include layout="@xml/white_line" android:layout_width="fill_parent"
+	<include layout="@xml/white_line" android:layout_width="wrap_content"
 		android:layout_height="1dip" />
 	<!--
 账户类型选择的spinner
 	-->
 	<include android:id="@+id/spinnerAccTyp" layout="@xml/spinner"
+	    android:layout_gravity="center_horizontal"
 		android:layout_width="wrap_content" android:layout_height="wrap_content" />
 	<!--
 		提示账户帐号选择
 	-->
 	<include android:id="@+id/AccNumText" layout="@xml/text_view_18"
+	android:layout_marginLeft="10dip"
 		android:layout_width="wrap_content" android:layout_height="wrap_content" />
 	<!--
 		白线
@@ -34,5 +37,6 @@
 	账户帐号选择的spinner	
 	-->
 	<include android:id="@+id/spinnerAccNum" layout="@xml/spinner"
+	 android:layout_gravity="center_horizontal"
 		android:layout_width="wrap_content" android:layout_height="wrap_content" />
 </LinearLayout>
