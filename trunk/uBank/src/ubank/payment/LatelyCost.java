@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import ubank.base.GeneralListActivity;
+import ubank.main.BankMain;
 import ubank.main.R;
 
 public class LatelyCost extends GeneralListActivity {
@@ -23,7 +24,9 @@ public class LatelyCost extends GeneralListActivity {
 	        tvClassFirst.setVisibility(View.VISIBLE);
 	        
 	        tvClassFirst.setVisibility(View.VISIBLE);
+	        //监听
 	        tvClassFirst.setText("首页>");
+	        setListener(tvClassFirst, this, BankMain.class);
 	        tvClassSecond.setVisibility(View.VISIBLE);
 	        tvClassSecond.setText("自助缴费>");
 	       //监听

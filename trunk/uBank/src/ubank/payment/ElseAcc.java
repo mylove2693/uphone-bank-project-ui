@@ -1,6 +1,7 @@
 package ubank.payment;
 
 import ubank.base.GeneralActivity;
+import ubank.main.BankMain;
 import ubank.main.R;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,7 +20,9 @@ public class ElseAcc extends GeneralActivity {
 	        addLayout(R.layout.account_type);
 	        
 	        tvClassFirst.setVisibility(View.VISIBLE);
+	        //监听
 	        tvClassFirst.setText("首页>");
+	        setListener(tvClassFirst, this, BankMain.class);
 	        tvClassSecond.setVisibility(View.VISIBLE);
 	        tvClassSecond.setText("自助缴费>");
 	       //监听

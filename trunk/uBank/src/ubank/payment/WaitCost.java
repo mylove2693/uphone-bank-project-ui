@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import ubank.base.GeneralListActivity;
+import ubank.main.BankMain;
 import ubank.main.R;
 
 
@@ -25,7 +26,9 @@ public class WaitCost extends GeneralListActivity {//待缴费的项目
 	        value=intent.getStringArrayExtra("value");
 	        tvClassFirst.setVisibility(View.VISIBLE);
 	        
+	        //监听
 	        tvClassFirst.setText("首页>");
+	        setListener(tvClassFirst, this, BankMain.class);
 	        tvClassSecond.setVisibility(View.VISIBLE);
 	        tvClassSecond.setText("自助缴费>");
 	        this.setListAdapter(createText_Text(name,value));

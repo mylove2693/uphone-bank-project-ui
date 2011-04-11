@@ -3,6 +3,7 @@ package ubank.payment;
 import java.util.ArrayList;
 import java.util.List;
 import ubank.base.GeneralActivity;
+import ubank.main.BankMain;
 import ubank.main.R;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,10 +25,12 @@ public class InputPsw extends GeneralActivity {
 	        addLayout(R.layout.input_psw);
 	        
 	        tvClassFirst.setVisibility(View.VISIBLE);
+	        //监听
 	        tvClassFirst.setText("首页>");
+	        setListener(tvClassFirst, this, BankMain.class);
 	        tvClassSecond.setVisibility(View.VISIBLE);
+	         //监听
 	        tvClassSecond.setText("自助缴费>");
-	       //监听
 	        setListener(tvClassSecond, this, AllPaymentSer.class);
 	        tvClassThird.setVisibility(View.VISIBLE);
 	        tvClassThird.setText("密码输入");
@@ -63,7 +66,6 @@ public class InputPsw extends GeneralActivity {
 	        		 * & 表示前面为true的情况下后面还要执行 知道前后都为true时菜返回true
 	        		 */
 	        		if(!pwsStr.equals("") & pwsStr.equals("123456")){
-	        			System.out.println("------");
 	        			//计算余额
 	        			Double balanceValue=Double.parseDouble(balance)-Double.parseDouble(acc_balance);
 	        			if(balanceValue>0){//检查余额

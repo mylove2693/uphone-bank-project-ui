@@ -1,6 +1,7 @@
 package ubank.payment;
 
 import ubank.base.GeneralListActivity;
+import ubank.main.BankMain;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +14,9 @@ public class WaitCostItem extends GeneralListActivity {
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 	        tvClassFirst.setVisibility(View.VISIBLE);
+	      //监听
 	        tvClassFirst.setText("首页>");
+	        setListener(tvClassFirst, this, BankMain.class);
 	        tvClassSecond.setVisibility(View.VISIBLE);
 	        tvClassSecond.setText("自助缴费>");
 	       //监听
