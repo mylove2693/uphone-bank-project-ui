@@ -31,20 +31,20 @@ public class PaymentResult extends Activity {
 		tvshow.setText(info);
 		btnok.setText("返回");
 
-		btnok.setOnClickListener(new Listener(PaymentResult.this,AllPaymentSer.class));
+//		btnok.setOnClickListener(new Listener(PaymentResult.this,AllPaymentSer.class));
 	}
 
-	class BtnOkCL implements OnClickListener {
-		private Class<Activity> toActivity;
-		private BtnOkCL(Class toActivity){
-			this.toActivity=toActivity;
-		}
-		public void onClick(View v) {
-				// TODO Auto-generated method stub
-				Intent transinfo_intent = new Intent();				
-	    		transinfo_intent.setClass(PaymentResult.this, toActivity);
-	    		startActivity(transinfo_intent);
-	    		PaymentResult.this.finish();
-			}
-	}
+//	class BtnOkCL implements OnClickListener {
+//		private Class<Activity> toActivity;
+//		private BtnOkCL(Class toActivity){
+//			this.toActivity=toActivity;
+//		}
+//		public void onClick(View v) {
+//				// TODO Auto-generated method stub
+//				Intent transinfo_intent = new Intent();				
+//	    		transinfo_intent.setClass(PaymentResult.this, toActivity);
+//	    		startActivity(transinfo_intent);
+//	    		PaymentResult.this.finish();
+//			}
+//	}
 }
