@@ -1,5 +1,6 @@
 package ubank.payment;
 
+
 import ubank.base.GeneralActivity;
 import ubank.main.R;
 import android.content.Intent;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class Cost extends GeneralActivity {
@@ -14,6 +16,7 @@ public class Cost extends GeneralActivity {
 	private TextView txt=null;
 	private Button next_btn=null;
 	private String num=null;
+	private EditText edit=null;
 	@Override
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
@@ -41,6 +44,8 @@ public class Cost extends GeneralActivity {
 //	        txt.setText(money);
 	        txt=(TextView)findViewById(R.id.txt_three).findViewById(R.id.Text_View_20);
 	        txt.setText("请输入目标"+num+"号");
+	        //号码输入框
+	        edit=(EditText)findViewById(R.id.edit).findViewById(R.id.et_amt);
 	        //下一步按钮
 	        next_btn=(Button)findViewById(R.id.ok_btn).findViewById(R.id.button);
 	        next_btn.setText("下一步");
@@ -48,6 +53,16 @@ public class Cost extends GeneralActivity {
 				
 				@Override
 				public void onClick(View v) {
+					String editStr=edit.getText().toString().trim();
+					if (editStr.length() == 0) {//判断文本框中是否输入为空
+
+						Intent btnok_intent = new Intent();
+						btnok_intent.putExtra("flag", "警告");
+						btnok_intent.putExtra("info", "号码不能为空");
+						btnok_intent.putExtra("btnText", "确定");
+						btnok_intent.setClass(Cost.this,PaymentFailResultOne.class);
+						Cost.this.startActivity(btnok_intent);
+					}else{
 					Intent intent=new Intent();
 					String[] name={"项目名称:"," ","缴费金额","收费方:","缴费合同号:"};
 					String[] value=new String[5];
@@ -86,6 +101,7 @@ public class Cost extends GeneralActivity {
 					intent.putExtra("value", value);
 					intent.setClass(Cost.this, WaitCost.class);
 					Cost.this.startActivity(intent);
+				 }
 				}
 			});
 	  }

@@ -7,7 +7,11 @@ import android.widget.ListView;
 import ubank.base.GeneralListActivity;
 import ubank.main.R;
 
-
+/**
+ * 
+ * @author gsm
+ *自助缴费主界面
+ */
 public class AllPaymentSer extends GeneralListActivity {
 	String[] s={"待缴费项目","便捷服务","最近一个月缴费","历史缴费记录","缴费项目管理"};
 	  @Override

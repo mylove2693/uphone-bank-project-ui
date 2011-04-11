@@ -9,7 +9,7 @@ import ubank.base.GeneralListActivity;
 import ubank.main.R;
 
 
-public class WaitCost extends GeneralListActivity {
+public class WaitCost extends GeneralListActivity {//待缴费的项目
 	private String[] name=null;
 	private String[] value=null;
 	private Button btn=null;
