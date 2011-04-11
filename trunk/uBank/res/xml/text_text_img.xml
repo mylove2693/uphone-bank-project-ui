@@ -14,7 +14,7 @@
 	android:id="@+id/data_text1"
 	android:layout_width="140dip"
 	android:layout_height="wrap_content"
-	android:layout_marginLeft="5dip"
+	android:layout_marginLeft="15dip"
 	android:singleLine="true"
 	 android:layout_gravity="center_vertical"
 	android:textColor="#000000"
