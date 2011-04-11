@@ -3,7 +3,6 @@ package ubank.credit;
 import ubank.base.GeneralActivity;
 import ubank.main.R;
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -54,6 +53,7 @@ public class DestroyCard extends GeneralActivity {
 
 		@Override
 		public void onClick(View v) {
+			boolean flag = false;
 			// 弹出对话框
 			// 设置对话框的布局
 			View view = getLayoutInflater().inflate(R.xml.comdialog1, null);
@@ -62,17 +62,10 @@ public class DestroyCard extends GeneralActivity {
 			// 设置具体对话框布局的宽和高
 			LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT,
 					LayoutParams.MATCH_PARENT);
-
 			// 将设置好的布局View加到对话框中
 			dialog.addContentView(view, params);
-			// 设置标题
-			((TextView) view.findViewById(R.id.tv_comdlog_title))
-					.setText("提示的标题");
-			// 设置显示的信息
-			((TextView) view.findViewById(R.id.tv_comdlog_con1))
-					.setText("你要显示信息");
 			Button Ok_btn = (Button) view.findViewById(R.id.btn_comdlog_ok);
-			Ok_btn.setText("确认");
+			Ok_btn.setText("确定");
 			Ok_btn.setOnClickListener(new OnClickListener() {
 
 				@Override
@@ -81,6 +74,20 @@ public class DestroyCard extends GeneralActivity {
 					dialog.dismiss();
 				}
 			});
+			if (flag) {
+				((TextView) view.findViewById(R.id.tv_comdlog_title))
+						.setText("成功提示");
+				((TextView) view.findViewById(R.id.tv_comdlog_con1))
+						.setText("销卡成功");
+
+			} else {
+				((TextView) view.findViewById(R.id.tv_comdlog_title))
+						.setText("失败提示");
+				((TextView) view.findViewById(R.id.tv_comdlog_con1))
+						.setText("销卡失败，请验证输入的信息是否正确");
+
+			}
+
 		}
 	};
 }

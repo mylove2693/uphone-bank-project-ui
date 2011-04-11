@@ -59,18 +59,39 @@ public class OpenCard extends GeneralActivity {
 
 		@Override
 		public void onClick(View v) {
+			boolean flag = false;
 			// 弹出对话框
-			 View view = getLayoutInflater().inflate(R.xml.comdialog1, null);
-			// new AlertDialog.Builder(OpenCard.this).setView(view).show();
-			Dialog dialog = new Dialog(OpenCard.this, R.style.dialog);
+			// 设置对话框的布局
+			View view = getLayoutInflater().inflate(R.xml.comdialog1, null);
+			final Dialog dialog = new Dialog(OpenCard.this, R.style.dialog);
 			dialog.show();
+			// 设置具体对话框布局的宽和高
 			LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT,
 					LayoutParams.MATCH_PARENT);
-			
+			// 将设置好的布局View加到对话框中
 			dialog.addContentView(view, params);
-			
-			((TextView)view.findViewById(R.id.tv_comdlog_title)).setText("标题");
-			
+			Button Ok_btn = (Button) view.findViewById(R.id.btn_comdlog_ok);
+			Ok_btn.setText("确定");
+			Ok_btn.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					dialog.dismiss();
+				}
+			});
+			if (flag) {
+				((TextView) view.findViewById(R.id.tv_comdlog_title))
+						.setText("成功提示");
+				((TextView) view.findViewById(R.id.tv_comdlog_con1))
+						.setText("开卡成功，此卡在绑定之前，还不能在手机银行里操作");
+
+			} else {
+				((TextView) view.findViewById(R.id.tv_comdlog_title))
+						.setText("失败提示");
+				((TextView) view.findViewById(R.id.tv_comdlog_con1))
+						.setText("开卡失败，请验证输入的信息是否正确");
+			}
 
 		}
 	};
