@@ -10,7 +10,6 @@
   android:id="@+id/Spinner" 
     		android:background="@drawable/selection"
     		android:layout_height="30dip" 
-    		android:layout_marginLeft="35dip"
     		android:layout_width="250dip"
     		android:textSize="18sp"	/>
 </LinearLayout>
