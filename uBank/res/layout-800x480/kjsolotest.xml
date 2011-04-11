@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<!--
+转账的帐号，金额，密码输入布局
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="match_parent"
+	android:orientation="vertical">
+	<!--
+  请输入转账金额
+  -->
+	<include android:id="@+id/amt_txt" layout="@xml/text_view_18"
+		android:layout_marginLeft="20dip" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+			<!--
+		白线
+	-->
+	<include layout="@xml/white_line" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" />
+	<!--
+		转账金额输入框
+	-->
+	<include android:id="@+id/amt_spinner" layout="@xml/spinner"
+		android:layout_gravity="center_horizontal" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+	<!--
+		白线
+	-->
+	<include layout="@xml/white_line" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" />
+
+	<!--
+  请输入账户密码
+  -->
+	<include android:id="@+id/psd_txt" layout="@xml/text_view_18"
+		android:layout_marginLeft="20dip" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+			<!--
+		白线
+	-->
+	<include layout="@xml/white_line" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" />
+	<!--
+		账户密码输入框
+	-->
+	<include android:id="@+id/transfer_psd_edit" layout="@xml/et_psd"
+		android:layout_gravity="center_horizontal" android:layout_width="290dip"
+		android:layout_height="35dip" />
+	<!--
+		白线
+	-->
+	<include layout="@xml/white_line" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" />
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="match_parent"
+	android:orientation="horizontal">
+	<!--
+  确认还款
+  -->
+	<include android:id="@+id/btn1" layout="@xml/button"
+	android:layout_marginLeft="60dip"
+	android:layout_marginTop="10dip"
+		android:layout_width="wrap_content" android:layout_height="wrap_content">
+	</include>
+	<!--
+取消
+  -->
+	<include android:id="@+id/btn2" layout="@xml/button"
+	android:layout_marginTop="10dip"
+	android:layout_marginLeft="40dip"
+		android:layout_width="wrap_content" android:layout_height="wrap_content">
+	</include>
+	</LinearLayout>
+</LinearLayout>
