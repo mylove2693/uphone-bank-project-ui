@@ -26,6 +26,7 @@ public class ManagerHome extends GeneralListActivity{
 	private static final int ACC_LOSS = 4;
 	private static final int ADD_ACC = 5;
 	private static final int DEL_ACC = 6;
+	private static final int SET_ACC_ALIAS = 7;
 
 	private ListView managerList = null;
 	private Resources res = null;
@@ -99,6 +100,12 @@ public class ManagerHome extends GeneralListActivity{
 				ManagerHome.this.startActivity(intent);
 				break;
 			}
+			case SET_ACC_ALIAS:
+			{
+				Intent intent = new Intent();
+				intent.setClass(ManagerHome.this, SetAccountAlias.class);
+				ManagerHome.this.startActivity(intent);
+			}
 		}
 	}
 
@@ -115,7 +122,7 @@ public class ManagerHome extends GeneralListActivity{
 		items[4] = res.getString(R.string.first_acc_set);
 		items[5] = res.getString(R.string.add_account);
 		items[6] = res.getString(R.string.delete_account);
-		items[7] = "设置账户别名";
+		items[7] = res.getString(R.string.set_account_alias);
 		return items;
 	}
 	
