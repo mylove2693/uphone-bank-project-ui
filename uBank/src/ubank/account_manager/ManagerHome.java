@@ -21,9 +21,9 @@ public class ManagerHome extends GeneralListActivity{
 	
 	private static final int ACC_INFO = 0;
 	private static final int ACC_BIND = 1;
-	private static final int FIRST_ACC_SET = 2;
+	private static final int ACC_LOSS = 2;	
 	private static final int RES_CHANGE_CARD = 3;
-	private static final int ACC_LOSS = 4;
+	private static final int FIRST_ACC_SET = 4;
 	private static final int ADD_ACC = 5;
 	private static final int DEL_ACC = 6;
 	private static final int SET_ACC_ALIAS = 7;
