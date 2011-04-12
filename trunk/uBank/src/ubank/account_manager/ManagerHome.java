@@ -1,22 +1,13 @@
 package ubank.account_manager;
 
-import android.content.Context;
+import ubank.base.GeneralListActivity;
+import ubank.main.BankMain;
+import ubank.main.R;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.TextView;
-import ubank.base.GeneralActivity;
-import ubank.base.GeneralListActivity;
-import ubank.main.BankMain;
-import ubank.main.R;
-import ubank.payment.AllPaymentSer;
-import ubank.payment.HistoryCost;
-import ubank.payment.Lately;
-import ubank.payment.ManageCost;
-import ubank.payment.Speedy;
-import ubank.payment.WaitCostItem;
 
 public class ManagerHome extends GeneralListActivity{
 	
@@ -29,7 +20,6 @@ public class ManagerHome extends GeneralListActivity{
 	private static final int DEL_ACC = 6;
 	private static final int SET_ACC_ALIAS = 7;
 
-	private ListView managerList = null;
 	private Resources res = null;
 	
 	@Override
@@ -139,14 +129,5 @@ public class ManagerHome extends GeneralListActivity{
 		//设置导航栏“账户管理”
 		this.tvClassSecond.setText(temp + res.getString(R.string.account_manager));
 		this.tvClassSecond.setVisibility(View.VISIBLE);
-		this.tvClassSecond.setOnClickListener(new TextView.OnClickListener(){
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-		});
 	}	
 }
