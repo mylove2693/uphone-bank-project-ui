@@ -1,42 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_width="fill_parent"
-  android:layout_height="fill_parent"
-  android:orientation = "vertical"
-  android:background = "@drawable/main_background_2">
-  <include
-  	android:id = "@+id/text_curr_first_acc"
-  	layout = "@xml/text_view_18"/>
-  	
-  <include layout = "@xml/list_view"/>
-  
-  <include
-  	android:id = "@+id/spinner_curr_first_acc"
-  	layout = "@xml/spinner"/>
-  
-  <include layout = "@xml/list_view"/>
-  
-  <include
-  	android:id = "@+id/text_curr_default_acc"
-  	layout = "@xml/text_view_18"/>
-  	
-  <include layout = "@xml/list_view"/>
-  
-  <include
-  	android:id = "@+id/spinner_curr_default_acc"
-  	layout = "@xml/spinner"/>
-  	
-  <include layout = "@xml/list_view"/>
-  
-  <Button
-	android:id="@+id/acc_first_next"
-	android:layout_width="80dip"
-	android:layout_height="30dip"
-	android:background="@color/selector"
-	android:text="@string/acc_info_continue"
-	android:textSize="20sp"
-	android:layout_marginLeft = "120dip"
-	android:layout_marginTop = "30dip"
-	/>
+	<!-- 首选账户 布局文件 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+<!-- 当前首选账户 -->
+	<include android:id="@+id/txt_one" layout="@xml/text_view_20"
+		android:layout_marginTop="10dip"
+		android:layout_marginLeft="10dip" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" />
+<!-- 白线 -->
+<!-- 重新选择首选账户-->
+	<include layout="@xml/white_line" />
+	<include android:id="@+id/txt_two" layout="@xml/text_view_20"
+		android:layout_marginLeft="10dip" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" />
+<!-- 白线 -->
+	<include layout="@xml/white_line" />
+	<include android:id="@+id/spinner_one" layout="@xml/spinner"
+		android:layout_gravity="center_horizontal" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+<!-- 白线 -->
+	<include layout="@xml/white_line" />
+<!-- 按钮 -->
+	<include android:id="@+id/ok_btn" layout="@xml/button"
+		android:layout_marginTop="30dip" android:layout_gravity="center_horizontal"
+		android:layout_width="wrap_content" android:layout_height="wrap_content" />
 </LinearLayout>

@@ -1,20 +1,59 @@
 package ubank.account_manager;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import ubank.base.GeneralActivity;
+import ubank.main.BankMain;
 import ubank.main.R;
 
 public class FirstAccount extends GeneralActivity{
+
+	private TextView txt=null;
+	private Button next_btn=null;
+	private String num="62220323211";
+	private EditText edit=null;
+	@Override
+	    public void onCreate(Bundle savedInstanceState) {
+	        super.onCreate(savedInstanceState);
+	        addLayout(R.layout.acc_first_body);
+	        
+	        tvClassFirst.setVisibility(View.VISIBLE);
+	        //监听
+	        tvClassFirst.setText("首页>");
+	        setListener(tvClassFirst, this, BankMain.class);
+	        tvClassSecond.setVisibility(View.VISIBLE);
+	        tvClassSecond.setText("账户管理>");
+	       //监听
+	        setListener(tvClassSecond, this, ManagerHome.class);
+	        tvClassThird.setVisibility(View.VISIBLE);
+	        tvClassThird.setText("首选账户");
+	        /**
+	         * 接收上一个Activity穿过来的 值
+	         */
+	        Intent intent=getIntent();
+//	        num=intent.getStringExtra("num"); 
+	        //设置上面的字
+	        txt=(TextView)findViewById(R.id.txt_one).findViewById(R.id.Text_View_20);
+	        txt.setText("当前首选账户为:"+num);
+	        txt=(TextView)findViewById(R.id.txt_two).findViewById(R.id.Text_View_20);
+	        txt.setText("重新选择首选账户号:");
+	        //下一步按钮
+	        next_btn=(Button)findViewById(R.id.ok_btn).findViewById(R.id.button);
+	}
+}
+/*public class FirstAccount extends GeneralActivity{
 
 	private Resources res = null;
 	@Override
@@ -150,4 +189,4 @@ public class FirstAccount extends GeneralActivity{
 		});
 	}
 
-}
+}*/
