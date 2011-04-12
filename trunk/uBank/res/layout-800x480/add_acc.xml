@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--添加账户 布局-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="match_parent"
+	android:orientation="vertical">
+<!--账户号-->	
+	<include android:id="@+id/above_txt" layout="@xml/text_view_16_gray"></include> 
+<!--请选择账户类型-->
+	<include android:id="@+id/txt_acc_type" layout="@xml/text_view_18"
+		android:layout_marginLeft="20dip" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+<!--账户类型选择框-->
+	<include android:id="@+id/spinner_acc_type" layout="@xml/spinner"
+		android:layout_gravity="center_horizontal" android:layout_width="240dip"
+		android:layout_height="wrap_content" />
+<!--白线-->
+	<include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+<!--请输入账户-->
+	<include android:id="@+id/txt1" layout="@xml/text_view_18"
+		android:layout_marginLeft="20dip" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+<!--账户输入框-->
+	<include android:id="@+id/edit1" layout="@xml/et_acc"
+		android:layout_gravity="center_horizontal" android:layout_width="280dip"
+		android:layout_height="wrap_content" />
+<!--白线-->
+	<include layout="@xml/white_line" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" />
+<!--请设置入账户别名-->
+	<include android:id="@+id/txt2" layout="@xml/text_view_18"
+		android:layout_marginLeft="20dip" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+<!--账户别名输入框-->
+	<include android:id="@+id/edit2" layout="@xml/et_acc"
+		android:layout_gravity="center_horizontal" android:layout_width="280dip"
+		android:layout_height="wrap_content" />
+<!--白线-->
+<include layout="@xml/white_line" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" />
+<!--请输入账户密码-->
+	<include android:id="@+id/psd_txt" layout="@xml/text_view_18"
+		android:layout_marginLeft="20dip" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+<!--账户密码输入框-->
+	<include android:id="@+id/psd_edit" layout="@xml/et_psd"
+		android:layout_gravity="center_horizontal" android:layout_width="280dip"
+		android:layout_height="wrap_content" />
+<!--白线-->
+	<include layout="@xml/white_line" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" />
+
+<!-- 确认添加按钮 -->
+	<include android:id="@+id/next_btn" layout="@xml/button"
+	 android:layout_marginTop="20dip"
+		android:layout_width="wrap_content" android:layout_gravity="center_horizontal"
+		android:layout_height="wrap_content" />
+</LinearLayout>
