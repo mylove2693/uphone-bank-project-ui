@@ -41,4 +41,7 @@
     <string name = "current_default_acc">当前默认账户为（点击进行修改）：</string>
     <string name = "first_acc">首选账户</string>
     <string name = "default_acc">默认账户</string>
+    <string name = "exchange_card_reason">换卡原因</string>
+    <string name = "exchange_card_site">换卡网点</string>
+    <string name = "set_account_alias">设置账户别名</string>
 </resources>
