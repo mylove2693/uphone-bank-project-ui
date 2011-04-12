@@ -142,14 +142,7 @@
 		
 				<!-- yy's activity -->
 		<activity android:name="ubank.transfer.TransferMain">
-		<!--
-			<intent-filter>
-				<action android:name="android.intent.action.MAIN" />
-				<category android:name="android.intent.category.LAUNCHER" />
-			</intent-filter>
-		-->
-		</activity>
-		
+		</activity>	
 		<activity android:name="ubank.transfer.TransferAccSelect">
 		</activity>
 		<activity android:name="ubank.transfer.Transfer_OtherAccSelect">
