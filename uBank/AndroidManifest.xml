@@ -13,7 +13,7 @@
 				<action android:name="android.intent.action.MAIN"/> 
 				<category android:name="android.intent.category.LAUNCHER" /> 
 			</intent-filter>
- 			
+ 		
 		</activity>
 		
 		
@@ -79,7 +79,12 @@
 		<activity android:name="ubank.account_manager.DeleteAccount"></activity>
 		<activity android:name="ubank.account_manager.FirstAccount"></activity>
 		<activity android:name="ubank.account_manager.ManagerHome">
-
+		<!--
+		<intent-filter> 
+				<action android:name="android.intent.action.MAIN"/> 
+				<category android:name="android.intent.category.LAUNCHER" /> 
+			</intent-filter>
+			  -->
 		</activity>
 		<activity android:name="ubank.account_manager.ReservationChangeCard"></activity>
 		<activity android:name="ubank.account_manager.SetAccountAlias"></activity>
