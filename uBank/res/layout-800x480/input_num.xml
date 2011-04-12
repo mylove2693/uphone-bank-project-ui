@@ -1,54 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical" 
-	android:layout_width="fill_parent"
+	android:orientation="vertical" android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
-   
-	 <include android:id="@+id/txt_one" layout="@xml/text_view_20"
-		android:layout_width="fill_parent" android:layout_height="wrap_content" />   
-<!-- 白线 -->
-<include  layout="@xml/white_line"/> 
 
-  
-	 <include android:id="@+id/spinner_one" layout="@xml/spinner"
-	    android:layout_gravity="center_horizontal"
-		android:layout_width="wrap_content" android:layout_height="wrap_content" />   
+	<include android:id="@+id/txt_one" layout="@xml/text_view_20"
+		android:layout_marginLeft="10dip" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" />
+	<!-- 白线 -->
+	<include layout="@xml/white_line" />
 
-<!-- 白线 -->
-<include  layout="@xml/white_line"/>
 
-	 <include android:id="@+id/txt_two" layout="@xml/text_view_20"
-		android:layout_width="fill_parent" android:layout_height="wrap_content" />   
+	<include android:id="@+id/spinner_one" layout="@xml/spinner"
+		android:layout_gravity="center_horizontal" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
 
-<!-- 白线 -->
-<include  layout="@xml/white_line"/>
- 
-	 <include android:id="@+id/spinner_two" layout="@xml/spinner"
+	<!-- 白线 -->
+	<include layout="@xml/white_line" />
 
-	    android:layout_gravity="center"
-		android:layout_width="wrap_content" android:layout_height="wrap_content" /> 
+	<include android:id="@+id/txt_two" layout="@xml/text_view_20"
+		android:layout_marginLeft="10dip" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" />
 
-<!-- 白线 -->
-<include  layout="@xml/white_line"/>
-  
-	 <include android:id="@+id/txt_three" layout="@xml/text_view_20"
-		android:layout_width="fill_parent" android:layout_height="wrap_content" />   
+	<!-- 白线 -->
+	<include layout="@xml/white_line" />
 
-<!-- 白线 -->
-<include  layout="@xml/white_line"/>
-<!-- 号码输入框 -->
+	<include android:id="@+id/spinner_two" layout="@xml/spinner"
 
-	 <include android:id="@+id/edit" layout="@xml/et_amt"
-	  android:layout_gravity="center_horizontal"
-	   android:layout_marginBottom="3dip"
-		android:layout_width="290dip" android:layout_height="wrap_content" />   
+		android:layout_gravity="center" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
 
-<!-- 白线 -->
-<include  layout="@xml/white_line"/>
-<!-- 按钮 -->
-  
-	 <include android:id="@+id/ok_btn" layout="@xml/button" 
-	 android:layout_marginTop="3dip"
-	 android:layout_gravity="center_horizontal"
-		android:layout_width="wrap_content" android:layout_height="wrap_content" />   
+	<!-- 白线 -->
+	<include layout="@xml/white_line" />
+
+	<include android:id="@+id/txt_three" layout="@xml/text_view_20"
+		android:layout_marginLeft="10dip" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" />
+
+	<!-- 白线 -->
+	<include layout="@xml/white_line" />
+	<!-- 号码输入框 -->
+
+	<include android:id="@+id/edit" layout="@xml/et_amt"
+		android:layout_gravity="center_horizontal"
+		android:layout_marginBottom="3dip" android:layout_width="290dip"
+		android:layout_height="wrap_content" />
+
+	<!-- 白线 -->
+	<include layout="@xml/white_line" />
+	<!-- 按钮 -->
+
+	<include android:id="@+id/ok_btn" layout="@xml/button"
+		android:layout_marginTop="3dip" android:layout_gravity="center_horizontal"
+		android:layout_width="wrap_content" android:layout_height="wrap_content" />
 </LinearLayout>
