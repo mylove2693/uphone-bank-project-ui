@@ -37,4 +37,8 @@
     <string name="cc_other_cc_repayment">其他信用卡还款</string>
     <string name = "re_election_acc">重选账户</string>
     <string name = "continue_transfer">继续转账</string>
+    <string name = "current_first_acc">当前首选账户为（点击进行修改）：</string>
+    <string name = "current_default_acc">当前默认账户为（点击进行修改）：</string>
+    <string name = "first_acc">首选账户</string>
+    <string name = "default_acc">默认账户</string>
 </resources>
