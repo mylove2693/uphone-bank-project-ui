@@ -150,16 +150,16 @@ public class GeneralListActivity extends ListActivity implements IGeneralActivit
 			paylist1.put("text1",name[i]);
 			paylist1.put("text2", value[i]);
 			if (index.contains(Integer.valueOf(i))) {
-				paylist1.put("Rimg", R.drawable.righticon);
+				paylist1.put("Rimg", "(点击查看详情)");
 			}else{
 				paylist1.put("Rimg", null);
 			}
 			mainlist.add(paylist1);
 		}
 		adapter = new SimpleAdapter(this, mainlist,
-				R.xml.text_text_img, new String[] { "text1", "text2",
+				R.xml.text_text_graytext, new String[] { "text1", "text2",
 						"Rimg" }, new int[] { R.id.data_text1,
-						R.id.data_text2, R.id.Right_img });
+						R.id.data_text2, R.id.data_text3 });
 		return adapter;
     }
 	
