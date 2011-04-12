@@ -31,12 +31,42 @@ public class AccountInfo extends GeneralActivity{
 	private void setNavigation()
 	{
 		String temp = ">";
+		//设置导航栏“首页”
 		this.tvClassFirst.setText(res.getString(R.string.home));
 		this.tvClassFirst.setVisibility(View.VISIBLE);
+		this.tvClassFirst.setOnClickListener(new TextView.OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		//设置导航栏“账户管理”
 		this.tvClassSecond.setText(temp + res.getString(R.string.account_manager));	
 		this.tvClassSecond.setVisibility(View.VISIBLE);
+		this.tvClassSecond.setOnClickListener(new TextView.OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				AccountInfo.this.finish();
+			}
+			
+		});
+		//设置导航栏“账户信息”
 		this.tvClassThird.setText(temp + res.getString(R.string.account_info));	
-		this.tvClassSecond.setVisibility(View.VISIBLE);
+		this.tvClassThird.setVisibility(View.VISIBLE);
+		this.tvClassThird.setOnClickListener(new TextView.OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 	}
 	
 	//设置body
