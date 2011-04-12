@@ -1,13 +1,15 @@
 package ubank.account_manager;
 
-import android.content.res.Resources;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import ubank.base.GeneralActivity;
 import ubank.common.Account_Select;
 import ubank.main.BankMain;
 import ubank.main.R;
+import android.content.Intent;
+import android.content.res.Resources;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
 public class ReservationChangeCard extends GeneralActivity{
 	private Account_Select accountInfo = null;
@@ -41,5 +43,14 @@ public class ReservationChangeCard extends GeneralActivity{
 		
 		btnComfirm = (Button)findViewById(R.id.account_type_comfirm).findViewById(R.id.button);
 		btnComfirm.setText(R.string.cc_next);
+		btnComfirm.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent();
+				intent.setClass(ReservationChangeCard.this, ReservationChangeCardSecond.class);
+				ReservationChangeCard.this.startActivity(intent);
+			}
+		});
 	}
 }
