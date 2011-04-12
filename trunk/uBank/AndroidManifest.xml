@@ -8,12 +8,12 @@
       android:theme="@android:style/Theme.NoTitleBar">
         <!-- punan's activity -->
 		<activity android:name=".FinanceAss"> <!-- the first activity -->
- <!-- 
+
 			  <intent-filter> 
 				<action android:name="android.intent.action.MAIN"/> 
 				<category android:name="android.intent.category.LAUNCHER" /> 
 			</intent-filter>
- --> 		
+					
 		</activity>
 		
 		
@@ -62,7 +62,6 @@
 		<!-- end wangting's activity -->
 
 		<!-- ZXiaohui's activity -->
-		
 		<activity android:name="ubank.account_manager.ManagerHome">
 	<!--  
 		<intent-filter> 
@@ -85,17 +84,22 @@
 		<activity android:name="ubank.account_manager.ReservationChangeCard"></activity>
 		 <activity android:name="ubank.account_manager.ReservationChangeCardSecond"></activity>
 		<activity android:name="ubank.account_manager.SetAccountAlias"></activity>
+		
+		<!-- gsm -->
+		<activity android:name="ubank.account_manager.DelOK"/>
+		<!-- end gsm -->
+		
 		<!-- end ZXiaohui's activity -->
-
-
+		
+		
 		<!-- gsm's activity -->
 		<activity android:name="ubank.payment.AllPaymentSer">
- <!--  
+ <!-- 
 			<intent-filter> 
 				<action android:name="android.intent.action.MAIN"/> 
 				<category android:name="android.intent.category.LAUNCHER" /> 
 			</intent-filter>
- -->		
+  -->  		
 		</activity>
 		<activity android:name="ubank.payment.WaitCost" />
 		<activity android:name="ubank.payment.WaitCostItem" />
