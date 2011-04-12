@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" 
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+<TableRow android:paddingTop="5dip" android:paddingLeft="10dip" android:paddingBottom="5dip">       
+	 <include android:id="@+id/txt_one" layout="@xml/text_view_20"
+		android:layout_width="fill_parent" android:layout_height="wrap_content" /> 
+	<TextView android:layout_width="50dip" /> 
+	<include android:id="@+id/txt_two" layout="@xml/text_view_20"
+		android:layout_width="fill_parent" android:layout_height="wrap_content" />     
+</TableRow>
+<!-- 白线 -->
+<include  layout="@xml/white_line"/> 
+<TableRow android:paddingTop="5dip" android:paddingLeft="10dip" android:paddingBottom="5dip">  
+	 <include android:id="@+id/txt_three" layout="@xml/text_view_20"
+		android:layout_width="fill_parent" android:layout_height="wrap_content" /> 
+	<TextView android:layout_width="50dip" />  
+	<include android:id="@+id/txt_four" layout="@xml/text_view_20"
+		android:layout_width="fill_parent" android:layout_height="wrap_content" />   
+</TableRow>
+<!-- 白线 -->
+<include  layout="@xml/white_line"/>
+
+<TableRow android:paddingTop="5dip" android:paddingLeft="10dip" android:paddingBottom="5dip">      
+	 <include android:id="@+id/txt_five" layout="@xml/text_view_20"
+		android:layout_width="fill_parent" android:layout_height="wrap_content" />
+	<TextView android:layout_width="50dip" /> 
+	<include android:id="@+id/txt_six" layout="@xml/text_view_20"
+		android:layout_width="fill_parent" android:layout_height="wrap_content" />    
+</TableRow>
+
+<!-- 白线 -->
+<include  layout="@xml/white_line"/>
+<!-- 按钮 -->
+<TableRow android:paddingTop="20dip" android:paddingLeft="120dip">      
+	 <include android:id="@+id/ok_btn" layout="@xml/button"
+		android:layout_width="fill_parent" android:layout_height="wrap_content" />   
+</TableRow>
+</TableLayout>
