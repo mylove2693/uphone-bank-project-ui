@@ -21,9 +21,8 @@
 <TextView 
 	android:id="@+id/data_text"
 	android:layout_width="240dip"
+	android:layout_gravity="center_vertical"
 	android:layout_height="wrap_content"
-	 android:layout_gravity="center_vertical"
-	android:paddingTop="6dip"
 	android:singleLine="true"
 	android:textColor="#000000"
 	android:textSize="18dip"
