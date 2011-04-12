@@ -1,15 +1,25 @@
 package ubank.account_manager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 import ubank.base.GeneralActivity;
 import ubank.base.GeneralListActivity;
 import ubank.main.R;
 
 public class ManagerHome extends GeneralListActivity{
+	
+	private static final int ACC_INFO = 0;
+	private static final int ACC_BIND = 1;
+	private static final int FIRST_ACC_SET = 2;
+	private static final int RES_CHANGE_CARD = 3;
+	private static final int ACC_LOSS = 4;
+	private static final int ADD_ACC = 5;
+	private static final int DEL_ACC = 6;
 
 	private ListView managerList = null;
 	private Resources res = null;
@@ -22,10 +32,72 @@ public class ManagerHome extends GeneralListActivity{
 		this.setNavigation();
 		String[] strs = this.getManagerItem();
 		this.setListAdapter(this.createImg_Text_ImgAdapter(strs));
-		
-		
+			
 	}
 	
+	
+	
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		// TODO Auto-generated method stub
+		super.onListItemClick(l, v, position, id);
+		
+		switch(position)
+		{
+			case ACC_INFO:
+			{
+				Intent intent = new Intent();
+				intent.setClass(ManagerHome.this, AccountInfo.class);
+				ManagerHome.this.startActivity(intent);
+				break;
+			}
+			case ACC_BIND:
+			{
+				Intent intent = new Intent();
+				intent.setClass(ManagerHome.this, AccountBind.class);
+				ManagerHome.this.startActivity(intent);
+				break;
+			}
+			case FIRST_ACC_SET:
+			{
+				Intent intent = new Intent();
+				intent.setClass(ManagerHome.this, FirstAccount.class);
+				ManagerHome.this.startActivity(intent);
+				break;
+			}
+			case RES_CHANGE_CARD:
+			{
+				Intent intent = new Intent();
+				intent.setClass(ManagerHome.this, ReservationChangeCard.class);
+				ManagerHome.this.startActivity(intent);
+				break;
+			}
+			case ACC_LOSS:
+			{
+				Intent intent = new Intent();
+				intent.setClass(ManagerHome.this, AccountReportLoss.class);
+				ManagerHome.this.startActivity(intent);
+				break;
+			}
+			case ADD_ACC:
+			{
+				Intent intent = new Intent();
+				intent.setClass(ManagerHome.this, AddAccount.class);
+				ManagerHome.this.startActivity(intent);
+				break;
+			}
+			case DEL_ACC:
+			{
+				Intent intent = new Intent();
+				intent.setClass(ManagerHome.this, DeleteAccount.class);
+				ManagerHome.this.startActivity(intent);
+				break;
+			}
+		}
+	}
+
+
+
 	private String[] getManagerItem()
 	{
 		
@@ -43,12 +115,29 @@ public class ManagerHome extends GeneralListActivity{
 	private void setNavigation()
 	{
 		String temp = ">";
+		//设置导航栏“首页”
 		this.tvClassFirst.setText(res.getString(R.string.home));
-		this.tvClassSecond.setText(temp + res.getString(R.string.account_manager));
 		this.tvClassFirst.setVisibility(View.VISIBLE);
-		this.tvClassSecond.setVisibility(View.VISIBLE);
-	}
+		this.tvClassFirst.setOnClickListener(new TextView.OnClickListener(){
 
-	
-	
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		//设置导航栏“账户管理”
+		this.tvClassSecond.setText(temp + res.getString(R.string.account_manager));
+		this.tvClassSecond.setVisibility(View.VISIBLE);
+		this.tvClassSecond.setOnClickListener(new TextView.OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+	}	
 }
