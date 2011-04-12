@@ -22,8 +22,7 @@ public class FirstAccount extends GeneralActivity{
 
 	private TextView txt=null;
 	private Button next_btn=null;
-	private String num="62220323211";
-	private EditText edit=null;
+	private String num;
 	@Override
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
@@ -43,7 +42,7 @@ public class FirstAccount extends GeneralActivity{
 	         * 接收上一个Activity穿过来的 值
 	         */
 	        Intent intent=getIntent();
-//	        num=intent.getStringExtra("num"); 
+	        num=intent.getStringExtra("num"); 
 	        //设置上面的字
 	        txt=(TextView)findViewById(R.id.txt_one).findViewById(R.id.Text_View_20);
 	        txt.setText("当前首选账户为:"+num);

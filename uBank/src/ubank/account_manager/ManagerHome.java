@@ -9,6 +9,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import ubank.base.GeneralActivity;
 import ubank.base.GeneralListActivity;
+import ubank.main.BankMain;
 import ubank.main.R;
 import ubank.payment.AllPaymentSer;
 import ubank.payment.HistoryCost;
@@ -68,6 +69,8 @@ public class ManagerHome extends GeneralListActivity{
 			case FIRST_ACC_SET:
 			{
 				Intent intent = new Intent();
+				String num="62220323211";
+				intent.putExtra("num",num);
 				intent.setClass(ManagerHome.this, FirstAccount.class);
 				ManagerHome.this.startActivity(intent);
 				break;
@@ -132,15 +135,7 @@ public class ManagerHome extends GeneralListActivity{
 		//设置导航栏“首页”
 		this.tvClassFirst.setText(res.getString(R.string.home));
 		this.tvClassFirst.setVisibility(View.VISIBLE);
-		this.tvClassFirst.setOnClickListener(new TextView.OnClickListener(){
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-		});
+		setListener(tvClassFirst, this, BankMain.class);
 		//设置导航栏“账户管理”
 		this.tvClassSecond.setText(temp + res.getString(R.string.account_manager));
 		this.tvClassSecond.setVisibility(View.VISIBLE);
