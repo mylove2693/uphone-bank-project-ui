@@ -32,7 +32,7 @@ public class AccountQueryType extends GeneralActivity {
 		accountInfo.AddNumData(accountValues);
 		
 		btnComfirm = (Button)findViewById(R.id.account_type_comfirm).findViewById(R.id.button);
-		btnComfirm.setText(R.string.confirm);
+		btnComfirm.setText(R.string.cc_next);
 		btnComfirm.setOnClickListener(new OnClickListener() {
 			
 			@Override
