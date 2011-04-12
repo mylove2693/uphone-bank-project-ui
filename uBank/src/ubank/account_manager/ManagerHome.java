@@ -10,6 +10,12 @@ import android.widget.TextView;
 import ubank.base.GeneralActivity;
 import ubank.base.GeneralListActivity;
 import ubank.main.R;
+import ubank.payment.AllPaymentSer;
+import ubank.payment.HistoryCost;
+import ubank.payment.Lately;
+import ubank.payment.ManageCost;
+import ubank.payment.Speedy;
+import ubank.payment.WaitCostItem;
 
 public class ManagerHome extends GeneralListActivity{
 	
@@ -101,14 +107,15 @@ public class ManagerHome extends GeneralListActivity{
 	private String[] getManagerItem()
 	{
 		
-		String[] items = new String[7];
+		String[] items = new String[8];
 		items[0] = res.getString(R.string.account_info);
 		items[1] = res.getString(R.string.bind_account);
-		items[2] = res.getString(R.string.first_acc_set);
+		items[2] = res.getString(R.string.acc_report_loss);
 		items[3] = res.getString(R.string.reservation_change_card);
-		items[4] = res.getString(R.string.acc_report_loss);
+		items[4] = res.getString(R.string.first_acc_set);
 		items[5] = res.getString(R.string.add_account);
 		items[6] = res.getString(R.string.delete_account);
+		items[7] = "设置账户别名";
 		return items;
 	}
 	
