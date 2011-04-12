@@ -3,6 +3,7 @@ package ubank.account_manager;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
@@ -143,7 +144,9 @@ public class ReservationChangeCard extends GeneralActivity{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				
+				Intent intent = new Intent();
+				intent.setClass(ReservationChangeCard.this, ReservationChangeCardSecond.class);
+				ReservationChangeCard.this.startActivity(intent);
 			}
 			
 		});
