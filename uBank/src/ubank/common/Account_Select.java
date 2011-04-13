@@ -18,7 +18,7 @@ public class Account_Select extends LinearLayout {
 	 * 定义两个Spinner的对象来获取布局中的spinner, 分别是账户类型，账户号
 	 */
 	public Spinner AccTypSpinner;
-	Spinner AccNumSpinner;
+	public Spinner AccNumSpinner;
 	String[] data;
 	// public SimpleAdapter AccTypAdapter;
 	ArrayAdapter<String> AccTypAdapter;
@@ -39,7 +39,12 @@ public class Account_Select extends LinearLayout {
 		s.setText("请选择账户的帐号：");
 		AccNumSpinner = (Spinner) findViewById(R.id.spinnerAccNum)
 				.findViewById(R.id.Spinner);
+
+		DatePicker date1=new DatePicker(this.getContext());
 		
+		AccTypSpinner.setId(0);
+		AccNumSpinner.setId(1);
+
 	}
 
 	public Account_Select(Context context) {
