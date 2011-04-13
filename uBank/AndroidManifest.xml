@@ -63,16 +63,21 @@
 
 		<!-- ZXiaohui's activity -->
 		<activity android:name="ubank.account_manager.ManagerHome">
+		<!--
 	  
 		<intent-filter> 
 				<action android:name="android.intent.action.MAIN"/> 
 				<category android:name="android.intent.category.LAUNCHER" /> 
 			</intent-filter>
 	
+		-->
 		</activity>
 		<activity android:name="ubank.account_manager.AccountBind">
 		</activity>
 		<activity android:name="ubank.account_manager.AccountInfo">
+
+		</activity>
+		<activity android:name="ubank.account_manager.TradeCardDetail">
 
 		</activity>
 		<activity android:name="ubank.account_manager.AccountInfoShow"></activity>
