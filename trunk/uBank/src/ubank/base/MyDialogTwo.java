@@ -27,7 +27,6 @@ public class MyDialogTwo extends Dialog implements OnClickListener {
 		super(context, theme);
 		setContentView(R.xml.comdialog2);
 		title_tv = (TextView) findViewById(R.id.tv_comdlog_title);
-		title_tv.setText("fdf");
 		inmation = (TextView) findViewById(R.id.tv_comdlog_con1);
 		btn_ok = (Button) findViewById(R.id.btn_comdlog_ok);
 		btn_cancel= (Button) findViewById(R.id.btn_comdlog_cancel);
@@ -35,10 +34,15 @@ public class MyDialogTwo extends Dialog implements OnClickListener {
 		btn_cancel.setOnClickListener(this);
 		// TODO Auto-generated constructor stub
 	}
-
+	// 设置跳转的方法  无传值的
 	public void Listener(Activity fromActivity, Class toActivity) {
 		this.fromActivity = fromActivity;
 		this.toActivity = toActivity;
+	}
+	//传递Intent的方法
+	public void Listener(Intent inIntent,Activity fromActivity) {
+		this.fromActivity = fromActivity;
+		this.intent=inIntent;
 	}
 
 	public void setTitleAndInfo(String title,String info) {
@@ -51,8 +55,10 @@ public class MyDialogTwo extends Dialog implements OnClickListener {
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 
-		// this.dismiss();
-		// Intent intent=new Intent();
+		if(intent!=null){
+			fromActivity.startActivity(intent);
+			this.dismiss();
+		}
 		if(v.equals(btn_ok)){
 		if(toActivity!=null){
 		System.out.println("--------");
