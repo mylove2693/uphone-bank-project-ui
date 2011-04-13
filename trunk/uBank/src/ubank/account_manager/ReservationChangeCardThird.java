@@ -32,7 +32,7 @@ public class ReservationChangeCardThird extends GeneralListActivity{
 		tvClassThird.setText(R.string.reservation_change_card);
 		setListener(tvClassThird, this, ReservationChangeCard.class);
 		
-		name = new String[]{"预约换卡的账户：","账户别名：","更换原因","领卡网点","网点地址","工本费用"};
+		name = new String[]{"预约换卡账户","账户别名","更换原因","领卡网点","网点地址","工本费用"};
 		value = new String[]{"622202113","我的卡","卡损坏","省行营业厅","江苏无锡","10元"};
 		setListAdapter(createText_Text(name, value));
 		
