@@ -3,12 +3,15 @@ import ubank.main.R;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemSelectedListener;
 
 public class Account_Select extends LinearLayout {
 	/**
@@ -36,8 +39,7 @@ public class Account_Select extends LinearLayout {
 		s.setText("请选择账户的帐号：");
 		AccNumSpinner = (Spinner) findViewById(R.id.spinnerAccNum)
 				.findViewById(R.id.Spinner);
-		DatePicker date1=new DatePicker(this.getContext());
-	
+		
 	}
 
 	public Account_Select(Context context) {
@@ -90,4 +92,5 @@ public class Account_Select extends LinearLayout {
 		}
 		return adapter;
 	}
+	
 }
