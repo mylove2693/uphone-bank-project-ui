@@ -82,12 +82,14 @@
 		</activity>
 		<activity android:name="ubank.account_manager.AccountInfoShow"></activity>
 		<activity android:name="ubank.account_manager.AccountReportLoss"></activity>
+		<activity android:name="ubank.account_manager.AccountReportLossSecond"></activity>
 		<activity android:name="ubank.account_manager.AddAccount"></activity>
 		<activity android:name="ubank.account_manager.DeleteAccount"></activity>
 		<activity android:name="ubank.account_manager.FirstAccount"></activity>
 		
 		<activity android:name="ubank.account_manager.ReservationChangeCard"></activity>
-		 <activity android:name="ubank.account_manager.ReservationChangeCardSecond"></activity>
+		<activity android:name="ubank.account_manager.ReservationChangeCardSecond"></activity>
+		<activity android:name="ubank.account_manager.ReservationChangeCardThird"></activity>
 		<activity android:name="ubank.account_manager.SetAccountAlias"></activity>
 		
 		<!-- gsm -->
