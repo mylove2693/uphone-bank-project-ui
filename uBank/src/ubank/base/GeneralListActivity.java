@@ -141,8 +141,8 @@ public class GeneralListActivity extends ListActivity implements IGeneralActivit
 		return adapter;
     }
     
-  //文字--文字--部分有图片 的适配器
-    public SimpleAdapter createText_Text_Img(String[] name,String[] value,List<Integer> index){
+  //文字--文字--部分有文字 的适配器
+    public SimpleAdapter createText_Text_GrayText(String[] name,String[] value,List<Integer> index){
     	ArrayList<HashMap<String, Object>> mainlist = new ArrayList<HashMap<String, Object>>();
     	HashMap<String, Object> paylist1 = null;
 		for (int i = 0; i < value.length; i++) {
