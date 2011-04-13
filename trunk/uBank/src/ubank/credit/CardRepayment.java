@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import ubank.base.GeneralActivity;
+import ubank.common.Account_Select;
 import ubank.enum_type.EAccType;
 import ubank.enum_type.EOperation;
 import ubank.helper.EHelper;
@@ -25,6 +26,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -68,8 +71,8 @@ public class CardRepayment extends GeneralActivity {
 
 		mGroupArray = new ArrayList<String>();
 		mChildArray = new ArrayList<List<String>>();
-		// 模拟接收到数据
-		JSONObject jsonObj = ConnectWs.connect(this, EAccType.CREDIT_CARD,
+		// 接收数据
+		JSONObject jsonObj = ConnectWs.connect(this, EAccType.NULL,
 				EOperation.GET_BIND_CREDIT_CARD, "");
 		List<String> lstStr = EHelper.toList(jsonObj);
 
@@ -90,6 +93,7 @@ public class CardRepayment extends GeneralActivity {
 		et = (EditText) findViewById(R.id.cc_et_cc).findViewById(R.id.et_acc);
 	}
 
+	// 按钮
 	private OnClickListener btnOnClick = new OnClickListener() {
 
 		@Override
@@ -101,6 +105,8 @@ public class CardRepayment extends GeneralActivity {
 		}
 
 	};
+
+	
 
 	// 字节点的监听器
 	private OnChildClickListener onClickListener = new OnChildClickListener() {
