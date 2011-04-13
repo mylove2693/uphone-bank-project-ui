@@ -37,7 +37,7 @@ public class ConnectWs {
 		// 1.加密，2.格式化参数
 		String strParams = EHelper.setParams(accType, operation,
 				EHelper.encode(params));
-		lstNameValuePairs.add(new BasicNameValuePair("numParams", strParams));
+		lstNameValuePairs.add(new BasicNameValuePair("params", strParams));
 
 		HttpEntity httpentity;
 		try {

@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import ubank.base.GeneralListActivity;
+import ubank.main.BankMain;
 import ubank.main.R;
 
 public class ConfrimRepayment extends GeneralListActivity {
@@ -24,6 +25,7 @@ public class ConfrimRepayment extends GeneralListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		addLayoutBlow(R.layout.cc_repayment);
 		initializeData();// 初始化
 
 		// 模拟数据
@@ -31,9 +33,8 @@ public class ConfrimRepayment extends GeneralListActivity {
 		SimpleAdapter adapter = createText_Text(
 				new String[] { "还款账户", "账户余额" }, value);
 		setListAdapter(adapter);
-		addLayoutBlow(R.layout.cc_repayment);
-
 		btnOk.setOnClickListener(btnClick);
+		btnCancel.setOnClickListener(btnClick);
 
 	}
 
@@ -92,11 +93,20 @@ public class ConfrimRepayment extends GeneralListActivity {
 
 	private void initializeData() {
 		// TODO 初始化
-		TextView tvMoney = (TextView) (findViewById(R.id.amt_txt)
-				.findViewById(R.id.Text_View_18));
+		tvClassFirst.setVisibility(View.VISIBLE);
+		tvClassFirst.setText("首页>");
+		setListener(tvClassFirst, this, BankMain.class);
+		tvClassSecond.setVisibility(View.VISIBLE);
+		tvClassSecond.setText("信用卡>");
+		setListener(tvClassSecond, this, CreditCardMain.class);
+		tvClassThird.setVisibility(View.VISIBLE);
+		tvClassThird.setText("信用卡还款");
+
+		TextView tvMoney = (TextView) findViewById(R.id.cc_tv_amt)
+				.findViewById(R.id.Text_View_18);
 		tvMoney.setText("请输入还款金额");
-		TextView tvPwd = (TextView) (findViewById(R.id.psd_txt)
-				.findViewById(R.id.Text_View_18));
+		TextView tvPwd = (TextView) findViewById(R.id.cc_tv_psd).findViewById(
+				R.id.Text_View_18);
 		tvPwd.setText("请输入账户密码");
 
 		btnOk = (Button) findViewById(R.id.btn1).findViewById(R.id.button);

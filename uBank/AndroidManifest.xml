@@ -4,19 +4,18 @@
 	<uses-sdk android:minSdkVersion="8" />
 
 
-    <application android:icon="@drawable/icon" android:label="@string/app_name"
-      android:theme="@android:style/Theme.NoTitleBar">
-        <!-- punan's activity -->
+	<application android:icon="@drawable/icon" android:label="@string/app_name"
+		android:theme="@android:style/Theme.NoTitleBar">
+		<!-- punan's activity -->
 		<activity android:name=".FinanceAss"> <!-- the first activity -->
- 
-			  <intent-filter> 
-				<action android:name="android.intent.action.MAIN"/> 
-				<category android:name="android.intent.category.LAUNCHER" /> 
+
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
-					
+
 		</activity>
-		
-		
+
 		<activity android:name=".Login">
 
 		</activity>
@@ -36,12 +35,8 @@
 
 		<!-- wangting's activity -->
 		<activity android:name="ubank.account_query.AccountQueryType">
-<!--  
-			<intent-filter> 
-				<action android:name="android.intent.action.MAIN"/> 
-				<category android:name="android.intent.category.LAUNCHER" /> 
-			</intent-filter>
--->
+			<!-- <intent-filter> <action android:name="android.intent.action.MAIN"/> 
+				<category android:name="android.intent.category.LAUNCHER" /> </intent-filter> -->
 		</activity>
 		<activity android:name="ubank.account_query.AccountQuery">
 		</activity>
@@ -62,15 +57,11 @@
 		<!-- end wangting's activity -->
 
 		<!-- ZXiaohui's activity -->
+		<activity android:name="ubank.account_manager.AccountBind"></activity>
+
 		<activity android:name="ubank.account_manager.ManagerHome">
-		<!--
-	  
-		<intent-filter> 
-				<action android:name="android.intent.action.MAIN"/> 
-				<category android:name="android.intent.category.LAUNCHER" /> 
-			</intent-filter>
-	
-		-->
+			<!-- <intent-filter> <action android:name="android.intent.action.MAIN"/> 
+				<category android:name="android.intent.category.LAUNCHER" /> </intent-filter> -->
 		</activity>
 		<activity android:name="ubank.account_manager.AccountBind">
 		</activity>
@@ -86,27 +77,23 @@
 		<activity android:name="ubank.account_manager.AddAccount"></activity>
 		<activity android:name="ubank.account_manager.DeleteAccount"></activity>
 		<activity android:name="ubank.account_manager.FirstAccount"></activity>
-		
+
 		<activity android:name="ubank.account_manager.ReservationChangeCard"></activity>
 		<activity android:name="ubank.account_manager.ReservationChangeCardSecond"></activity>
 		<activity android:name="ubank.account_manager.ReservationChangeCardThird"></activity>
 		<activity android:name="ubank.account_manager.SetAccountAlias"></activity>
-		
+
 		<!-- gsm -->
-		<activity android:name="ubank.account_manager.DelOK"/>
+		<activity android:name="ubank.account_manager.DelOK" />
 		<!-- end gsm -->
-		
+
 		<!-- end ZXiaohui's activity -->
-		
-		
+
+
 		<!-- gsm's activity -->
 		<activity android:name="ubank.payment.AllPaymentSer">
- <!-- 
-			<intent-filter> 
-				<action android:name="android.intent.action.MAIN"/> 
-				<category android:name="android.intent.category.LAUNCHER" /> 
-			</intent-filter>
-  -->  		
+			<!-- <intent-filter> <action android:name="android.intent.action.MAIN"/> 
+				<category android:name="android.intent.category.LAUNCHER" /> </intent-filter> -->
 		</activity>
 		<activity android:name="ubank.payment.WaitCost" />
 		<activity android:name="ubank.payment.WaitCostItem" />
@@ -115,28 +102,25 @@
 		<activity android:name="ubank.payment.LatelyCost" />
 		<activity android:name="ubank.payment.HistoryCost" />
 		<activity android:name="ubank.payment.ManageCost" />
-		<activity android:name="ubank.payment.SelectAcc"/>
-		<activity android:name="ubank.payment.InputPsw"/>
-		<activity android:name="ubank.payment.ElseAcc"/>
-		<activity android:name="ubank.payment.Cost"/>
+		<activity android:name="ubank.payment.SelectAcc" />
+		<activity android:name="ubank.payment.InputPsw" />
+		<activity android:name="ubank.payment.ElseAcc" />
+		<activity android:name="ubank.payment.Cost" />
 		<!-- 错误信息一个按钮 -->
 		<activity android:name="ubank.payment.PaymentFailResultOne"
-			 	  android:theme="@android:style/Theme.Dialog"/>
+			android:theme="@android:style/Theme.Dialog" />
 		<!-- 正确信息一个按钮 -->
 		<activity android:name="ubank.payment.PaymentResult"
-			 	  android:theme="@android:style/Theme.Dialog"/>
+			android:theme="@android:style/Theme.Dialog" />
 		<!-- end gsm's activity -->
-		
-		
+
+
 		<!-- solo -->
 		<activity android:name="ubank.credit.CreditCardMain">
-
-<!--  
-			<intent-filter> 
-				<action android:name="android.intent.action.MAIN"/> 
-				<category android:name="android.intent.category.LAUNCHER" /> 
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
--->
 		</activity>
 		<activity android:name="ubank.credit.CardRepayment"></activity>
 		<activity android:name="ubank.credit.CreditCardInfo"></activity>
@@ -145,11 +129,14 @@
 		<activity android:name="ubank.credit.SelectRepaymentAcc"></activity>
 		<activity android:name="ubank.credit.ConfrimRepayment"></activity>
 		<!-- end solo -->
-		
-		
-				<!-- yy's activity -->
+
+
+		<!-- yy's activity -->
 		<activity android:name="ubank.transfer.TransferMain">
-		</activity>	
+			<!-- <intent-filter> <action android:name="android.intent.action.MAIN" 
+				/> <category android:name="android.intent.category.LAUNCHER" /> </intent-filter> -->
+		</activity>
+
 		<activity android:name="ubank.transfer.TransferAccSelect">
 		</activity>
 		<activity android:name="ubank.transfer.Transfer_OtherAccSelect">
@@ -157,11 +144,11 @@
 		<activity android:name="ubank.transfer.TransferPhToSignedAcc">
 		</activity>
 		<activity android:name="ubank.transfer.Transfer_inpsd">
-		</activity>	
+		</activity>
 		<activity android:name="ubank.transfer.Transfer_information">
 		</activity>
 		<!-- end yy's activity -->
 
 	</application>
-
+	<uses-permission android:name="android.permission.INTERNET"></uses-permission>
 </manifest>

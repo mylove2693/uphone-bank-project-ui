@@ -1,6 +1,8 @@
 package ubank.credit;
 
+import ubank.account_query.AccountQueryType;
 import ubank.base.GeneralActivity;
+import ubank.main.BankMain;
 import ubank.main.R;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -25,6 +27,16 @@ public class OpenCard extends GeneralActivity {
 
 	private void initializeData() {
 		// TODO 初始化数据
+
+		tvClassFirst.setVisibility(View.VISIBLE);
+		tvClassFirst.setText("首页>");
+		setListener(tvClassFirst, this, BankMain.class);
+		tvClassSecond.setVisibility(View.VISIBLE);
+		tvClassSecond.setText("信用卡>");
+		setListener(tvClassSecond, this, CreditCardMain.class);
+		tvClassThird.setVisibility(View.VISIBLE);
+		tvClassThird.setText("开卡");
+
 		((TextView) (findViewById(R.id.cc_tv_openName)
 				.findViewById(R.id.blue_Text_View))).setText("开户名");
 

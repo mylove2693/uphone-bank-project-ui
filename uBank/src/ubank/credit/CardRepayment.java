@@ -3,8 +3,17 @@ package ubank.credit;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import ubank.base.GeneralActivity;
+import ubank.enum_type.EAccType;
+import ubank.enum_type.EOperation;
+import ubank.helper.EHelper;
+import ubank.main.BankMain;
 import ubank.main.R;
+import ubank.webservice.ConnectWs;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -48,15 +57,25 @@ public class CardRepayment extends GeneralActivity {
 
 	private void initializeData() {
 		// TODO 初始化数据
+		tvClassFirst.setVisibility(View.VISIBLE);
+		tvClassFirst.setText("首页>");
+		setListener(tvClassFirst, this, BankMain.class);
+		tvClassSecond.setVisibility(View.VISIBLE);
+		tvClassSecond.setText("信用卡>");
+		setListener(tvClassSecond, this, CreditCardMain.class);
+		tvClassThird.setVisibility(View.VISIBLE);
+		tvClassThird.setText("信用卡还款");
 
 		mGroupArray = new ArrayList<String>();
 		mChildArray = new ArrayList<List<String>>();
 		// 模拟接收到数据
-		String[] strings = new String[] { "11", "22", "33" };
+		JSONObject jsonObj = ConnectWs.connect(this, EAccType.CREDIT_CARD,
+				EOperation.GET_BIND_CREDIT_CARD, "");
+		List<String> lstStr = EHelper.toList(jsonObj);
 
 		mGroupArray.add(getResources().getString(R.string.cc_isbindcc));// 已绑定信用卡号
 		List<String> itemArray = new ArrayList<String>();
-		for (String string : strings) {
+		for (String string : lstStr) {
 			itemArray.add(string);
 		}
 		mChildArray.add(itemArray);

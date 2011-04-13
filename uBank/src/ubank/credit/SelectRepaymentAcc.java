@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 import ubank.base.GeneralActivity;
 import ubank.common.Account_Select;
+import ubank.main.BankMain;
 import ubank.main.R;
 
 public class SelectRepaymentAcc extends GeneralActivity {
@@ -31,12 +32,18 @@ public class SelectRepaymentAcc extends GeneralActivity {
 
 	private void initializeData() {
 		// TODO 初始化数据
+		tvClassFirst.setVisibility(View.VISIBLE);
+		tvClassFirst.setText("首页>");
+		setListener(tvClassFirst, this, BankMain.class);
+		tvClassSecond.setVisibility(View.VISIBLE);
+		tvClassSecond.setText("信用卡>");
+		setListener(tvClassSecond, this, CreditCardMain.class);
+		tvClassThird.setVisibility(View.VISIBLE);
+		tvClassThird.setText("信用卡还款");
+
 		btnNext = (Button) (findViewById(R.id.account_type_comfirm)
 				.findViewById(R.id.button));
 		accSelect = (Account_Select) findViewById(R.id.account_select);
-		// spnrAccType = (Spinner)findViewById(R.id.)
-		// findViewById(R.id.spinnerAccTyp);
-		// spnrAccNum = (Spinner) findViewById(R.id.spinnerAccNum);
 		accSelect.AddTypeData(new String[] { "储蓄卡", "信用卡" });
 		accSelect.AddNumData(new String[] { "asdf", "123" });
 	}
