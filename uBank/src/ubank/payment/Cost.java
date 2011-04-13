@@ -4,10 +4,12 @@ package ubank.payment;
 import ubank.base.GeneralActivity;
 import ubank.main.BankMain;
 import ubank.main.R;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -18,6 +20,7 @@ public class Cost extends GeneralActivity {
 	private Button next_btn=null;
 	private String num=null;
 	private EditText edit=null;
+	private Dialog dialog;
 	@Override
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
@@ -60,12 +63,37 @@ public class Cost extends GeneralActivity {
 					String editStr=edit.getText().toString().trim();
 					if (editStr.length() == 0) {//判断文本框中是否输入为空
 
-						Intent btnok_intent = new Intent();
-						btnok_intent.putExtra("flag", "警告");
-						btnok_intent.putExtra("info", "号码不能为空");
-						btnok_intent.putExtra("btnText", "确定");
-						btnok_intent.setClass(Cost.this,PaymentFailResultOne.class);
-						Cost.this.startActivity(btnok_intent);
+						
+						// 设置对话框的布局
+						View view= getLayoutInflater().inflate(
+								R.xml.comdialog1, null);
+						/**
+						 * 设置对话框的样式
+						 */
+						dialog= new Dialog(Cost.this,R.style.dialog);
+						/**
+						 * 显示对话框
+						 */
+						dialog.show();
+						// 设置具体对话框布局的宽和高
+						LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.MATCH_PARENT);
+						// 将设置好的布局View加到对话框中
+						dialog.addContentView(view, params);
+						// 设置标题
+						((TextView) view.findViewById(R.id.tv_comdlog_title))
+								.setText("警告");
+						// 设置显示的信息
+						((TextView) view.findViewById(R.id.tv_comdlog_con1))
+								.setText("号码不能为空");
+						Button Ok_btn = (Button) view
+								.findViewById(R.id.btn_comdlog_ok);
+						Ok_btn.setText("确定");
+						Ok_btn.setOnClickListener(new OnClickListener() {
+							@Override
+							public void onClick(View v) {
+								dialog.dismiss();
+							}
+						});
 					}else{
 					Intent intent=new Intent();
 					String[] name={"项目名称:"," ","缴费金额","收费方:","缴费合同号:"};
