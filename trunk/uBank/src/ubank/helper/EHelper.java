@@ -23,7 +23,6 @@ public enum EHelper {
 	HELPER;
 
 	private final static String TAG = "Enum Helper";
-	private static String URL = "";
 
 	/**
 	 * 0.读取ip
@@ -33,14 +32,15 @@ public enum EHelper {
 	 */
 	public static String readUrl(Activity activity) {
 		// 读取配置文件
+		String URL = "";
 		Properties p = new Properties();
 		try {
 			p.load(activity.getResources().openRawResource(R.raw.url));
 			URL = p.getProperty("url");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			Log.e(TAG, ">Can't read url.properties!");
 			e.printStackTrace();
+			Log.e(TAG, ">Can't read url.properties!");
 		}
 		return URL;
 	}
@@ -61,7 +61,7 @@ public enum EHelper {
 		for (String string : params) {
 
 		}
-		return arrParams;
+		return params;
 	}
 
 	/**
@@ -76,6 +76,7 @@ public enum EHelper {
 			String[] value) {
 		StringBuilder stringBuilder = new StringBuilder(
 				EAccType.getAccTypeId(accType));
+		stringBuilder.append(":");
 		stringBuilder.append(EOperation.getOperNum(operation));
 		for (String string : value) {
 			stringBuilder.append(":");
@@ -83,21 +84,6 @@ public enum EHelper {
 		}
 		return stringBuilder.toString();
 	}
-
-	// /**
-	// * 3.包装json
-	// *
-	// * @return
-	// */
-	// public static JSONObject wrapupJSON(String accTyep, String operation,
-	// String params) {
-	// JSONObject jsonObj = new JSONObject();
-	// jsonObj.put("accType", accTyep);
-	// jsonObj.put("operation", operation);
-	// jsonObj.put("params", params);
-	//
-	// return jsonObj;
-	// }
 
 	/**
 	 * 3.将流转换成String
@@ -128,28 +114,6 @@ public enum EHelper {
 		return sb.toString();
 	}
 
-	// /**
-	// * 4.回复json格式
-	// *
-	// * @param value
-	// * @return
-	// */
-	// public static JSONObject toJSONObject(String value) {
-	// if (!value.equals("") || value == null) {
-	// try {
-	// // Parsing
-	// JSONObject json = new JSONObject(value);
-	// return json;
-	// } catch (JSONException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// Log.e(TAG, "============parse JSON error==========");
-	// }
-	// }
-	// return HELPER;
-	//
-	// }
-
 	/**
 	 * 4.解密json object对象里面的字符串
 	 * 
@@ -165,11 +129,12 @@ public enum EHelper {
 				// 执行解密
 				//
 				//
-				newJsonObj.put(key, "c");
-				System.out.println(jsonObj.getString(key));
+				newJsonObj.put(key, value);
+//				System.out.println(jsonObj.getString(key));
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				Log.e(TAG, "============decode error==========");
 			}
 		}
 		return newJsonObj;
@@ -183,5 +148,38 @@ public enum EHelper {
 	 */
 	public static String decodeString(String str) {
 		return str;
+	}
+
+	public static JSONArray toJsonArray(JSONObject jsonObj) {
+		JSONArray name = jsonObj.names();
+		JSONArray array = new JSONArray();
+		try {
+			array = jsonObj.toJSONArray(name);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			Log.e(TAG, "============toJsonArray error==========");
+		}
+		return array;
+	}
+
+	public static List<String> toList(JSONObject jsonObj) {
+		List<String> lstValue = new ArrayList<String>();
+		if (jsonObj == null || !jsonObj.equals("")) {
+			try {
+				JSONArray nameArray = jsonObj.names();
+				JSONArray valArray = jsonObj.toJSONArray(nameArray);
+				if (valArray != null) {
+					for (int i = 0; i < valArray.length(); i++) {
+						lstValue.add(valArray.getString(i));
+					}
+				}
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				Log.e(TAG, "============toList error==========");
+			}
+		}
+		return lstValue;
 	}
 }
