@@ -8,7 +8,7 @@
       android:theme="@android:style/Theme.NoTitleBar">
         <!-- punan's activity -->
 		<activity android:name=".FinanceAss"> <!-- the first activity -->
-
+ 
 			  <intent-filter> 
 				<action android:name="android.intent.action.MAIN"/> 
 				<category android:name="android.intent.category.LAUNCHER" /> 
@@ -63,12 +63,12 @@
 
 		<!-- ZXiaohui's activity -->
 		<activity android:name="ubank.account_manager.ManagerHome">
-	<!--  
+	  
 		<intent-filter> 
 				<action android:name="android.intent.action.MAIN"/> 
 				<category android:name="android.intent.category.LAUNCHER" /> 
 			</intent-filter>
-	-->	
+	
 		</activity>
 		<activity android:name="ubank.account_manager.AccountBind">
 		</activity>
