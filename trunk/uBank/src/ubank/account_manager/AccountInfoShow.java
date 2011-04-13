@@ -3,6 +3,7 @@ package ubank.account_manager;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
@@ -20,7 +21,7 @@ public class AccountInfoShow extends GeneralListActivity{
 		super.onCreate(savedInstanceState);
 		res = this.getBaseContext().getResources();
 		this.setNavigation();
-		this.setListAdapter(this.createText_Text_Img(this.getShowIdentifier(), this.getShowValue(), this.getShowImg()));
+		this.setListAdapter(this.createText_Text_GrayText(this.getShowIdentifier(), this.getShowValue(), this.getShowGrayText()));
 	}
 
 	private String[] getShowIdentifier()
@@ -47,12 +48,17 @@ public class AccountInfoShow extends GeneralListActivity{
 		items[8] = res.getString(R.string.account_opening_day);
 		return items;
 	}
+	/**
+	 * 为有预约换卡的做一个监听
+	 */
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		// TODO Auto-generated method stub
 		super.onListItemClick(l, v, position, id);
 		if(id==5){
-			
+			Intent intent = new Intent();
+			intent.setClass(AccountInfoShow.this, TradeCardDetail.class);
+			AccountInfoShow.this.startActivity(intent);
 			
 			
 		}
@@ -67,7 +73,7 @@ public class AccountInfoShow extends GeneralListActivity{
 		return items;
 	}
 	
-	private List<Integer> getShowImg()
+	private List<Integer> getShowGrayText()
 	{
 		
 		List<Integer> items= new ArrayList<Integer>();
