@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:collapseColumns="1">
+  <TableRow>
+  	<include android:id="@+id/changerCard_txt" layout="@xml/text_view_18"/>
+  </TableRow>
+  <TableRow android:paddingLeft="10dip">
+  	<include android:id="@+id/changerCard_spinner" layout="@xml/spinner"/>
+  </TableRow>
+  <TableRow>
+  	<include android:id="@+id/net_txt" layout="@xml/text_view_18"/>
+  </TableRow>
+  <TableRow android:paddingLeft="10dip">
+  	<include android:id="@+id/net_spinner" layout="@xml/spinner"/>
+  </TableRow>
+</TableLayout>
