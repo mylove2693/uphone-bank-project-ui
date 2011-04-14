@@ -130,7 +130,7 @@ public enum EHelper {
 				//
 				//
 				newJsonObj.put(key, value);
-//				System.out.println(jsonObj.getString(key));
+				// System.out.println(jsonObj.getString(key));
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -182,4 +182,17 @@ public enum EHelper {
 		}
 		return lstValue;
 	}
+
+	public static boolean toBoolean(JSONObject jsonObj) {
+		boolean bool = false;
+		try {
+			bool = jsonObj.getBoolean("result");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return bool;
+		}
+		return bool;
+	}
+
 }
