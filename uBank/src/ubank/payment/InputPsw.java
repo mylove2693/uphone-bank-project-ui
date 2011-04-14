@@ -1,6 +1,7 @@
 package ubank.payment;
 
 import ubank.base.GeneralActivity;
+import ubank.base.MyDialogOne;
 import ubank.main.BankMain;
 import ubank.main.R;
 import android.app.Dialog;
@@ -85,7 +86,7 @@ public class InputPsw extends GeneralActivity {
 						btnok_intent.putExtra("info", "缴费成功，余额为:"
 								+ balanceValue + ".00元");
 
-						// 设置对话框的布局
+						//成功缴费提示
 						view= getLayoutInflater().inflate(
 								R.xml.comdialog1, null);
 						/**
@@ -118,41 +119,24 @@ public class InputPsw extends GeneralActivity {
 								intent.setClass(InputPsw.this,
 										AllPaymentSer.class);
 								InputPsw.this.startActivity(intent);
+								dialog.dismiss();//返回是要消除对话框
+							/**
+							 * 缴费成功要消除当前Activity
+							 */
+								InputPsw.this.finish();
 							}
 						});
+					}else{
+						//金额不足提示
 					}
+					
 				} else {
-					// 设置对话框的布局
-					view= getLayoutInflater().inflate(
-							R.xml.comdialog1, null);
-					/**
-					 * 设置对话框的样式
-					 */
-					dialog= new Dialog(InputPsw.this,
-							R.style.dialog);
-					/**
-					 * 显示对话框
-					 */
-					dialog.show();
-					// 设置具体对话框布局的宽和高
-					LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.MATCH_PARENT);
-					// 将设置好的布局View加到对话框中
-					dialog.addContentView(view, params);
-					// 设置标题
-					((TextView) view.findViewById(R.id.tv_comdlog_title))
-							.setText("失败提示");
-					// 设置显示的信息
-					((TextView) view.findViewById(R.id.tv_comdlog_con1))
-							.setText("密码错误！");
-					Button Ok_btn = (Button) view
-							.findViewById(R.id.btn_comdlog_ok);
-					Ok_btn.setText("重输密码");
-					Ok_btn.setOnClickListener(new OnClickListener() {
-						@Override
-						public void onClick(View v) {
-							dialog.dismiss();
-						}
-					});
+					// 密码错误提示对话框
+					MyDialogOne  d1=new MyDialogOne(InputPsw.this,R.style.dialog);
+					d1.setTitleAndInfo("错误提示", "密码错误!");
+					d1.Listener(InputPsw.this,null);
+//					d1.sett
+//					d1.show();
 				}
 			}
 		});
