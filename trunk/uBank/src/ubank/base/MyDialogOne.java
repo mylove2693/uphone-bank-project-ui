@@ -30,6 +30,7 @@ public class MyDialogOne extends Dialog implements OnClickListener {
 		title_tv = (TextView) findViewById(R.id.tv_comdlog_title);
 		inmation = (TextView) findViewById(R.id.tv_comdlog_con1);
 		btn = (Button) findViewById(R.id.btn_comdlog_ok);
+		btn.setText("确认");
 		btn.setOnClickListener(this);
 		// TODO Auto-generated constructor stub
 	}
@@ -45,8 +46,13 @@ public class MyDialogOne extends Dialog implements OnClickListener {
 		this.intent=inIntent;
 	}
 
-	// 设置提示标题和提示信息
+//设置按钮的文本
+	public void setButtonText(String text){
+		btn.setText(text);
+		
+	}
 
+	// 设置提示标题和提示信息
 	public void setTitleAndInfo(String title, String info) {
 		this.title_tv.setText(title);
 		inmation.setText(info);
