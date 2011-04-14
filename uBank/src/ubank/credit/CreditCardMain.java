@@ -1,5 +1,8 @@
 package ubank.credit;
 
+import ubank.account_query.AccountComeDetail;
+import ubank.account_query.AccountInventoryDetail;
+import ubank.account_query.AccountQueryInfo;
 import ubank.base.GeneralListActivity;
 import ubank.main.BankMain;
 import android.content.Intent;
@@ -43,17 +46,24 @@ public class CreditCardMain extends GeneralListActivity {
 		switch (position) {
 		case 0:
 			// 账户信息
-			intent = new Intent();
+			intent = new Intent(CreditCardMain.this, AccountQueryInfo.class);
+			// 传送信息
+
 			startActivity(intent);
 			break;
 		case 1:
 			// 交易明细查看
-			intent = new Intent();
+			intent = new Intent(CreditCardMain.this,
+					AccountInventoryDetail.class);
+			// 传送信息
+
 			startActivity(intent);
 			break;
 		case 2:
 			// 账户来账查看
-			intent = new Intent();
+			intent = new Intent(CreditCardMain.this, AccountComeDetail.class);
+			// 传送信息
+
 			startActivity(intent);
 			break;
 		case 3:

@@ -29,7 +29,7 @@ public class ConfrimRepayment extends GeneralListActivity {
 		initializeData();// 初始化
 
 		// 模拟数据
-		String[] value = new String[] { "asdf", "15435" };
+		String[] value = new String[] { "12340", "15435" };
 		SimpleAdapter adapter = createText_Text(
 				new String[] { "还款账户", "账户余额" }, value);
 		setListAdapter(adapter);
