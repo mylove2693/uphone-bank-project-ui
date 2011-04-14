@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import org.json.JSONArray;
@@ -182,7 +184,33 @@ public enum EHelper {
 		}
 		return lstValue;
 	}
-
+/**
+ * 
+ *@author gsm
+ *2011-4-14 
+ * @param jsonObj
+ * @return
+ */
+	public static Map<String,String> toMap(JSONObject jsonObj) {
+			
+		Map<String,String> mapValue = new HashMap<String,String>();
+		if (jsonObj == null || !jsonObj.equals("")) {
+			try {
+				JSONArray nameArray = jsonObj.names();
+				JSONArray valArray = jsonObj.toJSONArray(nameArray);
+				if (valArray != null) {
+					for (int i = 0; i < valArray.length(); i++) {
+						mapValue.put(jsonObj.names().getString(i), valArray.getString(i));
+					}
+				}
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				Log.e(TAG, "============toList error==========");
+			}
+		}
+		return mapValue;
+	}
 	public static boolean toBoolean(JSONObject jsonObj) {
 		boolean bool = false;
 		try {
