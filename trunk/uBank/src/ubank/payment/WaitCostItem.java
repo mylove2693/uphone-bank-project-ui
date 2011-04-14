@@ -16,10 +16,8 @@ import android.view.View;
 import android.widget.ListView;
 
 public class WaitCostItem extends GeneralListActivity {
-//	private String[] name={"三月份水费","三月份电费","三月份煤气费","三月份房租费"};
-//	private String[] value={"30.00元","100.00元","78.00元","2000.00元"};
-	String[] name;
-	String[] value;
+	private String[] name=null;
+	private String[] value=null;
 	  @Override
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
@@ -40,11 +38,14 @@ public class WaitCostItem extends GeneralListActivity {
 		  int i=0;
 		  for (Entry<String, String> kv : map.entrySet()) {
 			  name[i]=kv.getKey();
-			  value[i++]=kv.getValue();
+			  value[i++]=kv.getValue()+"元";
 		  }
-		  
-		  System.out.println("后台数据"+map);
-			
+		  if(name==null||value==null){
+			   String[] name1={"水费","房租费","煤气费","电费"};
+			   String[] value1={"30.00元","200.00元","150.00元","80.00元"};
+			   name=name1;
+			   value=value1;
+		  }
 	  }
 	  //设置导航栏
 	  private void setTile(){
