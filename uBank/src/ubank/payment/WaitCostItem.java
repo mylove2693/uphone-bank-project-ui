@@ -99,7 +99,6 @@ public class WaitCostItem extends GeneralListActivity {
 			intent.setClass(WaitCostItem.this, WaitCost.class);
 			WaitCostItem.this.startActivity(intent);
 		}
-		
 	}
 }
 
