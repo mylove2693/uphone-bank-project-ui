@@ -6,4 +6,6 @@
 <TableRow android:paddingTop="5dip" android:paddingLeft="10dip">       
 	 <include android:id="@+id/above_list_txt" layout="@xml/text_view_16_gray"></include>   
 </TableRow>
+<!-- 白线 -->
+	<include layout="@xml/white_line" />
 </TableLayout>
