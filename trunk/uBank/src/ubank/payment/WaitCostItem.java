@@ -1,19 +1,54 @@
 package ubank.payment;
 
+import java.util.Map;
+import java.util.Map.Entry;
+import org.json.JSONObject;
+
 import ubank.base.GeneralListActivity;
+import ubank.enum_type.EAccType;
+import ubank.enum_type.EOperation;
+import ubank.helper.EHelper;
 import ubank.main.BankMain;
+import ubank.webservice.ConnectWs;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 
 public class WaitCostItem extends GeneralListActivity {
-	private String[] name={"三月份水费","三月份电费","三月份煤气费","三月份房租费"};
-	private String[] value={"30.00元","100.00元","78.00元","2000.00元"};
+//	private String[] name={"三月份水费","三月份电费","三月份煤气费","三月份房租费"};
+//	private String[] value={"30.00元","100.00元","78.00元","2000.00元"};
+	String[] name;
+	String[] value;
 	  @Override
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
-	        tvClassFirst.setVisibility(View.VISIBLE);
+	        
+	        initializeData();// 初始化数据
+	        setTile();//设置导航栏
+	        this.setListAdapter(createText_Text_Img(name,value));
+	  }
+	  
+	  // 初始化数据
+	  private void initializeData(){
+		  JSONObject jsonObj = ConnectWs.connect(this, EAccType.NULL,
+					EOperation.GET_PAYMENT_NAME, "1");
+		  Map<String,String> map = EHelper.toMap(jsonObj);
+		  System.out.println(map.size());
+		  name=new String[map.size()];//获取名字
+		  value=new String[map.size()];//获取值
+		  int i=0;
+		  for (Entry<String, String> kv : map.entrySet()) {
+			  name[i]=kv.getKey();
+			  value[i++]=kv.getValue();
+		  }
+		  
+		  System.out.println("后台数据"+map);
+			
+	  }
+	  //设置导航栏
+	  private void setTile(){
+		   tvClassFirst.setVisibility(View.VISIBLE);
 	      //监听
 	        tvClassFirst.setText("首页>");
 	        setListener(tvClassFirst, this, BankMain.class);
@@ -23,9 +58,9 @@ public class WaitCostItem extends GeneralListActivity {
 	        setListener(tvClassSecond, this, AllPaymentSer.class);
 	        tvClassThird.setVisibility(View.VISIBLE);
 	        tvClassThird.setText("待缴费项目");
-	        
-	        this.setListAdapter(createText_Text_Img(name,value));
 	  }
+	  
+	  //每一项进行监听
 	protected void onListItemClick(ListView l,View v,int position,long id){
 		
 		super.onListItemClick(l, v, position, id);
