@@ -12,7 +12,7 @@
 		android:layout_height="wrap_content" />
 	<!-- 转账金额输入框 -->
 	<include android:id="@+id/cc_et_amt" layout="@xml/et_amt"
-		android:layout_gravity="center_horizontal" android:layout_width="wrap_content"
+		android:layout_gravity="center_horizontal" android:layout_width="290dip"
 		android:layout_height="wrap_content" />
 	<!-- 白线 -->
 	<include layout="@xml/white_line" android:layout_width="fill_parent"

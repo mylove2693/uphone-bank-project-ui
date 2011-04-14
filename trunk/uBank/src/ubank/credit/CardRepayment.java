@@ -106,8 +106,6 @@ public class CardRepayment extends GeneralActivity {
 
 	};
 
-	
-
 	// 字节点的监听器
 	private OnChildClickListener onClickListener = new OnChildClickListener() {
 
@@ -117,7 +115,7 @@ public class CardRepayment extends GeneralActivity {
 			// TODO Auto-generated method stub
 			TextView tv = (TextView) v;
 			Intent intent = new Intent();
-			intent.putExtra("creditcard", tv.getText());
+			intent.putExtra("creditcard", tv.getText().toString().trim());
 			intent.setClass(CardRepayment.this, CreditCardInfo.class);
 			startActivity(intent);
 			return false;

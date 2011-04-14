@@ -1,20 +1,35 @@
 package ubank.credit;
 
-import ubank.account_query.AccountQueryType;
+import org.json.JSONObject;
+
 import ubank.base.GeneralActivity;
+import ubank.enum_type.EAccType;
+import ubank.enum_type.EOperation;
+import ubank.helper.EHelper;
 import ubank.main.BankMain;
 import ubank.main.R;
-import android.app.AlertDialog;
+import ubank.webservice.ConnectWs;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 public class OpenCard extends GeneralActivity {
 	private Button btnNext;
+	private EditText etUserName;
+	private EditText etCcNo;
+	private EditText etNoVaild;
+	private EditText etId;
+	private EditText etPhone;
+	private EditText etTel;
+	private EditText etPwd;
+	private Spinner spnrIdType;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,27 +54,37 @@ public class OpenCard extends GeneralActivity {
 
 		((TextView) (findViewById(R.id.cc_tv_openName)
 				.findViewById(R.id.blue_Text_View))).setText("开户名");
-
 		((TextView) (findViewById(R.id.cc_tv_ccNo)
 				.findViewById(R.id.blue_Text_View))).setText("信用卡号");
-
 		((TextView) (findViewById(R.id.cc_tv_noValid)
 				.findViewById(R.id.blue_Text_View))).setText("有效期");
-
 		((TextView) (findViewById(R.id.cc_tv_idType)
 				.findViewById(R.id.blue_Text_View))).setText("证件类型");
-
 		((TextView) (findViewById(R.id.cc_tv_id)
 				.findViewById(R.id.blue_Text_View))).setText("证件号");
-
 		((TextView) (findViewById(R.id.cc_tv_phone)
 				.findViewById(R.id.blue_Text_View))).setText("手机号");
-
 		((TextView) (findViewById(R.id.cc_tv_tel)
 				.findViewById(R.id.blue_Text_View))).setText("固定电话");
-
 		((TextView) (findViewById(R.id.cc_tv_pwd)
 				.findViewById(R.id.blue_Text_View))).setText("账户密码");
+
+		etUserName = (EditText) findViewById(R.id.cc_et_openName).findViewById(
+				R.id.et_user);
+		etCcNo = (EditText) findViewById(R.id.cc_et_ccNo).findViewById(
+				R.id.et_user);
+		etNoVaild = (EditText) findViewById(R.id.cc_et_noValid).findViewById(
+				R.id.et_user);
+		spnrIdType = (Spinner) findViewById(R.id.cc_spnr_idType).findViewById(
+				R.id.et_user);
+		etId = (EditText) findViewById(R.id.cc_et_id)
+				.findViewById(R.id.et_user);
+		etPhone = (EditText) findViewById(R.id.cc_et_phone).findViewById(
+				R.id.et_user);
+		etTel = (EditText) findViewById(R.id.cc_et_tel).findViewById(
+				R.id.et_user);
+		etPwd = (EditText) findViewById(R.id.cc_et_pwd).findViewById(
+				R.id.et_psd);
 
 		btnNext = (Button) (findViewById(R.id.cc_btn_next)
 				.findViewById(R.id.button));
@@ -72,6 +97,20 @@ public class OpenCard extends GeneralActivity {
 		@Override
 		public void onClick(View v) {
 			boolean flag = false;
+			// 获取所需数据
+			String userName = etUserName.getText().toString().trim();
+			String creditCardNo = etCcNo.getText().toString().trim();
+			String availbDate = etNoVaild.getText().toString().trim();
+			String idNo = etId.getText().toString().trim();
+			String cellPhone = etPhone.getText().toString().trim();
+			String tel = etTel.getText().toString().trim();
+			String pwd = etPwd.getText().toString().trim();
+			// 连线等待中...
+			JSONObject jsonObj = ConnectWs.connect(OpenCard.this,
+					EAccType.CREDIT_CARD, EOperation.OPEN_CARD, userName,
+					creditCardNo, availbDate, idNo, cellPhone, tel, pwd);
+			// 是否成功?
+			flag = EHelper.toBoolean(jsonObj);
 			// 弹出对话框
 			// 设置对话框的布局
 			View view = getLayoutInflater().inflate(R.xml.comdialog1, null);
@@ -90,6 +129,9 @@ public class OpenCard extends GeneralActivity {
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
 					dialog.dismiss();
+					Intent intent = new Intent(OpenCard.this,
+							CreditCardMain.class);
+					startActivity(intent);
 				}
 			});
 			if (flag) {
@@ -104,7 +146,6 @@ public class OpenCard extends GeneralActivity {
 				((TextView) view.findViewById(R.id.tv_comdlog_con1))
 						.setText("开卡失败，请验证输入的信息是否正确");
 			}
-
 		}
 	};
 }
