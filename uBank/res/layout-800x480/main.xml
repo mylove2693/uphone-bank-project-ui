@@ -13,7 +13,6 @@
 	android:layout_height="wrap_content"
 	android:orientation="vertical"
 	android:layout_below="@id/paymentabove"
-	android:layout_above="@id/paymentbelow"
 	>
 	</LinearLayout>
 	
