@@ -17,7 +17,7 @@
 	android:layout_marginLeft="15dip"
 	android:singleLine="true"
 	 android:layout_gravity="center_vertical"
-	android:textColor="#000000"
+	android:textColor="#253e81"
 	android:textSize="18dip"
     />
 <TextView 
