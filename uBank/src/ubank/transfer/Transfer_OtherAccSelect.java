@@ -1,10 +1,16 @@
 package ubank.transfer;
 
+import org.json.JSONObject;
+
 import ubank.base.GeneralActivity;
+import ubank.common.Account_Select;
+import ubank.enum_type.EAccType;
+import ubank.enum_type.EOperation;
 import ubank.main.R;
 import ubank.payment.AllPaymentSer;
 import ubank.payment.ElseAcc;
 import ubank.payment.InputPsw;
+import ubank.webservice.ConnectWs;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -37,6 +43,23 @@ public class Transfer_OtherAccSelect extends GeneralActivity {
 	        
 	        tvClassThird.setVisibility(View.VISIBLE);
 	        tvClassThird.setText(title);
+	        
+	        /**
+	         * 添加数据的代码
+	         */
+	        {
+	        Account_Select s=(Account_Select)findViewById(R.id.account_select);
+	        JSONObject type=new ConnectWs().connect(this, EAccType.NULL,EOperation.GET_ACC_TYPE_ALL ,"");
+	        System.out.println(type.toString());
+//	        s.AddTypeData(type.to)
+	        }
+	        
+	        
+	        
+	        
+	        
+	        
+	        
 	        
 	        //确认缴费按钮
 	        next_btn=(Button)findViewById(R.id.account_type_comfirm).findViewById(R.id.button);
