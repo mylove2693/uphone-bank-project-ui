@@ -104,11 +104,10 @@ public class AccountBind extends GeneralActivity {
 				MyDialogOne  d1=new MyDialogOne(AccountBind.this,R.style.dialog);
 				if(result){
 					d1.setTitleAndInfo("提示", "绑定成功！");
-					d1.Listener(AccountBind.this,ManagerHome.class);
 				}else{
 					d1.setTitleAndInfo("提示", "绑定失败！");
-					d1.Listener(AccountBind.this,null);
 				}
+				d1.Listener(AccountBind.this,ManagerHome.class);
 				d1.show();
 			}
 			
