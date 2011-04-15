@@ -56,7 +56,8 @@ public class SelectRepaymentAcc extends GeneralActivity {
 		btnNext = (Button) (findViewById(R.id.account_type_comfirm)
 				.findViewById(R.id.button));
 		accSelect = (Account_Select) findViewById(R.id.account_select);
-
+		
+		// 连接服务器...
 		JSONObject jsonObj = ConnectWs.connect(SelectRepaymentAcc.this,
 				EAccType.NULL, EOperation.GET_ACC_TYPE_ON_CREDITCARD, "");
 		List<String> lstAcc = EHelper.toList(jsonObj);
@@ -64,7 +65,7 @@ public class SelectRepaymentAcc extends GeneralActivity {
 		strings = lstAcc.toArray(strings);
 
 		accSelect.AddTypeData(strings);
-		accSelect.AddNumData(new String[] { "asdf", "123" });
+//		accSelect.AddNumData(new String[] { "asdf", "123" });
 
 		accSelect.AccTypSpinner.setOnItemSelectedListener(itemSelected);
 	}
