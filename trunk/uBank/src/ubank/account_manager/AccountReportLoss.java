@@ -50,10 +50,6 @@ public class AccountReportLoss extends GeneralActivity{
 		tvClassThird.setText(R.string.acc_report_loss);
 		
 		accountInfo = (Account_Select)findViewById(R.id.account_select);
-//		accountType = new String[]{"活期储蓄卡","定期储蓄卡","信用卡"};
-//		accountValues = new String[]{"622113356744","633668832124"};
-//		accountInfo.AddTypeData(accountType);
-//		accountInfo.AddNumData(accountValues);
 		loaderData();
 		loderValueData();
 		
