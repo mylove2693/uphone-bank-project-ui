@@ -22,45 +22,16 @@ public class InputPsw extends GeneralActivity {
 	private Dialog dialog=null;
 	private String acc_balance = null;
 	private EditText pws = null;
+	private String paymoney=null;//上一个activity传来的需付款金额
 	String title = "chenggon";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		addLayout(R.layout.input_psw);
-
-		tvClassFirst.setVisibility(View.VISIBLE);
-		// 监听
-		tvClassFirst.setText("首页>");
-		setListener(tvClassFirst, this, BankMain.class);
-		tvClassSecond.setVisibility(View.VISIBLE);
-		// 监听
-		tvClassSecond.setText("自助缴费>");
-		setListener(tvClassSecond, this, AllPaymentSer.class);
-		tvClassThird.setVisibility(View.VISIBLE);
-		tvClassThird.setText("密码输入");
-
-		Intent intent = getIntent();
-		account = intent.getStringExtra("account");
-		acc_balance = intent.getStringExtra("money");
-		// 设置上面的字
-		txt = (TextView) findViewById(R.id.pws_txt_one).findViewById(
-				R.id.Text_View_20);
-		txt.setText("您选择的账户为:");
-		txt = (TextView) findViewById(R.id.pws_txt_two).findViewById(
-				R.id.Text_View_20);
-		txt.setText(account);
-		txt = (TextView) findViewById(R.id.pws_txt_three).findViewById(
-				R.id.Text_View_20);
-		txt.setText("账户余额:");
-		txt = (TextView) findViewById(R.id.pws_txt_four).findViewById(
-				R.id.Text_View_20);
-		txt.setText(acc_balance);
-		txt = (TextView) findViewById(R.id.pws_txt_five).findViewById(
-				R.id.Text_View_20);
-		txt.setText("请输入账户密码");
-		// 密码输入框
-		pws = (EditText) findViewById(R.id.pws).findViewById(R.id.et_psd);
+		inintData();//初始化数据
+		inint();//初始化界面
+		
 		// 确认缴费按钮
 		ok_btn = (Button) findViewById(R.id.ok_btn).findViewById(R.id.button);
 		ok_btn.setText("确认缴费");
@@ -69,8 +40,6 @@ public class InputPsw extends GeneralActivity {
 			public void onClick(View v) {
 				String pwsStr = pws.getText().toString().trim();
 				View view;
-				
-				String balance = "1000000";
 				// 从服务上验证密码是否正确
 				/**
 				 * 先判断密码框是否为空 当不为空时在验证密码是否正确 中间用 & 连接 & 表示前面为true的情况下后面还要执行
@@ -78,8 +47,8 @@ public class InputPsw extends GeneralActivity {
 				 */
 				if (!pwsStr.equals("") & pwsStr.equals("123456")) {
 					// 计算余额
-					Double balanceValue = Double.parseDouble(balance)
-							- Double.parseDouble(acc_balance);
+					Double balanceValue = Double.parseDouble(acc_balance)
+							- Double.parseDouble(paymoney);
 					if (balanceValue > 0) {// 检查余额
 						Intent btnok_intent = new Intent();
 						btnok_intent.putExtra("flag", "成功提示");
@@ -135,10 +104,61 @@ public class InputPsw extends GeneralActivity {
 					MyDialogOne  d1=new MyDialogOne(InputPsw.this,R.style.dialog);
 					d1.setTitleAndInfo("错误提示", "密码错误!");
 					d1.Listener(InputPsw.this,null);
-//					d1.sett
-//					d1.show();
+					d1.show();
 				}
 			}
 		});
+	}
+	/**
+	 * 初始化数据
+	 *@author gsm
+	 *2011-4-15
+	 */
+	private void inintData(){
+		/**
+		 * 从上一个Activity中取得 账号 和余额  需付款金额
+		 * 初始化数据
+		 */
+		Intent intent = getIntent();
+		account = intent.getStringExtra("account");
+		acc_balance = intent.getStringExtra("money");
+		Bundle bundle = intent.getExtras();  
+		paymoney=bundle.getString("paymoney");//上一个activity传来的需付款金额
+	}
+	/**
+	 * 初始化界面
+	 *@author gsm
+	 *2011-4-15
+	 */
+	private void inint(){
+		tvClassFirst.setVisibility(View.VISIBLE);
+		// 监听
+		tvClassFirst.setText("首页>");
+		setListener(tvClassFirst, this, BankMain.class);
+		tvClassSecond.setVisibility(View.VISIBLE);
+		// 监听
+		tvClassSecond.setText("自助缴费>");
+		setListener(tvClassSecond, this, AllPaymentSer.class);
+		tvClassThird.setVisibility(View.VISIBLE);
+		tvClassThird.setText("密码输入");
+
+		// 设置上面的字
+		txt = (TextView) findViewById(R.id.pws_txt_one).findViewById(
+				R.id.Text_View_20);
+		txt.setText("您选择的账户为:");
+		txt = (TextView) findViewById(R.id.pws_txt_two).findViewById(
+				R.id.Text_View_20);
+		txt.setText(account);
+		txt = (TextView) findViewById(R.id.pws_txt_three).findViewById(
+				R.id.Text_View_20);
+		txt.setText("账户余额:");
+		txt = (TextView) findViewById(R.id.pws_txt_four).findViewById(
+				R.id.Text_View_20);
+		txt.setText(acc_balance);
+		txt = (TextView) findViewById(R.id.pws_txt_five).findViewById(
+				R.id.Text_View_20);
+		txt.setText("请输入账户密码");
+		// 密码输入框
+		pws = (EditText) findViewById(R.id.pws).findViewById(R.id.et_psd);
 	}
 }

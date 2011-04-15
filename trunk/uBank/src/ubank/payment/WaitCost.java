@@ -1,5 +1,6 @@
 package ubank.payment;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +14,7 @@ public class WaitCost extends GeneralListActivity {// 待缴费的项目
 	private String[] name = null;
 	private String[] value = null;
 	private Button btn = null;
+	
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -40,7 +42,12 @@ public class WaitCost extends GeneralListActivity {// 待缴费的项目
 
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent();
+				 
+				/**
+				 * 从上一个Activity中得到要缴费的金额getBundleExtra
+				 */
+			    Intent intent=getIntent();
+			    
 				intent.setClass(WaitCost.this, SelectAcc.class);
 				WaitCost.this.startActivity(intent);
 			}
