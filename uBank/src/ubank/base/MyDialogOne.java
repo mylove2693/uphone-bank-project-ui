@@ -70,7 +70,7 @@ public class MyDialogOne extends Dialog implements OnClickListener {
 		}
 		if (toActivity != null) {
 			System.out.println("--------");
-//			intent = new Intent();
+			intent = new Intent();
 			intent.setClass(fromActivity, toActivity);
 			fromActivity.startActivity(intent);
 			this.dismiss();
