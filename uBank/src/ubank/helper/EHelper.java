@@ -206,7 +206,7 @@ public enum EHelper {
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				Log.e(TAG, "============toList error==========");
+				Log.e(TAG, "============toMap error==========");
 			}
 		}
 		return mapValue;
@@ -221,6 +221,33 @@ public enum EHelper {
 			return bool;
 		}
 		return bool;
+	}
+
+	/**
+	 * 后台返回时有可能是字符串
+	 *@author gsm
+	 *2011-4-15 
+	 * @param jsonObj
+	 * @return
+	 */
+	public static String toStr(JSONObject jsonObj) {
+		StringBuilder str = new StringBuilder();
+		if (jsonObj == null || !jsonObj.equals("")) {
+			try {
+				JSONArray nameArray = jsonObj.names();
+				JSONArray valArray = jsonObj.toJSONArray(nameArray);
+				if (valArray != null) {
+					for (int i = 0; i < valArray.length(); i++) {
+						str.append(valArray.getString(i));
+					}
+				}
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				Log.e(TAG, "============toStr error==========");
+			}
+		}
+		return str.toString();
 	}
 
 }
