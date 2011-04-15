@@ -12,6 +12,7 @@ import ubank.base.GeneralListActivity;
 import ubank.common.Account_Select;
 import ubank.enum_type.EAccType;
 import ubank.enum_type.EOperation;
+import ubank.main.BankMain;
 import ubank.main.R;
 import ubank.payment.AllPaymentSer;
 import ubank.payment.ElseAcc;
@@ -38,6 +39,7 @@ public class TransferAccSelect extends GeneralListActivity{
 	        
 	        tvClassFirst.setVisibility(View.VISIBLE);
 	        tvClassFirst.setText("首页>");
+	        setListener(tvClassFirst, this, BankMain.class);
 	        
 	        tvClassSecond.setVisibility(View.VISIBLE);
 	        tvClassSecond.setText("转账汇款>");
