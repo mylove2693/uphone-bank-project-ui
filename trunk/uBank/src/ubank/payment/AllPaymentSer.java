@@ -1,12 +1,22 @@
 package ubank.payment;
 
+import java.util.Map;
+import java.util.Map.Entry;
+
+import org.json.JSONObject;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import ubank.base.GeneralListActivity;
+import ubank.enum_type.EAccType;
+import ubank.enum_type.EOperation;
+import ubank.helper.EHelper;
 import ubank.main.BankMain;
 import ubank.main.R;
+import ubank.webservice.ConnectWs;
 
 /**
  * 
@@ -32,8 +42,24 @@ public class AllPaymentSer extends GeneralListActivity {
 		
 		super.onListItemClick(l, v, position, id);
 		if(id==0){//待缴费项目
+			String[] name=null;
+			String[] value=null;
 			Intent payment_intent=new Intent();
-			payment_intent.setClass(AllPaymentSer.this, WaitCostItem.class);
+		  JSONObject jsonObj = ConnectWs.connect(this, EAccType.NULL,EOperation.GET_PAYMENT_NAME, "1");
+		  Map<String,String> map = EHelper.toMap(jsonObj);
+		  name=new String[map.size()];//获取名字
+		  value=new String[map.size()];//获取值
+		  int i=0;
+		  for (Entry<String, String> kv : map.entrySet()) {
+			  name[i]=kv.getKey();
+			  value[i++]=kv.getValue()+"元";
+		  }
+		  if(name==null||value==null){
+			  Log.e("--class-AllPaymentSer", "id==0 is name and value is null");
+		  }
+		  payment_intent.putExtra("name",name);
+		  payment_intent.putExtra("value",value);
+	      payment_intent.setClass(AllPaymentSer.this, WaitCostItem.class);
 			AllPaymentSer.this.startActivity(payment_intent);
 		}else if(id==1){//便捷服务
 			Intent speedy_intent=new Intent();
