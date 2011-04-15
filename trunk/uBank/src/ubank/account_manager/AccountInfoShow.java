@@ -3,51 +3,36 @@ package ubank.account_manager;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import ubank.base.GeneralListActivity;
+import ubank.enum_type.EAccType;
+import ubank.enum_type.EOperation;
 import ubank.main.BankMain;
 import ubank.main.R;
+import ubank.webservice.ConnectWs;
 
 public class AccountInfoShow extends GeneralListActivity{
-
+	private Intent intent = null;
 	private Resources res = null;
+	private String accType = "";
+	private String account = "";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		res = this.getBaseContext().getResources();
+		intent  = this.getIntent();
 		this.setNavigation();
-		this.setListAdapter(this.createText_Text_GrayText(this.getShowIdentifier(), this.getShowValue(), this.getShowGrayText()));
+		this.setAccInfo();
 	}
 
-	private String[] getShowIdentifier()
-	{
-		
-		String[] items = new String[9];
-		//帐号
-		items[0] = res.getString(R.string.accounNum);
-		//账户别名
-		items[1] = res.getString(R.string.account_alias);
-		//账户类型
-		items[2] = res.getString(R.string.accountType);
-//		币种
-		items[3] = res.getString(R.string.currency);
-		//余额
-		items[4] = res.getString(R.string.balance);
-		//账户状态
-		items[5] = res.getString(R.string.account_state);
-		//是否绑定
-		items[6] = res.getString(R.string.is_activation);
-		//开户行
-		items[7] = res.getString(R.string.opening_bank);
-		//开户日
-		items[8] = res.getString(R.string.account_opening_day);
-		return items;
-	}
 	/**
 	 * 为有预约换卡的做一个监听
 	 */
@@ -57,20 +42,62 @@ public class AccountInfoShow extends GeneralListActivity{
 		super.onListItemClick(l, v, position, id);
 		if(id==5){
 			Intent intent = new Intent();
+			intent.putExtra("accTypeValue", accType);
+			intent.putExtra("accNumValue", account);
 			intent.setClass(AccountInfoShow.this, TradeCardDetail.class);
 			AccountInfoShow.this.startActivity(intent);
-			
-			
 		}
 	}
-	private String[] getShowValue()
-	{	
-		String[] items = new String[9];
-		for(int i=0;i<9;i++)
-			{
-			items[i]=String.valueOf(i);			
+	
+	private void setAccInfo() {
+		String[] name;
+		String[] value;
+		JSONObject json = null;
+		accType = intent.getStringExtra("accTypeValue");
+		account = intent.getStringExtra("accNumValue");
+		if ("信用卡".equals(accType)) {
+			name = new String[] { "账户", "账户别名", "账户类型", "币种", "账户状态", "是否绑定",
+					"开户行", "开户日" };
+			value = new String[name.length];
+			json = ConnectWs.connect(this, EAccType.CREDIT_CARD,
+					EOperation.GET_ACC_INFO, account);
+			try {
+				for (int i = 0; i < name.length; i++) {
+					value[i] = json.getString(name[i]);
+				}
+			} catch (JSONException ex) {
+				ex.printStackTrace();
 			}
-		return items;
+		} else if ("定期储蓄卡".equals(accType)) {
+			name = new String[] { "账户", "账户别名", "账户类型", "币种", "余额", "账户状态",
+					"是否绑定", "开户行", "开户日" };
+			value = new String[name.length];
+			json = ConnectWs.connect(this, EAccType.TIME_DEPOSITS,
+					EOperation.GET_ACC_INFO, account);
+			try {
+				for (int i = 0; i < name.length; i++) {
+					value[i] = json.getString(name[i]);
+				}
+			} catch (JSONException ex) {
+				ex.printStackTrace();
+			}
+		} else {
+			name = new String[] { "账户", "账户别名", "账户类型", "币种", "余额", "账户状态",
+					"是否绑定", "开户行", "开户日" };
+			value = new String[name.length];
+			json = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
+					EOperation.GET_ACC_INFO, account);
+			try {
+				for (int i = 0; i < name.length; i++) {
+					value[i] = json.getString(name[i]);
+				}
+			} catch (JSONException ex) {
+				ex.printStackTrace();
+			}
+		}
+
+		this.setListAdapter(createText_Text_GrayText(name, value, this
+				.getShowGrayText()));
 	}
 	
 	private List<Integer> getShowGrayText()
@@ -95,6 +122,6 @@ public class AccountInfoShow extends GeneralListActivity{
 		setListener(tvClassSecond, this, ManagerHome.class);	
 		// 设置导航栏“账户信息”
 		this.tvClassThird.setText(temp + res.getString(R.string.account_info));	
-		this.tvClassSecond.setVisibility(View.VISIBLE);
+		this.tvClassThird.setVisibility(View.VISIBLE);
 	}
 }
