@@ -18,7 +18,7 @@ public enum EOperation {
 
 	/* 查询 由06开始 */
 	GET_ACC_INFO("0601"), GET_NICK_NAME("0602"), GET_ORDER_INFO("0603"), ACC_IS_ACTIVE(
-			"0604"),
+			"0604"),GET_VERIFY_PASSWORD("0605"),
 	/* 查询 */
 
 	/* 修改 */
