@@ -1,9 +1,17 @@
 package ubank.payment;
 
+import java.util.Map;
+
+import org.json.JSONObject;
+
 import ubank.base.GeneralActivity;
 import ubank.base.MyDialogOne;
+import ubank.enum_type.EAccType;
+import ubank.enum_type.EOperation;
+import ubank.helper.EHelper;
 import ubank.main.BankMain;
 import ubank.main.R;
+import ubank.webservice.ConnectWs;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,19 +27,18 @@ public class InputPsw extends GeneralActivity {
 	private TextView txt = null;
 	private Button ok_btn = null;
 	private String account = null;
-	private Dialog dialog=null;
 	private String acc_balance = null;
 	private EditText pws = null;
-	private String paymoney=null;//上一个activity传来的需付款金额
+	private String paymoney = null;// 上一个activity传来的需付款金额
 	String title = "chenggon";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		addLayout(R.layout.input_psw);
-		inintData();//初始化数据
-		inint();//初始化界面
-		
+		inintData();// 初始化数据
+		inint();// 初始化界面
+
 		// 确认缴费按钮
 		ok_btn = (Button) findViewById(R.id.ok_btn).findViewById(R.id.button);
 		ok_btn.setText("确认缴费");
@@ -39,98 +46,71 @@ public class InputPsw extends GeneralActivity {
 		ok_btn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				String pwsStr = pws.getText().toString().trim();
-				View view;
 				// 从服务上验证密码是否正确
 				/**
 				 * 先判断密码框是否为空 当不为空时在验证密码是否正确 中间用 & 连接 & 表示前面为true的情况下后面还要执行
 				 * 知道前后都为true时菜返回true
 				 */
-				if (!pwsStr.equals("") & pwsStr.equals("123456")) {
+				if (!pwsStr.equals("")) {
 					// 计算余额
 					Double balanceValue = Double.parseDouble(acc_balance)
 							- Double.parseDouble(paymoney);
-					if (balanceValue > 0) {// 检查余额
-						Intent btnok_intent = new Intent();
-						btnok_intent.putExtra("flag", "成功提示");
-						btnok_intent.putExtra("info", "缴费成功，余额为:"
-								+ balanceValue + ".00元");
-
-						//成功缴费提示
-						view= getLayoutInflater().inflate(
-								R.xml.comdialog1, null);
-						/**
-						 * 设置对话框的样式
-						 */
-						dialog= new Dialog(InputPsw.this,
+					if (balanceValue >=0) {// 检查余额
+						
+						//开始缴费
+						JSONObject jsonObj = ConnectWs.connect(InputPsw.this, EAccType.CURRENT_DEPOSIT,EOperation.PAYMENT, "水费","30","1","123456");
+						Map<String,String> map = EHelper.toMap(jsonObj);
+						System.out.println(map.toString()+"-=-=-=");
+						
+						//缴费成功提示
+						MyDialogOne d1 = new MyDialogOne(InputPsw.this,
 								R.style.dialog);
-						/**
-						 * 显示对话框
-						 */
-						dialog.show();
-						// 设置具体对话框布局的宽和高
-						LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.MATCH_PARENT);
-						// 将设置好的布局View加到对话框中
-						dialog.addContentView(view, params);
-						// 设置标题
-						((TextView) view.findViewById(R.id.tv_comdlog_title))
-								.setText("成功提示");
-						// 设置显示的信息
-						((TextView) view.findViewById(R.id.tv_comdlog_con1))
-								.setText("缴费成功，余额为:" + balanceValue + ".00元");
-						Button Ok_btn = (Button) view
-								.findViewById(R.id.btn_comdlog_ok);
-						Ok_btn.setText("返回");
-						Ok_btn.setOnClickListener(new OnClickListener() {
-							@Override
-							public void onClick(View v) {
-								// TODO Auto-generated method stub
-								Intent intent = new Intent();
-								intent.setClass(InputPsw.this,
-										AllPaymentSer.class);
-								InputPsw.this.startActivity(intent);
-								dialog.dismiss();//返回是要消除对话框
-							/**
-							 * 缴费成功要消除当前Activity
-							 */
-								InputPsw.this.finish();
-							}
-						});
-					}else{
-						//金额不足提示
+						d1.setTitleAndInfo("成功提示", "缴费成功,余额为:"+ balanceValue + ".00元");
+						d1.Listener(InputPsw.this, AllPaymentSer.class);
+						d1.show();
+					} else {
+						// 金额不足提示
+						MyDialogOne d1 = new MyDialogOne(InputPsw.this,
+								R.style.dialog);
+						d1.setTitleAndInfo("失败提示", "余额不足,余额为:"+ acc_balance + ".00元");
+						d1.Listener(InputPsw.this, null);
+						d1.show();
 					}
-					
+
 				} else {
 					// 密码错误提示对话框
-					MyDialogOne  d1=new MyDialogOne(InputPsw.this,R.style.dialog);
+					MyDialogOne d1 = new MyDialogOne(InputPsw.this,
+							R.style.dialog);
 					d1.setTitleAndInfo("错误提示", "密码错误!");
-					d1.Listener(InputPsw.this,null);
+					d1.Listener(InputPsw.this, null);
 					d1.show();
 				}
 			}
 		});
 	}
+
 	/**
 	 * 初始化数据
-	 *@author gsm
-	 *2011-4-15
+	 * 
+	 * @author gsm 2011-4-15
 	 */
-	private void inintData(){
+	private void inintData() {
 		/**
-		 * 从上一个Activity中取得 账号 和余额  需付款金额
-		 * 初始化数据
+		 * 从上一个Activity中取得 账号 和余额 需付款金额 初始化数据
 		 */
 		Intent intent = getIntent();
 		account = intent.getStringExtra("account");
 		acc_balance = intent.getStringExtra("money");
-		Bundle bundle = intent.getExtras();  
-		paymoney=bundle.getString("paymoney");//上一个activity传来的需付款金额
+		Bundle bundle = intent.getExtras();
+		paymoney = bundle.getString("paymoney");// 上一个activity传来的需付款金额
 	}
+
 	/**
 	 * 初始化界面
-	 *@author gsm
-	 *2011-4-15
+	 * 
+	 * @author gsm 2011-4-15
 	 */
-	private void inint(){
+	private void inint() {
 		tvClassFirst.setVisibility(View.VISIBLE);
 		// 监听
 		tvClassFirst.setText("首页>");
