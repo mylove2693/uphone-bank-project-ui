@@ -62,6 +62,7 @@ public class WaitCostItem extends GeneralListActivity {
 			Intent intent=new Intent();
 			String[] name={"项目名称:","缴费合同号:","缴费金额:","收费方:","缴费期限:"};
 			String[] value=null;
+			//从服务器上取数据
 			JSONObject jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,EOperation.GET_PAYMENT_INFO, "1","1");
 			Map<String,String> map = EHelper.toMap(jsonObj);
 			  value=new String[map.size()];//获取值
