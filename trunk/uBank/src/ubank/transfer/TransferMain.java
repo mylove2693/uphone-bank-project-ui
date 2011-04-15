@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 import ubank.base.GeneralListActivity;
+import ubank.main.BankMain;
 import ubank.main.R;
 import ubank.payment.AllPaymentSer;
 import ubank.payment.Speedy;
@@ -22,6 +23,7 @@ public class TransferMain extends GeneralListActivity{
 	        super.onCreate(savedInstanceState);
 	        tvClassFirst.setVisibility(View.VISIBLE);
 	        tvClassFirst.setText("首页>");
+	        setListener(tvClassFirst, this, BankMain.class);
 	        tvClassSecond.setVisibility(View.VISIBLE);
 	        tvClassSecond.setText("转账汇款");	        
 	        this.setListAdapter(createImg_Text_ImgAdapter(s));       
