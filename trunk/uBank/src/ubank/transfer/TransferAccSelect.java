@@ -12,6 +12,7 @@ import ubank.base.GeneralListActivity;
 import ubank.common.Account_Select;
 import ubank.enum_type.EAccType;
 import ubank.enum_type.EOperation;
+import ubank.helper.EHelper;
 import ubank.main.BankMain;
 import ubank.main.R;
 import ubank.payment.AllPaymentSer;
@@ -30,6 +31,7 @@ public class TransferAccSelect extends GeneralListActivity{
 	private String[] value={"首选账户","其他账户"};
 	private TextView txt=null;
 	String title=null;
+	String acc_type,acc_num;
 	  @Override
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
@@ -64,13 +66,32 @@ public class TransferAccSelect extends GeneralListActivity{
 			
 			super.onListItemClick(l, v, position, id);
 			if(id==0){//首选账户
-				Intent payment_intent=new Intent();
+				
+				
+				/**
+				 * 向服务器发请求获取首选账户和其余额
+				 */
+				JSONObject jsonObj = ConnectWs.connect(this, EAccType.NULL,EOperation.GET_PRE_ACC, "1");
+				String str=EHelper.toStr(jsonObj);
+				if(str==null){
+//					String acc_type,acc_num;
+					acc_type="110";
+					acc_num="100000";
+				}
+				acc_type=str.split("#")[0];
+				acc_num=str.split("#")[1];
+
 				/**
 				 * 将服务器上取得的值传给下一个Activity
 				 */
-				payment_intent.putExtra("title",this.title);
-				payment_intent.setClass(TransferAccSelect.this, Transfer_inpsd.class);
-				TransferAccSelect.this.startActivity(payment_intent);
+				Intent elseAcc_intent = new Intent();
+				elseAcc_intent.putExtra("acc_type", acc_type);
+				elseAcc_intent.putExtra("acc_num", acc_num);
+				elseAcc_intent.putExtra("title",
+						TransferAccSelect.this.title);
+				elseAcc_intent.setClass(TransferAccSelect.this,
+						Transfer_inpsd.class);
+				TransferAccSelect.this.startActivity(elseAcc_intent);
 			}else if(id==1){//其他账户
 				Intent elseAcc_intent=new Intent();
 				elseAcc_intent.putExtra("title",this.title);
