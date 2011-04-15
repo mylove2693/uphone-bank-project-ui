@@ -12,6 +12,7 @@ import ubank.main.BankMain;
 import ubank.webservice.ConnectWs;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
@@ -29,17 +30,9 @@ public class WaitCostItem extends GeneralListActivity {
 	  
 	  // 初始化数据
 	  private void initializeData(){
-		  JSONObject jsonObj = ConnectWs.connect(this, EAccType.NULL,
-					EOperation.GET_PAYMENT_NAME, "1");
-		  Map<String,String> map = EHelper.toMap(jsonObj);
-		  System.out.println(map.size());
-		  name=new String[map.size()];//获取名字
-		  value=new String[map.size()];//获取值
-		  int i=0;
-		  for (Entry<String, String> kv : map.entrySet()) {
-			  name[i]=kv.getKey();
-			  value[i++]=kv.getValue()+"元";
-		  }
+		  Intent intent=getIntent();
+		  name=intent.getStringArrayExtra("name");
+		  value=intent.getStringArrayExtra("value");
 		  if(name==null||value==null){
 			   String[] name1={"水费","房租费","煤气费","电费"};
 			   String[] value1={"30.00元","200.00元","150.00元","80.00元"};
@@ -68,7 +61,18 @@ public class WaitCostItem extends GeneralListActivity {
 		if(id==0){//三月份水费
 			Intent intent=new Intent();
 			String[] name={"项目名称:","缴费金额:","收费方:","缴费合同号:","缴费期限:"};
-			String[] value={"三月份水费","30.00元","无锡自来水公司","s323454","2011-07-12"};
+			String[] value=null;
+			JSONObject jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,EOperation.GET_PAYMENT_INFO, "1","1");
+			Map<String,String> map = EHelper.toMap(jsonObj);
+			  System.out.println(map.size());
+			  value=new String[map.size()];//获取值
+			  int i=0;
+			  for (Entry<String, String> kv : map.entrySet()) {
+				  value[i++]=kv.getValue();
+			  }
+			  if(value==null){
+				  Log.e("--class-WaitCostItem", "id==0 is value is null");
+			  }
 			intent.putExtra("name", name);
 			intent.putExtra("value", value);
 			intent.setClass(WaitCostItem.this, WaitCost.class);
