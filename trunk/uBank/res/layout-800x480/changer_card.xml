@@ -3,17 +3,36 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="fill_parent"
   android:layout_height="wrap_content"
+  android:layout_marginTop="5dip"
   android:collapseColumns="1">
-  <TableRow>
+  <TableRow android:paddingLeft="20dip" android:layout_height="20dip">
   	<include android:id="@+id/changerCard_txt" layout="@xml/text_view_18"/>
   </TableRow>
-  <TableRow android:paddingLeft="10dip">
+  <TableRow>
+  	<include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content"></include>
+  </TableRow>
+  <TableRow android:paddingLeft="35dip" android:layout_height="20dip">
   	<include android:id="@+id/changerCard_spinner" layout="@xml/spinner"/>
   </TableRow>
-  <TableRow>
+   <TableRow>
+  	<include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content"></include>
+  </TableRow>
+  <TableRow android:paddingLeft="20dip" android:layout_height="20dip">
   	<include android:id="@+id/net_txt" layout="@xml/text_view_18"/>
   </TableRow>
-  <TableRow android:paddingLeft="10dip">
+   <TableRow>
+  	<include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content"></include>
+  </TableRow>
+  <TableRow android:paddingLeft="35dip" android:layout_height="20dip">
   	<include android:id="@+id/net_spinner" layout="@xml/spinner"/>
   </TableRow>
+   <TableRow>
+  	<include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content"></include>
+  </TableRow>
+  <TableRow
+		     android:layout_marginLeft="120dip"
+		     android:layout_marginTop="20dip">
+		    	<include android:id="@+id/account_type_comfirm" 
+			 		layout="@xml/button" ></include>
+		 </TableRow>
 </TableLayout>
