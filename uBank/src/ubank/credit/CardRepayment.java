@@ -71,7 +71,7 @@ public class CardRepayment extends GeneralActivity {
 
 		mGroupArray = new ArrayList<String>();
 		mChildArray = new ArrayList<List<String>>();
-		// 接收数据
+		// 连接服务器...
 		JSONObject jsonObj = ConnectWs.connect(this, EAccType.NULL,
 				EOperation.GET_BIND_CREDIT_CARD, "");
 		List<String> lstStr = EHelper.toList(jsonObj);
