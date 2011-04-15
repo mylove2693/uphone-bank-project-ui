@@ -1,5 +1,7 @@
 package ubank.transfer;
 
+import org.json.JSONObject;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -7,11 +9,15 @@ import android.widget.ListView;
 import android.widget.TextView;
 import ubank.base.GeneralActivity;
 import ubank.base.GeneralListActivity;
+import ubank.common.Account_Select;
+import ubank.enum_type.EAccType;
+import ubank.enum_type.EOperation;
 import ubank.main.R;
 import ubank.payment.AllPaymentSer;
 import ubank.payment.ElseAcc;
 import ubank.payment.InputPsw;
 import ubank.payment.SelectAcc;
+import ubank.webservice.ConnectWs;
 /**
  * 转账的
  * 首选和其他账户
@@ -44,6 +50,12 @@ public class TransferAccSelect extends GeneralListActivity{
 	        addLayout(R.layout.above_list_txt);
 	        txt=(TextView)findViewById(R.id.above_list_txt).findViewById(R.id.Text_View_16_Gray);
 	        txt.setText("请选择账户：");
+	        
+	        /**
+	         * 
+	         *获取到后台的数据
+	         */ 
+	        
 	        this.setListAdapter(createText_Img(value));
 	  }
 	  protected void onListItemClick(ListView l,View v,int position,long id){
