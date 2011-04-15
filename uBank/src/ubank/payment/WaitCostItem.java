@@ -60,19 +60,26 @@ public class WaitCostItem extends GeneralListActivity {
 		super.onListItemClick(l, v, position, id);
 		if(id==0){//三月份水费
 			Intent intent=new Intent();
-			String[] name={"项目名称:","缴费金额:","收费方:","缴费合同号:","缴费期限:"};
+			String[] name={"项目名称:","缴费合同号:","缴费金额:","收费方:","缴费期限:"};
 			String[] value=null;
 			JSONObject jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,EOperation.GET_PAYMENT_INFO, "1","1");
 			Map<String,String> map = EHelper.toMap(jsonObj);
-			  System.out.println(map.size());
 			  value=new String[map.size()];//获取值
 			  int i=0;
 			  for (Entry<String, String> kv : map.entrySet()) {
 				  value[i++]=kv.getValue();
 			  }
 			  if(value==null){
+				  String[] value1={"水费","s323454","30.00","无锡自来水公司","2011-7-12"};
+				  value=value1;
 				  Log.e("--class-WaitCostItem", "id==0 is value is null");
 			  }
+			  /**
+			   * 创建 Bundle对象包装"paymoney"
+			   */
+			Bundle bubdle=new Bundle();
+			bubdle.putString("paymoney",value[2]);
+			intent.putExtras(bubdle);
 			intent.putExtra("name", name);
 			intent.putExtra("value", value);
 			intent.setClass(WaitCostItem.this, WaitCost.class);

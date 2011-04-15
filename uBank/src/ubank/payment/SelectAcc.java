@@ -1,9 +1,15 @@
 package ubank.payment;
 
+import org.json.JSONObject;
+
 import ubank.account_manager.FirstAccount;
 import ubank.base.GeneralListActivity;
+import ubank.enum_type.EAccType;
+import ubank.enum_type.EOperation;
+import ubank.helper.EHelper;
 import ubank.main.BankMain;
 import ubank.main.R;
+import ubank.webservice.ConnectWs;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -37,12 +43,22 @@ public class SelectAcc extends GeneralListActivity {
 			
 			super.onListItemClick(l, v, position, id);
 			if(id==0){//首选账户
-				Intent intent=new Intent();
+				String account=null;
+				String money=null;
+				Intent intent=getIntent();
+				
 				/**
-				 * 将服务器上取得的值传给下一个Activity
+				 * 向服务器发请求获取首选账户和其余额
 				 */
-				String account="1111111";
-				String money="10";
+				JSONObject jsonObj = ConnectWs.connect(this, EAccType.NULL,EOperation.GET_PRE_ACC, "1");
+				String str=EHelper.toStr(jsonObj);
+				if(str==null){
+					account="110";
+					money="100000";
+				}
+				account=str.split("#")[1];
+				money=str.split("#")[2];
+				
 				intent.putExtra("account", account);
 				intent.putExtra("money", money);
 				intent.setClass(SelectAcc.this, InputPsw.class);
