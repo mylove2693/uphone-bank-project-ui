@@ -1,5 +1,7 @@
 package ubank.transfer;
 
+import org.json.JSONObject;
+
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +11,11 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.TextView;
 import ubank.base.GeneralActivity;
+import ubank.base.MyDialogOne;
+import ubank.enum_type.EAccType;
+import ubank.enum_type.EOperation;
 import ubank.main.R;
+import ubank.webservice.ConnectWs;
 
 /**
  * 转账的密码输入界面
@@ -24,6 +30,14 @@ public class Transfer_inpsd extends GeneralActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		
+		JSONObject jsonObj = ConnectWs.connect(this, EAccType.NULL,
+				EOperation.GET_PAYMENT_NAME, "1");
+
+		System.out.println("后台数据"+jsonObj.toString());
+
+		
 		Intent up_intent = getIntent();
 		// 获得传过来的导航栏标题
 		title = up_intent.getStringExtra("title");
@@ -56,7 +70,7 @@ public class Transfer_inpsd extends GeneralActivity {
 		// 这个是帐号 是小字
 		TextView transfer_accnum = (TextView) findViewById(R.id.acc_num)
 				.findViewById(R.id.Text_View_16);
-		transfer_accnum.setText("62254634");
+		transfer_accnum.setText("str");
 
 		// 提示输入密码的文本框
 		TextView transfer_psd_txtview = (TextView) findViewById(
@@ -71,46 +85,11 @@ public class Transfer_inpsd extends GeneralActivity {
 		transfer_next.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				// 密码的判断--->
-				// 设置对话框的布局
-				View view = getLayoutInflater().inflate(R.xml.comdialog1, null);
-				/**
-				 * 设置对话框的样式
-				 */
-				Dialog dialog = new Dialog(Transfer_inpsd.this, R.style.dialog);
-				/**
-				 * 显示对话框
-				 */
+		
+				MyDialogOne dialog=new MyDialogOne(Transfer_inpsd.this, R.style.dialog);
+				dialog.setTitleAndInfo("密码成功失败提示", "成功");
+				dialog.Listener(Transfer_inpsd.this, Transfer_information.class);
 				dialog.show();
-				// 设置具体对话框布局的宽和高
-				LayoutParams params = new LayoutParams(
-						LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
-
-				// 将设置好的布局View加到对话框中
-				dialog.addContentView(view, params);
-              //设置标题
-				((TextView) view.findViewById(R.id.tv_comdlog_title))
-          						.setText("提示的标题");
-				//设置显示的信息
-				((TextView) view.findViewById(R.id.tv_comdlog_con1))
-					.setText("你要显示信息");
-				Button Ok_btn = (Button) view.findViewById(R.id.btn_comdlog_ok);
-				Ok_btn.setText("下一步");
-				Ok_btn.setOnClickListener(new OnClickListener() {
-
-					@Override
-					public void onClick(View v) {
-						// TODO Auto-generated method stub
-						System.out.println("dasd");
-						Intent payment_intent = new Intent();
-						payment_intent.putExtra("title",
-								Transfer_inpsd.this.title);
-						payment_intent.setClass(Transfer_inpsd.this,
-								Transfer_information.class);
-						Transfer_inpsd.this.startActivity(payment_intent);
-					}
-				});
 			}
 		});
 
