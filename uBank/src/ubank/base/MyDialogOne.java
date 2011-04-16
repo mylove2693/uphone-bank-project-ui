@@ -78,15 +78,17 @@ public class MyDialogOne extends Dialog implements OnClickListener {
 		// TODO Auto-generated method stub
 
 		if (intent != null) {
-			fromActivity.startActivity(intent);
 			this.dismiss();
+			fromActivity.startActivity(intent);
+			
 		}
 		if (toActivity != null) {
 			System.out.println("--------");
 			intent = new Intent();
 			intent.setClass(fromActivity, toActivity);
-			fromActivity.startActivity(intent);
 			this.dismiss();
+			fromActivity.startActivity(intent);
+			
 		} else {
 			this.dismiss();
 		}
