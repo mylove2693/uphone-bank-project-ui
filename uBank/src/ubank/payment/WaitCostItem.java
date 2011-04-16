@@ -24,7 +24,7 @@ public class WaitCostItem extends GeneralListActivity {
 	private String[] nextName = { "项目名称:", "缴费合同号:", "缴费金额:", "收费方:", "缴费期限:" };// 下一个界面要显示的名称
 
 	private String[] valueDB;// 服务端获得数据需发送下去
-	private Intent intent;
+//	private Intent intent;
 
 	/**
 	 * swch中需要的变量
@@ -74,11 +74,10 @@ public class WaitCostItem extends GeneralListActivity {
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 
 		super.onListItemClick(l, v, position, id);
-
-		int id2 = (int) id;
-		switch (id2) {
+		Intent intent=null;
+		switch ((int) id) {
 		case 0:// 水费
-			intent = new Intent();
+			intent= new Intent();
 			// 从服务器上取数据
 			/**
 			 * 在pendingform.txt表中查 参数为 <userid>1</userid> <id>1</id>
@@ -93,6 +92,7 @@ public class WaitCostItem extends GeneralListActivity {
 			}
 			map = EHelper.toMap(jsonObj);
 			valueDB = new String[map.size()];// 获取值
+			i=0;//使用i之前要将i赋值为0
 			for (Entry<String, String> kv : map.entrySet()) {
 				valueDB[i++] = kv.getValue();
 			}
@@ -133,7 +133,7 @@ public class WaitCostItem extends GeneralListActivity {
 			}
 			map = EHelper.toMap(jsonObj);
 			valueDB = new String[map.size()];// 获取值
-
+			i=0;//使用i之前要将i赋值为0
 			for (Entry<String, String> kv : map.entrySet()) {
 				valueDB[i++] = kv.getValue();
 			}
@@ -174,7 +174,7 @@ public class WaitCostItem extends GeneralListActivity {
 			}
 			map = EHelper.toMap(jsonObj);
 			valueDB = new String[map.size()];// 获取值
-
+			i=0;//使用i之前要将i赋值为0
 			for (Entry<String, String> kv : map.entrySet()) {
 				valueDB[i++] = kv.getValue();
 			}
@@ -215,7 +215,7 @@ public class WaitCostItem extends GeneralListActivity {
 			}
 			map = EHelper.toMap(jsonObj);
 			valueDB = new String[map.size()];// 获取值
-
+			i=0;//使用i之前要将i赋值为0
 			for (Entry<String, String> kv : map.entrySet()) {
 				valueDB[i++] = kv.getValue();
 			}
