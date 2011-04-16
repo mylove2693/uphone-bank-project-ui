@@ -32,6 +32,7 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -71,17 +72,23 @@ public class CardRepayment extends GeneralActivity {
 
 		mGroupArray = new ArrayList<String>();
 		mChildArray = new ArrayList<List<String>>();
-		// 连接服务器...
-		JSONObject jsonObj = ConnectWs.connect(this, EAccType.NULL,
-				EOperation.GET_BIND_CREDIT_CARD, "");
-		List<String> lstStr = EHelper.toList(jsonObj);
+		// 检测是否连接网络
+		if (EHelper.hasInternet(this)) {
+			// 连接服务器...
+			JSONObject jsonObj = ConnectWs.connect(this, EAccType.NULL,
+					EOperation.GET_BIND_CREDIT_CARD, "");
+			List<String> lstStr = EHelper.toList(jsonObj);
 
-		mGroupArray.add(getResources().getString(R.string.cc_isbindcc));// 已绑定信用卡号
-		List<String> itemArray = new ArrayList<String>();
-		for (String string : lstStr) {
-			itemArray.add(string);
+			mGroupArray.add(getResources().getString(R.string.cc_isbindcc));// 已绑定信用卡号
+			List<String> itemArray = new ArrayList<String>();
+			for (String string : lstStr) {
+				itemArray.add(string);
+			}
+			mChildArray.add(itemArray);
+		} else {
+			Toast.makeText(this, "没有连接网络", Toast.LENGTH_SHORT).show();
+			finish();
 		}
-		mChildArray.add(itemArray);
 
 		((TextView) findViewById(R.id.cc_tv_otherCC).findViewById(
 				R.id.Text_View_18)).setText(R.string.cc_other_cc_repayment);// 其他信用卡还款

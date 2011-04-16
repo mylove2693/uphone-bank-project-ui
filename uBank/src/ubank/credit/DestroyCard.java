@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class DestroyCard extends GeneralActivity {
 
@@ -54,26 +55,32 @@ public class DestroyCard extends GeneralActivity {
 				.findViewById(R.id.blue_Text_View))).setText("手机号");
 		((TextView) (findViewById(R.id.cc_tv_pwd)
 				.findViewById(R.id.blue_Text_View))).setText("账户密码");
-		// 连接服务器...
-		JSONObject jsonObj = ConnectWs.connect(DestroyCard.this, EAccType.NULL,
-				EOperation.GET_BIND_CREDIT_CARD, "");
-		List<String> lstCc = EHelper.toList(jsonObj);
+		// 检查网络
+		if (EHelper.hasInternet(this)) {
 
+			// 连接服务器...
+			JSONObject jsonObj = ConnectWs.connect(DestroyCard.this,
+					EAccType.NULL, EOperation.GET_BIND_CREDIT_CARD, "");
+			List<String> lstCc = EHelper.toList(jsonObj);
+			spnrCcNo = (Spinner) findViewById(R.id.cc_spnr_ccNo).findViewById(
+					R.id.Small_Spinner);
+
+			ArrayAdapter<String> adapterType = new ArrayAdapter<String>(this,
+					android.R.layout.simple_spinner_item, lstCc);
+			adapterType
+					.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			// 将adapter 添加到spinner中
+			spnrCcNo.setAdapter(adapterType);
+		} else {
+			Toast.makeText(this, "没有连接网络", Toast.LENGTH_SHORT).show();
+			finish();
+		}
 		btnNext = (Button) (findViewById(R.id.cc_btn_next)
 				.findViewById(R.id.button));
 		btnNext.setText("确认销卡");
 
 		etUserName = (EditText) findViewById(R.id.cc_et_openName).findViewById(
 				R.id.et_user);
-		spnrCcNo = (Spinner) findViewById(R.id.cc_spnr_ccNo).findViewById(
-				R.id.Small_Spinner);
-
-		ArrayAdapter<String> adapterType = new ArrayAdapter<String>(this,
-				android.R.layout.simple_spinner_item, lstCc);
-		adapterType
-				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		// 将adapter 添加到spinner中
-		spnrCcNo.setAdapter(adapterType);
 
 		spnrIdType = (Spinner) findViewById(R.id.cc_spnr_idType).findViewById(
 				R.id.et_user);
@@ -101,11 +108,19 @@ public class DestroyCard extends GeneralActivity {
 			String idNo = etId.getText().toString().trim();
 			String cellPhone = etPhone.getText().toString().trim();
 			String pwd = etPwd.getText().toString().trim();
+			// 检查网络连接
+			if (EHelper.hasInternet(DestroyCard.this)) {
+				// 连接服务器...
+				JSONObject jsonObj = ConnectWs.connect(DestroyCard.this,
+						EAccType.CREDIT_CARD, EOperation.DESTROY_CARD,
+						userName, ccNo, idNo, cellPhone, pwd);
+				flag = EHelper.toBoolean(jsonObj);
+			} else {
+				Toast.makeText(DestroyCard.this, "没有连接网络", Toast.LENGTH_SHORT)
+						.show();
+				return;
+			}
 
-			JSONObject jsonObj = ConnectWs.connect(DestroyCard.this,
-					EAccType.CREDIT_CARD, EOperation.DESTROY_CARD, userName,
-					ccNo, idNo, cellPhone, pwd);
-			flag = EHelper.toBoolean(jsonObj);
 			// 弹出对话框
 			// 设置对话框的布局
 			View view = getLayoutInflater().inflate(R.xml.comdialog1, null);

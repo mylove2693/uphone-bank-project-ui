@@ -10,7 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 import ubank.base.GeneralListActivity;
+import ubank.helper.EHelper;
 import ubank.main.BankMain;
 import ubank.main.R;
 
@@ -27,6 +29,14 @@ public class ConfrimRepayment extends GeneralListActivity {
 		super.onCreate(savedInstanceState);
 		addLayoutBlow(R.layout.cc_repayment);
 		initializeData();// 初始化
+		
+		// 检查网络连接
+		if (EHelper.hasInternet(this)) {
+
+		} else {
+			Toast.makeText(this, "没有连接网络", Toast.LENGTH_SHORT).show();
+			finish();
+		}
 
 		// 模拟数据
 		String[] value = new String[] { "12340", "15435" };

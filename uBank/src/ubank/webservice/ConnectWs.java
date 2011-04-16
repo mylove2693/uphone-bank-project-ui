@@ -8,7 +8,9 @@ import java.util.List;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
+import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -19,6 +21,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.util.Log;
+import android.widget.Toast;
 
 import ubank.enum_type.EAccType;
 import ubank.enum_type.EOperation;
@@ -29,7 +33,6 @@ public class ConnectWs {
 	public static JSONObject connect(Activity activity, EAccType accType,
 			EOperation operation, String... params) {
 		// a,b,c->xx,yy,zz->t:o:xx:yy:zz->...->[is]->{a:"xx",b:"yy"}->{a:"a",b:"b"}
-
 		HttpClient httpclient = new DefaultHttpClient();
 		// 0.读取url
 		HttpPost httppost = new HttpPost(EHelper.readUrl(activity));
@@ -52,18 +55,28 @@ public class ConnectWs {
 		try {
 
 			response = httpclient.execute(httppost);
-			HttpEntity entity = response.getEntity();
-			if (entity != null) {
-				InputStream instream = entity.getContent();
-				// 3.is 转换成 string
-				String result = EHelper.sToString(instream);
-				// 4.包装成json object
-				JSONObject jsonObject = new JSONObject(result);
-				// 5.解密
-				jsonObject = EHelper.decodeJSONObject(jsonObject);
-				instream.close();
-				return jsonObject;
+			StatusLine statusLine = response.getStatusLine();
+			int code = statusLine.getStatusCode();
+			Log.v("asdf", Integer.toString(code));
+			if (code == HttpStatus.SC_OK) {
+				// 如果请求成功
+				HttpEntity entity = response.getEntity();
+				if (entity != null) {
+					InputStream instream = entity.getContent();
+					// 3.is 转换成 string
+					String result = EHelper.sToString(instream);
+					// 4.包装成json object
+					JSONObject jsonObject = new JSONObject(result);
+					// 5.解密
+					jsonObject = EHelper.decodeJSONObject(jsonObject);
+					instream.close();
+					return jsonObject;
+				}
+			} else {
+				Toast.makeText(activity, "对不起，请求不成功", Toast.LENGTH_SHORT)
+						.show();
 			}
+
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
