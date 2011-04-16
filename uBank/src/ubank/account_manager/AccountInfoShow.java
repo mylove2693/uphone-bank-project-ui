@@ -1,5 +1,6 @@
 package ubank.account_manager;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,9 +12,11 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 import ubank.base.GeneralListActivity;
 import ubank.enum_type.EAccType;
 import ubank.enum_type.EOperation;
+import ubank.helper.EHelper;
 import ubank.main.BankMain;
 import ubank.main.R;
 import ubank.webservice.ConnectWs;
@@ -55,49 +58,60 @@ public class AccountInfoShow extends GeneralListActivity{
 		JSONObject json = null;
 		accType = intent.getStringExtra("accTypeValue");
 		account = intent.getStringExtra("accNumValue");
-		if ("信用卡".equals(accType)) {
-			name = new String[] { "账户", "账户别名", "账户类型", "币种", "账户状态", "是否绑定",
-					"开户行", "开户日" };
-			value = new String[name.length];
-			json = ConnectWs.connect(this, EAccType.CREDIT_CARD,
-					EOperation.GET_ACC_INFO, account);
-			try {
-				for (int i = 0; i < name.length; i++) {
-					value[i] = json.getString(name[i]);
+		if (EHelper.hasInternet(this)) {
+		try {
+			if ("信用卡".equals(accType)) {
+				name = new String[] { "账户", "账户别名", "账户类型", "币种", "账户状态", "是否绑定",
+						"开户行", "开户日" };
+				value = new String[name.length];
+				json = ConnectWs.connect(this, EAccType.CREDIT_CARD,
+						EOperation.GET_ACC_INFO, account);
+				try {
+					for (int i = 0; i < name.length; i++) {
+						value[i] = json.getString(name[i]);
+					}
+				} catch (JSONException ex) {
+					ex.printStackTrace();
 				}
-			} catch (JSONException ex) {
-				ex.printStackTrace();
-			}
-		} else if ("定期储蓄卡".equals(accType)) {
-			name = new String[] { "账户", "账户别名", "账户类型", "币种", "余额", "账户状态",
-					"是否绑定", "开户行", "开户日" };
-			value = new String[name.length];
-			json = ConnectWs.connect(this, EAccType.TIME_DEPOSITS,
-					EOperation.GET_ACC_INFO, account);
-			try {
-				for (int i = 0; i < name.length; i++) {
-					value[i] = json.getString(name[i]);
+			} else if ("定期储蓄卡".equals(accType)) {
+				name = new String[] { "账户", "账户别名", "账户类型", "币种", "余额", "账户状态",
+						"是否绑定", "开户行", "开户日" };
+				value = new String[name.length];
+				json = ConnectWs.connect(this, EAccType.TIME_DEPOSITS,
+						EOperation.GET_ACC_INFO, account);
+				try {
+					for (int i = 0; i < name.length; i++) {
+						value[i] = json.getString(name[i]);
+					}
+				} catch (JSONException ex) {
+					ex.printStackTrace();
 				}
-			} catch (JSONException ex) {
-				ex.printStackTrace();
-			}
-		} else {
-			name = new String[] { "账户", "账户别名", "账户类型", "币种", "余额", "账户状态",
-					"是否绑定", "开户行", "开户日" };
-			value = new String[name.length];
-			json = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
-					EOperation.GET_ACC_INFO, account);
-			try {
-				for (int i = 0; i < name.length; i++) {
-					value[i] = json.getString(name[i]);
+			} else {
+				name = new String[] { "账户", "账户别名", "账户类型", "币种", "余额", "账户状态",
+						"是否绑定", "开户行", "开户日" };
+				value = new String[name.length];
+				json = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
+						EOperation.GET_ACC_INFO, account);
+				try {
+					for (int i = 0; i < name.length; i++) {
+						value[i] = json.getString(name[i]);
+					}
+				} catch (JSONException ex) {
+					ex.printStackTrace();
 				}
-			} catch (JSONException ex) {
-				ex.printStackTrace();
 			}
-		}
 
-		this.setListAdapter(createText_Text_GrayText(name, value, this
-				.getShowGrayText()));
+			this.setListAdapter(createText_Text_GrayText(name, value, this
+					.getShowGrayText()));
+		} catch (IOException e) {
+			Toast.makeText(this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
+			finish();
+			e.printStackTrace();
+		}
+		}else {
+			Toast.makeText(this, "没有连接网络", Toast.LENGTH_SHORT).show();
+			finish();
+		}
 	}
 	
 	private List<Integer> getShowGrayText()

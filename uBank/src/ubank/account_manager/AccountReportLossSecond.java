@@ -1,5 +1,7 @@
 package ubank.account_manager;
 
+import java.io.IOException;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -17,6 +19,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class AccountReportLossSecond extends GeneralListActivity {
 	private Button btnComfirm = null;
@@ -45,9 +48,6 @@ public class AccountReportLossSecond extends GeneralListActivity {
 		tvClassThird.setText(R.string.acc_report_loss);
 		setListener(tvClassThird, this, AccountReportLoss.class);
 		
-//		name = new String[]{"挂失账户","账户别名"};
-//		value = new String[]{"622202112","我的储蓄卡"};
-//		setListAdapter(createText_Text(name, value));
 		setAccInfo();
 		
 		btnComfirm = (Button)findViewById(R.id.midle_btn).findViewById(R.id.button);
@@ -56,29 +56,38 @@ public class AccountReportLossSecond extends GeneralListActivity {
 			
 			@Override
 			public void onClick(View v) {
-				JSONObject json = null;
-				if ("信用卡".equals(accType)) {
-					json = ConnectWs.connect(AccountReportLossSecond.this,
-							EAccType.CREDIT_CARD, EOperation.LOSS_REGISTER, account);
-				} else if ("定期储蓄卡".equals(accType)) {
-					json = ConnectWs.connect(AccountReportLossSecond.this,
-							EAccType.TIME_DEPOSITS, EOperation.LOSS_REGISTER,
-							account);
-				} else {
-					json = ConnectWs.connect(AccountReportLossSecond.this,
-							EAccType.CURRENT_DEPOSIT, EOperation.LOSS_REGISTER,
-							account);
+				if (EHelper.hasInternet(AccountReportLossSecond.this)) {
+				try {
+					JSONObject json = null;
+					if ("信用卡".equals(accType)) {
+						json = ConnectWs.connect(AccountReportLossSecond.this,
+								EAccType.CREDIT_CARD, EOperation.LOSS_REGISTER, account);
+					} else if ("定期储蓄卡".equals(accType)) {
+						json = ConnectWs.connect(AccountReportLossSecond.this,
+								EAccType.TIME_DEPOSITS, EOperation.LOSS_REGISTER,
+								account);
+					} else {
+						json = ConnectWs.connect(AccountReportLossSecond.this,
+								EAccType.CURRENT_DEPOSIT, EOperation.LOSS_REGISTER,
+								account);
+					}
+					boolean result = EHelper.toBoolean(json);
+					MyDialogOne  d1=new MyDialogOne(AccountReportLossSecond.this,R.style.dialog);
+					if(result){
+						d1.setTitleAndInfo("提示", "挂失成功！");
+					}else{
+						d1.setTitleAndInfo("提示", "挂失失败！");
+					}
+					
+					d1.Listener(AccountReportLossSecond.this,ManagerHome.class);
+					d1.show();
+				} catch (IOException e) {
+					Toast.makeText(AccountReportLossSecond.this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
+					e.printStackTrace();
 				}
-				boolean result = EHelper.toBoolean(json);
-				MyDialogOne  d1=new MyDialogOne(AccountReportLossSecond.this,R.style.dialog);
-				if(result){
-					d1.setTitleAndInfo("提示", "挂失成功！");
-				}else{
-					d1.setTitleAndInfo("提示", "挂失失败！");
+				}else {
+					Toast.makeText(AccountReportLossSecond.this, "没有连接网络", Toast.LENGTH_SHORT).show();
 				}
-				
-				d1.Listener(AccountReportLossSecond.this,ManagerHome.class);
-				d1.show();
 			}
 				
 		});
@@ -90,23 +99,34 @@ public class AccountReportLossSecond extends GeneralListActivity {
 		JSONObject json = null;
 		accType = intent.getStringExtra("accTypeValue");
 		account = intent.getStringExtra("accNumValue");
-		if ("信用卡".equals(accType)) {
-			json = ConnectWs.connect(this, EAccType.CREDIT_CARD, EOperation.GET_ACC_INFO,
-					intent.getStringExtra("accNumValue"));
-		} else if ("定期储蓄卡".equals(accType)) {
-			json = ConnectWs.connect(this, EAccType.TIME_DEPOSITS, EOperation.GET_ACC_INFO,
-					intent.getStringExtra("accNumValue"));
-		} else {
-			json = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT, EOperation.GET_ACC_INFO,
-					intent.getStringExtra("accNumValue"));
-		}
+		if (EHelper.hasInternet(this)) {
 		try {
-			for (int i = 0; i < name.length; i++) {
-				value[i] = json.getString(name[i]);
+			if ("信用卡".equals(accType)) {
+				json = ConnectWs.connect(this, EAccType.CREDIT_CARD, EOperation.GET_ACC_INFO,
+						intent.getStringExtra("accNumValue"));
+			} else if ("定期储蓄卡".equals(accType)) {
+				json = ConnectWs.connect(this, EAccType.TIME_DEPOSITS, EOperation.GET_ACC_INFO,
+						intent.getStringExtra("accNumValue"));
+			} else {
+				json = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT, EOperation.GET_ACC_INFO,
+						intent.getStringExtra("accNumValue"));
 			}
-		} catch (JSONException ex) {
-			ex.printStackTrace();
+			try {
+				for (int i = 0; i < name.length; i++) {
+					value[i] = json.getString(name[i]);
+				}
+			} catch (JSONException ex) {
+				ex.printStackTrace();
+			}
+		} catch (IOException e) {
+			Toast.makeText(this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
+			finish();
+			e.printStackTrace();
 		}
 		setListAdapter(createText_Text(name, value));
+		} else {
+			Toast.makeText(this, "没有连接网络", Toast.LENGTH_SHORT).show();
+			finish();
+		}
 	}
 }
