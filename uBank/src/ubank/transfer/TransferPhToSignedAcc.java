@@ -1,5 +1,6 @@
 package ubank.transfer;
 
+import java.io.IOException;
 import java.util.Map;
 
 import org.json.JSONObject;
@@ -149,8 +150,14 @@ public class TransferPhToSignedAcc extends GeneralActivity {
 			String amtnum) {
 		// String account,
 		// String password, String amtph, double amtnum
-		JSONObject jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
-				EOperation.TRANSFE_ACC, NUM, PSD, amtph, amtnum);
+		JSONObject jsonObj=null;
+		try {
+			jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
+					EOperation.TRANSFE_ACC, NUM, PSD, amtph, amtnum);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		System.out.println("---------------------------------------------");
 		// System.out.println(jsonObj);
 		Map<String, String> tt=EHelper.toMap(jsonObj);

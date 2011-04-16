@@ -1,5 +1,6 @@
 package ubank.transfer;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.json.JSONObject;
@@ -150,8 +151,14 @@ public class Transfer_inpsd extends GeneralActivity {
  */
 	private boolean psdIsRight(String NUM, String PSD) {
 
-		JSONObject jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
-				EOperation.GET_VERIFY_PASSWORD, NUM, PSD);
+		JSONObject jsonObj=null;
+		try {
+			jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
+					EOperation.GET_VERIFY_PASSWORD, NUM, PSD);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		// List<String> name = EHelper.toList(jsonObj);
 		boolean result = Boolean.valueOf(EHelper.toList(jsonObj).get(0));
 
