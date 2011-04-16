@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
+import ubank.base.GeneralActivity;
 import ubank.base.GeneralListActivity;
 import ubank.enum_type.EAccType;
 import ubank.enum_type.EOperation;
@@ -22,7 +24,7 @@ import ubank.webservice.ConnectWs;
 /**
  * 转账之前的详细信息显示
  */
-public class Transfer_information extends GeneralListActivity {
+public class Transfer_information extends GeneralActivity {
 	// 各项名字数组
 	private String[] s = null;// 提示栏的数组
 	// 对应的数据数组
@@ -30,7 +32,7 @@ public class Transfer_information extends GeneralListActivity {
 	private String title = null;// 导航栏标题
 	private String acc_num = null;// 帐号
 	private String acc_type = null;// 帐号类型
-	private String acc_balance=null;//余额
+	private String acc_balance = null;// 余额
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,18 @@ public class Transfer_information extends GeneralListActivity {
 
 		tvClassThird.setVisibility(View.VISIBLE);
 		tvClassThird.setText(title);
+		/**
+		 * 添加布局文件
+		 */
+		addLayout(R.layout.transfer_information);
+		
+		TextView txt_acc=(TextView)findViewById(R.id.acc_txt1);
+		TextView txt_accType=(TextView)findViewById(R.id.acc_txt2);
+		TextView txt_accBalance=(TextView)findViewById(R.id.acc_txt3);
+		
+		
+		
+		
 
 		/**
 		 * 根据帐号来查询其详细信息 主要有 帐号 类型 余额
@@ -65,18 +79,26 @@ public class Transfer_information extends GeneralListActivity {
 		JSONObject jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
 				EOperation.GET_ACC_INFO, acc_num);
 		Map<String, String> name = EHelper.toMap(jsonObj);
-		acc_balance=name.get("余额");
+		acc_balance = name.get("余额");
 		// name.get(0);
 		// System.out.println( name.get("余额"));
 
 		// 提示数组
-		s = new String[] { "  账户：", "  类型：", "  余额：" };
+		// s = new String[] { "  账户：", "  类型：", "  余额：" };
 		// 详细信息数组
-		data = new String[] { acc_num, acc_type,acc_balance };
-		// 为list添加数据
-		this.setListAdapter(createText_Text(s, data));
+		data = new String[] { acc_num, acc_type, acc_balance };
+		
+		
+		
+		
+		
+		// 为具体的问题添加数据
+		// this.setListAdapter(createText_Text(s, data));
+		txt_acc.setText(data[0]);
+		txt_accType.setText(data[1]);
+		txt_accBalance.setText(data[2]);
 		// 添加布局
-		addLayoutBlow(R.layout.transfer_information);
+
 		/**
 		 * 设置按钮的文本和监听
 		 */
@@ -120,7 +142,7 @@ public class Transfer_information extends GeneralListActivity {
 				payment_intent.putExtra("title",
 						Transfer_information.this.title);// 放入标题
 				payment_intent.putExtra("acc_num", acc_num);// 放入帐号
-				payment_intent.putExtra("acc_balance", acc_balance);//放入余额  便于比较
+				payment_intent.putExtra("acc_balance", acc_balance);// 放入余额 便于比较
 				payment_intent.setClass(Transfer_information.this,
 						TransferPhToSignedAcc.class);
 				Transfer_information.this.startActivity(payment_intent);
