@@ -1,5 +1,6 @@
 package ubank.account_manager;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.json.JSONObject;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
 import ubank.account_query.AccountQueryType;
 import ubank.base.GeneralActivity;
@@ -40,8 +42,7 @@ public class AccountInfo extends GeneralActivity {
 		this.setNavigation();
 		// 设置账户信息界面主体部分
 		this.addLayout(R.layout.acc_info_body);
-//		this.setBody(new String[] { "zhong", "xiao", "hui" }, new String[] {
-//				"zhong", "xiao", "hui" });
+
 		setBody();
 	}
 
@@ -60,17 +61,29 @@ public class AccountInfo extends GeneralActivity {
 		// 设置导航栏“账户信息”
 		this.tvClassThird.setText(temp + res.getString(R.string.account_info));
 		this.tvClassThird.setVisibility(View.VISIBLE);
-	
+
 	}
 
 	// 设置body
 	private void setBody() {
 		accountSelect = (Account_Select) findViewById(R.id.account_select);
-		JSONObject json = ConnectWs.connect(this, EAccType.NULL, EOperation.GET_ACC_TYPE_ALL);
-		List<String> name = EHelper.toList(json);
-		accountType = new String[name.size()];
-		for(int i = 0;i < accountType.length;i++){
-			accountType[i] = name.get(i);
+		if (EHelper.hasInternet(this)) {
+			try {
+				JSONObject json = ConnectWs.connect(this, EAccType.NULL,
+						EOperation.GET_ACC_TYPE_ALL);
+				List<String> name = EHelper.toList(json);
+				accountType = new String[name.size()];
+				for (int i = 0; i < accountType.length; i++) {
+					accountType[i] = name.get(i);
+				}
+			} catch (IOException e) {
+				Toast.makeText(this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
+				finish();
+				e.printStackTrace();
+			}
+		} else {
+			Toast.makeText(this, "没有连接网络", Toast.LENGTH_SHORT).show();
+			finish();
 		}
 		accountSelect.AddTypeData(accountType);
 		loderValueData();
@@ -87,31 +100,44 @@ public class AccountInfo extends GeneralActivity {
 				AccountInfo.this.startActivity(intent);
 			}
 		});
+
 	}
-		
-		private void loderValueData(){
-			
-			accountSelect.AccTypSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 
-				@Override
-				public void onItemSelected(AdapterView<?> arg0, View arg1,
-						int arg2, long arg3) {
-					String type = accountSelect.getAccTypValue();
-					JSONObject json = ConnectWs.connect(AccountInfo.this, EAccType.NULL, EOperation.GET_ACC,userid,type,EAccState.getStateName(EAccState.BIND));
-					List<String> value = EHelper.toList(json);
-					accountValues = new String[value.size()];
-					for(int i = 0;i < accountValues.length;i++){
-						accountValues[i] = value.get(i);
+	private void loderValueData() {
+
+		accountSelect.AccTypSpinner
+				.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+					@Override
+					public void onItemSelected(AdapterView<?> arg0, View arg1,
+							int arg2, long arg3) {
+						if (EHelper.hasInternet(AccountInfo.this)) {
+						String type = accountSelect.getAccTypValue();
+						try {
+							JSONObject json = ConnectWs.connect(AccountInfo.this,
+									EAccType.NULL, EOperation.GET_ACC, userid,
+									type, EAccState.getStateName(EAccState.BIND));
+							List<String> value = EHelper.toList(json);
+							accountValues = new String[value.size()];
+							for (int i = 0; i < accountValues.length; i++) {
+								accountValues[i] = value.get(i);
+							}
+						} catch (IOException e) {
+							Toast.makeText(AccountInfo.this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
+							e.printStackTrace();
+						}
+						accountSelect.AddNumData(accountValues);
+						}else {
+							Toast.makeText(AccountInfo.this, "没有连接网络", Toast.LENGTH_SHORT).show();
+						}
 					}
-					accountSelect.AddNumData(accountValues);
-				}
 
-				@Override
-				public void onNothingSelected(AdapterView<?> arg0) {
-					// TODO Auto-generated method stub
-					
-				}
-			});
+					@Override
+					public void onNothingSelected(AdapterView<?> arg0) {
+						// TODO Auto-generated method stub
+
+					}
+				});
 	}
 
 }
