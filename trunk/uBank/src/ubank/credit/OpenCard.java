@@ -1,5 +1,7 @@
 package ubank.credit;
 
+import java.io.IOException;
+
 import org.json.JSONObject;
 
 import ubank.base.GeneralActivity;
@@ -110,13 +112,23 @@ public class OpenCard extends GeneralActivity {
 			// 检查网络连接
 			if (EHelper.hasInternet(OpenCard.this)) {
 				// 连线等待中...
-				JSONObject jsonObj = ConnectWs.connect(OpenCard.this,
-						EAccType.CREDIT_CARD, EOperation.OPEN_CARD, userName,
-						creditCardNo, availbDate, idNo, cellPhone, tel, pwd);
+				JSONObject jsonObj = new JSONObject();
+				try {
+					jsonObj = ConnectWs.connect(OpenCard.this,
+							EAccType.CREDIT_CARD, EOperation.OPEN_CARD,
+							userName, creditCardNo, availbDate, idNo,
+							cellPhone, tel, pwd);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					Toast.makeText(OpenCard.this, "对不起，服务器未连接",
+							Toast.LENGTH_SHORT).show();
+					e.printStackTrace();
+					return;
+				}
 				// 是否成功?
 				flag = EHelper.toBoolean(jsonObj);
 			} else {
-				Toast.makeText(OpenCard.this, "没有连接网络", Toast.LENGTH_SHORT)
+				Toast.makeText(OpenCard.this, "没有网络", Toast.LENGTH_SHORT)
 						.show();
 				return;
 			}

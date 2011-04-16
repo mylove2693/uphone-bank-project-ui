@@ -1,5 +1,6 @@
 package ubank.credit;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.json.JSONObject;
@@ -59,14 +60,23 @@ public class SelectRepaymentAcc extends GeneralActivity {
 		// 检查网络连接
 		if (EHelper.hasInternet(this)) {
 			// 连接服务器...
-			JSONObject jsonObj = ConnectWs.connect(SelectRepaymentAcc.this,
-					EAccType.NULL, EOperation.GET_ACC_TYPE_ON_CREDITCARD, "");
+			JSONObject jsonObj = new JSONObject();
+			try {
+				jsonObj = ConnectWs.connect(SelectRepaymentAcc.this,
+						EAccType.NULL, EOperation.GET_ACC_TYPE_ON_CREDITCARD,
+						"");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				Toast.makeText(this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
+				finish();
+				e.printStackTrace();
+			}
 			List<String> lstAcc = EHelper.toList(jsonObj);
 			String[] strings = new String[lstAcc.size()];
 			strings = lstAcc.toArray(strings);
 			accSelect.AddTypeData(strings);
 		} else {
-			Toast.makeText(this, "没有连接网络", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "没有网络", Toast.LENGTH_SHORT).show();
 			finish();
 		}
 		accSelect.AccTypSpinner.setOnItemSelectedListener(itemSelected);
@@ -112,13 +122,22 @@ public class SelectRepaymentAcc extends GeneralActivity {
 					// 检查网络连接
 					if (EHelper.hasInternet(SelectRepaymentAcc.this)) {
 						// 连接服务器...
-						JSONObject jsonObj = ConnectWs
-								.connect(SelectRepaymentAcc.this,
-										EAccType.NULL, EOperation.GET_ACC,
-										"userid", accType, accState);
+						JSONObject jsonObj = new JSONObject();
+						try {
+							jsonObj = ConnectWs.connect(
+									SelectRepaymentAcc.this, EAccType.NULL,
+									EOperation.GET_ACC, "userid", accType,
+									accState);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							Toast.makeText(SelectRepaymentAcc.this,
+									"对不起，服务器未连接", Toast.LENGTH_SHORT).show();
+							e.printStackTrace();
+							return;
+						}
 						lstAcc = EHelper.toList(jsonObj);
 					} else {
-						Toast.makeText(SelectRepaymentAcc.this, "没有连接网络",
+						Toast.makeText(SelectRepaymentAcc.this, "没有网络",
 								Toast.LENGTH_SHORT).show();
 						return;
 					}

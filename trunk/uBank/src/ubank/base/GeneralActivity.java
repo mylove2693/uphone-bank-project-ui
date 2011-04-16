@@ -10,6 +10,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class GeneralActivity extends Activity implements IGeneralActivity {
+	public static final String TAG = "Ubank";
 	// 返回键
 	protected ImageView btnback;
 	// 底部的手机银行图标
@@ -35,7 +37,8 @@ public class GeneralActivity extends Activity implements IGeneralActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// TODO 菜单生成
-		menu.add(0, 0, 0, R.string.app_exit);
+		menu.add(0, 0, 0, R.string.app_exit);// 退出
+		menu.add(0, 1, 1, "关于");
 		return super.onCreateOptionsMenu(menu);
 
 	}
@@ -45,17 +48,16 @@ public class GeneralActivity extends Activity implements IGeneralActivity {
 		// TODO Auto-generated method stub
 		super.onResume();
 		GeneralActivity.isHide = false;
-//		NotificationManager myNotiManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-//		myNotiManager.cancel(0);
-
+		Log.v("Ubank", getClass() + " onResume,hide= " + GeneralActivity.isHide);
 	}
 
 	@Override
 	protected void onStop() {
 		// TODO Auto-generated method stub
 		super.onStop();
-		if (GeneralActivity.isFirst || GeneralActivity.isHide) {
-			GeneralActivity.isFirst = false;
+		if (GeneralActivity.isHide) {
+			Log.v("Ubank", getClass() + " onStop now,hide= "
+					+ GeneralActivity.isHide);
 
 			Intent notifyIntent = new Intent(this, getClass());
 			notifyIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -63,41 +65,42 @@ public class GeneralActivity extends Activity implements IGeneralActivity {
 			PendingIntent appIntent = PendingIntent.getActivity(this, 0,
 					notifyIntent, 0);
 
-			/* 创建Notication，并设置相关参数 */
 			Notification myNoti = new Notification();
 			// 设置如果被点击可以自动删除
 			myNoti.flags = Notification.FLAG_AUTO_CANCEL;
 			/* 设置statusbar显示的icon */
 			myNoti.icon = android.R.drawable.stat_notify_chat;
-			/* 设置statusbar显示的文字信息 */
 			myNoti.tickerText = "你的手机银行正在运行";
 			/* 设置notification发生时同时发出默认声音 */
 			myNoti.defaults = Notification.DEFAULT_SOUND;
-			/* 设置Notification留言条的参数 */
 			myNoti.setLatestEventInfo(this, "手机银行", "为了避免信息泄露，请及时完成或退出",
 					appIntent);
-			/* 送出Notification */
 			NotificationManager myNotiManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 			myNotiManager.notify(0, myNoti);
 			finish();
 		}
 		GeneralActivity.isHide = true;
+		Log.v("Ubank", getClass() + " onStop count. hide= "
+				+ GeneralActivity.isHide);
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// TODO 菜单点击
-		if (item.getItemId() == 0) {
-			// 退出
-			// 使用这个需要权限<uses-permission
-			// android:name="android.permission.RESTART_PACKAGES" />
-			// ActivityManager activityMgr = (ActivityManager) this
-			// .getSystemService(ACTIVITY_SERVICE);
-			// activityMgr.restartPackage(getPackageName());
+		switch (item.getItemId()) {
+		case 0:
 			moveTaskToBack(true);
+			break;
+		case 1:
+			new MyDialogOne(this, R.style.dialog)
+					.setTitleAndInfo("关于",
+							"手机银行\n客户至上\n版本号v10.\n智翔公司 版权所有\nCopyright 2011\nAll Rights Reserved")
+					.setDismissButton().show();
 
+			break;
+		default:
+			break;
 		}
-
 		return super.onOptionsItemSelected(item);
 	}
 

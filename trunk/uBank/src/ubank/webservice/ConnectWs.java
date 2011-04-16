@@ -31,7 +31,7 @@ import ubank.helper.EHelper;
 public class ConnectWs {
 
 	public static JSONObject connect(Activity activity, EAccType accType,
-			EOperation operation, String... params) {
+			EOperation operation, String... params) throws IOException {
 		// a,b,c->xx,yy,zz->t:o:xx:yy:zz->...->[is]->{a:"xx",b:"yy"}->{a:"a",b:"b"}
 		HttpClient httpclient = new DefaultHttpClient();
 		// 0.读取url
@@ -79,10 +79,7 @@ public class ConnectWs {
 
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			httppost.abort();

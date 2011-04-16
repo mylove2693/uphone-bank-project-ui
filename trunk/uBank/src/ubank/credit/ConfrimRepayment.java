@@ -34,7 +34,7 @@ public class ConfrimRepayment extends GeneralListActivity {
 		if (EHelper.hasInternet(this)) {
 
 		} else {
-			Toast.makeText(this, "没有连接网络", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "没有网络", Toast.LENGTH_SHORT).show();
 			finish();
 		}
 

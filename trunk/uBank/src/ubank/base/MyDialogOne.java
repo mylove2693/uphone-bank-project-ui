@@ -35,15 +35,16 @@ public class MyDialogOne extends Dialog implements OnClickListener {
 		// TODO Auto-generated constructor stub
 	}
 
-	// 设置跳转的方法  无传值的
+	// 设置跳转的方法 无传值的
 	public void Listener(Activity fromActivity, Class toActivity) {
 		this.fromActivity = fromActivity;
 		this.toActivity = toActivity;
 	}
-	//传递Intent的方法
-	public void Listener(Intent inIntent,Activity fromActivity) {
+
+	// 传递Intent的方法
+	public void Listener(Intent inIntent, Activity fromActivity) {
 		this.fromActivity = fromActivity;
-		this.intent=inIntent;
+		this.intent = inIntent;
 	}
 
 //设置按钮的文本
@@ -53,18 +54,30 @@ public class MyDialogOne extends Dialog implements OnClickListener {
 	}
 
 	// 设置提示标题和提示信息
-	public void setTitleAndInfo(String title, String info) {
+	public MyDialogOne setTitleAndInfo(String title, String info) {
 		this.title_tv.setText(title);
 		inmation.setText(info);
+		return this;
+	}
 
+	public MyDialogOne setDismissButton() {
+		btn.setOnClickListener(new android.view.View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				MyDialogOne.this.dismiss();
+			}
+
+		});
+		return this;
 	}
 
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 
-
-		if(intent!=null){
+		if (intent != null) {
 			fromActivity.startActivity(intent);
 			this.dismiss();
 		}

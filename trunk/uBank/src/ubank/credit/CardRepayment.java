@@ -1,5 +1,6 @@
 package ubank.credit;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,22 +62,23 @@ public class CardRepayment extends GeneralActivity {
 
 	private void initializeData() {
 		// TODO 初始化数据
-		tvClassFirst.setVisibility(View.VISIBLE);
-		tvClassFirst.setText("首页>");
-		setListener(tvClassFirst, this, BankMain.class);
-		tvClassSecond.setVisibility(View.VISIBLE);
-		tvClassSecond.setText("信用卡>");
-		setListener(tvClassSecond, this, CreditCardMain.class);
-		tvClassThird.setVisibility(View.VISIBLE);
-		tvClassThird.setText("信用卡还款");
 
 		mGroupArray = new ArrayList<String>();
 		mChildArray = new ArrayList<List<String>>();
 		// 检测是否连接网络
 		if (EHelper.hasInternet(this)) {
 			// 连接服务器...
-			JSONObject jsonObj = ConnectWs.connect(this, EAccType.NULL,
-					EOperation.GET_BIND_CREDIT_CARD, "");
+			JSONObject jsonObj = new JSONObject();
+			try {
+				jsonObj = ConnectWs.connect(this, EAccType.NULL,
+						EOperation.GET_BIND_CREDIT_CARD, "");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				Toast.makeText(this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
+				finish();
+				e.printStackTrace();
+			}
+
 			List<String> lstStr = EHelper.toList(jsonObj);
 
 			mGroupArray.add(getResources().getString(R.string.cc_isbindcc));// 已绑定信用卡号
@@ -86,10 +88,18 @@ public class CardRepayment extends GeneralActivity {
 			}
 			mChildArray.add(itemArray);
 		} else {
-			Toast.makeText(this, "没有连接网络", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "没有网络", Toast.LENGTH_SHORT).show();
 			finish();
 		}
 
+		tvClassFirst.setVisibility(View.VISIBLE);
+		tvClassFirst.setText("首页>");
+		setListener(tvClassFirst, this, BankMain.class);
+		tvClassSecond.setVisibility(View.VISIBLE);
+		tvClassSecond.setText("信用卡>");
+		setListener(tvClassSecond, this, CreditCardMain.class);
+		tvClassThird.setVisibility(View.VISIBLE);
+		tvClassThird.setText("信用卡还款");
 		((TextView) findViewById(R.id.cc_tv_otherCC).findViewById(
 				R.id.Text_View_18)).setText(R.string.cc_other_cc_repayment);// 其他信用卡还款
 		((TextView) findViewById(R.id.cc_tv_cc_num).findViewById(
