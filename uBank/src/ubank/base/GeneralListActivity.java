@@ -80,47 +80,44 @@ public class GeneralListActivity extends ListActivity implements
 		// TODO Auto-generated method stub
 		super.onResume();
 		GeneralActivity.isHide = false;
-		Log.v("test", "onResume,isHide is " + GeneralActivity.isHide);
-		// NotificationManager myNotiManager = (NotificationManager)
-		// getSystemService(NOTIFICATION_SERVICE);
-		// myNotiManager.cancel(0);
+		Log.v("Ubank", getClass() + " onResume,hide= " + GeneralActivity.isHide);
 
 	}
 
 	@Override
 	protected void onStop() {
 		// TODO Auto-generated method stub
-		Log.v("test", "onStop,isHide is " + GeneralActivity.isHide);
+		Log.v("Ubank", getClass() + " onStop now,hide= "
+				+ GeneralActivity.isHide);
 
 		super.onStop();
 		if (GeneralActivity.isHide) {
-			Log.v("test", "onStop,Noti");
+			Log.v("Ubank", getClass()
+					+ " onStop conut. hide must true,so notificaty");
+
 			Intent notifyIntent = new Intent(this, getClass());
 			notifyIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);// 不一定起作用
 			/* 创建PendingIntent作为设置递延运行的Activity */
 			PendingIntent appIntent = PendingIntent.getActivity(this, 0,
 					notifyIntent, 0);
 
-			/* 创建Notication，并设置相关参数 */
 			Notification myNoti = new Notification();
 			// 设置如果被点击可以自动删除
 			myNoti.flags = Notification.FLAG_AUTO_CANCEL;
 			/* 设置statusbar显示的icon */
 			myNoti.icon = android.R.drawable.stat_notify_chat;
-			/* 设置statusbar显示的文字信息 */
 			myNoti.tickerText = "你的手机银行正在运行";
 			/* 设置notification发生时同时发出默认声音 */
 			myNoti.defaults = Notification.DEFAULT_SOUND;
-			/* 设置Notification留言条的参数 */
 			myNoti.setLatestEventInfo(this, "手机银行", "为了避免信息泄露，请及时完成或退出",
 					appIntent);
-			/* 送出Notification */
 			NotificationManager myNotiManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 			myNotiManager.notify(0, myNoti);
 			finish();
 		}
 		GeneralActivity.isHide = true;
-		Log.v("test", "onStop,isHide is " + GeneralActivity.isHide);
+		Log.v("Ubank", getClass() + " onStop count. hide= "
+				+ GeneralActivity.isHide);
 	}
 
 	/** Called when the activity is first created. */

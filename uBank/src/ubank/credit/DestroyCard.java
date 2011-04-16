@@ -1,5 +1,6 @@
 package ubank.credit;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.json.JSONObject;
@@ -59,8 +60,16 @@ public class DestroyCard extends GeneralActivity {
 		if (EHelper.hasInternet(this)) {
 
 			// 连接服务器...
-			JSONObject jsonObj = ConnectWs.connect(DestroyCard.this,
-					EAccType.NULL, EOperation.GET_BIND_CREDIT_CARD, "");
+			JSONObject jsonObj = new JSONObject();
+			try {
+				jsonObj = ConnectWs.connect(DestroyCard.this, EAccType.NULL,
+						EOperation.GET_BIND_CREDIT_CARD, "");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				Toast.makeText(this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
+				finish();
+				e.printStackTrace();
+			}
 			List<String> lstCc = EHelper.toList(jsonObj);
 			spnrCcNo = (Spinner) findViewById(R.id.cc_spnr_ccNo).findViewById(
 					R.id.Small_Spinner);
@@ -72,7 +81,7 @@ public class DestroyCard extends GeneralActivity {
 			// 将adapter 添加到spinner中
 			spnrCcNo.setAdapter(adapterType);
 		} else {
-			Toast.makeText(this, "没有连接网络", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "没有网络", Toast.LENGTH_SHORT).show();
 			finish();
 		}
 		btnNext = (Button) (findViewById(R.id.cc_btn_next)
@@ -111,12 +120,21 @@ public class DestroyCard extends GeneralActivity {
 			// 检查网络连接
 			if (EHelper.hasInternet(DestroyCard.this)) {
 				// 连接服务器...
-				JSONObject jsonObj = ConnectWs.connect(DestroyCard.this,
-						EAccType.CREDIT_CARD, EOperation.DESTROY_CARD,
-						userName, ccNo, idNo, cellPhone, pwd);
+				JSONObject jsonObj = new JSONObject();
+				try {
+					jsonObj = ConnectWs.connect(DestroyCard.this,
+							EAccType.CREDIT_CARD, EOperation.DESTROY_CARD,
+							userName, ccNo, idNo, cellPhone, pwd);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					Toast.makeText(DestroyCard.this, "对不起，服务器未连接",
+							Toast.LENGTH_SHORT).show();
+					e.printStackTrace();
+					return;
+				}
 				flag = EHelper.toBoolean(jsonObj);
 			} else {
-				Toast.makeText(DestroyCard.this, "没有连接网络", Toast.LENGTH_SHORT)
+				Toast.makeText(DestroyCard.this, "没有网络", Toast.LENGTH_SHORT)
 						.show();
 				return;
 			}
