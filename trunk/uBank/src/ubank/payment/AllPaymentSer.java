@@ -1,6 +1,7 @@
 package ubank.payment;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -82,22 +83,17 @@ public class AllPaymentSer extends GeneralListActivity {
 			break;
 
 		case 1://便捷服务
-//			jsonObj = ConnectWs.connect(this, EAccType.NULL,
-//					EOperation.GET_PAYMENT_NAME, "1");
-//			map = EHelper.toMap(jsonObj);
-//			name = new String[map.size()];// 获取名字
-//			value = new String[map.size()];// 获取值
-//
-//			for (Entry<String, String> kv : map.entrySet()) {
-//				name[i] = kv.getKey();
-//				value[i++] = kv.getValue() + "元";
-//			}
-			if (name == null || value == null) {
-				 
-				String[] value1={"手机充值","Q充值","网易充值"};
-				value=value1;
-				Log.e("--class-AllPaymentSer",
-						"id==0 is name and value is null");
+			try {
+				jsonObj = ConnectWs.connect(this, EAccType.NULL,
+						EOperation.GET_SEL_SERVICE_NAME,"");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			List<String> list = EHelper.toList(jsonObj);
+			value = new String[list.size()];// 获取值 设置value的大小
+			for(int i=0;i<list.size();i++){
+				value[i] =list.get(i);
 			}
 			intent = new Intent();
 			intent.putExtra("value", value);
