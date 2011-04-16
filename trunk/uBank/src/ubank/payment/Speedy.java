@@ -10,7 +10,6 @@ import android.widget.ListView;
 
 public class Speedy extends GeneralListActivity {
 	private String[] value;//={"手机充值","Q充值","网易充值"};
-	private Intent intent;
 	  @Override
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
@@ -25,7 +24,7 @@ public class Speedy extends GeneralListActivity {
 	        tvClassThird.setVisibility(View.VISIBLE);
 	        tvClassThird.setText("便捷服务");
 	        //初始化数据
-	        intent=getIntent();
+	        Intent intent=getIntent();
 	        value=intent.getStringArrayExtra("value");
 	        this.setListAdapter(createText_Img(value));
 	  }
@@ -33,20 +32,29 @@ public class Speedy extends GeneralListActivity {
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		// TODO Auto-generated method stub
 		super.onListItemClick(l, v, position, id);
-		if(id==0){//手机充值
+		if(id==0){//Q币充值 数据表中payId=2
 			Intent intent=new Intent();
-			intent.putExtra("num", "QQ");
+			Bundle bund=new Bundle();
+			bund.putString("num", "QQ");
+			bund.putString("payId", "2");
+			intent.putExtras(bund);
 			intent.setClass(Speedy.this, Cost.class);
 			Speedy.this.startActivity(intent);
-		}else if(id==1){//Q币充值
+		}else if(id==1){//手机充值数据表中payId=1
 			Intent intent=new Intent();
-			intent.putExtra("num", "手机");
+			Bundle bund=new Bundle();
+			bund.putString("num", "手机");
+			bund.putString("payId", "1");
+			intent.putExtras(bund);
 			intent.setClass(Speedy.this, Cost.class);
 			Speedy.this.startActivity(intent);
 		}
-		else if(id==2){//Q网易充值
+		else if(id==2){//Q网易充值数据表中payId=3
 			Intent intent=new Intent();
-			intent.putExtra("num", "网易");
+			Bundle bund=new Bundle();
+			bund.putString("num", "网易");
+			bund.putString("payId", "3");
+			intent.putExtras(bund);
 			intent.setClass(Speedy.this, Cost.class);
 			Speedy.this.startActivity(intent);
 		}
