@@ -1,5 +1,7 @@
 package ubank.payment;
 
+import java.io.IOException;
+
 import org.json.JSONObject;
 
 import ubank.account_manager.FirstAccount;
@@ -51,7 +53,13 @@ public class SelectAcc extends GeneralListActivity {
 				 * 向服务器发请求获取首选账户和其余额
 				 * 参数为query("userInfo", "userid",userId);
 				 */
-				JSONObject jsonObj = ConnectWs.connect(this, EAccType.NULL,EOperation.GET_PRE_ACC, "1");
+				JSONObject jsonObj=null;
+				try {
+					jsonObj = ConnectWs.connect(this, EAccType.NULL,EOperation.GET_PRE_ACC, "1");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				String str=EHelper.toStr(jsonObj);
 				if(str==null){
 					account="110";

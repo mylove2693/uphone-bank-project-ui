@@ -1,5 +1,6 @@
 package ubank.payment;
 
+import java.io.IOException;
 import java.util.Map;
 import java.util.Map.Entry;
 import org.json.JSONObject;
@@ -83,8 +84,13 @@ public class WaitCostItem extends GeneralListActivity {
 			 * 在pendingform.txt表中查 参数为 <userid>1</userid> <id>1</id>
 			 * <name>水费</name> <dunum>s323454</dunum>
 			 */
-			jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
-					EOperation.GET_PAYMENT_INFO, "1", "1");
+			try {
+				jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
+						EOperation.GET_PAYMENT_INFO, "1", "1");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			map = EHelper.toMap(jsonObj);
 			valueDB = new String[map.size()];// 获取值
 			for (Entry<String, String> kv : map.entrySet()) {
@@ -118,8 +124,13 @@ public class WaitCostItem extends GeneralListActivity {
 			 * 在pendingform.txt表中查 参数为 <userid>1</userid> <id>1</id>
 			 * <name>水费</name> <dunum>s323454</dunum>
 			 */
-			jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
-					EOperation.GET_PAYMENT_INFO, "1", "4");
+			try {
+				jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
+						EOperation.GET_PAYMENT_INFO, "1", "4");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			map = EHelper.toMap(jsonObj);
 			valueDB = new String[map.size()];// 获取值
 
@@ -154,8 +165,13 @@ public class WaitCostItem extends GeneralListActivity {
 			 * 在pendingform.txt表中查 参数为 <userid>1</userid> <id>1</id>
 			 * <name>水费</name> <dunum>s323454</dunum>
 			 */
-			jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
-					EOperation.GET_PAYMENT_INFO, "1", "3");
+			try {
+				jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
+						EOperation.GET_PAYMENT_INFO, "1", "3");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			map = EHelper.toMap(jsonObj);
 			valueDB = new String[map.size()];// 获取值
 
@@ -190,8 +206,13 @@ public class WaitCostItem extends GeneralListActivity {
 			 * 在pendingform.txt表中查 参数为 <userid>1</userid> <id>1</id>
 			 * <name>水费</name> <dunum>s323454</dunum>
 			 */
-			jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
-					EOperation.GET_PAYMENT_INFO, "1", "2");
+			try {
+				jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
+						EOperation.GET_PAYMENT_INFO, "1", "2");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			map = EHelper.toMap(jsonObj);
 			valueDB = new String[map.size()];// 获取值
 

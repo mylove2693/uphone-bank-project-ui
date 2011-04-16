@@ -1,5 +1,6 @@
 package ubank.payment;
 
+import java.io.IOException;
 import java.util.Map;
 
 import org.json.JSONObject;
@@ -64,7 +65,12 @@ public class InputPsw extends GeneralActivity {
 						 * 缴费格式cd:0210:水费:30:110:123456:运营商
 						 * 参数     "水费","30","110","123456","无锡自来水公司"
 						 */
-						JSONObject jsonObj = ConnectWs.connect(InputPsw.this, EAccType.CURRENT_DEPOSIT,EOperation.PAYMENT, payname,paymoney,account,pwsStr,payaddress);
+						try {
+							JSONObject jsonObj = ConnectWs.connect(InputPsw.this, EAccType.CURRENT_DEPOSIT,EOperation.PAYMENT, payname,paymoney,account,pwsStr,payaddress);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 						
 						//缴费成功提示
 						MyDialogOne d1 = new MyDialogOne(InputPsw.this,
