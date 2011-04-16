@@ -1,5 +1,6 @@
 package ubank.account_query;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.json.JSONObject;
@@ -19,6 +20,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 public class AccountQueryType extends GeneralActivity {
@@ -41,9 +43,7 @@ public class AccountQueryType extends GeneralActivity {
 		//accountType = new String[]{"活期储蓄卡","定期储蓄卡","信用卡"};
 		userid = "1";
 		loaderData();
-		//accountValues = new String[]{"622113356744","633668832124"};
-		//accountInfo.AddTypeData(accountType);
-		//accountInfo.AddNumData(accountValues);
+
 		loderValueData();
 		
 		btnComfirm = (Button)findViewById(R.id.account_type_comfirm).findViewById(R.id.button);
@@ -63,13 +63,24 @@ public class AccountQueryType extends GeneralActivity {
 	}
 	
 	private void loaderData(){
-		JSONObject json = ConnectWs.connect(this, EAccType.NULL, EOperation.GET_ACC_TYPE_ALL);
-		List<String> name = EHelper.toList(json);
-		accountType = new String[name.size()];
-		for(int i = 0;i < accountType.length;i++){
-			accountType[i] = name.get(i);
+		if (EHelper.hasInternet(this)) {
+		try {
+			JSONObject json = ConnectWs.connect(this, EAccType.NULL, EOperation.GET_ACC_TYPE_ALL);
+			List<String> name = EHelper.toList(json);
+			accountType = new String[name.size()];
+			for(int i = 0;i < accountType.length;i++){
+				accountType[i] = name.get(i);
+			}
+		} catch (IOException e) {
+			Toast.makeText(this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
+			finish();
+			e.printStackTrace();
 		}
 		accountInfo.AddTypeData(accountType);
+		}else {
+			Toast.makeText(this, "没有连接网络", Toast.LENGTH_SHORT).show();
+			finish();
+		}
 	}
 	
 	private void loderValueData(){
@@ -78,14 +89,23 @@ public class AccountQueryType extends GeneralActivity {
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
+				if (EHelper.hasInternet(AccountQueryType.this)) {
 				String type = accountInfo.getAccTypValue();
-				JSONObject json = ConnectWs.connect(AccountQueryType.this, EAccType.NULL, EOperation.GET_ACC,userid,type,EAccState.getStateName(EAccState.BIND));
-				List<String> value = EHelper.toList(json);
-				accountValues = new String[value.size()];
-				for(int i = 0;i < accountValues.length;i++){
-					accountValues[i] = value.get(i);
+				try {
+					JSONObject json = ConnectWs.connect(AccountQueryType.this, EAccType.NULL, EOperation.GET_ACC,userid,type,EAccState.getStateName(EAccState.BIND));
+					List<String> value = EHelper.toList(json);
+					accountValues = new String[value.size()];
+					for(int i = 0;i < accountValues.length;i++){
+						accountValues[i] = value.get(i);
+					}
+					accountInfo.AddNumData(accountValues);
+				} catch (IOException e) {
+					Toast.makeText(AccountQueryType.this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
+					e.printStackTrace();
 				}
-				accountInfo.AddNumData(accountValues);
+				} else {
+					Toast.makeText(AccountQueryType.this, "没有连接网络", Toast.LENGTH_SHORT).show();
+				}
 			}
 
 			@Override
