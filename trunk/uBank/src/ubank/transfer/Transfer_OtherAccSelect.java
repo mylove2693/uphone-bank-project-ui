@@ -1,5 +1,6 @@
 package ubank.transfer;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.json.JSONObject;
@@ -95,8 +96,14 @@ public class Transfer_OtherAccSelect extends GeneralActivity {
 
 	// 添加账户类型
 	private void loaderData() {
-		JSONObject json = ConnectWs.connect(this, EAccType.NULL,
-				EOperation.GET_ACC_TYPE);
+		JSONObject json=null;
+		try {
+			json = ConnectWs.connect(this, EAccType.NULL,
+					EOperation.GET_ACC_TYPE);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		System.out.println(json.toString()+"--------------");
 		List<String> name = EHelper.toList(json);
 		accountType = new String[name.size()];
@@ -115,10 +122,16 @@ public class Transfer_OtherAccSelect extends GeneralActivity {
 					public void onItemSelected(AdapterView<?> arg0, View arg1,
 							int arg2, long arg3) {
 						String type = accountInfo.getAccTypValue();
-						JSONObject json = ConnectWs.connect(
-								Transfer_OtherAccSelect.this, EAccType.NULL,
-								EOperation.GET_ACC, userid, type, EAccState
-										.getStateName(EAccState.BIND));
+						JSONObject json=null;
+						try {
+							json = ConnectWs.connect(
+									Transfer_OtherAccSelect.this, EAccType.NULL,
+									EOperation.GET_ACC, userid, type, EAccState
+											.getStateName(EAccState.BIND));
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 						List<String> value = EHelper.toList(json);
 						accountValues = new String[value.size()];
 						for (int i = 0; i < accountValues.length; i++) {

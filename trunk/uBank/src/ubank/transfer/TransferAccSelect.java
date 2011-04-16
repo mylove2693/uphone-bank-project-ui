@@ -1,5 +1,7 @@
 package ubank.transfer;
 
+import java.io.IOException;
+
 import org.json.JSONObject;
 
 import android.content.Intent;
@@ -71,7 +73,13 @@ public class TransferAccSelect extends GeneralListActivity{
 				/**
 				 * 向服务器发请求获取首选账户和其余额
 				 */
-				JSONObject jsonObj = ConnectWs.connect(this, EAccType.NULL,EOperation.GET_PRE_ACC, "1");
+				JSONObject jsonObj=null;
+				try {
+					jsonObj = ConnectWs.connect(this, EAccType.NULL,EOperation.GET_PRE_ACC, "1");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				String str=EHelper.toStr(jsonObj);
 				if(str==null){
 //					String acc_type,acc_num;

@@ -1,5 +1,6 @@
 package ubank.transfer;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -76,8 +77,14 @@ public class Transfer_information extends GeneralActivity {
 		 * 根据帐号来查询其详细信息 主要有 帐号 类型 余额
 		 */
 
-		JSONObject jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
-				EOperation.GET_ACC_INFO, acc_num);
+		JSONObject jsonObj=null;
+		try {
+			jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
+					EOperation.GET_ACC_INFO, acc_num);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Map<String, String> name = EHelper.toMap(jsonObj);
 		acc_balance = name.get("余额");
 		// name.get(0);
