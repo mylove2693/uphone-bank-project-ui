@@ -49,6 +49,7 @@ public class SelectAcc extends GeneralListActivity {
 				
 				/**
 				 * 向服务器发请求获取首选账户和其余额
+				 * 参数为query("userInfo", "userid",userId);
 				 */
 				JSONObject jsonObj = ConnectWs.connect(this, EAccType.NULL,EOperation.GET_PRE_ACC, "1");
 				String str=EHelper.toStr(jsonObj);

@@ -24,14 +24,16 @@ import android.widget.TextView;
 
 public class InputPsw extends GeneralActivity {
 
-	private TextView txt = null;
-	private Button ok_btn = null;
-	private String account = null;
-	private String acc_balance = null;
-	private EditText pws = null;
-	private String paymoney = null;// 上一个activity传来的需付款金额
-	String title = "chenggon";
-
+	private TextView txt;
+	private Button ok_btn;
+	private String account;
+	private String acc_balance;
+	private EditText pws;
+	private String pwsStr;
+	//从WaitCostItema类传来的信息如需付款金额
+	private String payname;//要交费的名称
+	private String paymoney;//要交费的金额
+	private String payaddress;//收费方
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -45,7 +47,7 @@ public class InputPsw extends GeneralActivity {
 		// 确认缴费按钮的监听
 		ok_btn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				String pwsStr = pws.getText().toString().trim();
+				pwsStr = pws.getText().toString().trim();
 				// 从服务上验证密码是否正确
 				/**
 				 * 先判断密码框是否为空 当不为空时在验证密码是否正确 中间用 & 连接 & 表示前面为true的情况下后面还要执行
@@ -58,9 +60,11 @@ public class InputPsw extends GeneralActivity {
 					if (balanceValue >=0) {// 检查余额
 						
 						//开始缴费
-						JSONObject jsonObj = ConnectWs.connect(InputPsw.this, EAccType.CURRENT_DEPOSIT,EOperation.PAYMENT, "水费","30","1","123456");
-						Map<String,String> map = EHelper.toMap(jsonObj);
-						System.out.println(map.toString()+"-=-=-=");
+						/**
+						 * 缴费格式cd:0210:水费:30:110:123456:运营商
+						 * 参数     "水费","30","110","123456","无锡自来水公司"
+						 */
+						JSONObject jsonObj = ConnectWs.connect(InputPsw.this, EAccType.CURRENT_DEPOSIT,EOperation.PAYMENT, payname,paymoney,account,pwsStr,payaddress);
 						
 						//缴费成功提示
 						MyDialogOne d1 = new MyDialogOne(InputPsw.this,
@@ -99,10 +103,13 @@ public class InputPsw extends GeneralActivity {
 		 * 从上一个Activity中取得 账号 和余额 需付款金额 初始化数据
 		 */
 		Intent intent = getIntent();
-		account = intent.getStringExtra("account");
-		acc_balance = intent.getStringExtra("money");
+		account = intent.getStringExtra("account");//首选账号
+		acc_balance = intent.getStringExtra("money");//余额
 		Bundle bundle = intent.getExtras();
-		paymoney = bundle.getString("paymoney");// 上一个activity传来的需付款金额
+		// 从WaitCostItema类传来的信息如需付款金额
+		payname=bundle.getString("payname");//要交费的名称
+		paymoney =bundle.getString("paymoney");//要交费的金额
+		payaddress=bundle.getString("payaddress");//收费方
 	}
 
 	/**
