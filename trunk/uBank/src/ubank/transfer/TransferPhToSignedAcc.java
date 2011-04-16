@@ -34,6 +34,7 @@ public class TransferPhToSignedAcc extends GeneralActivity {
 	String to_acc_num = null;// 转入的帐号
 	String to_amt = null;// 金额
 	String psd = null;
+	Double acc_balance;
 	EditText amt_tv;// 金额框
 	EditText num_tv;// 目标号框
 	EditText psd_tv;// 密码框
@@ -52,7 +53,8 @@ public class TransferPhToSignedAcc extends GeneralActivity {
 		// 标题
 		title = up_intent.getStringExtra("title");
 		acc_num = up_intent.getStringExtra("acc_num");
-		System.out.println(acc_num+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		acc_balance=Double.valueOf(up_intent.getStringExtra("acc_balance"));
+		System.out.println(acc_num + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		/**
 		 * 设置相应的导航栏和监听
 		 */
@@ -96,11 +98,10 @@ public class TransferPhToSignedAcc extends GeneralActivity {
 		// 目标号框
 		num_tv = (EditText) findViewById(R.id.transfer_acc_edit).findViewById(
 				R.id.et_acc);
-		
+
 		// 密码框
 		psd_tv = (EditText) findViewById(R.id.transfer_psd_edit).findViewById(
 				R.id.et_psd);
-	
 
 		// 获取下一步的按钮 设置文本值
 		Button next_btn = (Button) findViewById(R.id.next_btn).findViewById(
@@ -111,31 +112,49 @@ public class TransferPhToSignedAcc extends GeneralActivity {
 
 			@Override
 			public void onClick(View v) {
-//				// TODO Auto-generated method stub
-//				 JSONObject jsonObj = ConnectWs.connect(this,
-//				 EAccType.CURRENT_DEPOSIT,
-//				 EOperation.TRANSFE_ACC, acc_num,
-//				 psd_tv.getText().toString());
-//				 System.out.println(jsonObj.toString());
+				// // TODO Auto-generated method stub
+				// JSONObject jsonObj = ConnectWs.connect(this,
+				// EAccType.CURRENT_DEPOSIT,
+				// EOperation.TRANSFE_ACC, acc_num,
+				// psd_tv.getText().toString());
+				// System.out.println(jsonObj.toString());
 				// 密码框中的密码
 				psd = psd_tv.getText().toString();
 				// 目标号框中的号
 				to_acc_num = num_tv.getText().toString();
 				// 金额框中的金额
 				to_amt = amt_tv.getText().toString();
-				 System.out.println(to_amt);
-				 System.out.println(to_acc_num+"aaaaaaaaa");
-				 System.out.println(psd);
-				 System.out.println(acc_num);
-				 String msg=isNumPsdAmt(acc_num,psd,to_acc_num, to_amt);
-						System.out.println(msg);			
-				 MyDialogOne dialog = new MyDialogOne(TransferPhToSignedAcc.this,
-							R.style.dialog);
-					dialog.setTitleAndInfo("转账提示", msg);
-					dialog.Listener(TransferPhToSignedAcc.this,null);
-					dialog.show();					
-				 System.out.println();
-
+				/**
+				 * 信息输出的检测
+				 */
+//				System.out.println(to_amt);
+//				System.out.println(to_acc_num + "aaaaaaaaa");
+//				System.out.println(psd);
+//				System.out.println(acc_num);
+				String msg = isNumPsdAmt(acc_num, psd, to_acc_num, to_amt);
+				System.out.println(msg);
+				MyDialogOne dialog = new MyDialogOne(
+						TransferPhToSignedAcc.this, R.style.dialog);
+				if (msg.equals("转账成功")) {
+					
+					dialog.setTitleAndInfo("成功提示", msg);
+					dialog.Listener(TransferPhToSignedAcc.this, TransferMain.class);
+					
+				}
+				if(acc_balance-(Double.valueOf(to_amt))<0)
+				{
+					dialog.setTitleAndInfo("失败提示", "余额不足");
+					dialog.Listener(TransferPhToSignedAcc.this, null);
+					
+				}
+				if(msg.equals("密码错误"))
+				
+				{
+					dialog.setTitleAndInfo("失败提示", msg);
+					dialog.Listener(TransferPhToSignedAcc.this, null);
+				}
+				
+				dialog.show();
 			}
 		});
 
@@ -150,7 +169,7 @@ public class TransferPhToSignedAcc extends GeneralActivity {
 			String amtnum) {
 		// String account,
 		// String password, String amtph, double amtnum
-		JSONObject jsonObj=null;
+		JSONObject jsonObj = null;
 		try {
 			jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
 					EOperation.TRANSFE_ACC, NUM, PSD, amtph, amtnum);
@@ -160,13 +179,12 @@ public class TransferPhToSignedAcc extends GeneralActivity {
 		}
 		System.out.println("---------------------------------------------");
 		// System.out.println(jsonObj);
-		Map<String, String> tt=EHelper.toMap(jsonObj);
+		Map<String, String> tt = EHelper.toMap(jsonObj);
 		String result = tt.get("result");
-
 		// List<String> name = EHelper.toList(jsonObj);
 		// boolean result = Boolean.valueOf(EHelper.toList(jsonObj).get(0));
 		System.out.println(jsonObj);
-		
+
 		return result;
 
 	}
