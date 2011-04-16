@@ -52,29 +52,31 @@ public class CreditCardInfo extends GeneralListActivity {
 		setListener(tvClassSecond, this, CreditCardMain.class);
 		tvClassThird.setVisibility(View.VISIBLE);
 		tvClassThird.setText("信用卡还款");
-
-		// 连接服务器...
-		JSONObject jsonObj = ConnectWs.connect(CreditCardInfo.this,
-				EAccType.CREDIT_CARD, EOperation.GET_ACC_INFO, creditcard);
-		String[] name = new String[] { "信用卡账户", "持卡人姓名", "本期应还款额", "本期最低还款额",
-				"本期到期还款日" };
-		String[] value = new String[5];
-		value[0] = creditcard;// 信用卡号
-		value[1] = "张三";
-		for (int i = 2; i < 5; i++) {
-			try {
-				value[i] = jsonObj.getString(name[i]);
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				int len = jsonObj.length();
-				Log.e("CreditCardInfo", Integer.toString(len));
-				e.printStackTrace();
+		if (EHelper.hasInternet(this)) {
+			// 连接服务器...
+			JSONObject jsonObj = ConnectWs.connect(CreditCardInfo.this,
+					EAccType.CREDIT_CARD, EOperation.GET_ACC_INFO, creditcard);
+			String[] name = new String[] { "信用卡账户", "持卡人姓名", "本期应还款额",
+					"本期最低还款额", "本期到期还款日" };
+			String[] value = new String[5];
+			value[0] = creditcard;// 信用卡号
+			value[1] = "张三";
+			for (int i = 2; i < 5; i++) {
+				try {
+					value[i] = jsonObj.getString(name[i]);
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					int len = jsonObj.length();
+					Log.e("CreditCardInfo", Integer.toString(len));
+					e.printStackTrace();
+				}
 			}
+			SimpleAdapter adapter = createText_Text(name, value);
+			setListAdapter(adapter);
+		} else {
+			Toast.makeText(this, "没有连接网络", Toast.LENGTH_SHORT).show();
+			finish();
 		}
-
-		SimpleAdapter adapter = createText_Text(name, value);
-		setListAdapter(adapter);
-
 		btnNext = (Button) findViewById(R.id.button);
 		btnNext.setText("下一步");
 	}

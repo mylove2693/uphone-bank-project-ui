@@ -19,6 +19,9 @@ import ubank.enum_type.EAccType;
 import ubank.enum_type.EOperation;
 import ubank.main.R;
 import android.app.Activity;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.util.Log;
 
 public enum EHelper {
@@ -184,23 +187,24 @@ public enum EHelper {
 		}
 		return lstValue;
 	}
-/**
- * 
- *@author gsm
- *2011-4-14 
- * @param jsonObj
- * @return
- */
-	public static Map<String,String> toMap(JSONObject jsonObj) {
-			
-		Map<String,String> mapValue = new HashMap<String,String>();
+
+	/**
+	 * 
+	 * @author gsm 2011-4-14
+	 * @param jsonObj
+	 * @return
+	 */
+	public static Map<String, String> toMap(JSONObject jsonObj) {
+
+		Map<String, String> mapValue = new HashMap<String, String>();
 		if (jsonObj == null || !jsonObj.equals("")) {
 			try {
 				JSONArray nameArray = jsonObj.names();
 				JSONArray valArray = jsonObj.toJSONArray(nameArray);
 				if (valArray != null) {
 					for (int i = 0; i < valArray.length(); i++) {
-						mapValue.put(jsonObj.names().getString(i), valArray.getString(i));
+						mapValue.put(jsonObj.names().getString(i),
+								valArray.getString(i));
 					}
 				}
 			} catch (JSONException e) {
@@ -211,6 +215,7 @@ public enum EHelper {
 		}
 		return mapValue;
 	}
+
 	public static boolean toBoolean(JSONObject jsonObj) {
 		boolean bool = false;
 		try {
@@ -225,8 +230,8 @@ public enum EHelper {
 
 	/**
 	 * 后台返回时有可能是字符串
-	 *@author gsm
-	 *2011-4-15 
+	 * 
+	 * @author gsm 2011-4-15
 	 * @param jsonObj
 	 * @return
 	 */
@@ -248,6 +253,31 @@ public enum EHelper {
 			}
 		}
 		return str.toString();
+	}
+
+	/**
+	 * 检查是否有网络连接
+	 * 
+	 * @param activity
+	 * @return
+	 */
+	public static boolean hasInternet(Activity activity) {
+		Context context = activity.getApplicationContext();
+		ConnectivityManager connectivity = (ConnectivityManager) context
+				.getSystemService(Context.CONNECTIVITY_SERVICE);
+		if (connectivity == null) {
+			return false;
+		} else {
+			NetworkInfo[] info = connectivity.getAllNetworkInfo();
+			if (info != null) {
+				for (NetworkInfo networkInfo : info) {
+					if (networkInfo.getState() == NetworkInfo.State.CONNECTED) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
 	}
 
 }

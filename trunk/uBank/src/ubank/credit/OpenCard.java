@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class OpenCard extends GeneralActivity {
 	private Button btnNext;
@@ -105,12 +106,21 @@ public class OpenCard extends GeneralActivity {
 			String cellPhone = etPhone.getText().toString().trim();
 			String tel = etTel.getText().toString().trim();
 			String pwd = etPwd.getText().toString().trim();
-			// 连线等待中...
-			JSONObject jsonObj = ConnectWs.connect(OpenCard.this,
-					EAccType.CREDIT_CARD, EOperation.OPEN_CARD, userName,
-					creditCardNo, availbDate, idNo, cellPhone, tel, pwd);
-			// 是否成功?
-			flag = EHelper.toBoolean(jsonObj);
+
+			// 检查网络连接
+			if (EHelper.hasInternet(OpenCard.this)) {
+				// 连线等待中...
+				JSONObject jsonObj = ConnectWs.connect(OpenCard.this,
+						EAccType.CREDIT_CARD, EOperation.OPEN_CARD, userName,
+						creditCardNo, availbDate, idNo, cellPhone, tel, pwd);
+				// 是否成功?
+				flag = EHelper.toBoolean(jsonObj);
+			} else {
+				Toast.makeText(OpenCard.this, "没有连接网络", Toast.LENGTH_SHORT)
+						.show();
+				return;
+			}
+
 			// 弹出对话框
 			// 设置对话框的布局
 			View view = getLayoutInflater().inflate(R.xml.comdialog1, null);

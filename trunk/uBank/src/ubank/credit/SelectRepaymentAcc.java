@@ -56,17 +56,19 @@ public class SelectRepaymentAcc extends GeneralActivity {
 		btnNext = (Button) (findViewById(R.id.account_type_comfirm)
 				.findViewById(R.id.button));
 		accSelect = (Account_Select) findViewById(R.id.account_select);
-		
-		// 连接服务器...
-		JSONObject jsonObj = ConnectWs.connect(SelectRepaymentAcc.this,
-				EAccType.NULL, EOperation.GET_ACC_TYPE_ON_CREDITCARD, "");
-		List<String> lstAcc = EHelper.toList(jsonObj);
-		String[] strings = new String[lstAcc.size()];
-		strings = lstAcc.toArray(strings);
-
-		accSelect.AddTypeData(strings);
-//		accSelect.AddNumData(new String[] { "asdf", "123" });
-
+		// 检查网络连接
+		if (EHelper.hasInternet(this)) {
+			// 连接服务器...
+			JSONObject jsonObj = ConnectWs.connect(SelectRepaymentAcc.this,
+					EAccType.NULL, EOperation.GET_ACC_TYPE_ON_CREDITCARD, "");
+			List<String> lstAcc = EHelper.toList(jsonObj);
+			String[] strings = new String[lstAcc.size()];
+			strings = lstAcc.toArray(strings);
+			accSelect.AddTypeData(strings);
+		} else {
+			Toast.makeText(this, "没有连接网络", Toast.LENGTH_SHORT).show();
+			finish();
+		}
 		accSelect.AccTypSpinner.setOnItemSelectedListener(itemSelected);
 	}
 
@@ -107,11 +109,20 @@ public class SelectRepaymentAcc extends GeneralActivity {
 							.getAccTypeName(EAccType.CURRENT_DEPOSIT);
 					// 所需账户状态
 					String accState = EAccState.getStateName(EAccState.BIND);
+					// 检查网络连接
+					if (EHelper.hasInternet(SelectRepaymentAcc.this)) {
+						// 连接服务器...
+						JSONObject jsonObj = ConnectWs
+								.connect(SelectRepaymentAcc.this,
+										EAccType.NULL, EOperation.GET_ACC,
+										"userid", accType, accState);
+						lstAcc = EHelper.toList(jsonObj);
+					} else {
+						Toast.makeText(SelectRepaymentAcc.this, "没有连接网络",
+								Toast.LENGTH_SHORT).show();
+						return;
+					}
 
-					JSONObject jsonObj = ConnectWs.connect(
-							SelectRepaymentAcc.this, EAccType.NULL,
-							EOperation.GET_ACC, "userid", accType, accState);
-					lstAcc = EHelper.toList(jsonObj);
 					String[] strings = new String[lstAcc.size()];
 					strings = lstAcc.toArray(strings);
 
