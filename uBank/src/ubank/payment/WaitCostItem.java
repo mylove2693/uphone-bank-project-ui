@@ -127,7 +127,7 @@ public class WaitCostItem extends GeneralListActivity {
 				valueDB[i++] = kv.getValue();
 			}
 			if (valueDB == null) {
-				String[] value1 = { "水费", "s323454", "30.00", "无锡自来水公司",
+				String[] value1 = { "房租费", "s0101003", "200.00", "无锡房地产公司",
 						"2011-7-12" };
 				valueDB = value1;
 				Log.e("--class-WaitCostItem", "id==0 is value is null");
@@ -163,7 +163,7 @@ public class WaitCostItem extends GeneralListActivity {
 				valueDB[i++] = kv.getValue();
 			}
 			if (valueDB == null) {
-				String[] value1 = { "水费", "s323454", "30.00", "无锡自来水公司",
+				String[] value1 = { "煤气费", "s0101002", "150.00", "无锡煤气公司",
 						"2011-7-12" };
 				valueDB = value1;
 				Log.e("--class-WaitCostItem", "id==0 is value is null");
@@ -199,7 +199,7 @@ public class WaitCostItem extends GeneralListActivity {
 				valueDB[i++] = kv.getValue();
 			}
 			if (valueDB == null) {
-				String[] value1 = { "水费", "s323454", "30.00", "无锡自来水公司",
+				String[] value1 = { "电费", "s0101001", "80.00", "无锡电力公司",
 						"2011-7-12" };
 				valueDB = value1;
 				Log.e("--class-WaitCostItem", "id==0 is value is null");
