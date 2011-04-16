@@ -1,5 +1,6 @@
 package ubank.payment;
 
+import java.io.IOException;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -50,8 +51,13 @@ public class AllPaymentSer extends GeneralListActivity {
 		super.onListItemClick(l, v, position, id);
 		switch ((int) id) {
 		case 0:// 待缴费项目
-			jsonObj = ConnectWs.connect(this, EAccType.NULL,
-					EOperation.GET_PAYMENT_NAME, "1");
+			try {
+				jsonObj = ConnectWs.connect(this, EAccType.NULL,
+						EOperation.GET_PAYMENT_NAME, "1");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			map = EHelper.toMap(jsonObj);
 			name = new String[map.size()];// 获取名字
 			value = new String[map.size()];// 获取值
