@@ -62,18 +62,10 @@ public class AllPaymentSer extends GeneralListActivity {
 			map = EHelper.toMap(jsonObj);
 			name = new String[map.size()];// 获取名字
 			value = new String[map.size()];// 获取值
-
+			i=0;//使用i之前要初始化为0
 			for (Entry<String, String> kv : map.entrySet()) {
 				name[i] = kv.getKey();
 				value[i++] = kv.getValue() + "元";
-			}
-			if (name == null || value == null) {
-				// String[] name1={"水费","房租费","煤气费","电费"};
-				// String[] value1={"30.00元","200.00元","150.00元","80.00元"};
-				// name=name1;
-				// value=value1;
-				Log.e("--class-AllPaymentSer",
-						"id==0 is name and value is null");
 			}
 			intent = new Intent();
 			intent.putExtra("name", name);
