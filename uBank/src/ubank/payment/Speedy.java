@@ -35,12 +35,12 @@ public class Speedy extends GeneralListActivity {
 		super.onListItemClick(l, v, position, id);
 		if(id==0){//手机充值
 			Intent intent=new Intent();
-			intent.putExtra("num", "手机");
+			intent.putExtra("num", "QQ");
 			intent.setClass(Speedy.this, Cost.class);
 			Speedy.this.startActivity(intent);
 		}else if(id==1){//Q币充值
 			Intent intent=new Intent();
-			intent.putExtra("num", "QQ");
+			intent.putExtra("num", "手机");
 			intent.setClass(Speedy.this, Cost.class);
 			Speedy.this.startActivity(intent);
 		}
