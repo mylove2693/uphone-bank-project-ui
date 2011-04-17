@@ -22,6 +22,7 @@ import ubank.main.R;
 import ubank.webservice.ConnectWs;
 
 /**
+ * 杨勇
  * 手机到签约账户或者是到手机的转账
  * 
  * @author Administrator
@@ -54,7 +55,6 @@ public class TransferPhToSignedAcc extends GeneralActivity {
 		title = up_intent.getStringExtra("title");
 		acc_num = up_intent.getStringExtra("acc_num");
 		acc_balance=Double.valueOf(up_intent.getStringExtra("acc_balance"));
-		System.out.println(acc_num + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		/**
 		 * 设置相应的导航栏和监听
 		 */
@@ -113,11 +113,6 @@ public class TransferPhToSignedAcc extends GeneralActivity {
 			@Override
 			public void onClick(View v) {
 				// // TODO Auto-generated method stub
-				// JSONObject jsonObj = ConnectWs.connect(this,
-				// EAccType.CURRENT_DEPOSIT,
-				// EOperation.TRANSFE_ACC, acc_num,
-				// psd_tv.getText().toString());
-				// System.out.println(jsonObj.toString());
 				// 密码框中的密码
 				psd = psd_tv.getText().toString();
 				// 目标号框中的号
@@ -127,12 +122,8 @@ public class TransferPhToSignedAcc extends GeneralActivity {
 				/**
 				 * 信息输出的检测
 				 */
-//				System.out.println(to_amt);
-//				System.out.println(to_acc_num + "aaaaaaaaa");
-//				System.out.println(psd);
-//				System.out.println(acc_num);
 				String msg = isNumPsdAmt(acc_num, psd, to_acc_num, to_amt);
-				System.out.println(msg);
+//				System.out.println(msg);
 				MyDialogOne dialog = new MyDialogOne(
 						TransferPhToSignedAcc.this, R.style.dialog);
 				if (msg.equals("转账成功")) {
@@ -161,14 +152,16 @@ public class TransferPhToSignedAcc extends GeneralActivity {
 	}
 
 	/**
-	 * 判断三个文本框的值 是否合法和正确 输入账户是否存在 手机是否开通 密码是否正确 转账金额是否大于余额
+	 * 判断三个文本框的值 是否合法和正确 
+	 * 输入账户是否存在 
+	 * 手机是否开通 
+	 * 密码是否正确
+	 * 转账金额是否大于余额
 	 * 
 	 */
-
+	
 	private String isNumPsdAmt(String NUM, String PSD, String amtph,
 			String amtnum) {
-		// String account,
-		// String password, String amtph, double amtnum
 		JSONObject jsonObj = null;
 		try {
 			jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
@@ -177,14 +170,8 @@ public class TransferPhToSignedAcc extends GeneralActivity {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("---------------------------------------------");
-		// System.out.println(jsonObj);
 		Map<String, String> tt = EHelper.toMap(jsonObj);
 		String result = tt.get("result");
-		// List<String> name = EHelper.toList(jsonObj);
-		// boolean result = Boolean.valueOf(EHelper.toList(jsonObj).get(0));
-		System.out.println(jsonObj);
-
 		return result;
 
 	}

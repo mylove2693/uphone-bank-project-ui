@@ -27,14 +27,19 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemSelectedListener;
 
+/**
+ * 杨勇
+ * 其他账户选择
+ * @author Administrator
+ *
+ */
 public class Transfer_OtherAccSelect extends GeneralActivity {
 	private Account_Select accountInfo = null;
-	private TextView txt = null;
 	private Button next_btn = null;
+	//Spinner中的填充数据数组
 	private String[] accountType = null;
 	private String[] accountValues = null;
 	String userid = "";
-
 	// 导航栏三级标题
 	String title = null;
 
@@ -43,7 +48,6 @@ public class Transfer_OtherAccSelect extends GeneralActivity {
 		super.onCreate(savedInstanceState);
 		Intent up_intent = getIntent();
 		// 获得传过来的导航栏标题
-
 		title = up_intent.getStringExtra("title");
 		addLayout(R.layout.account_type);
 		tvClassFirst.setVisibility(View.VISIBLE);
@@ -56,6 +60,7 @@ public class Transfer_OtherAccSelect extends GeneralActivity {
 		tvClassThird.setVisibility(View.VISIBLE);
 		tvClassThird.setText(title);
 
+		//获取到有两个spinner的那个布局文件的对象  从而便于添加数据
 		accountInfo = (Account_Select) findViewById(R.id.account_select);
 		userid = "3";
 		/**
@@ -82,6 +87,7 @@ public class Transfer_OtherAccSelect extends GeneralActivity {
 				//提取帐号
 				acc_num = Transfer_OtherAccSelect.this.accountInfo.AccNumSpinner
 						.getSelectedItem().toString();
+				
 				Intent elseAcc_intent = new Intent();
 				elseAcc_intent.putExtra("acc_type", acc_type);
 				elseAcc_intent.putExtra("acc_num", acc_num);
@@ -94,7 +100,9 @@ public class Transfer_OtherAccSelect extends GeneralActivity {
 		});
 	}
 
-	// 添加账户类型
+	/**
+	 *  添加账户类型
+	 */
 	private void loaderData() {
 		JSONObject json=null;
 		try {
@@ -104,7 +112,7 @@ public class Transfer_OtherAccSelect extends GeneralActivity {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(json.toString()+"--------------");
+//		System.out.println(json.toString()+"--------------");
 		List<String> name = EHelper.toList(json);
 		accountType = new String[name.size()];
 		for (int i = 0; i < accountType.length; i++) {
@@ -113,7 +121,9 @@ public class Transfer_OtherAccSelect extends GeneralActivity {
 		accountInfo.AddTypeData(accountType);
 	}
 
-	// 添加帐号
+	/**
+	 * 添加帐号
+	 */
 	private void loderValueData() {
 		accountInfo.AccTypSpinner
 				.setOnItemSelectedListener(new OnItemSelectedListener() {
@@ -121,6 +131,10 @@ public class Transfer_OtherAccSelect extends GeneralActivity {
 					@Override
 					public void onItemSelected(AdapterView<?> arg0, View arg1,
 							int arg2, long arg3) {
+						/**
+						 * 取的账户类型的值
+						 * 根据他的值来为帐号加数据
+						 */
 						String type = accountInfo.getAccTypValue();
 						JSONObject json=null;
 						try {
