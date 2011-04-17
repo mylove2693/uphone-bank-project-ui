@@ -23,14 +23,18 @@ import ubank.main.R;
 import ubank.webservice.ConnectWs;
 
 /**
+ * 杨勇
  * 转账之前的详细信息显示
+ * 帐号
+ * 帐号类型
+ * 余额
  */
 public class Transfer_information extends GeneralActivity {
 	// 各项名字数组
 	private String[] s = null;// 提示栏的数组
-	// 对应的数据数组
 	private String[] data = null;// 具体对应的数据数组
 	private String title = null;// 导航栏标题
+	
 	private String acc_num = null;// 帐号
 	private String acc_type = null;// 帐号类型
 	private String acc_balance = null;// 余额
@@ -38,7 +42,6 @@ public class Transfer_information extends GeneralActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		Intent up_intent = getIntent();
 		/**
 		 * 获得传过来的导航栏标题 帐号 帐号类型 账户余额
@@ -46,7 +49,7 @@ public class Transfer_information extends GeneralActivity {
 		title = up_intent.getStringExtra("title");
 		acc_num = up_intent.getStringExtra("acc_num");
 		acc_type = up_intent.getStringExtra("acc_type");
-		System.out.println(acc_num + acc_type + "12345678");
+//		System.out.println(acc_num + acc_type + "12345678");
 		/**
 		 *设置导航栏和监听的添加
 		 */
@@ -64,7 +67,7 @@ public class Transfer_information extends GeneralActivity {
 		 * 添加布局文件
 		 */
 		addLayout(R.layout.transfer_information);
-		
+		//获取到三个文本框 来方便填充数据
 		TextView txt_acc=(TextView)findViewById(R.id.acc_txt1);
 		TextView txt_accType=(TextView)findViewById(R.id.acc_txt2);
 		TextView txt_accBalance=(TextView)findViewById(R.id.acc_txt3);
@@ -85,10 +88,9 @@ public class Transfer_information extends GeneralActivity {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		//通过后台来获取余额
 		Map<String, String> name = EHelper.toMap(jsonObj);
 		acc_balance = name.get("余额");
-		// name.get(0);
-		// System.out.println( name.get("余额"));
 
 		// 提示数组
 		// s = new String[] { "  账户：", "  类型：", "  余额：" };
@@ -100,7 +102,6 @@ public class Transfer_information extends GeneralActivity {
 		
 		
 		// 为具体的问题添加数据
-		// this.setListAdapter(createText_Text(s, data));
 		txt_acc.setText(data[0]);
 		txt_accType.setText(data[1]);
 		txt_accBalance.setText(data[2]);

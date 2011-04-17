@@ -25,8 +25,8 @@ import ubank.main.R;
 import ubank.webservice.ConnectWs;
 
 /**
+ * 杨勇
  * 转账的密码输入界面
- * 
  * @author Administrator
  * 
  */
@@ -42,12 +42,6 @@ public class Transfer_inpsd extends GeneralActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		// JSONObject jsonObj = ConnectWs.connect(this, EAccType.NULL,
-		// EOperation.GET_PAYMENT_NAME, "1");
-		//
-		// System.out.println("后台数据"+jsonObj.toString());
-
 		Intent up_intent = getIntent();
 		// 获得传过来的导航栏标题
 		title = up_intent.getStringExtra("title");
@@ -106,10 +100,7 @@ public class Transfer_inpsd extends GeneralActivity {
 		transfer_next.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-//System.out.println(acc_num);
-//System.out.println(inPsd.getText().toString());
 				if (psdIsRight(acc_num, inPsd.getText().toString())) {
-
 					// 传递数据到后台 在后台返回结果后 再执行相应的操作
 					// 如果密码错误 就弹出提示的对话框		
 					Intent payment_intent = new Intent();
@@ -161,7 +152,6 @@ public class Transfer_inpsd extends GeneralActivity {
 		}
 		// List<String> name = EHelper.toList(jsonObj);
 		boolean result = Boolean.valueOf(EHelper.toList(jsonObj).get(0));
-
 		return result;
 	}
 }
