@@ -54,7 +54,7 @@ public class InputPsw extends GeneralActivity {
 				 * 先判断密码框是否为空 当不为空时在验证密码是否正确 中间用 & 连接 & 表示前面为true的情况下后面还要执行
 				 * 知道前后都为true时菜返回true
 				 */
-				if (!pwsStr.equals("")) {
+				if (!pwsStr.equals("")&pwsStr.equals("123456")) {
 					// 计算余额
 					Double balanceValue = Double.parseDouble(acc_balance)
 							- Double.parseDouble(paymoney);
