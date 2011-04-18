@@ -31,9 +31,7 @@ import ubank.webservice.ConnectWs;
  * 
  */
 public class Transfer_inpsd extends GeneralActivity {
-	// 导航栏三级标题
-	String title = null;
-
+	String title = null;	// 导航栏三级标题
 	String acc_type = null;
 	String acc_num = null;
 	EditText inPsd;//密码框
@@ -42,56 +40,7 @@ public class Transfer_inpsd extends GeneralActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		Intent up_intent = getIntent();
-		// 获得传过来的导航栏标题
-		title = up_intent.getStringExtra("title");
-		// 帐号类型
-		acc_type = up_intent.getStringExtra("acc_type");
-		// 帐号
-		acc_num = up_intent.getStringExtra("acc_num");
-
-		tvClassFirst.setVisibility(View.VISIBLE);
-		tvClassFirst.setText("首页>");
-		setListener(tvClassFirst, this, BankMain.class);
-
-		tvClassSecond.setVisibility(View.VISIBLE);
-		tvClassSecond.setText("转账汇款>");
-		// 转账汇款的监听
-		setListener(tvClassSecond, this, TransferMain.class);
-
-		tvClassThird.setVisibility(View.VISIBLE);
-		tvClassThird.setText(title);
-
-		// 添加布局
-		addLayout(R.layout.transfer_inspd);
-
-		TextView transfer_acc_mation = (TextView) findViewById(R.id.acc_mation)
-				.findViewById(R.id.Text_View_18);
-		transfer_acc_mation.setText("您选择的转账账户为：");
-
-		/**
-		 * 从数据库中取得数据
-		 */
-		// 这个是类型 是小字
-		TextView transfer_acctype = (TextView) findViewById(R.id.acc_type)
-				.findViewById(R.id.Text_View_16);
-		transfer_acctype.setText(acc_type);
-
-		// 这个是帐号 是小字
-		transfer_accnum = (TextView) findViewById(R.id.acc_num)
-				.findViewById(R.id.Text_View_16);
-		transfer_accnum.setText(acc_num);
-
-		// 提示输入密码的文本框
-		TextView transfer_psd_txtview = (TextView) findViewById(
-				R.id.acc_inpsd_mation).findViewById(R.id.Text_View_18);
-		transfer_psd_txtview.setText("请输入账户密码:");
-		//密码输入框  便于取数据
-		inPsd=(EditText)findViewById(R.id.transfer_inpsd_edit).findViewById(R.id.et_psd);
-		
-		
-		
-
+		init();//加载无需从后台访问的数据
 		Button transfer_next = (Button) findViewById(R.id.transfer_inpsd_next)
 				.findViewById(R.id.button);
 		transfer_next.setText("下一步");
@@ -100,7 +49,7 @@ public class Transfer_inpsd extends GeneralActivity {
 		transfer_next.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if (psdIsRight(acc_num, inPsd.getText().toString())) {
+				if (psdIsRight(acc_num, inPsd.getText().toString())) {//判断密码是否正确
 					// 传递数据到后台 在后台返回结果后 再执行相应的操作
 					// 如果密码错误 就弹出提示的对话框		
 					Intent payment_intent = new Intent();
@@ -134,6 +83,58 @@ public class Transfer_inpsd extends GeneralActivity {
 		});
 
 	}
+/**
+ * 添加无需从后台访问的数据
+ * 和获取各个控件
+ */
+	private void init(){
+		
+		Intent up_intent = getIntent();
+		// 获得传过来的导航栏标题
+		title = up_intent.getStringExtra("title");
+		// 帐号类型
+		acc_type = up_intent.getStringExtra("acc_type");
+		// 帐号
+		acc_num = up_intent.getStringExtra("acc_num");
+
+		tvClassFirst.setVisibility(View.VISIBLE);
+		tvClassFirst.setText("首页>");
+		setListener(tvClassFirst, this, BankMain.class);
+
+		tvClassSecond.setVisibility(View.VISIBLE);
+		tvClassSecond.setText("转账汇款>");
+		// 转账汇款的监听
+		setListener(tvClassSecond, this, TransferMain.class);
+
+		tvClassThird.setVisibility(View.VISIBLE);
+		tvClassThird.setText(title);
+
+		// 添加布局
+		addLayout(R.layout.transfer_inspd);
+
+		TextView transfer_acc_mation = (TextView) findViewById(R.id.acc_mation)
+				.findViewById(R.id.Text_View_18);
+		transfer_acc_mation.setText("您选择的转账账户为：");
+
+		// 这个是类型 是小字
+		TextView transfer_acctype = (TextView) findViewById(R.id.acc_type)
+				.findViewById(R.id.Text_View_16);
+		transfer_acctype.setText(acc_type);
+
+		// 这个是帐号 是小字
+		transfer_accnum = (TextView) findViewById(R.id.acc_num)
+				.findViewById(R.id.Text_View_16);
+		transfer_accnum.setText(acc_num);
+
+		// 提示输入密码的文本框
+		TextView transfer_psd_txtview = (TextView) findViewById(
+				R.id.acc_inpsd_mation).findViewById(R.id.Text_View_18);
+		transfer_psd_txtview.setText("请输入账户密码:");
+		//密码输入框  便于取数据
+		inPsd=(EditText)findViewById(R.id.transfer_inpsd_edit).findViewById(R.id.et_psd);
+	}
+	
+	
 /**
  * 验证密码是否是正确的  返回bool变量
  * @param NUM 帐号
