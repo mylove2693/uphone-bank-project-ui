@@ -36,32 +36,15 @@ import android.widget.AdapterView.OnItemSelectedListener;
 public class Transfer_OtherAccSelect extends GeneralActivity {
 	private Account_Select accountInfo = null;
 	private Button next_btn = null;
-	//Spinner中的填充数据数组
-	private String[] accountType = null;
-	private String[] accountValues = null;
+	private String[] accountType = null;	//Spinner中的填充账户类型数组
+	private String[] accountValues = null;  //Spinner中的填充账号数组
 	String userid = "";
-	// 导航栏三级标题
-	String title = null;
+	String title = null;	// 导航栏三级标题
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		Intent up_intent = getIntent();
-		// 获得传过来的导航栏标题
-		title = up_intent.getStringExtra("title");
-		addLayout(R.layout.account_type);
-		tvClassFirst.setVisibility(View.VISIBLE);
-		tvClassFirst.setText("首页>");
-		setListener(tvClassFirst, this, BankMain.class);
-		tvClassSecond.setVisibility(View.VISIBLE);
-		tvClassSecond.setText("转账汇款>");
-		// 监听
-		setListener(tvClassSecond, this,TransferMain.class);
-		tvClassThird.setVisibility(View.VISIBLE);
-		tvClassThird.setText(title);
-
-		//获取到有两个spinner的那个布局文件的对象  从而便于添加数据
-		accountInfo = (Account_Select) findViewById(R.id.account_select);
+		init();//加载无需从后台访问的数据
 		userid = "3";
 		/**
 		 * 添加数据的方法
@@ -78,7 +61,9 @@ public class Transfer_OtherAccSelect extends GeneralActivity {
 			@Override
 			public void onClick(View v) {
 				/**
-				 * 将服务器上取得的值传给下一个Activity 首先将此Activity上的数据提取传到下一个 主要是帐号和类型
+				 * 将服务器上取得的值传给下一个Activity 
+				 * 首先将此Activity上的数据提取传到下一个 
+				 * 主要是帐号和类型
 				 */
 				String acc_type,acc_num;
 				//提取账户类型
@@ -99,6 +84,29 @@ public class Transfer_OtherAccSelect extends GeneralActivity {
 			}
 		});
 	}
+	
+	/**
+	 * 加载无需访问后台的数据
+	 */
+	private void init(){
+		Intent up_intent = getIntent();
+		// 获得传过来的导航栏标题
+		title = up_intent.getStringExtra("title");
+		addLayout(R.layout.account_type);
+		tvClassFirst.setVisibility(View.VISIBLE);
+		tvClassFirst.setText("首页>");
+		setListener(tvClassFirst, this, BankMain.class);
+		tvClassSecond.setVisibility(View.VISIBLE);
+		tvClassSecond.setText("转账汇款>");
+		// 监听
+		setListener(tvClassSecond, this,TransferMain.class);
+		tvClassThird.setVisibility(View.VISIBLE);
+		tvClassThird.setText(title);
+
+		//获取到有两个spinner的那个布局文件的对象  从而便于添加数据
+		accountInfo = (Account_Select) findViewById(R.id.account_select);
+	}
+	
 
 	/**
 	 *  添加账户类型
