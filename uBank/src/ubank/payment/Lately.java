@@ -82,25 +82,23 @@ public class Lately extends GeneralListActivity {
 			water_intent.setClass(Lately.this, LatelyCost.class);
 			Lately.this.startActivity(water_intent);
 		} else if (id == 1) {// 电费
-			// 传入的时间为null:0116:4:2011-7-4:2011-7-14
-			String startDate = "2011-07-04";
-			String endDate = "2011-07-14";
-			String userId = "2";
-			List<String> list = null;
 			Intent electricity_intent = new Intent();
+			String[] value1=null;// 获取值
 			try {
-				JSONObject jsonObj = ConnectWs.connect(this, EAccType.NULL,
-						EOperation.GET_PAYMENT_HISTORY, userId, startDate,
-						endDate);
-				list = EHelper.toList(jsonObj);
+				JSONObject jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
+						EOperation.GET_PAYMENT_HIS_INFO,"1");
+				Map<String, String> map = EHelper.toMap(jsonObj);
+				System.out.println(jsonObj.toString());
+				value1 = new String[map.size()];// 获取值
+				int i = 0;// 使用i之前要初始化为0
+				for (Entry<String, String> kv : map.entrySet()) {
+					value1[i++] = kv.getValue();
+				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			// [2, 无锡电力公司, s0101001, 80.00, 电费, 0, 1, 2011-03-05, 2011-7-12]
-			String[] value = { list.get(8), list.get(4), "110", list.get(3),
-					list.get(2) };
-			electricity_intent.putExtra("value", value);
+			electricity_intent.putExtra("value", value1);
 			electricity_intent.setClass(Lately.this, LatelyCost.class);
 			Lately.this.startActivity(electricity_intent);
 		} else if (id == 2) {// 房租费
