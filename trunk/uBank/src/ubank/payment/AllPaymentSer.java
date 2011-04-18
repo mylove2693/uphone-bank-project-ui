@@ -9,7 +9,6 @@ import org.json.JSONObject;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import ubank.base.GeneralListActivity;
@@ -17,7 +16,6 @@ import ubank.enum_type.EAccType;
 import ubank.enum_type.EOperation;
 import ubank.helper.EHelper;
 import ubank.main.BankMain;
-import ubank.main.R;
 import ubank.webservice.ConnectWs;
 
 /**
