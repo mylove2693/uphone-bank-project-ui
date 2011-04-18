@@ -56,14 +56,12 @@ public class GeneralActivity extends Activity implements IGeneralActivity {
 		// TODO Auto-generated method stub
 		super.onStop();
 		if (GeneralActivity.isHide) {
-			Log.v("Ubank", getClass() + " onStop now,hide= "
-					+ GeneralActivity.isHide);
+			Log.v("Ubank", getClass() + " onStop now,hide= " + GeneralActivity.isHide);
 
 			Intent notifyIntent = new Intent(this, getClass());
 			notifyIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 			/* 创建PendingIntent作为设置递延运行的Activity */
-			PendingIntent appIntent = PendingIntent.getActivity(this, 0,
-					notifyIntent, 0);
+			PendingIntent appIntent = PendingIntent.getActivity(this, 0, notifyIntent, 0);
 
 			Notification myNoti = new Notification();
 			// 设置如果被点击可以自动删除
@@ -73,15 +71,13 @@ public class GeneralActivity extends Activity implements IGeneralActivity {
 			myNoti.tickerText = "你的手机银行正在运行";
 			/* 设置notification发生时同时发出默认声音 */
 			myNoti.defaults = Notification.DEFAULT_SOUND;
-			myNoti.setLatestEventInfo(this, "手机银行", "为了避免信息泄露，请及时完成或退出",
-					appIntent);
+			myNoti.setLatestEventInfo(this, "手机银行", "为了避免信息泄露，请及时完成或退出", appIntent);
 			NotificationManager myNotiManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 			myNotiManager.notify(0, myNoti);
 			finish();
 		}
 		GeneralActivity.isHide = true;
-		Log.v("Ubank", getClass() + " onStop count. hide= "
-				+ GeneralActivity.isHide);
+		Log.v("Ubank", getClass() + " onStop count. hide= " + GeneralActivity.isHide);
 	}
 
 	@Override
@@ -89,12 +85,17 @@ public class GeneralActivity extends Activity implements IGeneralActivity {
 		// TODO 菜单点击
 		switch (item.getItemId()) {
 		case 0:
-			moveTaskToBack(true);
+			Intent startMain = new Intent(Intent.ACTION_MAIN);
+			startMain.addCategory(Intent.CATEGORY_HOME);
+			startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(startMain);
+			System.exit(0);
+			// moveTaskToBack(true);
 			break;
 		case 1:
 			new MyDialogOne(this, R.style.dialog)
 					.setTitleAndInfo("关于",
-							"手机银行\n客户至上\n版本号v10.\n智翔公司 版权所有\nCopyright 2011\nAll Rights Reserved")
+							"手机银行\n客户至上\n版本号v10.\n智翔公司android小组 版权所有\nCopyright 2011\nAll Rights Reserved")
 					.setDismissButton().show();
 
 			break;
@@ -116,22 +117,15 @@ public class GeneralActivity extends Activity implements IGeneralActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		// 获取图片对象
-		btnback = (ImageView) findViewById(R.id.paymentabove).findViewById(
-				R.id.returnToPre);
-		btnbank = (ImageView) findViewById(R.id.paymentbelow).findViewById(
-				R.id.btnMain);
-		btnhelper = (ImageView) findViewById(R.id.paymentbelow).findViewById(
-				R.id.btnHelper);
+		btnback = (ImageView) findViewById(R.id.paymentabove).findViewById(R.id.returnToPre);
+		btnbank = (ImageView) findViewById(R.id.paymentbelow).findViewById(R.id.btnMain);
+		btnhelper = (ImageView) findViewById(R.id.paymentbelow).findViewById(R.id.btnHelper);
 
 		// 获取TextView对象
-		tvClassFirst = (TextView) findViewById(R.id.paymentabove).findViewById(
-				R.id.class_first);
-		tvClassSecond = (TextView) findViewById(R.id.paymentabove)
-				.findViewById(R.id.class_second);
-		tvClassThird = (TextView) findViewById(R.id.paymentabove).findViewById(
-				R.id.class_third);
-		tvClassFour = (TextView) findViewById(R.id.paymentabove).findViewById(
-				R.id.class_four);
+		tvClassFirst = (TextView) findViewById(R.id.paymentabove).findViewById(R.id.class_first);
+		tvClassSecond = (TextView) findViewById(R.id.paymentabove).findViewById(R.id.class_second);
+		tvClassThird = (TextView) findViewById(R.id.paymentabove).findViewById(R.id.class_third);
+		tvClassFour = (TextView) findViewById(R.id.paymentabove).findViewById(R.id.class_four);
 
 		// 为返回键添加监听
 		btnback.setOnClickListener(new OnClickListener() {
@@ -158,15 +152,13 @@ public class GeneralActivity extends Activity implements IGeneralActivity {
 
 	// 为导航栏的按钮添加监听
 	@SuppressWarnings("unchecked")
-	public void setListener(TextView tvButton, Activity fromActivity,
-			Class toActivity) {
+	public void setListener(TextView tvButton, Activity fromActivity, Class toActivity) {
 		tvButton.setOnClickListener(new Listener(fromActivity, toActivity));
 	}
 
 	// 为底部的图标按钮添加监听
 	@SuppressWarnings("unchecked")
-	public void setListener(ImageView btnButton, Activity fromActivity,
-			Class toActivity) {
+	public void setListener(ImageView btnButton, Activity fromActivity, Class toActivity) {
 		btnButton.setOnClickListener(new Listener(fromActivity, toActivity));
 	}
 

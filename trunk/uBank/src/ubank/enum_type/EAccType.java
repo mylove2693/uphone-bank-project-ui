@@ -21,6 +21,16 @@ public enum EAccType {
 		throw new NullPointerException(
 				"I can't find Enum AccType,so it is null");
 	}
+	
+	public static EAccType getEAccTypeByName(String name) {
+		for (EAccType a : EAccType.values()) {
+			if (a.mName.equals(name)) {
+				return a;
+			}
+		}
+		throw new NullPointerException(
+				"I can't find Enum AccType,so it is null");
+	}
 
 	public static String getAccTypeId(EAccType e) {
 		return e.mId;

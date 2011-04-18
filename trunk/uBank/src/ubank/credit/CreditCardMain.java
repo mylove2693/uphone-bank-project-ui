@@ -33,8 +33,8 @@ public class CreditCardMain extends GeneralListActivity {
 		tvClassThird.setVisibility(View.VISIBLE);
 		tvClassThird.setText("信用卡还款");
 
-		SimpleAdapter adapter = createImg_Text_ImgAdapter(new String[] {
-				"账户信息", "交易明细查看", "账户来账查看?", "开卡", "销卡", "信用卡还款" });
+		SimpleAdapter adapter = createImg_Text_ImgAdapter(new String[] { "账户信息", "交易明细查看", "账户来账查看?", "开卡",
+				"销卡", "信用卡还款" });
 		setListAdapter(adapter);
 	}
 
@@ -46,24 +46,23 @@ public class CreditCardMain extends GeneralListActivity {
 		switch (position) {
 		case 0:
 			// 账户信息
-			intent = new Intent(CreditCardMain.this, AccountQueryInfo.class);
+			intent = new Intent(CreditCardMain.this, SelectCreditCard.class);
 			// 传送信息
-
+			intent.putExtra("toClass", "AccountQuery");
 			startActivity(intent);
 			break;
 		case 1:
 			// 交易明细查看
-			intent = new Intent(CreditCardMain.this,
-					AccountInventoryDetail.class);
+			intent = new Intent(CreditCardMain.this, SelectCreditCard.class);
 			// 传送信息
-
+			intent.putExtra("toClass", "AccountInventory");
 			startActivity(intent);
 			break;
 		case 2:
 			// 账户来账查看
-			intent = new Intent(CreditCardMain.this, AccountComeDetail.class);
+			intent = new Intent(CreditCardMain.this, SelectCreditCard.class);
 			// 传送信息
-
+			intent.putExtra("toClass", "AccountCome");
 			startActivity(intent);
 			break;
 		case 3:
