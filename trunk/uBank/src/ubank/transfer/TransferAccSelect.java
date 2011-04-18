@@ -87,14 +87,16 @@ public class TransferAccSelect extends GeneralListActivity {
 				e.printStackTrace();
 			}
 			String str = EHelper.toStr(jsonObj);
+//			System.out.println(str+"2222222222222");
 			if (str == null) {
 				// String acc_type,acc_num;
 				acc_type = "110";
 				acc_num = "100000";
-			}
+			}else{
 //			取出后台传递过来的数据
-			acc_type = str.split("#")[0];
+			acc_type = str.split("#")[3];
 			acc_num = str.split("#")[1];
+			}
 			/**
 			 * 将服务器上取得的值传给下一个Activity
 			 */
