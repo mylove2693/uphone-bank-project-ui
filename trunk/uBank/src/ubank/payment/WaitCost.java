@@ -44,7 +44,7 @@ public class WaitCost extends GeneralListActivity {// 待缴费的项目
 			public void onClick(View v) {
 				 
 				/**
-				 * 从上一个Activity中得到要缴费的金额getBundleExtra
+				 * 从上一个Activity中得到要缴费的金额getBundleExtra此处不能重新new Intent
 				 */
 			    Intent intent=getIntent();
 			    

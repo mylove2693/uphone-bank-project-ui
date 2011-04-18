@@ -17,11 +17,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemSelectedListener;
 
 public class Cost extends GeneralActivity {
 
@@ -30,11 +32,18 @@ public class Cost extends GeneralActivity {
 	private Button next_btn;
 	private String num;
 	private EditText edit;
-	private Spinner spinner;
+	private Spinner spinner1;
+	private Spinner spinner2;
 	private String[] firstSpinnerValue;
 	private String[] secondSpinnerValue;
 	private JSONObject jsonObj;
 	private String payId;
+	private String operator;//运营商
+	private String denomination;//面额
+	private String editNum;//输入编辑框的号码
+	private String payname;// 要交费的名称
+	private String paymoney;// 要交费的金额
+	private String payaddress;// 收费方
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -55,30 +64,45 @@ public class Cost extends GeneralActivity {
 					d1.show();
 				} else {
 					Intent intent = new Intent();
-					String[] name = { "项目名称:", " ", "缴费金额", "收费方:", "缴费合同号:" };
+					String[] name = { "项目名称:", " ", "缴费金额:", "收费方:", "缴费合同号:" };
 					String[] value = new String[5];
 					if (num.equals("手机")) {
+						editNum=edit.getText().toString().trim();
 						name[1] = "目标手机号:";
 						value[0] = "手机充值";
-						value[1] = "110";
-						value[2] = "10";
-						value[3] = "中国移动";
+						value[1] = editNum;
+						value[2] = denomination;
+						value[3] = operator;
 						value[4] = "st110";
+						
+						 payname=num;// 要交费的名称
+						 paymoney=denomination;// 要交费的金额
+						 payaddress=operator;// 收费方
 					} else if (num.equals("QQ")) {
+						editNum=edit.getText().toString().trim();
 						name[1] = "目标QQ号:";
-						value[0] = "手机充值";
-						value[1] = "553018332";
-						value[2] = "20";
-						value[3] = "腾讯QQ";
+						value[0] = "Q币充值";
+						value[1] = editNum;
+						value[2] = denomination;
+						value[3] = operator;
 						value[4] = "st553018";
+						
+						payname=num;// 要交费的名称
+						paymoney=denomination;// 要交费的金额
+						payaddress=operator;// 收费方
 
 					} else if (num.equals("网易")) {
+						editNum=edit.getText().toString().trim();
 						name[1] = "目标网易号:";
 						value[0] = "网易充值";
-						value[1] = "120";
-						value[2] = "20";
-						value[3] = "网易";
+						value[1] = editNum;
+						value[2] = denomination;
+						value[3] = operator;
 						value[4] = "st3232";
+						
+						payname=num;// 要交费的名称
+						paymoney=denomination;// 要交费的金额
+						payaddress=operator;// 收费方
 
 					} else {
 						name[1] = " ";
@@ -88,6 +112,12 @@ public class Cost extends GeneralActivity {
 						value[3] = " ";
 						value[4] = " ";
 					}
+					//将数据传到密码输入框
+					Bundle bubdle = new Bundle();
+					bubdle.putString("payname", payname);// 要交费的名称
+					bubdle.putString("paymoney", paymoney);// 要交费的金额
+					bubdle.putString("payaddress", payaddress);// 收费方
+					intent.putExtras(bubdle);
 					intent.putExtra("name", name);
 					intent.putExtra("value", value);
 					intent.setClass(Cost.this, WaitCost.class);
@@ -134,13 +164,12 @@ public class Cost extends GeneralActivity {
 		Bundle bund = intent.getExtras();
 		num=bund.getString("num");
 		payId=bund.getString("payId");
-		spinner = (Spinner) findViewById(R.id.spinner_one).findViewById(R.id.Spinner);
+		spinner1 = (Spinner) findViewById(R.id.spinner_one).findViewById(R.id.Spinner);
 		//从服务器上获得数据
 		try {
 			jsonObj = ConnectWs.connect(this, EAccType.NULL,
 					EOperation.GET_OPERATOR, payId);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		List<String> list=EHelper.toList(jsonObj);
@@ -149,10 +178,26 @@ public class Cost extends GeneralActivity {
 			firstSpinnerValue[i]=list.get(i);
 		}
 		//firstSpinnerValue = new String[] { "中国移动", "中国联通", "中国电信" };
-		secondSpinnerValue = new String[] { "30元", "50元", "100元" };
-		spinner.setAdapter(getAdapter(firstSpinnerValue));
-		spinner = (Spinner) findViewById(R.id.spinner_two).findViewById(R.id.Spinner);
-		spinner.setAdapter(getAdapter(secondSpinnerValue));
+		secondSpinnerValue = new String[] { "30", "50", "100" };
+		spinner1.setAdapter(getAdapter(firstSpinnerValue));
+		//对spring1进行监听
+		spinner1.setOnItemSelectedListener(new OnItemSelectedListener() {
+			public void onItemSelected(AdapterView<?> parent, View view,int position, long id) {
+					Spinner spinner = (Spinner) parent;
+//					System.out.println("默认第一项="+spinner.getSelectedItem().toString());
+					operator=spinner.getSelectedItem().toString().trim();
+		}
+			public void onNothingSelected(AdapterView<?> arg0) {}});
+		spinner2 = (Spinner) findViewById(R.id.spinner_two).findViewById(R.id.Spinner);
+		spinner2.setAdapter(getAdapter(secondSpinnerValue));
+		//对spring2进行监听
+		spinner2.setOnItemSelectedListener(new OnItemSelectedListener() {
+			public void onItemSelected(AdapterView<?> parent, View view,int position, long id) {
+					Spinner spinner = (Spinner) parent;
+//					System.out.println("默认第一项="+spinner.getSelectedItem().toString());
+					denomination=spinner.getSelectedItem().toString().trim();
+		}
+			public void onNothingSelected(AdapterView<?> arg0) {}});
 	}
 	//初始化adapter
 	private ArrayAdapter<String> getAdapter(String[] str){
