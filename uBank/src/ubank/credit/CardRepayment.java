@@ -70,8 +70,7 @@ public class CardRepayment extends GeneralActivity {
 			// 连接服务器...
 			JSONObject jsonObj = new JSONObject();
 			try {
-				jsonObj = ConnectWs.connect(this, EAccType.NULL,
-						EOperation.GET_BIND_CREDIT_CARD, "");
+				jsonObj = ConnectWs.connect(this, EAccType.NULL, EOperation.GET_BIND_CREDIT_CARD, "");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				Toast.makeText(this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
@@ -100,12 +99,10 @@ public class CardRepayment extends GeneralActivity {
 		setListener(tvClassSecond, this, CreditCardMain.class);
 		tvClassThird.setVisibility(View.VISIBLE);
 		tvClassThird.setText("信用卡还款");
-		((TextView) findViewById(R.id.cc_tv_otherCC).findViewById(
-				R.id.Text_View_18)).setText(R.string.cc_other_cc_repayment);// 其他信用卡还款
-		((TextView) findViewById(R.id.cc_tv_cc_num).findViewById(
-				R.id.Text_View_18)).setText(R.string.cc_ccNo);// 信用卡号
-		btnNext = (Button) findViewById(R.id.cc_btn_next).findViewById(
-				R.id.button);
+		((TextView) findViewById(R.id.cc_tv_otherCC).findViewById(R.id.Text_View_18))
+				.setText(R.string.cc_other_cc_repayment);// 其他信用卡还款
+		((TextView) findViewById(R.id.cc_tv_cc_num).findViewById(R.id.Text_View_18)).setText(R.string.cc_ccNo);// 信用卡号
+		btnNext = (Button) findViewById(R.id.cc_btn_next).findViewById(R.id.button);
 		btnNext.setText(R.string.cc_next);// 下一步
 		et = (EditText) findViewById(R.id.cc_et_cc).findViewById(R.id.et_acc);
 	}
@@ -117,7 +114,9 @@ public class CardRepayment extends GeneralActivity {
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
 			Intent intent = new Intent(CardRepayment.this, CreditCardInfo.class);
-			intent.putExtra("creditcard", et.getText().toString().trim());
+			Bundle bundle = new Bundle();
+			bundle.putString("toAcc", et.getText().toString().trim());
+			intent.putExtras(bundle);
 			startActivity(intent);
 		}
 
@@ -127,13 +126,14 @@ public class CardRepayment extends GeneralActivity {
 	private OnChildClickListener onClickListener = new OnChildClickListener() {
 
 		@Override
-		public boolean onChildClick(ExpandableListView parent, View v,
-				int groupPosition, int childPosition, long id) {
+		public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
 			// TODO Auto-generated method stub
 			TextView tv = (TextView) v;
-			Intent intent = new Intent();
-			intent.putExtra("creditcard", tv.getText().toString().trim());
-			intent.setClass(CardRepayment.this, CreditCardInfo.class);
+			Intent intent = new Intent(CardRepayment.this, CreditCardInfo.class);
+			// 添加需要还款的信用卡账户
+			Bundle bundle = new Bundle();
+			bundle.putString("toAcc", tv.getText().toString().trim());
+			intent.putExtras(bundle);
 			startActivity(intent);
 			return false;
 		}
@@ -160,8 +160,8 @@ public class CardRepayment extends GeneralActivity {
 			return mChildArray.get(groupPosition).size();
 		}
 
-		public View getChildView(int groupPosition, int childPosition,
-				boolean isLastChild, View convertView, ViewGroup parent) {
+		public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView,
+				ViewGroup parent) {
 			String string = mChildArray.get(groupPosition).get(childPosition);
 			return getGenericView(string);
 		}
@@ -178,15 +178,13 @@ public class CardRepayment extends GeneralActivity {
 			return groupPosition;
 		}
 
-		public View getGroupView(int groupPosition, boolean isExpanded,
-				View convertView, ViewGroup parent) {
+		public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
 			String string = mGroupArray.get(groupPosition);
 			return getGenericView(string);
 		}
 
 		public TextView getGenericView(String string) {
-			AbsListView.LayoutParams layoutParams = new AbsListView.LayoutParams(
-					ViewGroup.LayoutParams.FILL_PARENT, 64);
+			AbsListView.LayoutParams layoutParams = new AbsListView.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, 64);
 
 			View ll = getLayoutInflater().inflate(R.xml.text_view_18, null);
 			TextView textView = (TextView) ll.findViewById(R.id.Text_View_18);

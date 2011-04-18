@@ -10,6 +10,7 @@ import android.widget.Button;
 public class Login extends Activity {
 
 	public static String userId = "1";
+	public static String userName = "张三";
 	private Button btn_login;
 	private Intent intent;
 

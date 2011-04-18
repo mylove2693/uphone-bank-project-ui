@@ -20,6 +20,7 @@ import ubank.enum_type.EAccType;
 import ubank.enum_type.EOperation;
 import ubank.helper.EHelper;
 import ubank.main.BankMain;
+import ubank.main.Login;
 import ubank.main.R;
 import ubank.webservice.ConnectWs;
 
@@ -27,15 +28,13 @@ public class CreditCardInfo extends GeneralListActivity {
 
 	private Button btnNext;
 	private String creditcard;
+	private Bundle bundle;
+	private Intent intent;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-
-		// 接收数据
-		Intent intent = getIntent();
-		creditcard = intent.getStringExtra("creditcard");
 
 		addLayoutBlow(R.layout.midle_btn);
 		initializeData();
@@ -45,13 +44,17 @@ public class CreditCardInfo extends GeneralListActivity {
 
 	private void initializeData() {
 		// TODO 初始化
-
+		
+		// 接收数据
+		intent = getIntent();
+		bundle = intent.getExtras();
+		creditcard = bundle.getString("toAcc");
+		
 		if (EHelper.hasInternet(this)) {
 			// 连接服务器...
 			JSONObject jsonObj = new JSONObject();
 			try {
-				jsonObj = ConnectWs.connect(CreditCardInfo.this,
-						EAccType.CREDIT_CARD, EOperation.GET_ACC_INFO,
+				jsonObj = ConnectWs.connect(CreditCardInfo.this, EAccType.CREDIT_CARD, EOperation.GET_ACC_INFO,
 						creditcard);
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
@@ -59,11 +62,10 @@ public class CreditCardInfo extends GeneralListActivity {
 				finish();
 				e1.printStackTrace();
 			}
-			String[] name = new String[] { "信用卡账户", "持卡人姓名", "本期应还款额",
-					"本期最低还款额", "本期到期还款日" };
+			String[] name = new String[] { "信用卡账户", "持卡人姓名", "本期应还款额", "本期最低还款额", "本期到期还款日" };
 			String[] value = new String[5];
 			value[0] = creditcard;// 信用卡号
-			value[1] = "张三";
+			value[1] = Login.userName;
 			for (int i = 2; i < 5; i++) {
 				try {
 					value[i] = jsonObj.getString(name[i]);
@@ -96,9 +98,8 @@ public class CreditCardInfo extends GeneralListActivity {
 
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			Intent intent = new Intent(CreditCardInfo.this,
-					SelectRepaymentAcc.class);
+			// TODO 传递包含有bundle数据的intent
+			intent.setClass(CreditCardInfo.this, SelectRepaymentAcc.class);
 			startActivity(intent);
 		}
 	};

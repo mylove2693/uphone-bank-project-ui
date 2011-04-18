@@ -11,7 +11,7 @@
 	<include layout="@xml/white_line" android:layout_width="fill_parent"
 		android:layout_height="wrap_content" />
 	<!-- 转账金额输入框 -->
-	<include android:id="@+id/cc_et_amt" layout="@xml/et_amt"
+	<include android:id="@+id/ccc_et_amt" layout="@xml/et_amt"
 		android:layout_gravity="center_horizontal" android:layout_width="290dip"
 		android:layout_height="wrap_content" />
 	<!-- 白线 -->
@@ -26,7 +26,7 @@
 	<include layout="@xml/white_line" android:layout_width="fill_parent"
 		android:layout_height="wrap_content" />
 	<!-- 账户密码输入框 -->
-	<include android:id="@+id/cc_et_pwd" layout="@xml/et_psd"
+	<include android:id="@+id/ccc_et_pwd" layout="@xml/et_psd"
 		android:layout_gravity="center_horizontal" android:layout_width="290dip"
 		android:layout_height="35dip" />
 	<!-- 白线 -->

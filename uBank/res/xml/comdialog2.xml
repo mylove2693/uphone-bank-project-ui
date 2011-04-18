@@ -35,6 +35,12 @@
 	android:text="content2"
 	android:visibility="gone"
 	/>
+	<!-- 密码，一般不可见 -->
+	<TextView android:id="@+id/act_tv_pwd" android:layout_width="match_parent" android:layout_height="wrap_content" 
+	android:text="请输入密码" android:textSize="16dip"></TextView>
+	<EditText android:id="@+id/act_et_pwd" android:layout_width="match_parent" android:layout_height="wrap_content" 
+	android:visibility="gone" android:password="true"></EditText>
+	
 <TextView
 	android:layout_width="fill_parent"
 	android:layout_height="1dip"

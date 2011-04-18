@@ -44,26 +44,20 @@ public class DestroyCard extends GeneralActivity {
 	}
 
 	private void initializeData() {
-		((TextView) (findViewById(R.id.cc_tv_openName)
-				.findViewById(R.id.blue_Text_View))).setText("开户名");
-		((TextView) (findViewById(R.id.cc_tv_ccNo)
-				.findViewById(R.id.blue_Text_View))).setText("信用卡号");
-		((TextView) (findViewById(R.id.cc_tv_idType)
-				.findViewById(R.id.blue_Text_View))).setText("证件类型");
-		((TextView) (findViewById(R.id.cc_tv_id)
-				.findViewById(R.id.blue_Text_View))).setText("证件号");
-		((TextView) (findViewById(R.id.cc_tv_phone)
-				.findViewById(R.id.blue_Text_View))).setText("手机号");
-		((TextView) (findViewById(R.id.cc_tv_pwd)
-				.findViewById(R.id.blue_Text_View))).setText("账户密码");
+		((TextView) (findViewById(R.id.cc_tv_openName).findViewById(R.id.blue_Text_View))).setText("开户名");
+		((TextView) (findViewById(R.id.cc_tv_ccNo).findViewById(R.id.blue_Text_View))).setText("信用卡号");
+		((TextView) (findViewById(R.id.cc_tv_idType).findViewById(R.id.blue_Text_View))).setText("证件类型");
+		((TextView) (findViewById(R.id.cc_tv_id).findViewById(R.id.blue_Text_View))).setText("证件号");
+		((TextView) (findViewById(R.id.cc_tv_phone).findViewById(R.id.blue_Text_View))).setText("手机号");
+		((TextView) (findViewById(R.id.cc_tv_pwd).findViewById(R.id.blue_Text_View))).setText("账户密码");
 		// 检查网络
 		if (EHelper.hasInternet(this)) {
 
 			// 连接服务器...
 			JSONObject jsonObj = new JSONObject();
 			try {
-				jsonObj = ConnectWs.connect(DestroyCard.this, EAccType.NULL,
-						EOperation.GET_BIND_CREDIT_CARD, "");
+				jsonObj = ConnectWs.connect(DestroyCard.this, EAccType.NULL, EOperation.GET_BIND_CREDIT_CARD,
+						"");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				Toast.makeText(this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
@@ -71,37 +65,32 @@ public class DestroyCard extends GeneralActivity {
 				e.printStackTrace();
 			}
 			List<String> lstCc = EHelper.toList(jsonObj);
-			spnrCcNo = (Spinner) findViewById(R.id.cc_spnr_ccNo).findViewById(
-					R.id.Small_Spinner);
+			spnrCcNo = (Spinner) findViewById(R.id.cc_spnr_ccNo).findViewById(R.id.Small_Spinner);
 
 			ArrayAdapter<String> adapterType = new ArrayAdapter<String>(this,
 					android.R.layout.simple_spinner_item, lstCc);
-			adapterType
-					.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			adapterType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 			// 将adapter 添加到spinner中
 			spnrCcNo.setAdapter(adapterType);
 		} else {
 			Toast.makeText(this, "没有网络", Toast.LENGTH_SHORT).show();
 			finish();
 		}
-		btnNext = (Button) (findViewById(R.id.cc_btn_next)
-				.findViewById(R.id.button));
+		btnNext = (Button) (findViewById(R.id.cc_btn_next).findViewById(R.id.button));
 		btnNext.setText("确认销卡");
 
-		etUserName = (EditText) findViewById(R.id.cc_et_openName).findViewById(
-				R.id.et_user);
+		etUserName = (EditText) findViewById(R.id.cc_et_openName).findViewById(R.id.et_user);
 
-		spnrIdType = (Spinner) findViewById(R.id.cc_spnr_idType).findViewById(
-				R.id.et_user);
-		etId = (EditText) findViewById(R.id.cc_et_id)
-				.findViewById(R.id.et_user);
-		etPhone = (EditText) findViewById(R.id.cc_et_phone).findViewById(
-				R.id.et_user);
-		etPwd = (EditText) findViewById(R.id.cc_et_pwd).findViewById(
-				R.id.et_psd);
+		spnrIdType = (Spinner) findViewById(R.id.cc_spnr_idType).findViewById(R.id.Small_Spinner);
+		ArrayAdapter<String> sa = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
+				new String[] { "身份证" });
+		sa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spnrIdType.setAdapter(sa);
+		etId = (EditText) findViewById(R.id.cc_et_id).findViewById(R.id.et_user);
+		etPhone = (EditText) findViewById(R.id.cc_et_phone).findViewById(R.id.et_user);
+		etPwd = (EditText) findViewById(R.id.cc_et_pwd).findViewById(R.id.et_psd);
 
-		btnNext = (Button) (findViewById(R.id.cc_btn_next)
-				.findViewById(R.id.button));
+		btnNext = (Button) (findViewById(R.id.cc_btn_next).findViewById(R.id.button));
 		btnNext.setText("确认销卡");
 	}
 
@@ -122,20 +111,17 @@ public class DestroyCard extends GeneralActivity {
 				// 连接服务器...
 				JSONObject jsonObj = new JSONObject();
 				try {
-					jsonObj = ConnectWs.connect(DestroyCard.this,
-							EAccType.CREDIT_CARD, EOperation.DESTROY_CARD,
-							userName, ccNo, idNo, cellPhone, pwd);
+					jsonObj = ConnectWs.connect(DestroyCard.this, EAccType.CREDIT_CARD,
+							EOperation.DESTROY_CARD, userName, ccNo, idNo, cellPhone, pwd);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
-					Toast.makeText(DestroyCard.this, "对不起，服务器未连接",
-							Toast.LENGTH_SHORT).show();
+					Toast.makeText(DestroyCard.this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
 					e.printStackTrace();
 					return;
 				}
 				flag = EHelper.toBoolean(jsonObj);
 			} else {
-				Toast.makeText(DestroyCard.this, "没有网络", Toast.LENGTH_SHORT)
-						.show();
+				Toast.makeText(DestroyCard.this, "没有网络", Toast.LENGTH_SHORT).show();
 				return;
 			}
 
@@ -145,8 +131,7 @@ public class DestroyCard extends GeneralActivity {
 			final Dialog dialog = new Dialog(DestroyCard.this, R.style.dialog);
 			dialog.show();
 			// 设置具体对话框布局的宽和高
-			LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT,
-					LayoutParams.MATCH_PARENT);
+			LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
 			// 将设置好的布局View加到对话框中
 			dialog.addContentView(view, params);
 			Button Ok_btn = (Button) view.findViewById(R.id.btn_comdlog_ok);
@@ -156,26 +141,20 @@ public class DestroyCard extends GeneralActivity {
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					Intent intent = new Intent(DestroyCard.this,
-							CreditCardMain.class);
-					startActivity(intent);
+//					Intent intent = new Intent(DestroyCard.this, CreditCardMain.class);
+//					startActivity(intent);
 					dialog.dismiss();
 				}
 			});
 			if (flag) {
-				((TextView) view.findViewById(R.id.tv_comdlog_title))
-						.setText("成功提示");
-				((TextView) view.findViewById(R.id.tv_comdlog_con1))
-						.setText("销卡成功");
+				((TextView) view.findViewById(R.id.tv_comdlog_title)).setText("成功提示");
+				((TextView) view.findViewById(R.id.tv_comdlog_con1)).setText("销卡成功");
 
 			} else {
-				((TextView) view.findViewById(R.id.tv_comdlog_title))
-						.setText("失败提示");
-				((TextView) view.findViewById(R.id.tv_comdlog_con1))
-						.setText("销卡失败，请验证输入的信息是否正确");
+				((TextView) view.findViewById(R.id.tv_comdlog_title)).setText("失败提示");
+				((TextView) view.findViewById(R.id.tv_comdlog_con1)).setText("销卡失败，请验证输入的信息是否正确");
 
 			}
-
 		}
 	};
 }
