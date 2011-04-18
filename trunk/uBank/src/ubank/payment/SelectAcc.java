@@ -73,7 +73,7 @@ public class SelectAcc extends GeneralListActivity {
 				intent.setClass(SelectAcc.this, InputPsw.class);
 				SelectAcc.this.startActivity(intent);
 			}else if(id==1){//其他账户
-				Intent elseAcc_intent=new Intent();
+				Intent elseAcc_intent=getIntent();//需要传Bundle数据
 				elseAcc_intent.setClass(SelectAcc.this, ElseAcc.class);
 				SelectAcc.this.startActivity(elseAcc_intent);
 			}
