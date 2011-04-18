@@ -60,7 +60,7 @@ public class AllPaymentSer extends GeneralListActivity {
 			map = EHelper.toMap(jsonObj);
 			name = new String[map.size()];// 获取名字
 			value = new String[map.size()];// 获取值
-			i=0;//使用i之前要初始化为0
+			i = 0;// 使用i之前要初始化为0
 			for (Entry<String, String> kv : map.entrySet()) {
 				name[i] = kv.getKey();
 				value[i++] = kv.getValue() + "元";
@@ -72,18 +72,18 @@ public class AllPaymentSer extends GeneralListActivity {
 			AllPaymentSer.this.startActivity(intent);
 			break;
 
-		case 1://便捷服务
+		case 1:// 便捷服务
 			try {
 				jsonObj = ConnectWs.connect(this, EAccType.NULL,
-						EOperation.GET_SEL_SERVICE_NAME,"");
+						EOperation.GET_SEL_SERVICE_NAME, "");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			List<String> list = EHelper.toList(jsonObj);
 			value = new String[list.size()];// 获取值 设置value的大小
-			for(int i=0;i<list.size();i++){
-				value[i] =list.get(i);
+			for (int i = 0; i < list.size(); i++) {
+				value[i] = list.get(i);
 			}
 			intent = new Intent();
 			intent.putExtra("value", value);
@@ -91,32 +91,59 @@ public class AllPaymentSer extends GeneralListActivity {
 			AllPaymentSer.this.startActivity(intent);
 			break;
 
-		case 2://最近一个月缴费
-			 Intent lately_intent=new Intent();
-			 lately_intent.setClass(AllPaymentSer.this, Lately.class);
-			 AllPaymentSer.this.startActivity(lately_intent);
-			break;
-			
-		case 3://历史缴费记录
-			 Intent history_intent=new Intent();
-			 history_intent.setClass(AllPaymentSer.this, HistoryCost.class);
-			 AllPaymentSer.this.startActivity(history_intent);
-			break;
-			
-		case 4://缴费项目管理
+		case 2:// 最近一个月缴费
 			try {
 				jsonObj = ConnectWs.connect(this, EAccType.NULL,
-						EOperation.GET_PAYMENT_NAME_ON_MANA,"");
+						EOperation.GET_PAYMENT_HISTORY, "1");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			 String str = EHelper.toStr(jsonObj);
-			 String[] state=str.split("#");
-			 Intent manage_intent=new Intent();
-			 manage_intent.putExtra("state", state);
-			 manage_intent.setClass(AllPaymentSer.this, ManageCost.class);
-			 AllPaymentSer.this.startActivity(manage_intent);
+			map = EHelper.toMap(jsonObj);
+			String s = null;// 获取值
+			for (Entry<String, String> kv : map.entrySet()) {
+				s = kv.getValue();
+			}
+			String[] ss = s.split("#");
+			String[] field = new String[ss.length / 2];
+			String[] value = new String[ss.length / 2];
+			for (int i = 1, j = 0; i < ss.length; i += 2, j++) {
+				field[j] = ss[i - 1];// 双数赋给字段数组
+				value[j] = ss[i];// 单数赋给字值数组
+			}
+			String start_time = "2011-04-14";
+			String end_time = "2011-05-14";
+			intent = new Intent();
+			Bundle bundle=new Bundle();
+			bundle.putStringArray("field", field);
+			bundle.putStringArray("value", value);
+			intent.putExtra("start_time", start_time);
+			intent.putExtra("end_time", end_time);
+			intent.putExtra("bundle", bundle);
+			intent.setClass(AllPaymentSer.this, Lately.class);
+			AllPaymentSer.this.startActivity(intent);
+			break;
+
+		case 3:// 历史缴费记录
+			Intent history_intent = new Intent();
+			history_intent.setClass(AllPaymentSer.this, HistoryCost.class);
+			AllPaymentSer.this.startActivity(history_intent);
+			break;
+
+		case 4:// 缴费项目管理
+			try {
+				jsonObj = ConnectWs.connect(this, EAccType.NULL,
+						EOperation.GET_PAYMENT_NAME_ON_MANA, "");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			String str = EHelper.toStr(jsonObj);
+			String[] state = str.split("#");
+			Intent manage_intent = new Intent();
+			manage_intent.putExtra("state", state);
+			manage_intent.setClass(AllPaymentSer.this, ManageCost.class);
+			AllPaymentSer.this.startActivity(manage_intent);
 			break;
 		default:
 			break;
