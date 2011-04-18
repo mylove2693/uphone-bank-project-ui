@@ -82,6 +82,7 @@
 		<activity android:name="ubank.account_manager.ReservationChangeCardSecond"></activity>
 		<activity android:name="ubank.account_manager.ReservationChangeCardThird"></activity>
 		<activity android:name="ubank.account_manager.SetAccountAlias"></activity>
+		<activity android:name="ubank.account_manager.SetAccountAliasSecond"></activity>
 
 		<!-- gsm -->
 		<activity android:name="ubank.account_manager.DelOK" />
