@@ -38,7 +38,7 @@ public class Lately extends GeneralListActivity {
 	        tvClassThird.setText("历史缴费记录");
 	        addLayout(R.layout.above_list_txt);
 	        txt=(TextView)findViewById(R.id.above_list_txt).findViewById(R.id.Text_View_16_Gray);
-	        txt.setText("从2011-07-04到2011-07-14的历史缴费记录:");
+	        txt.setText("从2011-04-04到2011-04-14的历史缴费记录:");
 	        this.setListAdapter(createText_Text_Img(name,value));
 	  }
 	protected void onListItemClick(ListView l,View v,int position,long id){
@@ -47,8 +47,8 @@ public class Lately extends GeneralListActivity {
 		if(id==0){//水费
 			
 			//传入的时间为
-			String startDate="2011-7-4";
-			String endDate="2011-7-14";
+			String startDate="2011-07-04";
+			String endDate="2011-07-14";
 			String userId="1";
 			List<String> list=null;
 			Intent water_intent=new Intent();
@@ -67,8 +67,8 @@ public class Lately extends GeneralListActivity {
 			Lately.this.startActivity(water_intent);
 		}else if(id==1){//电费
 			//传入的时间为null:0116:4:2011-7-4:2011-7-14
-			String startDate="2011-7-4";
-			String endDate="2011-7-14";
+			String startDate="2011-07-04";
+			String endDate="2011-07-14";
 			String userId="2";
 			List<String> list=null;
 			Intent electricity_intent=new Intent();
@@ -87,8 +87,8 @@ public class Lately extends GeneralListActivity {
 			Lately.this.startActivity(electricity_intent);
 		}else if(id==2){//房租费
 			//传入的时间为
-			String startDate="2011-7-4";
-			String endDate="2011-7-14";
+			String startDate="2011-07-04";
+			String endDate="2011-07-14";
 			String userId="4";
 			List<String> list=null;
 			Intent rent_intent=new Intent();
