@@ -22,8 +22,7 @@ import ubank.main.R;
 import ubank.webservice.ConnectWs;
 
 /**
- * 杨勇
- * 手机到签约账户或者是到手机的转账
+ * 杨勇 手机到手机的转账 或者是到签约账户
  * 
  * @author Administrator
  * 
@@ -54,7 +53,7 @@ public class TransferPhToSignedAcc extends GeneralActivity {
 		// 标题
 		title = up_intent.getStringExtra("title");
 		acc_num = up_intent.getStringExtra("acc_num");
-		acc_balance=Double.valueOf(up_intent.getStringExtra("acc_balance"));
+		acc_balance = Double.valueOf(up_intent.getStringExtra("acc_balance"));
 		/**
 		 * 设置相应的导航栏和监听
 		 */
@@ -79,9 +78,10 @@ public class TransferPhToSignedAcc extends GeneralActivity {
 		TextView transfer_acc_txtview = (TextView) findViewById(
 				R.id.transfer_acc_txt).findViewById(R.id.Text_View_18);
 		// 根据标题来判断是提示输入什么号
-		if (title.indexOf("手机") != -1) {
+		if (title.indexOf("手机到手机") != -1) {
 			transfer_acc_txtview.setText("请输入目标手机号:");
-		} else {
+		}
+		if (title.indexOf("签约账户") != -1) {
 			transfer_acc_txtview.setText("请输入转入账户:");
 		}
 
@@ -123,28 +123,35 @@ public class TransferPhToSignedAcc extends GeneralActivity {
 				 * 信息输出的检测
 				 */
 				String msg = isNumPsdAmt(acc_num, psd, to_acc_num, to_amt);
-//				System.out.println(msg);
+//System.out.println(msg+"1111111111111111111111111111111");
 				MyDialogOne dialog = new MyDialogOne(
 						TransferPhToSignedAcc.this, R.style.dialog);
 				if (msg.equals("转账成功")) {
-					
+
 					dialog.setTitleAndInfo("成功提示", msg);
-					dialog.Listener(TransferPhToSignedAcc.this, TransferMain.class);
-					
+					dialog.Listener(TransferPhToSignedAcc.this,
+							TransferMain.class);
+
 				}
-				if(acc_balance-(Double.valueOf(to_amt))<0)
-				{
+				if (msg.equals("账号不存在")) {
+
+					dialog.setTitleAndInfo("失败提示", msg);
+					dialog.Listener(TransferPhToSignedAcc.this,
+							null);
+
+				}
+				if (acc_balance - (Double.valueOf(to_amt)) < 0) {
 					dialog.setTitleAndInfo("失败提示", "余额不足");
 					dialog.Listener(TransferPhToSignedAcc.this, null);
-					
+
 				}
-				if(msg.equals("密码错误"))
-				
+				if (msg.equals("密码错误"))
+
 				{
 					dialog.setTitleAndInfo("失败提示", msg);
 					dialog.Listener(TransferPhToSignedAcc.this, null);
 				}
-				
+
 				dialog.show();
 			}
 		});
@@ -152,26 +159,31 @@ public class TransferPhToSignedAcc extends GeneralActivity {
 	}
 
 	/**
-	 * 判断三个文本框的值 是否合法和正确 
-	 * 输入账户是否存在 
-	 * 手机是否开通 
-	 * 密码是否正确
-	 * 转账金额是否大于余额
+	 * 判断三个文本框的值 是否合法和正确 输入账户是否存在 手机是否开通 密码是否正确 转账金额是否大于余额
 	 * 
 	 */
-	
+
 	private String isNumPsdAmt(String NUM, String PSD, String amtph,
 			String amtnum) {
 		JSONObject jsonObj = null;
 		try {
-			jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
-					EOperation.TRANSFE_ACC, NUM, PSD, amtph, amtnum);
+			if (title.indexOf("手机到手机") != -1) {//手机到手机的
+				System.out.println("手机到手机");
+				jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
+						EOperation.TRANSFE_ACC, NUM, PSD, amtph, amtnum);
+			}
+			if (title.indexOf("签约账户") != -1) {//手机到签约账户的
+				System.out.println("签约账户");
+				jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
+						EOperation.TRANSFE_ACC_ACC, NUM, PSD, amtph, amtnum);
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		Map<String, String> tt = EHelper.toMap(jsonObj);
 		String result = tt.get("result");
+//		System.out.println(result+"_-----------------------------------------------");
 		return result;
 
 	}
