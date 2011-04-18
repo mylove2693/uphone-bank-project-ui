@@ -106,7 +106,17 @@ public class AllPaymentSer extends GeneralListActivity {
 			break;
 			
 		case 4://缴费项目管理
+			try {
+				jsonObj = ConnectWs.connect(this, EAccType.NULL,
+						EOperation.GET_PAYMENT_NAME_ON_MANA,"");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			 String str = EHelper.toStr(jsonObj);
+			 String[] state=str.split("#");
 			 Intent manage_intent=new Intent();
+			 manage_intent.putExtra("state", state);
 			 manage_intent.setClass(AllPaymentSer.this, ManageCost.class);
 			 AllPaymentSer.this.startActivity(manage_intent);
 			break;

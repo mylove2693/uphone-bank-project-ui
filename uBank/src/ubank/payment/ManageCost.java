@@ -1,12 +1,19 @@
 package ubank.payment;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.json.JSONObject;
+
 import ubank.base.GeneralListActivity;
+import ubank.enum_type.EAccType;
+import ubank.enum_type.EOperation;
 import ubank.main.BankMain;
 import ubank.main.R;
+import ubank.webservice.ConnectWs;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -16,7 +23,9 @@ import android.widget.TextView;
 
 public class ManageCost extends GeneralListActivity {
 	private String[] name={"平安保险","人寿保险","交通罚款","水费","电费","报纸订阅"};
-	private String[] value={"0","1","0","1","0","1"};
+	private String[] statevalue={"state0","state1","state2","state3","state4","state5"};
+	private String[] value;
+	private JSONObject jsonObj;
 //	static int [] yy={0,0,0,1,1,1};
 	private TextView txt=null;
 	ImageView img;
@@ -24,6 +33,9 @@ public class ManageCost extends GeneralListActivity {
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 	        tvClassFirst.setVisibility(View.VISIBLE);
+	        //获取上一个activity的状态值
+	        Intent intent=getIntent();
+	        value=intent.getStringArrayExtra("state");
 	        //监听
 	        tvClassFirst.setText("首页>");
 	        setListener(tvClassFirst, this, BankMain.class);
@@ -91,9 +103,23 @@ public class ManageCost extends GeneralListActivity {
 			if(value[tag].equals("0")){//"0表示停用"
 				ManageCost.this.img.setImageResource(R.drawable.item_enable);
 				value[tag]="1";
+				try {
+					jsonObj = ConnectWs.connect(this, EAccType.NULL,
+							EOperation.UPDATE_PAYMENT_STATE,statevalue[tag].trim(),value[tag]);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}else if(value[tag].equals("1")){//"1表示启用"
 				ManageCost.this.img.setImageResource(R.drawable.item_stop);
 				value[tag]="0";
+				try {
+					jsonObj = ConnectWs.connect(this, EAccType.NULL,
+							EOperation.UPDATE_PAYMENT_STATE,statevalue[tag].trim(),value[tag]);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 }
