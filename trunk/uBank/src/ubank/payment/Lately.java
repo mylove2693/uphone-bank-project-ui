@@ -23,9 +23,18 @@ public class Lately extends GeneralListActivity {
 						   "2011-03-11","2011-03-12","2011-03-13","2011-03-14"};
 	private String[] value={"水费","电费","房租","天然气","手机充值","Q币充值","网易充值"};
 	private TextView txt=null;
+	private String start_time;//上一个页面传来的时间
+	private String end_time;//上一个页面传来的时间
 	  @Override
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
+	        Intent intent=getIntent();
+	        start_time= intent.getStringExtra("start_time");
+			end_time = intent.getStringExtra("end_time");
+			if(start_time==null||end_time==null){
+				start_time="2011-07-04";
+				end_time="2011-07-14";
+			}
 	        tvClassFirst.setVisibility(View.VISIBLE);
 	        //监听
 	        tvClassFirst.setText("首页>");
@@ -38,9 +47,10 @@ public class Lately extends GeneralListActivity {
 	        tvClassThird.setText("历史缴费记录");
 	        addLayout(R.layout.above_list_txt);
 	        txt=(TextView)findViewById(R.id.above_list_txt).findViewById(R.id.Text_View_16_Gray);
-	        txt.setText("从2011-04-04到2011-04-14的历史缴费记录:");
+	        txt.setText("从"+start_time+"到"+end_time+"的历史缴费记录:");
 	        this.setListAdapter(createText_Text_Img(name,value));
 	  }
+	    
 	protected void onListItemClick(ListView l,View v,int position,long id){
 		
 		super.onListItemClick(l, v, position, id);
