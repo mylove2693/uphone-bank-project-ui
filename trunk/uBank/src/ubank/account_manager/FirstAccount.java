@@ -6,6 +6,7 @@ import java.util.List;
 import org.json.JSONObject;
 
 import ubank.base.GeneralActivity;
+import ubank.base.MyDialogOne;
 import ubank.enum_type.EAccState;
 import ubank.enum_type.EAccType;
 import ubank.enum_type.EOperation;
@@ -15,6 +16,7 @@ import ubank.main.R;
 import ubank.webservice.ConnectWs;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -65,6 +67,34 @@ public class FirstAccount extends GeneralActivity {
 		// 下一步按钮
 		next_btn = (Button) findViewById(R.id.ok_btn).findViewById(R.id.button);
 		next_btn.setText(R.string.confirm);
+		next_btn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if (EHelper.hasInternet(FirstAccount.this)) {
+					try {
+						JSONObject json = new JSONObject();
+						json = ConnectWs.connect(FirstAccount.this, EAccType.NULL,
+								EOperation.SET_PRE_ACC, "2",select_acc.getSelectedItem().toString());
+						boolean result = EHelper.toBoolean(json);
+						MyDialogOne  d1=new MyDialogOne(FirstAccount.this,R.style.dialog);
+						if(result){
+							d1.setTitleAndInfo("提示", "首选账户设置成功！");
+						}else{
+							d1.setTitleAndInfo("提示", "首选账户设置失败！");
+						}
+						d1.Listener(FirstAccount.this,ManagerHome.class);
+						d1.show();
+					} catch (IOException e) {
+						Toast.makeText(FirstAccount.this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
+						e.printStackTrace();
+					}
+				} else {
+					Toast.makeText(FirstAccount.this, "没有连接网络", Toast.LENGTH_SHORT).show();
+				}
+				
+			}
+		});
 	}
 
 	private void showPreAcc() {
