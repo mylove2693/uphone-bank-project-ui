@@ -12,6 +12,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import ubank.base.GeneralActivity;
 import ubank.base.MyDialogOne;
 import ubank.enum_type.EAccType;
@@ -68,6 +69,7 @@ public class TransferPhToSignedAcc extends GeneralActivity {
 				 * 信息输出的检测
 				 */
 				String msg = isNumPsdAmt(acc_num, psd, to_acc_num, to_amt);
+				//提示对话框的实现
 				MyDialogOne dialog = new MyDialogOne(
 						TransferPhToSignedAcc.this, R.style.dialog);
 				if (msg.equals("转账成功")) {
@@ -173,17 +175,19 @@ public class TransferPhToSignedAcc extends GeneralActivity {
 		JSONObject jsonObj = null;
 		try {
 			if (title.indexOf("手机到手机") != -1) {// 手机到手机的
-				System.out.println("手机到手机");
+//				System.out.println("手机到手机");
 				jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
 						EOperation.TRANSFE_ACC, NUM, PSD, amtph, amtnum);
 			}
 			if (title.indexOf("签约账户") != -1) {// 手机到签约账户的
-				System.out.println("签约账户");
+//				System.out.println("签约账户");
 				jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
 						EOperation.TRANSFE_ACC_ACC, NUM, PSD, amtph, amtnum);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			Toast.makeText(this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
+			finish();
 			e.printStackTrace();
 		}
 		Map<String, String> tt = EHelper.toMap(jsonObj);

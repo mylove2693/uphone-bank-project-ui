@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import ubank.base.GeneralActivity;
 import ubank.base.GeneralListActivity;
 import ubank.common.Account_Select;
@@ -92,6 +93,8 @@ public class TransferAccSelect extends GeneralListActivity {
 						EOperation.GET_PRE_ACC, "1");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
+				Toast.makeText(this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
+				finish();
 				e.printStackTrace();
 			}
 			String str = EHelper.toStr(jsonObj);

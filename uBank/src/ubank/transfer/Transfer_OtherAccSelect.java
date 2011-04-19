@@ -25,6 +25,7 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 /**
@@ -118,6 +119,8 @@ public class Transfer_OtherAccSelect extends GeneralActivity {
 					EOperation.GET_ACC_TYPE);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			Toast.makeText(this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
+			finish();
 			e.printStackTrace();
 		}
 //		System.out.println(json.toString()+"--------------");

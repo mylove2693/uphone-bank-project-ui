@@ -15,6 +15,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import ubank.base.GeneralActivity;
 import ubank.base.MyDialogOne;
 import ubank.enum_type.EAccType;
@@ -149,6 +150,8 @@ public class Transfer_inpsd extends GeneralActivity {
 					EOperation.GET_VERIFY_PASSWORD, NUM, PSD);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			Toast.makeText(this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
+			finish();
 			e.printStackTrace();
 		}
 		// List<String> name = EHelper.toList(jsonObj);
