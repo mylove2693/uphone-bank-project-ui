@@ -17,18 +17,19 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class Login extends Activity {
-
-	//public static String userId = "1";
 	
 	private String extraCode;
 	private String passWord;
 	private String InputCode;
 	private boolean loginflag=false;
 	
+	private ImageView bankmain;
+	private ImageView bankhelp;
 	private EditText userid;
 	private EditText password;
 	private EditText extracode;
@@ -143,6 +144,35 @@ public class Login extends Activity {
 					dialog.setTitleAndInfo("登录手机银行","附加码不正确！");
 					dialog.show();
 				}
+			}
+		});
+		
+		//设置底部选项卡
+        bankmain = (ImageView)findViewById(R.id.mainbelow).findViewById(R.id.btnMain);
+//        bankmain.setImageResource(R.drawable.main_sjyh);
+        bankmain.setImageResource(R.drawable.main_sjyh2);
+        bankmain.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+        
+        bankhelp = (ImageView)findViewById(R.id.mainbelow).findViewById(R.id.btnHelper);
+//        bankhelp.setImageResource(R.drawable.main_jrzs);
+        bankhelp.setImageResource(R.drawable.main_jrzs2);
+        bankhelp.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+				intent = new Intent(Login.this,FinanceAss.class);
+				intent.addFlags(intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+				Login.this.startActivity(intent);
+				
 			}
 		});
 	}

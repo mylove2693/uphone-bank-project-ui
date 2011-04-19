@@ -1,27 +1,31 @@
 package ubank.main;
 
-import ubank.account_manager.*;
-import ubank.account_query.*;
-import ubank.transfer.*;
-import ubank.payment.*;
-import ubank.credit.*;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import ubank.account_manager.AccountBind;
+import ubank.account_manager.ManagerHome;
+import ubank.account_query.AccountQueryType;
+import ubank.credit.CreditCardMain;
+import ubank.payment.AllPaymentSer;
+import ubank.transfer.TransferMain;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
-import android.widget.GridView;
-import android.widget.SimpleAdapter;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.SimpleAdapter;
 
 public class BankMain extends Activity {
 	
+	private ImageView bankmain;
+	private ImageView bankhelp;
 	private GridView gridview = null;
 	private Intent intent = null;
 	
@@ -51,6 +55,35 @@ public class BankMain extends Activity {
         gridview.setAdapter(adapter);
         //为GridView添加监听
         gridview.setOnItemClickListener(new ItemClickListener());
+        
+      //设置底部选项卡
+        bankmain = (ImageView)findViewById(R.id.mainbelow).findViewById(R.id.btnMain);
+//        bankmain.setImageResource(R.drawable.main_sjyh);
+        bankmain.setImageResource(R.drawable.main_sjyh2);
+        bankmain.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+        
+        bankhelp = (ImageView)findViewById(R.id.mainbelow).findViewById(R.id.btnHelper);
+//        bankhelp.setImageResource(R.drawable.main_jrzs);
+        bankhelp.setImageResource(R.drawable.main_jrzs2);
+        bankhelp.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+				intent = new Intent(BankMain.this,FinanceAss.class);
+				intent.addFlags(intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+				BankMain.this.startActivity(intent);
+				
+			}
+		});
     } 
     class ItemClickListener implements OnItemClickListener{
 

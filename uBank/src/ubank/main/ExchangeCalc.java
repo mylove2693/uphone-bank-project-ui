@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.json.JSONObject;
 
-import ubank.base.GeneralActivity;
+import ubank.base.GeneralFinanceActivity;
 import ubank.base.MyDialogOne;
 import ubank.enum_type.EAccType;
 import ubank.enum_type.EOperation;
@@ -22,7 +22,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class ExchangeCalc extends GeneralActivity{
+public class ExchangeCalc extends GeneralFinanceActivity{
 	
 	private EditText InputAmt;
 	private Spinner SpSource;

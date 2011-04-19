@@ -10,13 +10,17 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.SimpleAdapter;
 
 public class FinanceAss extends Activity {
 	
+	private ImageView bankmain;
+	private ImageView bankhelp;
 	private GridView gridview = null;
 	private Intent intent = null;
 	
@@ -53,6 +57,46 @@ public class FinanceAss extends Activity {
         
         //为GridView添加监听
         gridview.setOnItemClickListener(new ItemClickListener());
+        
+        //设置底部选项卡
+        bankmain = (ImageView)findViewById(R.id.mainbelow).findViewById(R.id.btnMain);
+        bankmain.setImageResource(R.drawable.main_sjyh);
+//        bankmain.setImageResource(R.drawable.main_sjyh2);
+        bankmain.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+				if (loginstatus) {
+					//重新载入主页面
+					intent = new Intent(FinanceAss.this,BankMain.class);
+					intent.addFlags(intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+					FinanceAss.this.startActivity(intent);
+					
+				}else {
+					//载入登录按钮
+					intent = new Intent(FinanceAss.this,Login.class);
+					FinanceAss.this.startActivity(intent);
+					
+				}
+			}
+		});
+        
+        bankhelp = (ImageView)findViewById(R.id.mainbelow).findViewById(R.id.btnHelper);
+        bankhelp.setImageResource(R.drawable.main_jrzs);
+//        bankhelp.setImageResource(R.drawable.main_jrzs2);
+        bankhelp.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+				
+				
+			}
+		});
+        
     } 	
 	
     class ItemClickListener implements OnItemClickListener{
