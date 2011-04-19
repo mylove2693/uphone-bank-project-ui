@@ -121,17 +121,18 @@
 
 		<!-- solo -->
 		<activity android:name="ubank.credit.CreditCardMain">
-			<!--<intent-filter>
-				<action android:name="android.intent.action.MAIN" />
-				<category android:name="android.intent.category.LAUNCHER" />
-			</intent-filter>
-		--></activity>
+			<!--<intent-filter> <action android:name="android.intent.action.MAIN" 
+				/> <category android:name="android.intent.category.LAUNCHER" /> </intent-filter> -->
+		</activity>
 		<activity android:name="ubank.credit.CardRepayment"></activity>
 		<activity android:name="ubank.credit.CreditCardInfo"></activity>
 		<activity android:name="ubank.credit.DestroyCard"></activity>
 		<activity android:name="ubank.credit.OpenCard"></activity>
 		<activity android:name="ubank.credit.SelectRepaymentAcc"></activity>
 		<activity android:name="ubank.credit.ConfrimRepayment"></activity>
+		<activity android:name="ubank.base.ShutDown"></activity>
+		<activity android:name="ubank.credit.SelectCreditCard"></activity>
+		<activity android:name="ubank.base.Lock" android:theme="@style/lock"></activity>
 		<!-- end solo -->
 
 
@@ -152,8 +153,7 @@
 		<activity android:name="ubank.transfer.Transfer_information">
 		</activity>
 		<!-- end yy's activity -->
-		<activity android:name="ubank.base.ShutDown"></activity>
-		<activity android:name="ubank.credit.SelectCreditCard"></activity>
+		
 
 	</application>
 	<uses-permission android:name="android.permission.INTERNET"></uses-permission>

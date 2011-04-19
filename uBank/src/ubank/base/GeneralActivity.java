@@ -37,8 +37,9 @@ public class GeneralActivity extends Activity implements IGeneralActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// TODO 菜单生成
-		menu.add(0, 0, 0, R.string.app_exit);// 退出
-		menu.add(0, 1, 1, "关于");
+		menu.add(0, 0, Menu.NONE, "退出");// 退出
+		menu.add(0, 1, Menu.NONE, "锁定");
+		menu.add(0, 2, Menu.NONE, "关于");
 		return super.onCreateOptionsMenu(menu);
 
 	}
@@ -58,8 +59,11 @@ public class GeneralActivity extends Activity implements IGeneralActivity {
 		if (GeneralActivity.isHide) {
 			Log.v("Ubank", getClass() + " onStop now,hide= " + GeneralActivity.isHide);
 
-			Intent notifyIntent = new Intent(this, getClass());
-			notifyIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+			Intent notifyIntent = new Intent(Intent.ACTION_MAIN);
+			notifyIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+			notifyIntent.setClass(this, getClass());
+			notifyIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+			
 			/* 创建PendingIntent作为设置递延运行的Activity */
 			PendingIntent appIntent = PendingIntent.getActivity(this, 0, notifyIntent, 0);
 
@@ -74,7 +78,10 @@ public class GeneralActivity extends Activity implements IGeneralActivity {
 			myNoti.setLatestEventInfo(this, "手机银行", "为了避免信息泄露，请及时完成或退出", appIntent);
 			NotificationManager myNotiManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 			myNotiManager.notify(0, myNoti);
-			finish();
+			
+			//锁定
+			Intent intent = new Intent(this, Lock.class);
+			startActivity(intent);
 		}
 		GeneralActivity.isHide = true;
 		Log.v("Ubank", getClass() + " onStop count. hide= " + GeneralActivity.isHide);
@@ -93,6 +100,11 @@ public class GeneralActivity extends Activity implements IGeneralActivity {
 			// moveTaskToBack(true);
 			break;
 		case 1:
+			Intent intent = new Intent(this, Lock.class);
+			startActivity(intent);
+//			moveTaskToBack(true);
+			break;
+		case 2:
 			new MyDialogOne(this, R.style.dialog)
 					.setTitleAndInfo("关于",
 							"手机银行\n客户至上\n版本号v10.\n智翔公司android小组 版权所有\nCopyright 2011\nAll Rights Reserved")
