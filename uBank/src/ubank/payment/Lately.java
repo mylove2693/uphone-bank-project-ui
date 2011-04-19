@@ -32,13 +32,18 @@ public class Lately extends GeneralListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Intent intent = getIntent();
-		Bundle bundle=intent.getBundleExtra("bundle");
+//		Bundle bundle=intent.getBundleExtra("bundle");
 		start_time = intent.getStringExtra("start_time");
 		end_time = intent.getStringExtra("end_time");
-		name=bundle.getStringArray("field");
-		value=bundle.getStringArray("value");
+		name=intent.getStringArrayExtra("field");
+		value=intent.getStringArrayExtra("value");
 		if (start_time == null || end_time == null||name==null||value==null) {
-			finish();
+			start_time="2011-03-14";
+			end_time="2011-04-14";
+			String[] field2={"2011-03-17","2011-04-01"};
+			String[] value2={"水费","电费"};
+			name=field2;
+			value=value2;
 		}
 		tvClassFirst.setVisibility(View.VISIBLE);
 		// 监听
@@ -86,9 +91,8 @@ public class Lately extends GeneralListActivity {
 			String[] value1=null;// 获取值
 			try {
 				JSONObject jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
-						EOperation.GET_PAYMENT_HIS_INFO,"1");
+						EOperation.GET_PAYMENT_HIS_INFO,"2");
 				Map<String, String> map = EHelper.toMap(jsonObj);
-				System.out.println(jsonObj.toString());
 				value1 = new String[map.size()];// 获取值
 				int i = 0;// 使用i之前要初始化为0
 				for (Entry<String, String> kv : map.entrySet()) {
@@ -102,32 +106,22 @@ public class Lately extends GeneralListActivity {
 			electricity_intent.setClass(Lately.this, LatelyCost.class);
 			Lately.this.startActivity(electricity_intent);
 		} else if (id == 2) {// 房租费
-			// 传入的时间为
-			String startDate = "2011-07-04";
-			String endDate = "2011-07-14";
-			String userId = "4";
-			List<String> list = null;
 			Intent rent_intent = new Intent();
+			String[] value1=null;// 获取值
 			try {
-				JSONObject jsonObj = ConnectWs.connect(this, EAccType.NULL,
-						EOperation.GET_PAYMENT_HISTORY, userId, startDate,
-						endDate);
-				list = EHelper.toList(jsonObj);
+				JSONObject jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
+						EOperation.GET_PAYMENT_HIS_INFO,"3");
+				Map<String, String> map = EHelper.toMap(jsonObj);
+				value1 = new String[map.size()];// 获取值
+				int i = 0;// 使用i之前要初始化为0
+				for (Entry<String, String> kv : map.entrySet()) {
+					value1[i++] = kv.getValue();
+				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			// [2, 无锡电力公司, s0101001, 80.00, 电费, 0, 1, 2011-03-05, 2011-7-12]
-			String[] value = { list.get(8), list.get(4), "110", list.get(3),
-					list.get(2) };
-			if (value == null) {
-				String[] value1 = { "2011-07-19", "房租", "111111", "200.00",
-						"s23421" };
-				value = value1;
-			}
-			// Intent rent_intent=new Intent();
-			// String[] value={"2011-07-19","房租","111111","200.00","s23421"};
-			rent_intent.putExtra("value", value);
+			rent_intent.putExtra("value", value1);
 			rent_intent.setClass(Lately.this, LatelyCost.class);
 			Lately.this.startActivity(rent_intent);
 		}

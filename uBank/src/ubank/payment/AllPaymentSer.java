@@ -31,6 +31,10 @@ public class AllPaymentSer extends GeneralListActivity {
 	private JSONObject jsonObj;
 	private Map<String, String> map;
 	private int i = 0;// map遍历时需要用到的变量
+	private Bundle bundle;
+	private String start_time = "2011-04-14";
+	private String end_time = "2011-05-14";
+	private String[] field;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -105,18 +109,18 @@ public class AllPaymentSer extends GeneralListActivity {
 				s = kv.getValue();
 			}
 			String[] ss = s.split("#");
-			String[] field = new String[ss.length / 2];
-			String[] value = new String[ss.length / 2];
+			field = new String[ss.length / 2];
+			value= new String[ss.length / 2];
 			for (int i = 1, j = 0; i < ss.length; i += 2, j++) {
 				field[j] = ss[i - 1];// 双数赋给字段数组
 				value[j] = ss[i];// 单数赋给字值数组
 			}
-			String start_time = "2011-04-14";
-			String end_time = "2011-05-14";
 			intent = new Intent();
-			Bundle bundle=new Bundle();
-			bundle.putStringArray("field", field);
-			bundle.putStringArray("value", value);
+//			bundle=new Bundle();
+//			bundle.putStringArray("field", field);
+//			bundle.putStringArray("value", value);
+			intent.putExtra("field", field);
+			intent.putExtra("value", value);
 			intent.putExtra("start_time", start_time);
 			intent.putExtra("end_time", end_time);
 			intent.putExtra("bundle", bundle);
@@ -125,9 +129,19 @@ public class AllPaymentSer extends GeneralListActivity {
 			break;
 
 		case 3:// 历史缴费记录
-			Intent history_intent = new Intent();
-			history_intent.setClass(AllPaymentSer.this, HistoryCost.class);
-			AllPaymentSer.this.startActivity(history_intent);
+			intent = new Intent();
+//			bundle=new Bundle();
+//			String[] field2={"2011-04-14","2011-04-14"};
+//			String[] value2={"水费","电费"};
+//			field=field2;
+//			value=value2;
+//			bundle.putStringArray("field", field);
+//			bundle.putStringArray("value", value);
+//			intent.putExtra("start_time", start_time);
+//			intent.putExtra("end_time", end_time);
+//			intent.putExtra("bundle", bundle);
+			intent.setClass(AllPaymentSer.this, HistoryCost.class);
+			AllPaymentSer.this.startActivity(intent);
 			break;
 
 		case 4:// 缴费项目管理
