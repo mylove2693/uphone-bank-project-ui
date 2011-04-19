@@ -13,6 +13,7 @@ import ubank.enum_type.EAccType;
 import ubank.enum_type.EOperation;
 import ubank.helper.EHelper;
 import ubank.main.BankMain;
+import ubank.main.Login;
 import ubank.main.R;
 import ubank.webservice.ConnectWs;
 import android.content.Intent;
@@ -30,7 +31,6 @@ public class AccountReportLoss extends GeneralActivity {
 	private Button btnComfirm;
 	private String[] accountType = null;
 	private String[] accountValues = null;
-	private String userid = "2";
 	private Resources res = null;
 
 	@Override
@@ -110,7 +110,7 @@ public class AccountReportLoss extends GeneralActivity {
 												AccountReportLoss.this,
 												EAccType.NULL,
 												EOperation.GET_ACC,
-												userid,
+												Login.userId,
 												type,
 												EAccState
 														.getStateName(EAccState.UNLOSS));

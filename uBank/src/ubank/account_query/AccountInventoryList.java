@@ -10,6 +10,7 @@ import ubank.enum_type.EAccType;
 import ubank.enum_type.EOperation;
 import ubank.helper.EHelper;
 import ubank.main.BankMain;
+import ubank.main.Login;
 import ubank.main.R;
 import ubank.webservice.ConnectWs;
 import android.content.Intent;
@@ -26,7 +27,6 @@ public class AccountInventoryList extends GeneralListActivity {
 	private Intent intent = null;
 	private String accTypeValue = "";
 	private String accNumValue = "";
-	private String userid = "1";
 	private String[] paramId = null;
 	private String[] name = null;
 	private String[] value = null;
@@ -83,7 +83,7 @@ public class AccountInventoryList extends GeneralListActivity {
 			try {
 				JSONObject json = new JSONObject();
 				json = ConnectWs.connect(this, EAccType.NULL,
-						EOperation.GET_LIST_HISTORY, userid, start_time,
+						EOperation.GET_LIST_HISTORY, Login.userId, start_time,
 						end_time);
 				String result = json.getString("info");
 				String[] temp = result.split(",");

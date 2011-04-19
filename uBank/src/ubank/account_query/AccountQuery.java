@@ -8,7 +8,6 @@ import ubank.main.BankMain;
 import ubank.main.R;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -18,7 +17,6 @@ import android.widget.TextView;
  *
  */
 public class AccountQuery extends GeneralListActivity {
-	private static String TAG = "ACCOUNT";
 	private TextView accNum = null;
 	private TextView accNumValue = null;
 	private TextView accType = null;
@@ -57,7 +55,6 @@ public class AccountQuery extends GeneralListActivity {
 		Intent intent = new Intent();
 		intent.putExtra("accNumValue", accNumValue.getText());
 		intent.putExtra("accTypeValue", accTypeValue.getText());
-		Log.i(TAG, String.valueOf(id));
 		if(id == 0){
 			intent.setClass(this, AccountQueryInfo.class);
 		}else if(id == 1){

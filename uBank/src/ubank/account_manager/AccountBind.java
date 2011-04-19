@@ -24,6 +24,7 @@ import ubank.enum_type.EAccType;
 import ubank.enum_type.EOperation;
 import ubank.helper.EHelper;
 import ubank.main.BankMain;
+import ubank.main.Login;
 import ubank.main.R;
 import ubank.webservice.ConnectWs;
 
@@ -34,7 +35,6 @@ public class AccountBind extends GeneralActivity {
 	private String[] accountValues = null;
 	private EditText pdsEdit = null;
 	private String password = "";
-	private String userid = "2";
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -149,7 +149,7 @@ public class AccountBind extends GeneralActivity {
 				if (EHelper.hasInternet(AccountBind.this)) {
 				String type = accountSelect.getAccTypValue();
 				try {
-					JSONObject json = ConnectWs.connect(AccountBind.this, EAccType.NULL, EOperation.GET_ACC,userid,type,EAccState.getStateName(EAccState.UNBIND));
+					JSONObject json = ConnectWs.connect(AccountBind.this, EAccType.NULL, EOperation.GET_ACC,Login.userId,type,EAccState.getStateName(EAccState.UNBIND));
 					List<String> value = EHelper.toList(json);
 					accountValues = new String[value.size()];
 					for(int i = 0;i < accountValues.length;i++){

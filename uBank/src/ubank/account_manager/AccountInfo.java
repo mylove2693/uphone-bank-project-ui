@@ -22,6 +22,7 @@ import ubank.enum_type.EAccType;
 import ubank.enum_type.EOperation;
 import ubank.helper.EHelper;
 import ubank.main.BankMain;
+import ubank.main.Login;
 import ubank.main.R;
 import ubank.webservice.ConnectWs;
 
@@ -32,7 +33,6 @@ public class AccountInfo extends GeneralActivity {
 	private Button butContinue = null;
 	private String[] accountType = null;
 	private String[] accountValues = null;
-	private String userid = "1";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -115,7 +115,7 @@ public class AccountInfo extends GeneralActivity {
 						String type = accountSelect.getAccTypValue();
 						try {
 							JSONObject json = ConnectWs.connect(AccountInfo.this,
-									EAccType.NULL, EOperation.GET_ACC, userid,
+									EAccType.NULL, EOperation.GET_ACC, Login.userId,
 									type, EAccState.getStateName(EAccState.BIND));
 							List<String> value = EHelper.toList(json);
 							accountValues = new String[value.size()];

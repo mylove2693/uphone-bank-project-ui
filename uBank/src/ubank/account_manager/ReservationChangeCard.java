@@ -12,6 +12,7 @@ import ubank.enum_type.EAccType;
 import ubank.enum_type.EOperation;
 import ubank.helper.EHelper;
 import ubank.main.BankMain;
+import ubank.main.Login;
 import ubank.main.R;
 import ubank.webservice.ConnectWs;
 import android.content.Intent;
@@ -30,7 +31,6 @@ public class ReservationChangeCard extends GeneralActivity {
 	private String[] accountType = null;
 	private String[] accountValues = null;
 	private Resources res = null;
-	private String userid = "3";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -108,7 +108,7 @@ public class ReservationChangeCard extends GeneralActivity {
 												ReservationChangeCard.this,
 												EAccType.NULL,
 												EOperation.GET_ACC,
-												userid,
+												Login.userId,
 												type,
 												EAccState
 														.getStateName(EAccState.UNORDER));

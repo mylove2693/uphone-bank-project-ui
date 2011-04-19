@@ -17,6 +17,7 @@ import ubank.enum_type.EAccType;
 import ubank.enum_type.EOperation;
 import ubank.helper.EHelper;
 import ubank.main.BankMain;
+import ubank.main.Login;
 import ubank.main.R;
 import ubank.webservice.ConnectWs;
 
@@ -75,15 +76,13 @@ public class AccountComeList extends GeneralListActivity {
 	}
 
 	private void setListData() {
-		String userid = "1";
-		//String accTypeValue = intent.getStringExtra("accTypeValue");
 		if (EHelper.hasInternet(this)) {
 			
 			JSONObject json;
 			try {
 				json = new JSONObject();
 				json = ConnectWs.connect(this, EAccType.NULL,
-						EOperation.GET_COME_HISTORY, userid, start_time,
+						EOperation.GET_COME_HISTORY, Login.userId, start_time,
 						end_time);
 				String result = json.getString("info");
 				String[] temp = result.split(",");

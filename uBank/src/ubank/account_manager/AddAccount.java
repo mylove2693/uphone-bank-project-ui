@@ -12,6 +12,7 @@ import ubank.enum_type.EAccType;
 import ubank.enum_type.EOperation;
 import ubank.helper.EHelper;
 import ubank.main.BankMain;
+import ubank.main.Login;
 import ubank.main.R;
 import ubank.webservice.ConnectWs;
 import android.content.Intent;
@@ -29,7 +30,6 @@ public class AddAccount extends GeneralActivity{
 	// 导航栏三级标题
 	private TextView txt=null;
 	private Button next_btn =null;
-	private String userid = "5";
 	private Spinner accType = null;
 	private EditText account = null;
 	private EditText nickName = null;
@@ -58,7 +58,7 @@ public class AddAccount extends GeneralActivity{
 		addLayout(R.layout.add_acc);
 		
 		txt=(TextView)findViewById(R.id.above_txt).findViewById(R.id.Text_View_16_Gray);
-        txt.setText("用户号"+userid);
+        txt.setText("用户号"+Login.userId);
         txt = (TextView) findViewById(R.id.txt_acc_type).findViewById(R.id.Text_View_18);
         txt.setText("请选择账户类型:");
         txt = (TextView) findViewById(R.id.txt1).findViewById(R.id.Text_View_18);
@@ -85,7 +85,7 @@ public class AddAccount extends GeneralActivity{
 					try {
 						JSONObject json = new JSONObject();
 						json = ConnectWs.connect(AddAccount.this,
-								EAccType.NULL, EOperation.ADD_ACC, userid,
+								EAccType.NULL, EOperation.ADD_ACC, Login.userId,
 								account.getText().toString(), accType
 										.getSelectedItem().toString(), nickName
 										.getText().toString(), accPwd.getText()
