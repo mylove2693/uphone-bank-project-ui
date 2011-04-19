@@ -131,8 +131,6 @@ public class ReservationChangeCardThird extends GeneralListActivity {
 			value[1] = EHelper.toList(json).get(0).toString();
 			value[2] = intent.getStringExtra("because");
 			value[3] = intent.getStringExtra("net");
-			System.out.println(value[2]);
-			System.out.println(value[3]);
 			try {
 				json = ConnectWs.connect(this, EAccType.NULL,
 						EOperation.GET_NET_ADDRESS, value[3]);

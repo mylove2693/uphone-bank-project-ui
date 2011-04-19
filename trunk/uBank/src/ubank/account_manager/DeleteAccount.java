@@ -22,6 +22,7 @@ import ubank.enum_type.EAccType;
 import ubank.enum_type.EOperation;
 import ubank.helper.EHelper;
 import ubank.main.BankMain;
+import ubank.main.Login;
 import ubank.main.R;
 import ubank.payment.AllPaymentSer;
 import ubank.payment.ElseAcc;
@@ -32,7 +33,6 @@ public class DeleteAccount extends GeneralActivity{
 	private Account_Select accountInfo = null;
 	private String[] accountType = null;
 	private String[] accountValues = null;
-	private String userid = "";
 
 	private Button continue_btn=null;
 	@Override
@@ -52,7 +52,6 @@ public class DeleteAccount extends GeneralActivity{
 	        tvClassThird.setText("删除账户");
 	        
 	        accountInfo = (Account_Select)this.findViewById(R.id.account_select);
-	        userid = "1";
 			loaderData();
 
 			loderValueData();
@@ -107,7 +106,7 @@ public class DeleteAccount extends GeneralActivity{
 				if (EHelper.hasInternet(DeleteAccount.this)) {
 				String type = accountInfo.getAccTypValue();
 				try {
-					JSONObject json = ConnectWs.connect(DeleteAccount.this, EAccType.NULL, EOperation.GET_ACC,userid,type,EAccState.getStateName(EAccState.BIND));
+					JSONObject json = ConnectWs.connect(DeleteAccount.this, EAccType.NULL, EOperation.GET_ACC,Login.userId,type,EAccState.getStateName(EAccState.BIND));
 					List<String> value = EHelper.toList(json);
 					accountValues = new String[value.size()];
 					for(int i = 0;i < accountValues.length;i++){

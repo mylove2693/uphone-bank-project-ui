@@ -12,6 +12,7 @@ import ubank.enum_type.EAccType;
 import ubank.enum_type.EOperation;
 import ubank.helper.EHelper;
 import ubank.main.BankMain;
+import ubank.main.Login;
 import ubank.main.R;
 import ubank.webservice.ConnectWs;
 import android.content.Intent;
@@ -28,7 +29,6 @@ public class AccountQueryType extends GeneralActivity {
 	private String[] accountType = null;
 	private String[] accountValues = null;
 	private Button btnComfirm;
-	String userid = "";
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -41,7 +41,6 @@ public class AccountQueryType extends GeneralActivity {
 		
 		accountInfo = (Account_Select)this.findViewById(R.id.account_select);
 		//accountType = new String[]{"活期储蓄卡","定期储蓄卡","信用卡"};
-		userid = "1";
 		loaderData();
 
 		loderValueData();
@@ -92,7 +91,7 @@ public class AccountQueryType extends GeneralActivity {
 				if (EHelper.hasInternet(AccountQueryType.this)) {
 				String type = accountInfo.getAccTypValue();
 				try {
-					JSONObject json = ConnectWs.connect(AccountQueryType.this, EAccType.NULL, EOperation.GET_ACC,userid,type,EAccState.getStateName(EAccState.BIND));
+					JSONObject json = ConnectWs.connect(AccountQueryType.this, EAccType.NULL, EOperation.GET_ACC,Login.userId,type,EAccState.getStateName(EAccState.BIND));
 					List<String> value = EHelper.toList(json);
 					accountValues = new String[value.size()];
 					for(int i = 0;i < accountValues.length;i++){

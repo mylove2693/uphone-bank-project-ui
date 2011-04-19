@@ -22,6 +22,7 @@ import ubank.enum_type.EAccType;
 import ubank.enum_type.EOperation;
 import ubank.helper.EHelper;
 import ubank.main.BankMain;
+import ubank.main.Login;
 import ubank.main.R;
 import ubank.payment.AllPaymentSer;
 import ubank.payment.ElseAcc;
@@ -34,7 +35,6 @@ public class SetAccountAlias extends GeneralActivity{
 	private String[] accountValues = null;
 	private TextView txt=null;
 	private Button next_btn=null;
-	private String userid = "1";
 	@Override
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
@@ -104,7 +104,7 @@ public class SetAccountAlias extends GeneralActivity{
 				if (EHelper.hasInternet(SetAccountAlias.this)) {
 				String type = accountInfo.getAccTypValue();
 				try {
-					JSONObject json = ConnectWs.connect(SetAccountAlias.this, EAccType.NULL, EOperation.GET_ACC,userid,type,EAccState.getStateName(EAccState.BIND));
+					JSONObject json = ConnectWs.connect(SetAccountAlias.this, EAccType.NULL, EOperation.GET_ACC,Login.userId,type,EAccState.getStateName(EAccState.BIND));
 					List<String> value = EHelper.toList(json);
 					accountValues = new String[value.size()];
 					for(int i = 0;i < accountValues.length;i++){

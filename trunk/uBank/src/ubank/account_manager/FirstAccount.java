@@ -12,6 +12,7 @@ import ubank.enum_type.EAccType;
 import ubank.enum_type.EOperation;
 import ubank.helper.EHelper;
 import ubank.main.BankMain;
+import ubank.main.Login;
 import ubank.main.R;
 import ubank.webservice.ConnectWs;
 import android.os.Bundle;
@@ -29,7 +30,6 @@ public class FirstAccount extends GeneralActivity {
 	private Button next_btn = null;
 	private String num;
 	private Spinner select_acc = null;
-	private String userid = "1";
 	private ArrayAdapter<String> adapter;
 
 	@Override
@@ -102,7 +102,7 @@ public class FirstAccount extends GeneralActivity {
 			try {
 				JSONObject json = new JSONObject();
 				json = ConnectWs.connect(this, EAccType.NULL,
-						EOperation.GET_PRE_ACC, userid);
+						EOperation.GET_PRE_ACC, Login.userId);
 				String preAcc = EHelper.toList(json).get(0).toString();
 				num = preAcc.split("#")[1];
 				txt.setText("当前首选账户为:" + num);
@@ -123,7 +123,7 @@ public class FirstAccount extends GeneralActivity {
 				JSONObject json = new JSONObject();
 				String[] account = null;
 				json = ConnectWs.connect(this, EAccType.NULL,
-						EOperation.GET_ACC, userid, EAccType
+						EOperation.GET_ACC, Login.userId, EAccType
 								.getAccTypeName(EAccType.CURRENT_DEPOSIT),
 						EAccState.getStateName(EAccState.BIND));
 				List<String> value = EHelper.toList(json);
