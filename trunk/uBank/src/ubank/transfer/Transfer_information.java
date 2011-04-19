@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 import ubank.base.GeneralActivity;
 import ubank.base.GeneralListActivity;
 import ubank.enum_type.EAccType;
@@ -112,6 +113,8 @@ public class Transfer_information extends GeneralActivity {
 					EOperation.GET_ACC_INFO, acc_num);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			Toast.makeText(this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
+			finish();
 			e.printStackTrace();
 		}
 		// 通过后台来获取余额
