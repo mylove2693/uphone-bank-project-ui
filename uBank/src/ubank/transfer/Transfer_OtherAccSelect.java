@@ -47,7 +47,7 @@ public class Transfer_OtherAccSelect extends GeneralActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		init();//加载无需从后台访问的数据
-		userid = "3";
+		userid =Login.userId;
 		/**
 		 * 添加数据的方法
 		 */
