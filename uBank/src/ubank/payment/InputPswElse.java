@@ -31,12 +31,13 @@ public class InputPswElse extends GeneralActivity {
 	private String acc_balance;
 	private EditText pws;
 	private String pwsStr;
-	//从WaitCostItema类传来的信息如需付款金额
-	private String payname;//要交费的名称
-	private String paymoney;//要交费的金额
-	private String payaddress;//收费方
-	private String accType;//前一个页面传来的账号类型
-	private EAccType type;//取得操作类型
+	// 从WaitCostItema类传来的信息如需付款金额
+	private String payname;// 要交费的名称
+	private String paymoney;// 要交费的金额
+	private String payaddress;// 收费方
+	private String accType;// 前一个页面传来的账号类型
+	private EAccType type;// 取得操作类型
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -56,35 +57,40 @@ public class InputPswElse extends GeneralActivity {
 				 * 先判断密码框是否为空 当不为空时在验证密码是否正确 中间用 & 连接 & 表示前面为true的情况下后面还要执行
 				 * 知道前后都为true时菜返回true
 				 */
-				if (!pwsStr.equals("")&pwsStr.equals("123456")) {
+				if (!pwsStr.equals("") & pwsStr.equals("123456")) {
 					// 计算余额
 					Double balanceValue = Double.parseDouble(acc_balance)
 							- Double.parseDouble(paymoney);
-					if (balanceValue >=0) {// 检查余额
-						
-						//开始缴费
+					if (balanceValue >= 0) {// 检查余额
+
+						// 开始缴费
 						/**
-						 * 缴费格式cd:0210:水费:30:110:123456:运营商
-						 * 参数     "水费","30","110","123456","无锡自来水公司"
+						 * 缴费格式cd:0210:水费:30:110:123456:运营商 参数
+						 * "水费","30","110","123456","无锡自来水公司"
 						 */
 						try {
-							JSONObject jsonObj = ConnectWs.connect(InputPswElse.this,type,EOperation.PAYMENT, payname,paymoney,account,pwsStr,payaddress);
+							JSONObject jsonObj = ConnectWs.connect(
+									InputPswElse.this, type,
+									EOperation.PAYMENT, payname, paymoney,
+									account, pwsStr, payaddress);
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-						
-						//缴费成功提示
+
+						// 缴费成功提示
 						MyDialogOne d1 = new MyDialogOne(InputPswElse.this,
 								R.style.dialog);
-						d1.setTitleAndInfo("成功提示", "缴费成功,余额为:"+ balanceValue + ".00元");
+						d1.setTitleAndInfo("成功提示", "缴费成功,余额为:" + balanceValue
+								+ ".00元");
 						d1.Listener(InputPswElse.this, AllPaymentSer.class);
 						d1.show();
 					} else {
 						// 金额不足提示
 						MyDialogOne d1 = new MyDialogOne(InputPswElse.this,
 								R.style.dialog);
-						d1.setTitleAndInfo("失败提示", "余额不足,余额为:"+ acc_balance + ".00元");
+						d1.setTitleAndInfo("失败提示", "余额不足,余额为:" + acc_balance
+								+ ".00元");
 						d1.Listener(InputPswElse.this, null);
 						d1.show();
 					}
@@ -96,6 +102,7 @@ public class InputPswElse extends GeneralActivity {
 					d1.setTitleAndInfo("错误提示", "密码错误!");
 					d1.Listener(InputPswElse.this, null);
 					d1.show();
+					pws.setText("");
 				}
 			}
 		});
@@ -111,37 +118,36 @@ public class InputPswElse extends GeneralActivity {
 		 * 从上一个Activity中取得 账号 和余额 需付款金额 初始化数据
 		 */
 		Intent intent = getIntent();
-		accType=intent.getStringExtra("accType");//获取上一个界面传来的类型
-		account = intent.getStringExtra("account");//获取上一个界面传来的账号
-		
+		accType = intent.getStringExtra("accType");// 获取上一个界面传来的类型
+		account = intent.getStringExtra("account");// 获取上一个界面传来的账号
+
 		/**
 		 * 查询账号余额
 		 */
-		
-		if(accType.equals("信用卡")){
-			type=EAccType.CREDIT_CARD;
-		}else if(accType.equals("定期储蓄卡")){
-			type=EAccType.TIME_DEPOSITS;
-		}else if(accType.equals("活期储蓄卡")){
-			type=EAccType.CURRENT_DEPOSIT;
+
+		if (accType.equals("信用卡")) {
+			type = EAccType.CREDIT_CARD;
+		} else if (accType.equals("定期储蓄卡")) {
+			type = EAccType.TIME_DEPOSITS;
+		} else if (accType.equals("活期储蓄卡")) {
+			type = EAccType.CURRENT_DEPOSIT;
 		}
-		
+
 		try {
-			JSONObject json = ConnectWs.connect(this,type,EOperation.GET_ACC_INFO,account.trim());
-		
-			acc_balance =EHelper.toMap(json).get("余额");//余额
+			JSONObject json = ConnectWs.connect(this, type,
+					EOperation.GET_ACC_INFO, account.trim());
+
+			acc_balance = EHelper.toMap(json).get("余额");// 余额
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		
+
 		Bundle bundle = intent.getExtras();
 		// 从WaitCostItema类传来的信息如需付款金额
-		payname=bundle.getString("payname");//要交费的名称
-		paymoney =bundle.getString("paymoney");//要交费的金额
-		payaddress=bundle.getString("payaddress");//收费方
+		payname = bundle.getString("payname");// 要交费的名称
+		paymoney = bundle.getString("paymoney");// 要交费的金额
+		payaddress = bundle.getString("payaddress");// 收费方
 	}
 
 	/**
