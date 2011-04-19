@@ -2,6 +2,7 @@ package ubank.base;
 
 import ubank.main.BankMain;
 import ubank.main.FinanceAss;
+import ubank.main.Login;
 import ubank.main.R;
 import android.app.Activity;
 import android.app.Notification;
@@ -33,6 +34,8 @@ public class GeneralFinanceActivity extends Activity implements IGeneralActivity
 
 	public static boolean isFirst = true;
 	public static boolean isHide = false;
+	
+	private Intent intent=null;
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -142,11 +145,46 @@ public class GeneralFinanceActivity extends Activity implements IGeneralActivity
 			}
 		});
 
+		//设置底部选项卡样式
+		btnbank.setImageResource(R.drawable.main_sjyh);
+//		btnbank.setImageResource(R.drawable.main_sjyh2);
 		// 给底部的手机银行图片添加监听
-		setListener(btnbank, this, BankMain.class);
+		btnbank.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+				if (FinanceAss.loginstatus) {
+					//重新载入主页面
+					intent = new Intent(GeneralFinanceActivity.this,BankMain.class);
+					intent.addFlags(intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+					GeneralFinanceActivity.this.startActivity(intent);
+					
+				}else {
+					//载入登录按钮
+					intent = new Intent(GeneralFinanceActivity.this,Login.class);
+					GeneralFinanceActivity.this.startActivity(intent);
+					
+				}
+			}
+		});
 
+		//设置底部选项卡样式
+		btnhelper.setImageResource(R.drawable.main_jrzs);
+//		btnhelper.setImageResource(R.drawable.main_jrzs2);
 		// 给底部的金融助手图片添加监听
-		setListener(btnhelper, this, FinanceAss.class);
+		btnhelper.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+				intent = new Intent(GeneralFinanceActivity.this,FinanceAss.class);
+				intent.addFlags(intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+				GeneralFinanceActivity.this.startActivity(intent);
+			}
+		});
 	}
 	
 	// 向Activity中添加新的布局
@@ -166,12 +204,10 @@ public class GeneralFinanceActivity extends Activity implements IGeneralActivity
 		tvButton.setOnClickListener(new Listener(fromActivity, toActivity));
 	}
 
-	// 为底部的图标按钮添加监听
 	@Override
 	public void setListener(ImageView btnButton, Activity fromActivity,
 			Class toActivity) {
 		// TODO Auto-generated method stub
-		btnButton.setOnClickListener(new Listener(fromActivity, toActivity));
+		
 	}
-
 }
