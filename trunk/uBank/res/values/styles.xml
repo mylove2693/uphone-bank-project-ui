@@ -10,4 +10,11 @@
 		</item>
 		<item name="android:backgroundDimEnabled">false</item>
 	</style>
+	<style name="lock">
+		<item name="android:windowIsTranslucent">true</item>
+		<item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
+		<item name="android:windowBackground">@drawable/transparent_background</item>
+		<item name="android:windowNoTitle">true</item>
+		<item name="android:colorForeground">#fff</item>
+	</style>
 </resources>
