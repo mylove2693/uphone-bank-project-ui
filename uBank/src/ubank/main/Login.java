@@ -24,7 +24,6 @@ public class Login extends Activity {
 	//public static String userId = "1";
 	
 	private String extraCode;
-	private String userName;
 	private String passWord;
 	private String InputCode;
 	private boolean loginflag=false;
@@ -34,6 +33,7 @@ public class Login extends Activity {
 	private EditText extracode;
 	private TextView showec;
 	public static String userName = "张三";
+	public static String userId="1";
 	private Button btn_login;
 	
 	private Intent intent=new Intent();
@@ -103,6 +103,7 @@ public class Login extends Activity {
 							}
 							if(loginflag){
 								//登录成功
+								
 								intent.setClass(Login.this, BankMain.class);
 								Login.this.startActivity(intent);
 								
