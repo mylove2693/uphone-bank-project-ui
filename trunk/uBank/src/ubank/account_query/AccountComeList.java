@@ -60,9 +60,6 @@ public class AccountComeList extends GeneralListActivity {
 				R.id.Text_View_16_Gray);
 		above_txt.setText(title);
 
-//		String[] name = new String[] { "2011-3-8", "2011-3-9", "2011-3-10" };
-//		String[] value = new String[] { "转账", "汇款", "转账" };
-//		setListAdapter(createText_Text_Img(name, value));
 		setListData();
 	}
 

@@ -69,7 +69,6 @@ public class AccountComeDetail extends GeneralListActivity {
 					json = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
 							EOperation.GET_COMEQUERY_INFO, type, id);
 				}
-				System.out.println(json);
 				for(int i = 0;i < name.length;i++){
 					value[i] = json.get(name[i]).toString();
 				}
