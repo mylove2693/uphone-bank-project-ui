@@ -30,16 +30,15 @@ import ubank.helper.EHelper;
 
 public class ConnectWs {
 
-	public static JSONObject connect(Activity activity, EAccType accType,
-			EOperation operation, String... params) throws IOException {
+	public static JSONObject connect(Activity activity, EAccType accType, EOperation operation,
+			String... params) throws IOException {
 		// a,b,c->xx,yy,zz->t:o:xx:yy:zz->...->[is]->{a:"xx",b:"yy"}->{a:"a",b:"b"}
 		HttpClient httpclient = new DefaultHttpClient();
 		// 0.读取url
 		HttpPost httppost = new HttpPost(EHelper.readUrl(activity));
 		List<NameValuePair> lstNameValuePairs = new ArrayList<NameValuePair>();
 		// 1.加密，2.格式化参数
-		String strParams = EHelper.setParams(accType, operation,
-				EHelper.encode(params));
+		String strParams = EHelper.setParams(accType, operation, EHelper.encode(params));
 		lstNameValuePairs.add(new BasicNameValuePair("params", strParams));
 
 		HttpEntity httpentity;
@@ -57,7 +56,7 @@ public class ConnectWs {
 			response = httpclient.execute(httppost);
 			StatusLine statusLine = response.getStatusLine();
 			int code = statusLine.getStatusCode();
-			Log.v("asdf", Integer.toString(code));
+//			Log.v("asdf", Integer.toString(code));
 			if (code == HttpStatus.SC_OK) {
 				// 如果请求成功
 				HttpEntity entity = response.getEntity();
@@ -73,8 +72,7 @@ public class ConnectWs {
 					return jsonObject;
 				}
 			} else {
-				Toast.makeText(activity, "对不起，请求不成功", Toast.LENGTH_SHORT)
-						.show();
+				throw new IOException("status: " + code);
 			}
 
 		} catch (ClientProtocolException e) {
@@ -86,6 +84,6 @@ public class ConnectWs {
 			httpclient.getConnectionManager().shutdown();
 		}
 
-		return null;
+		return new JSONObject();
 	}
 }
