@@ -38,9 +38,9 @@ public class Lately extends GeneralListActivity {
 		name=intent.getStringArrayExtra("field");
 		value=intent.getStringArrayExtra("value");
 		if (start_time == null || end_time == null||name==null||value==null) {
-			start_time="2011-03-14";
-			end_time="2011-04-14";
-			String[] field2={"2011-03-17","2011-04-01"};
+			start_time="2011-3-14";
+			end_time="2011-4-14";
+			String[] field2={"2011-3-17","2011-4-01"};
 			String[] value2={"水费","电费"};
 			name=field2;
 			value=value2;
