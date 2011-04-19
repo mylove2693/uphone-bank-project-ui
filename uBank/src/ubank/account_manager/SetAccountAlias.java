@@ -66,10 +66,8 @@ public class SetAccountAlias extends GeneralActivity{
 					/**
 					 * 将服务器上取得的值传给下一个Activity
 					 */
-					String account="222222";
-					String money="20";
-					intent.putExtra("account", account);
-					intent.putExtra("money", money);
+					intent.putExtra("accNumValue", accountInfo.getAccNumValue());
+					intent.putExtra("accTypeValue", accountInfo.getAccTypValue());
 					intent.setClass(SetAccountAlias.this, SetAccountAliasSecond.class);
 					SetAccountAlias.this.startActivity(intent);
 				}
