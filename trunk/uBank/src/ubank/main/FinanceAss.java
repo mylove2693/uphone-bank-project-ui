@@ -1,9 +1,11 @@
 package ubank.main;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +19,9 @@ public class FinanceAss extends Activity {
 	
 	private GridView gridview = null;
 	private Intent intent = null;
+	
+	//记录登录状态
+	public static boolean loginstatus = false;
 	
     /** Called when the activity is first created. */
     @Override
@@ -48,8 +53,8 @@ public class FinanceAss extends Activity {
         
         //为GridView添加监听
         gridview.setOnItemClickListener(new ItemClickListener());
-    } 
-    
+    } 	
+	
     class ItemClickListener implements OnItemClickListener{
 
 		@Override
@@ -57,8 +62,15 @@ public class FinanceAss extends Activity {
 			// TODO Auto-generated method stub
 			switch (position) {
 			case 0:
-				intent = new Intent(FinanceAss.this,Login.class);
-				startActivity(intent);
+				if (loginstatus) {
+					
+					intent = new Intent(FinanceAss.this,BankMain.class);
+					startActivity(intent);
+					
+				}else {
+					intent = new Intent(FinanceAss.this,Login.class);
+					startActivity(intent);
+				}
 				break;
 			case 1:
 				intent = new Intent(FinanceAss.this, DepositRates.class);
