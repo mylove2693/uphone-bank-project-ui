@@ -2,7 +2,6 @@ package ubank.account_query;
 
 import java.io.IOException;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -23,8 +22,14 @@ import android.widget.Toast;
 public class AccountInventoryList extends GeneralListActivity {
 	private TextView above_txt = null;
 	private String start_time = "";
-	private String end_time = null;
+	private String end_time = "";
 	private Intent intent = null;
+	private String accTypeValue = "";
+	private String accNumValue = "";
+	private String userid = "1";
+	private String[] paramId = null;
+	private String[] name = null;
+	private String[] value = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +48,11 @@ public class AccountInventoryList extends GeneralListActivity {
 		setListener(tvClassThird, this, AccountInventory.class);
 
 		intent = this.getIntent();
-
 		start_time = intent.getStringExtra("start_time");
 		end_time = intent.getStringExtra("end_time");
-		String accNumValue = intent.getStringExtra("accNumValue");
-		String accTypeValue = intent.getStringExtra("accTypeValue");
+		accNumValue = intent.getStringExtra("accNumValue");
+		accTypeValue = intent.getStringExtra("accTypeValue");
+		
 		String title = accTypeValue + accNumValue + "在" + start_time + "到"
 				+ end_time + "之间的交易记录如下：";
 
@@ -65,46 +70,39 @@ public class AccountInventoryList extends GeneralListActivity {
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		// TODO Auto-generated method stub
 		Intent intent = new Intent();
+		intent.putExtra("id", paramId[position]);
+		intent.putExtra("accTypeValue", accTypeValue);
+		intent.putExtra("type", value[position]);
 		intent.setClass(this, AccountInventoryDetail.class);
 		this.startActivity(intent);
 	}
 
 	private void setListData() {
-		String userid = "1";
-		String accTypeValue = intent.getStringExtra("accTypeValue");
+		
 		if (EHelper.hasInternet(this)) {
-			String[] name = null;
-			String[] value = null;
 			try {
 				JSONObject json = new JSONObject();
-				JSONArray names = null;
-				if ("信用卡".equals(accTypeValue)) {
-					json = ConnectWs.connect(this, EAccType.CREDIT_CARD,
-							EOperation.GET_LIST_HISTORY, userid, start_time,
-							end_time);
-				} else if ("活期储蓄卡".equals(accTypeValue)) {
-					json = ConnectWs.connect(this, EAccType.CREDIT_CARD,
-							EOperation.GET_LIST_HISTORY, userid, start_time,
-							end_time);
+				json = ConnectWs.connect(this, EAccType.NULL,
+						EOperation.GET_LIST_HISTORY, userid, start_time,
+						end_time);
+				String result = json.getString("info");
+				String[] temp = result.split(",");
+				paramId = new String[temp.length];
+				name = new String[temp.length];
+				value = new String[temp.length];
+				for(int i = 0;i < temp.length;i++){
+					String[] temp1 = temp[i].split("#");
+					paramId[i] = temp1[0];
+					name[i] = temp1[1];
+					value[i] = temp1[2];
 				}
-
-				names = json.names();
-				name = new String[names.length()];
-				value = new String[names.length()];
-				for (int i = 0; i < names.length(); i++) {
-					try {
-						name[i] = names.getString(i);
-						value[i] = json.getString(names.getString(i));
-					} catch (JSONException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-
 				setListAdapter(createText_Text_Img(name, value));
+				
 			} catch (IOException e) {
 				Toast.makeText(this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
 				finish();
+				e.printStackTrace();
+			} catch (JSONException e) {
 				e.printStackTrace();
 			}
 		} else {
