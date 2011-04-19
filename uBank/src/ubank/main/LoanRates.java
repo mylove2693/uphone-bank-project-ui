@@ -27,6 +27,7 @@ import android.widget.Toast;
  */
 
 public class LoanRates extends GeneralFinanceActivity {
+	
 	private List<String> data = new ArrayList<String>();
     /** Called when the activity is first created. */
     @Override
@@ -46,6 +47,14 @@ public class LoanRates extends GeneralFinanceActivity {
         //显示数据
         showDataToView();
     }
+    
+    //当不再需要时finish该页面
+    @Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		LoanRates.this.finish();
+	}
     
     //从服务器读取存款利率
     private void loaderData(){

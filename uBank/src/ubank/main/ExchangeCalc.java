@@ -7,12 +7,15 @@ import java.util.List;
 import org.json.JSONObject;
 
 import ubank.base.GeneralActivity;
+import ubank.base.MyDialogOne;
 import ubank.enum_type.EAccType;
 import ubank.enum_type.EOperation;
 import ubank.helper.EHelper;
 import ubank.webservice.ConnectWs;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,13 +23,21 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 public class ExchangeCalc extends GeneralActivity{
+	
 	private EditText InputAmt;
 	private Spinner SpSource;
 	private Spinner SpDestinations;
-	private Button Calc;
+	private Button BtnCalc;
+	
+	private String amt;
+	private String calcamt;
+	private String currencySource;
+	private String currencyDestinations;
 	
 	private List<String> MTpye = new ArrayList<String>();
+	private ArrayAdapter<String> adapter;
 	
+	//private Intent intent;
 	
     /** Called when the activity is first created. */
     @Override
@@ -43,13 +54,94 @@ public class ExchangeCalc extends GeneralActivity{
         
 		//从服务器读取所有币种
 		loaderData();
-        
 		
+		adapter = new ArrayAdapter<String>(this,R.xml.spinner_item,MTpye);
 		
+        //选择所要转换的原始币种
+		SpSource = (Spinner)findViewById(R.id.sourceCurrencySpinner);
+		SpSource.setAdapter(adapter);
+		SpSource.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
+				currencySource = parent.getItemAtPosition(position).toString();
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
+		//选择所要转换的目标币种
+		SpDestinations = (Spinner)findViewById(R.id.delatinCurrencySpinner);
+		SpDestinations.setAdapter(adapter);
+		SpDestinations.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
+				currencyDestinations = parent.getItemAtPosition(position).toString();
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
+		//计算汇率
+		BtnCalc = (Button)findViewById(R.id.currencyConCulate);
+		BtnCalc.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				InputAmt = (EditText)findViewById(R.id.currencyInputEdit);
+				amt = InputAmt.getText().toString();
+				
+				if (EHelper.hasInternet(ExchangeCalc.this)) {
+				try {
+					//服务器计算转换后的结果
+					JSONObject json = ConnectWs.connect(ExchangeCalc.this, EAccType.NULL,EOperation.GET_EXCHANGE_RESULT,amt,currencySource,currencyDestinations);
+					System.out.println(json.toString());
+					calcamt = EHelper.toStr(json);
+					
+					//计算结果用Dialog显示
+					
+					MyDialogOne dialog = new MyDialogOne(ExchangeCalc.this,R.style.dialog);
+					dialog.setTitleAndInfo("汇率计算", amt+currencySource+"兑换为：\n"+calcamt+currencyDestinations);
+					//dialog.Listener(intent, ExchangeCalc.this);
+					dialog.show();
+					
+				} catch (IOException e) {
+					Toast.makeText(ExchangeCalc.this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
+					finish();
+					e.printStackTrace();
+				}
+				
+				}else {
+					Toast.makeText(ExchangeCalc.this, "没有连接网络", Toast.LENGTH_SHORT).show();
+					finish();
+				}
+			}
+		});
     }
     
+    
+    //当不再需要时finish该页面
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		ExchangeCalc.this.finish();
+	}
+	
     //从服务器读取所有币种
     private void loaderData(){
 		if (EHelper.hasInternet(this)) {
@@ -58,9 +150,6 @@ public class ExchangeCalc extends GeneralActivity{
 			JSONObject json = ConnectWs.connect(this, EAccType.NULL, EOperation.GET_MONEY_TYPE,"");
 			//将JSON数据转换为MAP型
 			MTpye = EHelper.toList(json);
-			for (int i = 0; i < MTpye.size(); i++) {
-				System.out.println(MTpye.get(i));
-			}
 			
 		} catch (IOException e) {
 			Toast.makeText(this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
@@ -73,5 +162,4 @@ public class ExchangeCalc extends GeneralActivity{
 			finish();
 		}
 	}
-    
 }

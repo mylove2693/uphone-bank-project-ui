@@ -50,6 +50,14 @@ public class DepositRates extends GeneralFinanceActivity{
 		showDataToView();
     }
     
+    //当不再需要时finish该页面
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		DepositRates.this.finish();
+	}
+    
     //从服务器读取存款利率
     private void loaderData(){
 		if (EHelper.hasInternet(this)) {
@@ -93,7 +101,7 @@ public class DepositRates extends GeneralFinanceActivity{
 		 ratesText.add((TextView)findViewById(R.id.two_3_2));
 		 ratesText.add((TextView)findViewById(R.id.two_3_3));
 		 ratesText.add((TextView)findViewById(R.id.three_1));
-		 ratesText.add((TextView)findViewById(R.id.three_1));
+		 ratesText.add((TextView)findViewById(R.id.three_2));
 		 ratesText.add((TextView)findViewById(R.id.four));
 		 
 		 for(int i = 0; i < ratesText.size(); i ++)
