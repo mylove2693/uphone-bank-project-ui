@@ -107,6 +107,7 @@
 		<activity android:name="ubank.payment.ManageCost" />
 		<activity android:name="ubank.payment.SelectAcc" />
 		<activity android:name="ubank.payment.InputPsw" />
+		<activity android:name="ubank.payment.InputPswElse" />
 		<activity android:name="ubank.payment.ElseAcc" />
 		<activity android:name="ubank.payment.Cost" />
 		<!-- 错误信息一个按钮 -->
