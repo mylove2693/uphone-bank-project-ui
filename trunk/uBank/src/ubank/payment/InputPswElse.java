@@ -130,7 +130,6 @@ public class InputPswElse extends GeneralActivity {
 			JSONObject json = ConnectWs.connect(this,type,EOperation.GET_ACC_INFO,account.trim());
 		
 			acc_balance =EHelper.toMap(json).get("余额");//余额
-			System.out.println(acc_balance+"-------=-=-=");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -143,8 +142,6 @@ public class InputPswElse extends GeneralActivity {
 		payname=bundle.getString("payname");//要交费的名称
 		paymoney =bundle.getString("paymoney");//要交费的金额
 		payaddress=bundle.getString("payaddress");//收费方
-		System.out.println("payname="+payname+"account="+account+"acc_balance="+acc_balance+
-				"paymoney="+paymoney+"payaddress="+payaddress);
 	}
 
 	/**
