@@ -11,6 +11,6 @@
 	android:layout_height="30dip"
 	android:background="@color/selector"
 	android:text="@string/cc_next"
-	android:textSize="20sp"
+	android:textSize="18sp"
 	/>
 </LinearLayout>
