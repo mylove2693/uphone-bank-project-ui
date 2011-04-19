@@ -3,16 +3,16 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="fill_parent"
   android:layout_height="match_parent"
-  android:paddingLeft="25dip"
+  android:paddingLeft="20dip"
   android:paddingRight="10dip">
   <include 
   	android:id="@+id/below_list_left_txt" 
-  	android:layout_width="80dip"
+  	android:layout_width="50dip"
   	android:layout_height="wrap_content"
   	layout="@xml/blue_text_view"/>
   <include 
   	android:id="@+id/below_list_right_txt" 
-  	android:layout_width="200dip"
+  	android:layout_width="250dip"
   	android:layout_height="wrap_content"
   	layout="@xml/et_user"/>
 </LinearLayout>
