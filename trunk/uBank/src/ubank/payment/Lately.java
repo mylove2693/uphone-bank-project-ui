@@ -1,6 +1,7 @@
 package ubank.payment;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -19,9 +20,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Lately extends GeneralListActivity {
-	
+
 	private String[] name;
 	private String[] value;
 	private TextView txt = null;
@@ -32,18 +34,66 @@ public class Lately extends GeneralListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Intent intent = getIntent();
-//		Bundle bundle=intent.getBundleExtra("bundle");
 		start_time = intent.getStringExtra("start_time");
 		end_time = intent.getStringExtra("end_time");
-		name=intent.getStringArrayExtra("field");
-		value=intent.getStringArrayExtra("value");
-		if (start_time == null || end_time == null||name==null||value==null) {
-			start_time="2011-3-14";
-			end_time="2011-4-14";
-			String[] field2={"2011-3-17","2011-4-01"};
-			String[] value2={"水费","电费"};
-			name=field2;
-			value=value2;
+		name = intent.getStringArrayExtra("field");
+		value = intent.getStringArrayExtra("value");
+		if (name == null || value == null) {
+			if (start_time == null || end_time == null) {
+				start_time = "2011-4-14";
+				end_time = "2011-4-17";
+				String[] field2 = { "2011-4-16" };
+				String[] value2 = { "煤气费" };
+				name = field2;
+				value = value2;
+			} else {
+				// 连接数据库查询
+//				System.out.println("连接数据库查询");
+//				System.out.println("start_time=" + start_time + "end_time="
+//						+ end_time);
+				if (EHelper.hasInternet(Lately.this)) {
+					try {
+						JSONObject jsonObj = ConnectWs.connect(this,
+								EAccType.NULL, EOperation.GET_PAYMENT_HISTORY,
+								"1", start_time, end_time);
+						if (jsonObj.length() != 0) {//判断后台传来的是否为空
+							Map<String, String> map = EHelper.toMap(jsonObj);
+							String s = null;// 获取值
+							for (Entry<String, String> kv : map.entrySet()) {
+								s = kv.getValue();
+							}
+							String[] ss = s.split("#");
+							String[] nameField = new String[ss.length / 2];
+							String[] nameValue = new String[ss.length / 2];
+							for (int i = 1, j = 0; i < ss.length; i += 2, j++) {
+								nameField[j] = ss[i - 1];// 双数赋给字段数组
+								nameValue[j] = ss[i];// 单数赋给字值数组
+							}
+							name = nameField;
+							value = nameValue;
+						}else {
+							start_time = "2011-4-14";
+							end_time = "2011-4-17";
+							String[] field2 = { "2011-4-16" };
+							String[] value2 = { "煤气费" };
+							name = field2;
+							value = value2;
+							Toast.makeText(Lately.this, "对不起此时间段没有数据",
+									Toast.LENGTH_SHORT).show();
+							finish();//如果没有数据就直接finish()
+						}
+					} catch (IOException e) {
+						Toast.makeText(Lately.this, "对不起，服务器未连接",
+								Toast.LENGTH_SHORT).show();
+						finish();
+						e.printStackTrace();
+					}
+				} else {
+					Toast.makeText(Lately.this, "没有连接网络", Toast.LENGTH_SHORT)
+							.show();
+					finish();
+				}
+			}
 		}
 		tvClassFirst.setVisibility(View.VISIBLE);
 		// 监听
@@ -68,12 +118,12 @@ public class Lately extends GeneralListActivity {
 		if (id == 0) {// 水费
 
 			Intent water_intent = new Intent();
-			String[] value1=null;// 获取值
+			String[] value1 = null;// 获取值
 			try {
-				JSONObject jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
-						EOperation.GET_PAYMENT_HIS_INFO,"1");
+				JSONObject jsonObj = ConnectWs.connect(this,
+						EAccType.CURRENT_DEPOSIT,
+						EOperation.GET_PAYMENT_HIS_INFO, "1");
 				Map<String, String> map = EHelper.toMap(jsonObj);
-				System.out.println(jsonObj.toString());
 				value1 = new String[map.size()];// 获取值
 				int i = 0;// 使用i之前要初始化为0
 				for (Entry<String, String> kv : map.entrySet()) {
@@ -88,10 +138,11 @@ public class Lately extends GeneralListActivity {
 			Lately.this.startActivity(water_intent);
 		} else if (id == 1) {// 电费
 			Intent electricity_intent = new Intent();
-			String[] value1=null;// 获取值
+			String[] value1 = null;// 获取值
 			try {
-				JSONObject jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
-						EOperation.GET_PAYMENT_HIS_INFO,"2");
+				JSONObject jsonObj = ConnectWs.connect(this,
+						EAccType.CURRENT_DEPOSIT,
+						EOperation.GET_PAYMENT_HIS_INFO, "2");
 				Map<String, String> map = EHelper.toMap(jsonObj);
 				value1 = new String[map.size()];// 获取值
 				int i = 0;// 使用i之前要初始化为0
@@ -107,10 +158,11 @@ public class Lately extends GeneralListActivity {
 			Lately.this.startActivity(electricity_intent);
 		} else if (id == 2) {// 房租费
 			Intent rent_intent = new Intent();
-			String[] value1=null;// 获取值
+			String[] value1 = null;// 获取值
 			try {
-				JSONObject jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
-						EOperation.GET_PAYMENT_HIS_INFO,"3");
+				JSONObject jsonObj = ConnectWs.connect(this,
+						EAccType.CURRENT_DEPOSIT,
+						EOperation.GET_PAYMENT_HIS_INFO, "3");
 				Map<String, String> map = EHelper.toMap(jsonObj);
 				value1 = new String[map.size()];// 获取值
 				int i = 0;// 使用i之前要初始化为0
