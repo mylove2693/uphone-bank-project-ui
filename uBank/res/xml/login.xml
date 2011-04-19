@@ -39,7 +39,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 					android:layout_height = "75px"
 					android:textSize = "24px"
 					android:textColor = "#000000"
-					android:text = "用户名： "
+					android:text = "用户号： "
 					android:gravity = "center_vertical"></TextView>
 				<EditText
 					android:id="@+id/nameEdit"

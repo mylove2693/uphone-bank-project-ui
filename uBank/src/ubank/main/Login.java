@@ -1,6 +1,7 @@
 package ubank.main;
 
 import java.io.IOException;
+import java.util.Map;
 
 import org.json.JSONObject;
 
@@ -28,7 +29,7 @@ public class Login extends Activity {
 	private String InputCode;
 	private boolean loginflag=false;
 	
-	private EditText username;
+	private EditText userid;
 	private EditText password;
 	private EditText extracode;
 	private TextView showec;
@@ -51,7 +52,7 @@ public class Login extends Activity {
 		showec = (TextView)findViewById(R.id.loginbox).findViewById(R.id.extraCode);
 		showec.setText(extraCode);
 		
-		username = (EditText)findViewById(R.id.login_box).findViewById(R.id.nameEdit);
+		userid = (EditText)findViewById(R.id.login_box).findViewById(R.id.nameEdit);
 		password = (EditText)findViewById(R.id.login_box).findViewById(R.id.passwdEdit);
 		extracode = (EditText)findViewById(R.id.login_box).findViewById(R.id.pyramidEdit);
 		
@@ -62,16 +63,16 @@ public class Login extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				userName = username.getText().toString();
+				userId = userid.getText().toString();
 				passWord = password.getText().toString();
 				InputCode = extracode.getText().toString();
 				if (InputCode.equals(extraCode)) {
 				
-					if (userName.equals("")) {
+					if (userId.equals("")) {
 
 						//用Dialog提示用户名为空
 						MyDialogOne dialog = new MyDialogOne(Login.this,R.style.dialog);
-						dialog.setTitleAndInfo("登录手机银行","用户名不能为空！");
+						dialog.setTitleAndInfo("登录手机银行","用户号不能为空！");
 						dialog.show();
 					}else {
 						
@@ -86,8 +87,8 @@ public class Login extends Activity {
 							if (EHelper.hasInternet(Login.this)) {
 								try {
 									//将用户名和密码发送到服务端进行验证
-									JSONObject json = ConnectWs.connect(Login.this, EAccType.NULL, EOperation.LOGIN,userName,passWord,InputCode);
-									//将JSON数据转换为MAP型
+									JSONObject json = ConnectWs.connect(Login.this, EAccType.NULL, EOperation.LOGIN,userId,passWord,InputCode);
+									//将JSON数据转换为boolean型
 									loginflag = EHelper.toBoolean(json);
 									
 								} catch (IOException e) {
@@ -103,16 +104,32 @@ public class Login extends Activity {
 							}
 							if(loginflag){
 								//登录成功
+								FinanceAss.loginstatus = true;
 								
 								intent.setClass(Login.this, BankMain.class);
 								Login.this.startActivity(intent);
 								
-								FinanceAss.loginstatus = true;
+								if (EHelper.hasInternet(Login.this)) {
+									try {
+										//将用户名和密码发送到服务端进行验证
+										JSONObject json = ConnectWs.connect(Login.this, EAccType.NULL, EOperation.GET_USER_INFO,userId);
+										//将JSON数据转换为MAP型
+										Map<String, String>userinfo = EHelper.toMap(json);
+										
+										userName = userinfo.get("userName").toString();
+										
+										
+									} catch (IOException e) {
+										Toast.makeText(Login.this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
+										finish();
+										e.printStackTrace();
+									}
+									
+									}else {
+										Toast.makeText(Login.this, "没有连接网络", Toast.LENGTH_SHORT).show();
+										finish();
+									}
 								
-//								MyDialogOne dialog = new MyDialogOne(Login.this,R.style.dialog);
-//								dialog.setTitleAndInfo("登录手机银行","登录成功");
-//								dialog.Listener(intent, Login.this);
-//								dialog.show();
 							}else {
 								//登录失败
 								MyDialogOne dialog = new MyDialogOne(Login.this,R.style.dialog);
