@@ -1,48 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical" 
-	android:layout_width="fill_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
-<TableRow android:paddingTop="10dip" android:paddingLeft="10dip">       
-	 <include android:id="@+id/pws_txt_one" layout="@xml/text_view_20"
-		android:layout_width="fill_parent" android:layout_height="wrap_content" />   
-</TableRow>
-<!-- 白线 -->
-<include  layout="@xml/white_line"/>
-<TableRow android:paddingTop="10dip" android:paddingLeft="40dip">       
-	 <include android:id="@+id/pws_txt_two" layout="@xml/text_view_20"
-		android:layout_width="fill_parent" android:layout_height="wrap_content" />   
-</TableRow>
-<!-- 白线 -->
-<include  layout="@xml/white_line"/>
-<TableRow android:paddingTop="10dip" android:paddingLeft="10dip">      
-	 <include android:id="@+id/pws_txt_three" layout="@xml/text_view_20"
-		android:layout_width="fill_parent" android:layout_height="wrap_content" />   
-</TableRow>
-<!-- 白线 -->
-<include  layout="@xml/white_line"/>
-<TableRow android:paddingTop="10dip" android:paddingLeft="40dip">    
-	 <include android:id="@+id/pws_txt_four" layout="@xml/text_view_20"
-		android:layout_width="fill_parent" android:layout_height="wrap_content" />   
-</TableRow>
-<!-- 白线 -->
-<include  layout="@xml/white_line"/>
-<TableRow android:paddingTop="10dip" android:paddingLeft="10dip">      
-	 <include android:id="@+id/pws_txt_five" layout="@xml/text_view_20"
-		android:layout_width="fill_parent" android:layout_height="wrap_content" />   
-</TableRow>
-<!-- 白线 -->
-<include  layout="@xml/white_line"/>
-<!-- 密码输入框 -->
-<TableRow android:paddingLeft="40dip">       
-	 <include android:id="@+id/pws" layout="@xml/et_psd"
-		android:layout_width="fill_parent" android:layout_height="wrap_content" />   
-</TableRow>
-<!-- 白线 -->
-<include  layout="@xml/white_line"/>
-<!-- 按钮 -->
-<TableRow android:paddingTop="20dip" android:paddingLeft="120dip">      
-	 <include android:id="@+id/ok_btn" layout="@xml/button"
-		android:layout_width="fill_parent" android:layout_height="wrap_content" />   
-</TableRow>
-</TableLayout>
+
+	<include android:id="@+id/pws_txt_one" layout="@xml/text_view_20"
+		android:layout_marginLeft="10dip" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" />
+
+	<!-- 白线 -->
+	<include layout="@xml/white_line" />
+
+	<include android:id="@+id/pws_txt_two" layout="@xml/text_view_20"
+		android:layout_marginLeft="20dip" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" />
+
+	<!-- 白线 -->
+	<include layout="@xml/white_line" />
+
+	<include android:id="@+id/pws_txt_three" layout="@xml/text_view_20"
+		android:layout_marginLeft="10dip" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" />
+
+	<!-- 白线 -->
+	<include layout="@xml/white_line" />
+
+	<include android:id="@+id/pws_txt_four" layout="@xml/text_view_20"
+		android:layout_marginLeft="20dip" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" />
+
+	<!-- 白线 -->
+	<include layout="@xml/white_line" />
+
+	<include android:id="@+id/pws_txt_five" layout="@xml/text_view_20"
+		android:layout_marginLeft="10dip" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" />
+
+	<!-- 白线 -->
+	<include layout="@xml/white_line" />
+	<!-- 密码输入框 -->
+
+	<include android:id="@+id/pws" layout="@xml/et_psd"
+		android:layout_gravity="center_horizontal"
+		android:layout_marginBottom="3dip" android:layout_width="290dip"
+		android:layout_height="wrap_content" />
+
+	<!-- 白线 -->
+	<include layout="@xml/white_line" />
+	<!-- 按钮 -->
+
+	<include android:id="@+id/ok_btn" layout="@xml/button"
+		android:layout_marginTop="3dip" android:layout_gravity="center_horizontal"
+		android:layout_width="wrap_content" android:layout_height="wrap_content" />
+
+</LinearLayout>
