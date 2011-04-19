@@ -23,8 +23,13 @@ import ubank.webservice.ConnectWs;
 public class AccountComeList extends GeneralListActivity {
 	private TextView above_txt = null;
 	private String start_time = "";
-	private String end_time = null;
+	private String end_time = "";
 	private Intent intent = null;
+	private String[] paramId = null;
+	private String accNumValue = "";
+	private String accTypeValue = "";
+	private String[] name = null;
+	private String[] value = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +47,12 @@ public class AccountComeList extends GeneralListActivity {
 		tvClassThird.setText("来账查询");
 		setListener(tvClassThird, this, AccountCome.class);
 
-		Intent intent = this.getIntent();
+		intent = this.getIntent();
 
-		String start_time = intent.getStringExtra("start_time");
-		String end_time = intent.getStringExtra("end_time");
-		String accNumValue = intent.getStringExtra("accNumValue");
-		String accTypeValue = intent.getStringExtra("accTypeValue");
+		start_time = intent.getStringExtra("start_time");
+		end_time = intent.getStringExtra("end_time");
+		accNumValue = intent.getStringExtra("accNumValue");
+		accTypeValue = intent.getStringExtra("accTypeValue");
 		String title = accTypeValue + accNumValue + "在" + start_time + "到"
 				+ end_time + "之间的交易记录如下：";
 
@@ -55,57 +60,55 @@ public class AccountComeList extends GeneralListActivity {
 				R.id.Text_View_16_Gray);
 		above_txt.setText(title);
 
-		String[] name = new String[] { "2011-3-8", "2011-3-9", "2011-3-10" };
-		String[] value = new String[] { "转账", "汇款", "转账" };
-		setListAdapter(createText_Text_Img(name, value));
+//		String[] name = new String[] { "2011-3-8", "2011-3-9", "2011-3-10" };
+//		String[] value = new String[] { "转账", "汇款", "转账" };
+//		setListAdapter(createText_Text_Img(name, value));
+		setListData();
 	}
 
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		// TODO Auto-generated method stub
 		Intent intent = new Intent();
+		intent.putExtra("id", paramId[position]);
+		intent.putExtra("accTypeValue", accTypeValue);
+		intent.putExtra("type", value[position]);
 		intent.setClass(this, AccountComeDetail.class);
 		this.startActivity(intent);
 	}
 
 	private void setListData() {
 		String userid = "1";
-		String accTypeValue = intent.getStringExtra("accTypeValue");
+		//String accTypeValue = intent.getStringExtra("accTypeValue");
 		if (EHelper.hasInternet(this)) {
-			String[] name = null;
-			String[] value = null;
-			JSONObject json = new JSONObject();
-			JSONArray names = null;
+			
+			JSONObject json;
 			try {
-				if ("信用卡".equals(accTypeValue)) {
-					json = ConnectWs.connect(this, EAccType.CREDIT_CARD,
-							EOperation.GET_COME_HISTORY, userid, start_time,
-							end_time);
-				} else if ("活期储蓄卡".equals(accTypeValue)) {
-					json = ConnectWs.connect(this, EAccType.CREDIT_CARD,
-							EOperation.GET_COME_HISTORY, userid, start_time,
-							end_time);
+				json = new JSONObject();
+				json = ConnectWs.connect(this, EAccType.NULL,
+						EOperation.GET_COME_HISTORY, userid, start_time,
+						end_time);
+				String result = json.getString("info");
+				String[] temp = result.split(",");
+				paramId = new String[temp.length];
+				name = new String[temp.length];
+				value = new String[temp.length];
+				for(int i = 0;i < temp.length;i++){
+					String[] temp1 = temp[i].split("#");
+					paramId[i] = temp1[0];
+					name[i] = temp1[1];
+					value[i] = temp1[2];
 				}
-
-				names = json.names();
-				name = new String[names.length()];
-				value = new String[names.length()];
-				for (int i = 0; i < names.length(); i++) {
-					try {
-						name[i] = names.getString(i);
-						value[i] = json.getString(names.getString(i));
-					} catch (JSONException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-
 				setListAdapter(createText_Text_Img(name, value));
-			} catch (IOException e) {
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}catch (IOException e1) {
 				Toast.makeText(this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
 				finish();
-				e.printStackTrace();
-			}
+				e1.printStackTrace();
+			} 
+
 		} else {
 			Toast.makeText(this, "没有连接网络", Toast.LENGTH_SHORT).show();
 			finish();
