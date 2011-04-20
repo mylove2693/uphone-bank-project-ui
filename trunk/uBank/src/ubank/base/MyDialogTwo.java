@@ -89,11 +89,13 @@ public class MyDialogTwo extends Dialog implements OnClickListener {
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 
-		if (intent != null) {
+
+		if (v.equals(btn_ok)) {
+			if (intent != null) {
 			this.dismiss();
 			fromActivity.startActivity(intent);
 		}
-		if (v.equals(btn_ok)) {
+			
 			if (toActivity != null) {
 				System.out.println("--------");
 				intent = new Intent();

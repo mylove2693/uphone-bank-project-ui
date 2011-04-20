@@ -6,9 +6,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import ubank.base.Lock;
+import ubank.base.MyDialogOne;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -134,4 +139,44 @@ public class FinanceAss extends Activity {
 		}
     	
     }
+    
+    @Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// TODO 菜单生成
+		menu.add(0, 0, Menu.NONE, "退出");// 退出
+		menu.add(0, 1, Menu.NONE, "锁定");
+		menu.add(0, 2, Menu.NONE, "关于");
+		return super.onCreateOptionsMenu(menu);
+
+	}
+    
+    @Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO 菜单点击
+		switch (item.getItemId()) {
+		case 0:
+			Intent startMain = new Intent(Intent.ACTION_MAIN);
+			startMain.addCategory(Intent.CATEGORY_HOME);
+			startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(startMain);
+			System.exit(0);
+			// moveTaskToBack(true);
+			break;
+		case 1:
+			Intent intent = new Intent(this, Lock.class);
+			startActivity(intent);
+//			moveTaskToBack(true);
+			break;
+		case 2:
+			new MyDialogOne(this, R.style.dialog)
+					.setTitleAndInfo("关于",
+							"手机银行\n客户至上\n版本号v10.\n智翔公司android小组 版权所有\nCopyright 2011\nAll Rights Reserved")
+					.setDismissButton().show();
+
+			break;
+		default:
+			break;
+		}
+		return super.onOptionsItemSelected(item);
+	}
 }

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.json.JSONObject;
 
+import ubank.base.Lock;
 import ubank.base.MyDialogOne;
 import ubank.enum_type.EAccType;
 import ubank.enum_type.EOperation;
@@ -13,6 +14,8 @@ import ubank.webservice.ConnectWs;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -26,6 +29,7 @@ public class Login extends Activity {
 	private String extraCode;
 	private String passWord;
 	private String InputCode;
+	private String logintimes;
 	private boolean loginflag=false;
 	
 	private ImageView bankmain;
@@ -107,18 +111,15 @@ public class Login extends Activity {
 								//登录成功
 								FinanceAss.loginstatus = true;
 								
-								intent.setClass(Login.this, BankMain.class);
-								Login.this.startActivity(intent);
-								
 								if (EHelper.hasInternet(Login.this)) {
 									try {
 										//将用户名和密码发送到服务端进行验证
 										JSONObject json = ConnectWs.connect(Login.this, EAccType.NULL, EOperation.GET_USER_INFO,userId);
 										//将JSON数据转换为MAP型
 										Map<String, String>userinfo = EHelper.toMap(json);
-										
+										System.out.println(json.toString());
 										userName = userinfo.get("userName").toString();
-										
+										logintimes = userinfo.get("loginTimes").toString();
 										
 									} catch (IOException e) {
 										Toast.makeText(Login.this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
@@ -130,6 +131,9 @@ public class Login extends Activity {
 										Toast.makeText(Login.this, "没有连接网络", Toast.LENGTH_SHORT).show();
 										finish();
 									}
+								intent.putExtra("logintimes", logintimes);
+								intent.setClass(Login.this, BankMain.class);
+								Login.this.startActivity(intent);
 								
 							}else {
 								//登录失败
@@ -204,5 +208,45 @@ public class Login extends Activity {
 			Toast.makeText(this, "没有连接网络", Toast.LENGTH_SHORT).show();
 			finish();
 		}
+	}
+    
+    @Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// TODO 菜单生成
+		menu.add(0, 0, Menu.NONE, "退出");// 退出
+		menu.add(0, 1, Menu.NONE, "锁定");
+		menu.add(0, 2, Menu.NONE, "关于");
+		return super.onCreateOptionsMenu(menu);
+
+	}
+    
+    @Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO 菜单点击
+		switch (item.getItemId()) {
+		case 0:
+			Intent startMain = new Intent(Intent.ACTION_MAIN);
+			startMain.addCategory(Intent.CATEGORY_HOME);
+			startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(startMain);
+			System.exit(0);
+			// moveTaskToBack(true);
+			break;
+		case 1:
+			Intent intent = new Intent(this, Lock.class);
+			startActivity(intent);
+//			moveTaskToBack(true);
+			break;
+		case 2:
+			new MyDialogOne(this, R.style.dialog)
+					.setTitleAndInfo("关于",
+							"手机银行\n客户至上\n版本号v10.\n智翔公司android小组 版权所有\nCopyright 2011\nAll Rights Reserved")
+					.setDismissButton().show();
+
+			break;
+		default:
+			break;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 }
