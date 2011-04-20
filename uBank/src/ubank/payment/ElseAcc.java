@@ -14,6 +14,7 @@ import ubank.enum_type.EAccType;
 import ubank.enum_type.EOperation;
 import ubank.helper.EHelper;
 import ubank.main.BankMain;
+import ubank.main.Login;
 import ubank.main.R;
 import ubank.webservice.ConnectWs;
 import android.content.Intent;
@@ -49,7 +50,7 @@ public class ElseAcc extends GeneralActivity {
 		
 		accountInfo = (Account_Select)this.findViewById(R.id.account_select);
 		//accountType = new String[]{"活期储蓄卡","定期储蓄卡","信用卡"};
-		userid = "1";
+		userid = Login.userId;
 		loaderData();
 
 		loderValueData();
