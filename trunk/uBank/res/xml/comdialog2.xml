@@ -55,7 +55,7 @@
 <Button
 	android:id="@+id/btn_comdlog_ok"
 	android:layout_width="80dip"
-	android:layout_marginLeft="60dip"
+	android:layout_marginLeft="40dip"
 	android:layout_height="40dip"
 	android:text="OK"
 	/>
