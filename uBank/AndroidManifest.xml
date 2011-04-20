@@ -35,8 +35,6 @@
 
 		<!-- wangting's activity -->
 		<activity android:name="ubank.account_query.AccountQueryType">
-			<!-- <intent-filter> <action android:name="android.intent.action.MAIN"/> 
-				<category android:name="android.intent.category.LAUNCHER" /> </intent-filter> -->
 		</activity>
 		<activity android:name="ubank.account_query.AccountQuery">
 		</activity>
@@ -60,8 +58,6 @@
 		<activity android:name="ubank.account_manager.AccountBind"></activity>
 
 		<activity android:name="ubank.account_manager.ManagerHome">
-			<!-- <intent-filter> <action android:name="android.intent.action.MAIN"/> 
-				<category android:name="android.intent.category.LAUNCHER" /> </intent-filter> -->
 		</activity>
 		<activity android:name="ubank.account_manager.AccountBind">
 		</activity>
@@ -94,9 +90,6 @@
 		<!-- gsm's activity -->
 		<activity android:name="ubank.payment.AllPaymentSer">
 
-			<!-- <intent-filter> <action android:name="android.intent.action.MAIN"/> 
-				<category android:name="android.intent.category.LAUNCHER" /> </intent-filter> -->
-
 		</activity>
 		<activity android:name="ubank.payment.WaitCost" />
 		<activity android:name="ubank.payment.WaitCostItem" />
@@ -121,8 +114,6 @@
 
 		<!-- solo -->
 		<activity android:name="ubank.credit.CreditCardMain">
-			<!--<intent-filter> <action android:name="android.intent.action.MAIN" 
-				/> <category android:name="android.intent.category.LAUNCHER" /> </intent-filter> -->
 		</activity>
 		<activity android:name="ubank.credit.CardRepayment"></activity>
 		<activity android:name="ubank.credit.CreditCardInfo"></activity>
@@ -138,8 +129,6 @@
 
 		<!-- yy's activity -->
 		<activity android:name="ubank.transfer.TransferMain">
-			<!-- <intent-filter> <action android:name="android.intent.action.MAIN" 
-				/> <category android:name="android.intent.category.LAUNCHER" /> </intent-filter> -->
 		</activity>
 
 		<activity android:name="ubank.transfer.TransferAccSelect">
