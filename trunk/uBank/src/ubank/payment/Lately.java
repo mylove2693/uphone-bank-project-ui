@@ -17,6 +17,7 @@ import ubank.main.R;
 import ubank.webservice.ConnectWs;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -29,6 +30,7 @@ public class Lately extends GeneralListActivity {
 	private TextView txt = null;
 	private String start_time;// 上一个页面传来的时间
 	private String end_time;// 上一个页面传来的时间
+	private int item=1;//点击项
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -48,15 +50,15 @@ public class Lately extends GeneralListActivity {
 				value = value2;
 			} else {
 				// 连接数据库查询
-//				System.out.println("连接数据库查询");
-//				System.out.println("start_time=" + start_time + "end_time="
-//						+ end_time);
+				// System.out.println("连接数据库查询");
+				// System.out.println("start_time=" + start_time + "end_time="
+				// + end_time);
 				if (EHelper.hasInternet(Lately.this)) {
 					try {
 						JSONObject jsonObj = ConnectWs.connect(this,
 								EAccType.NULL, EOperation.GET_PAYMENT_HISTORY,
 								"1", start_time, end_time);
-						if (jsonObj.length() != 0) {//判断后台传来的是否为空
+						if (jsonObj.length() != 0) {// 判断后台传来的是否为空
 							Map<String, String> map = EHelper.toMap(jsonObj);
 							String s = null;// 获取值
 							for (Entry<String, String> kv : map.entrySet()) {
@@ -71,7 +73,8 @@ public class Lately extends GeneralListActivity {
 							}
 							name = nameField;
 							value = nameValue;
-						}else {
+							item=2;
+						} else {
 							start_time = "2011-4-14";
 							end_time = "2011-4-17";
 							String[] field2 = { "2011-4-16" };
@@ -80,7 +83,7 @@ public class Lately extends GeneralListActivity {
 							value = value2;
 							Toast.makeText(Lately.this, "对不起此时间段没有数据",
 									Toast.LENGTH_SHORT).show();
-							finish();//如果没有数据就直接finish()
+							finish();// 如果没有数据就直接finish()
 						}
 					} catch (IOException e) {
 						Toast.makeText(Lately.this, "对不起，服务器未连接",
@@ -114,69 +117,32 @@ public class Lately extends GeneralListActivity {
 
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 
-		super.onListItemClick(l, v, position, id);
-		if (id == 0) {// 水费
-
-			Intent water_intent = new Intent();
-			String[] value1 = null;// 获取值
+		Intent water_intent = new Intent();
+		String[] value1 = null;// 获取值
+		if (EHelper.hasInternet(Lately.this)) {
 			try {
 				JSONObject jsonObj = ConnectWs.connect(this,
 						EAccType.CURRENT_DEPOSIT,
-						EOperation.GET_PAYMENT_HIS_INFO, "1");
+						EOperation.GET_PAYMENT_HIS_INFO, String
+								.valueOf((int) id + item));
 				Map<String, String> map = EHelper.toMap(jsonObj);
 				value1 = new String[map.size()];// 获取值
 				int i = 0;// 使用i之前要初始化为0
 				for (Entry<String, String> kv : map.entrySet()) {
 					value1[i++] = kv.getValue();
 				}
+				water_intent.putExtra("value", value1);
+				water_intent.setClass(Lately.this, LatelyCost.class);
+				Lately.this.startActivity(water_intent);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				Toast.makeText(Lately.this, "对不起,服务器未连接", Toast.LENGTH_SHORT)
+						.show();
+				finish();
 				e.printStackTrace();
 			}
-			water_intent.putExtra("value", value1);
-			water_intent.setClass(Lately.this, LatelyCost.class);
-			Lately.this.startActivity(water_intent);
-		} else if (id == 1) {// 电费
-			Intent electricity_intent = new Intent();
-			String[] value1 = null;// 获取值
-			try {
-				JSONObject jsonObj = ConnectWs.connect(this,
-						EAccType.CURRENT_DEPOSIT,
-						EOperation.GET_PAYMENT_HIS_INFO, "2");
-				Map<String, String> map = EHelper.toMap(jsonObj);
-				value1 = new String[map.size()];// 获取值
-				int i = 0;// 使用i之前要初始化为0
-				for (Entry<String, String> kv : map.entrySet()) {
-					value1[i++] = kv.getValue();
-				}
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			electricity_intent.putExtra("value", value1);
-			electricity_intent.setClass(Lately.this, LatelyCost.class);
-			Lately.this.startActivity(electricity_intent);
-		} else if (id == 2) {// 房租费
-			Intent rent_intent = new Intent();
-			String[] value1 = null;// 获取值
-			try {
-				JSONObject jsonObj = ConnectWs.connect(this,
-						EAccType.CURRENT_DEPOSIT,
-						EOperation.GET_PAYMENT_HIS_INFO, "3");
-				Map<String, String> map = EHelper.toMap(jsonObj);
-				value1 = new String[map.size()];// 获取值
-				int i = 0;// 使用i之前要初始化为0
-				for (Entry<String, String> kv : map.entrySet()) {
-					value1[i++] = kv.getValue();
-				}
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			rent_intent.putExtra("value", value1);
-			rent_intent.setClass(Lately.this, LatelyCost.class);
-			Lately.this.startActivity(rent_intent);
+		} else {
+			Toast.makeText(Lately.this, "没有连接网络", Toast.LENGTH_SHORT).show();
+			finish();
 		}
-
 	}
 }
