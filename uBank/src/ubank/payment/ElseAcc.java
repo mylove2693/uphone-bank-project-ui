@@ -76,9 +76,9 @@ public class ElseAcc extends GeneralActivity {
 		try {
 			JSONObject json = ConnectWs.connect(this, EAccType.NULL, EOperation.GET_ACC_TYPE_ALL);
 			List<String> name = EHelper.toList(json);
-			accountType = new String[name.size()];
+			accountType = new String[name.size()-1];
 			for(int i = 0;i < accountType.length;i++){
-				accountType[i] = name.get(i);
+				accountType[i] = name.get(i+1);//排除定期存储卡
 			}
 		} catch (IOException e) {
 			Toast.makeText(this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
