@@ -63,12 +63,15 @@ public class AccountReportLoss extends GeneralActivity {
 
 			@Override
 			public void onClick(View v) {
+				if(accountInfo.getAccNumValue() != null){
 				Intent intent = new Intent();
 				intent.putExtra("accTypeValue", accountInfo.getAccTypValue());
 				intent.putExtra("accNumValue", accountInfo.getAccNumValue());
-				intent.setClass(AccountReportLoss.this,
-						AccountReportLossSecond.class);
+				intent.setClass(AccountReportLoss.this,AccountReportLossSecond.class);
 				AccountReportLoss.this.startActivity(intent);
+				}else{
+					Toast.makeText(AccountReportLoss.this, "对不起，您未选择账号！", Toast.LENGTH_SHORT).show();
+				}
 			}
 		});
 	}
