@@ -9,9 +9,11 @@
 	<include android:id="@+id/txt_acc_type" layout="@xml/text_view_18"
 		android:layout_marginLeft="20dip" android:layout_width="wrap_content"
 		android:layout_height="wrap_content" />
+		<!--白线-->
+	<include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content" />
 <!--账户类型选择框-->
 	<include android:id="@+id/spinner_acc_type" layout="@xml/spinner"
-		android:layout_gravity="center_horizontal" android:layout_width="240dip"
+		android:layout_gravity="center_horizontal" android:layout_width="250dip"
 		android:layout_height="wrap_content" />
 <!--白线-->
 	<include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content" />
@@ -19,9 +21,11 @@
 	<include android:id="@+id/txt1" layout="@xml/text_view_18"
 		android:layout_marginLeft="20dip" android:layout_width="wrap_content"
 		android:layout_height="wrap_content" />
+		<!--白线-->
+	<include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content" />
 <!--账户输入框-->
 	<include android:id="@+id/edit1" layout="@xml/et_acc"
-		android:layout_gravity="center_horizontal" android:layout_width="280dip"
+		android:layout_gravity="center_horizontal" android:layout_width="290dip"
 		android:layout_height="wrap_content" />
 <!--白线-->
 	<include layout="@xml/white_line" android:layout_width="fill_parent"
@@ -30,9 +34,11 @@
 	<include android:id="@+id/txt2" layout="@xml/text_view_18"
 		android:layout_marginLeft="20dip" android:layout_width="wrap_content"
 		android:layout_height="wrap_content" />
+		<!--白线-->
+	<include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content" />
 <!--账户别名输入框-->
 	<include android:id="@+id/edit2" layout="@xml/et_user"
-		android:layout_gravity="center_horizontal" android:layout_width="280dip"
+		android:layout_gravity="center_horizontal" android:layout_width="290dip"
 		android:layout_height="wrap_content" />
 <!--白线-->
 <include layout="@xml/white_line" android:layout_width="fill_parent"
@@ -41,9 +47,11 @@
 	<include android:id="@+id/psd_txt" layout="@xml/text_view_18"
 		android:layout_marginLeft="20dip" android:layout_width="wrap_content"
 		android:layout_height="wrap_content" />
+		<!--白线-->
+	<include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content" />
 <!--账户密码输入框-->
 	<include android:id="@+id/psd_edit" layout="@xml/et_psd"
-		android:layout_gravity="center_horizontal" android:layout_width="280dip"
+		android:layout_gravity="center_horizontal" android:layout_width="290dip"
 		android:layout_height="wrap_content" />
 <!--白线-->
 	<include layout="@xml/white_line" android:layout_width="fill_parent"
