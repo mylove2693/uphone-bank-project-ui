@@ -1,6 +1,5 @@
 package ubank.main;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,101 +22,110 @@ import android.widget.ImageView;
 import android.widget.SimpleAdapter;
 
 public class FinanceAss extends Activity {
-	
+
 	private ImageView bankmain;
 	private ImageView bankhelp;
 	private GridView gridview = null;
 	private Intent intent = null;
-	
-	//记录登录状态
+
+	// 记录登录状态
 	public static boolean loginstatus = false;
-	
-    /** Called when the activity is first created. */
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_gridview);
-        
-        //gridview中的文字和图标数组        
-        Object[] icon = new Object[]{R.drawable.ma_abank,R.drawable.ma_depositerates,R.drawable.ma_loanrates,R.drawable.ma_exchangerates};
-        String[] text = new String[]{"手机银行","存款利率","贷款利率","外汇利率"};
-        
-        List<Map<String, Object>> itemlist = new ArrayList<Map<String,Object>>();
-        Map<String, Object> item = new HashMap<String, Object>();
-        for (int i = 0; i < text.length; i++) {
-        	item = new HashMap<String, Object>();
-            item.put("imageItem", icon[i]);
-            item.put("textItem", text[i]);
-            itemlist.add(item);
+
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main_gridview);
+
+		// gridview中的文字和图标数组
+		Object[] icon = new Object[] { R.drawable.ma_abank,
+				R.drawable.ma_depositerates, R.drawable.ma_loanrates,
+				R.drawable.ma_autobank, R.drawable.ma_yywd,
+				R.drawable.ma_depocalc, R.drawable.ma_loancalc,
+				R.drawable.ma_exchangerates, R.drawable.ma_onsell_credit };
+		String[] text = new String[] { "手机银行", "存款利率", "贷款利率", "自主银行查询",
+				"营业网点查询", "存款计算器", "贷款计算器", "外汇计算器", "信用卡优惠" };
+
+		List<Map<String, Object>> itemlist = new ArrayList<Map<String, Object>>();
+		Map<String, Object> item = new HashMap<String, Object>();
+		for (int i = 0; i < text.length; i++) {
+			item = new HashMap<String, Object>();
+			item.put("imageItem", icon[i]);
+			item.put("textItem", text[i]);
+			itemlist.add(item);
 		}
-        
-        //实例化一个适配器
-        SimpleAdapter adapter = new SimpleAdapter(this, itemlist, R.layout.main_grid_item, new String[]{"imageItem", "textItem"}, new int[]{R.id.image_item, R.id.text_item});
-        
-        //获得GridView实例
-        gridview = (GridView)findViewById(R.id.gv_main);
-        
-        //将GridView和数据适配器关联
-        gridview.setAdapter(adapter);
-        
-        //为GridView添加监听
-        gridview.setOnItemClickListener(new ItemClickListener());
-        
-        //设置底部选项卡
-        bankmain = (ImageView)findViewById(R.id.mainbelow).findViewById(R.id.btnMain);
-        bankmain.setImageResource(R.drawable.main_sjyh);
-//        bankmain.setImageResource(R.drawable.main_sjyh2);
-        bankmain.setOnClickListener(new OnClickListener() {
-			
+
+		// 实例化一个适配器
+		SimpleAdapter adapter = new SimpleAdapter(this, itemlist,
+				R.layout.main_grid_item,
+				new String[] { "imageItem", "textItem" }, new int[] {
+						R.id.image_item, R.id.text_item });
+
+		// 获得GridView实例
+		gridview = (GridView) findViewById(R.id.gv_main);
+
+		// 将GridView和数据适配器关联
+		gridview.setAdapter(adapter);
+
+		// 为GridView添加监听
+		gridview.setOnItemClickListener(new ItemClickListener());
+
+		// 设置底部选项卡
+		bankmain = (ImageView) findViewById(R.id.mainbelow).findViewById(
+				R.id.btnMain);
+		bankmain.setImageResource(R.drawable.main_sjyh);
+		// bankmain.setImageResource(R.drawable.main_sjyh2);
+		bankmain.setOnClickListener(new OnClickListener() {
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				
+
 				if (loginstatus) {
-					//重新载入主页面
-					intent = new Intent(FinanceAss.this,BankMain.class);
+					// 重新载入主页面
+					intent = new Intent(FinanceAss.this, BankMain.class);
 					intent.addFlags(intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 					FinanceAss.this.startActivity(intent);
-					
-				}else {
-					//载入登录按钮
-					intent = new Intent(FinanceAss.this,Login.class);
+
+				} else {
+					// 载入登录按钮
+					intent = new Intent(FinanceAss.this, Login.class);
 					FinanceAss.this.startActivity(intent);
-					
+
 				}
 			}
 		});
-        
-        bankhelp = (ImageView)findViewById(R.id.mainbelow).findViewById(R.id.btnHelper);
-        bankhelp.setImageResource(R.drawable.main_jrzs);
-//        bankhelp.setImageResource(R.drawable.main_jrzs2);
-        bankhelp.setOnClickListener(new OnClickListener() {
-			
+
+		bankhelp = (ImageView) findViewById(R.id.mainbelow).findViewById(
+				R.id.btnHelper);
+		bankhelp.setImageResource(R.drawable.main_jrzs);
+		// bankhelp.setImageResource(R.drawable.main_jrzs2);
+		bankhelp.setOnClickListener(new OnClickListener() {
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				
-				
-				
+
 			}
 		});
-        
-    } 	
-	
-    class ItemClickListener implements OnItemClickListener{
+
+	}
+
+	class ItemClickListener implements OnItemClickListener {
 
 		@Override
-		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+		public void onItemClick(AdapterView<?> parent, View view, int position,
+				long id) {
 			// TODO Auto-generated method stub
 			switch (position) {
 			case 0:
 				if (loginstatus) {
-					
-					intent = new Intent(FinanceAss.this,BankMain.class);
+
+					intent = new Intent(FinanceAss.this, BankMain.class);
 					startActivity(intent);
-					
-				}else {
-					intent = new Intent(FinanceAss.this,Login.class);
+
+				} else {
+					intent = new Intent(FinanceAss.this, Login.class);
 					startActivity(intent);
 				}
 				break;
@@ -137,10 +145,10 @@ public class FinanceAss extends Activity {
 				break;
 			}
 		}
-    	
-    }
-    
-    @Override
+
+	}
+
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// TODO 菜单生成
 		menu.add(0, 0, Menu.NONE, "退出");// 退出
@@ -149,8 +157,8 @@ public class FinanceAss extends Activity {
 		return super.onCreateOptionsMenu(menu);
 
 	}
-    
-    @Override
+
+	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// TODO 菜单点击
 		switch (item.getItemId()) {
@@ -165,7 +173,7 @@ public class FinanceAss extends Activity {
 		case 1:
 			Intent intent = new Intent(this, Lock.class);
 			startActivity(intent);
-//			moveTaskToBack(true);
+			// moveTaskToBack(true);
 			break;
 		case 2:
 			new MyDialogOne(this, R.style.dialog)
