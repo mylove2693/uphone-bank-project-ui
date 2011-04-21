@@ -93,11 +93,17 @@ public class AccountInfo extends GeneralActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent();
-				intent.putExtra("accNumValue", accountSelect.getAccNumValue());
-				intent.putExtra("accTypeValue", accountSelect.getAccTypValue());
-				intent.setClass(AccountInfo.this, AccountInfoShow.class);
-				AccountInfo.this.startActivity(intent);
+				if (accountSelect.getAccTypValue() != null) {
+					Intent intent = new Intent();
+					intent.putExtra("accNumValue", accountSelect
+							.getAccNumValue());
+					intent.putExtra("accTypeValue", accountSelect
+							.getAccTypValue());
+					intent.setClass(AccountInfo.this, AccountInfoShow.class);
+					AccountInfo.this.startActivity(intent);
+				} else {
+					Toast.makeText(AccountInfo.this, "对不起，您未选择账号！", Toast.LENGTH_SHORT).show();
+				}
 			}
 		});
 

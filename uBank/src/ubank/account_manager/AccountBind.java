@@ -35,6 +35,7 @@ public class AccountBind extends GeneralActivity {
 	private String[] accountValues = null;
 	private EditText pdsEdit = null;
 	private String password = "";
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -81,7 +82,7 @@ public class AccountBind extends GeneralActivity {
 				finish();
 				e.printStackTrace();
 			}
-		}else {
+		} else {
 			Toast.makeText(this, "没有连接网络", Toast.LENGTH_SHORT).show();
 			finish();
 		}
@@ -90,87 +91,106 @@ public class AccountBind extends GeneralActivity {
 		TextView psdText = (TextView) findViewById(R.id.text_psd).findViewById(
 				R.id.Text_View_18);
 		psdText.setText(res.getString(R.string.input_password));
-		pdsEdit = (EditText) findViewById(R.id.psd).findViewById(
-				R.id.et_psd);
+		pdsEdit = (EditText) findViewById(R.id.psd).findViewById(R.id.et_psd);
 		Button bind = (Button) findViewById(R.id.bind)
 				.findViewById(R.id.button);
 		bind.setText(res.getString(R.string.bind));
-		
+
 		bind.setOnClickListener(new Button.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				String accType = accountSelect.getAccTypValue();
 				String account = accountSelect.getAccNumValue();
 				password = pdsEdit.getText().toString();
-				if (EHelper.hasInternet(AccountBind.this)) {
-				JSONObject json = null;
-				try {
-					if ("信用卡".equals(accType)) {
-						json = ConnectWs.connect(AccountBind.this,
-								EAccType.CREDIT_CARD, EOperation.SET_BIND, account,password);
-					} else if ("定期储蓄卡".equals(accType)) {
-						json = ConnectWs.connect(AccountBind.this,
-								EAccType.TIME_DEPOSITS, EOperation.SET_BIND,
-								account,password);
+				if (account != null && password != null) {
+					if (EHelper.hasInternet(AccountBind.this)) {
+						JSONObject json = null;
+						try {
+							if ("信用卡".equals(accType)) {
+								json = ConnectWs.connect(AccountBind.this,
+										EAccType.CREDIT_CARD,
+										EOperation.SET_BIND, account, password);
+							} else if ("定期储蓄卡".equals(accType)) {
+								json = ConnectWs.connect(AccountBind.this,
+										EAccType.TIME_DEPOSITS,
+										EOperation.SET_BIND, account, password);
+							} else {
+								json = ConnectWs.connect(AccountBind.this,
+										EAccType.CURRENT_DEPOSIT,
+										EOperation.SET_BIND, account, password);
+							}
+							boolean result = EHelper.toBoolean(json);
+							MyDialogOne d1 = new MyDialogOne(AccountBind.this,
+									R.style.dialog);
+							if (result) {
+								d1.setTitleAndInfo("提示", "绑定成功！");
+							} else {
+								d1.setTitleAndInfo("提示", "绑定失败！");
+							}
+							d1.Listener(AccountBind.this, ManagerHome.class);
+							d1.show();
+						} catch (IOException e) {
+							Toast.makeText(AccountBind.this, "对不起，服务器未连接",
+									Toast.LENGTH_SHORT).show();
+							e.printStackTrace();
+						}
 					} else {
-						json = ConnectWs.connect(AccountBind.this,
-								EAccType.CURRENT_DEPOSIT, EOperation.SET_BIND,
-								account,password);
+						Toast.makeText(AccountBind.this, "没有连接网络",
+								Toast.LENGTH_SHORT).show();
 					}
-					boolean result = EHelper.toBoolean(json);
-					MyDialogOne  d1=new MyDialogOne(AccountBind.this,R.style.dialog);
-					if(result){
-						d1.setTitleAndInfo("提示", "绑定成功！");
-					}else{
-						d1.setTitleAndInfo("提示", "绑定失败！");
-					}
-					d1.Listener(AccountBind.this,ManagerHome.class);
-					d1.show();
-				} catch (IOException e) {
-					Toast.makeText(AccountBind.this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
-					e.printStackTrace();
+				} else {
+					Toast.makeText(AccountBind.this, "对不起，您未选择账号或未输入密码！",
+							Toast.LENGTH_SHORT).show();
 				}
-			}else {
-				Toast.makeText(AccountBind.this, "没有连接网络", Toast.LENGTH_SHORT).show();
-			}
-				
+
 			}
 		});
-		
+
 	}
-	
-	private void loderValueData(){
-		
-		accountSelect.AccTypSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 
-			@Override
-			public void onItemSelected(AdapterView<?> arg0, View arg1,
-					int arg2, long arg3) {
-				if (EHelper.hasInternet(AccountBind.this)) {
-				String type = accountSelect.getAccTypValue();
-				try {
-					JSONObject json = ConnectWs.connect(AccountBind.this, EAccType.NULL, EOperation.GET_ACC,Login.userId,type,EAccState.getStateName(EAccState.UNBIND));
-					List<String> value = EHelper.toList(json);
-					accountValues = new String[value.size()];
-					for(int i = 0;i < accountValues.length;i++){
-						accountValues[i] = value.get(i);
+	private void loderValueData() {
+
+		accountSelect.AccTypSpinner
+				.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+					@Override
+					public void onItemSelected(AdapterView<?> arg0, View arg1,
+							int arg2, long arg3) {
+						if (EHelper.hasInternet(AccountBind.this)) {
+							String type = accountSelect.getAccTypValue();
+							try {
+								JSONObject json = ConnectWs
+										.connect(
+												AccountBind.this,
+												EAccType.NULL,
+												EOperation.GET_ACC,
+												Login.userId,
+												type,
+												EAccState
+														.getStateName(EAccState.UNBIND));
+								List<String> value = EHelper.toList(json);
+								accountValues = new String[value.size()];
+								for (int i = 0; i < accountValues.length; i++) {
+									accountValues[i] = value.get(i);
+								}
+								accountSelect.AddNumData(accountValues);
+							} catch (IOException e) {
+								Toast.makeText(AccountBind.this, "对不起，服务器未连接",
+										Toast.LENGTH_SHORT).show();
+								e.printStackTrace();
+							}
+						} else {
+							Toast.makeText(AccountBind.this, "没有连接网络",
+									Toast.LENGTH_SHORT).show();
+						}
 					}
-					accountSelect.AddNumData(accountValues);
-				} catch (IOException e) {
-					Toast.makeText(AccountBind.this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
-					e.printStackTrace();
-				}
-				}else {
-					Toast.makeText(AccountBind.this, "没有连接网络", Toast.LENGTH_SHORT).show();
-				}
-			}
 
-			@Override
-			public void onNothingSelected(AdapterView<?> arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-}
+					@Override
+					public void onNothingSelected(AdapterView<?> arg0) {
+						// TODO Auto-generated method stub
+
+					}
+				});
+	}
 
 }

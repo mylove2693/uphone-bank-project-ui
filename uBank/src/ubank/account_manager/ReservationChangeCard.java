@@ -61,12 +61,18 @@ public class ReservationChangeCard extends GeneralActivity {
 
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent();
-				intent.putExtra("accTypeValue", accountInfo.getAccTypValue());
-				intent.putExtra("accNumValue", accountInfo.getAccNumValue());
-				intent.setClass(ReservationChangeCard.this,
-						ReservationChangeCardSecond.class);
-				ReservationChangeCard.this.startActivity(intent);
+				if(accountInfo.getAccNumValue() != null){
+					Intent intent = new Intent();
+					intent.putExtra("accTypeValue", accountInfo.getAccTypValue());
+					intent.putExtra("accNumValue", accountInfo.getAccNumValue());
+					intent.setClass(ReservationChangeCard.this,
+							ReservationChangeCardSecond.class);
+					ReservationChangeCard.this.startActivity(intent);
+				}else{
+					Toast.makeText(ReservationChangeCard.this,
+							"对不起，您未选择账号！", Toast.LENGTH_SHORT)
+							.show();
+				}
 			}
 		});
 	}
