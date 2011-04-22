@@ -53,45 +53,26 @@ public class AccountInfoShow extends GeneralListActivity{
 	}
 	
 	private void setAccInfo() {
-		String[] name;
-		String[] value;
+		String[] name = new String[] { "账户", "账户别名", "账户类型", "币种","余额","账户状态", "是否绑定",
+				"开户行", "开户日" };
+		String[] value = new String[name.length];
 		JSONObject json = null;
 		accType = intent.getStringExtra("accTypeValue");
 		account = intent.getStringExtra("accNumValue");
 		if (EHelper.hasInternet(this)) {
 		try {
 			if ("信用卡".equals(accType)) {
-				name = new String[] { "账户", "账户别名", "账户类型", "币种", "账户状态", "是否绑定",
-						"开户行", "开户日" };
-				value = new String[name.length];
 				json = ConnectWs.connect(this, EAccType.CREDIT_CARD,
 						EOperation.GET_ACC_INFO, account);
-				try {
-					for (int i = 0; i < name.length; i++) {
-						value[i] = json.getString(name[i]);
-					}
-				} catch (JSONException ex) {
-					ex.printStackTrace();
-				}
 			} else if ("定期储蓄卡".equals(accType)) {
-				name = new String[] { "账户", "账户别名", "账户类型", "币种", "余额", "账户状态",
-						"是否绑定", "开户行", "开户日" };
-				value = new String[name.length];
 				json = ConnectWs.connect(this, EAccType.TIME_DEPOSITS,
 						EOperation.GET_ACC_INFO, account);
-				try {
-					for (int i = 0; i < name.length; i++) {
-						value[i] = json.getString(name[i]);
-					}
-				} catch (JSONException ex) {
-					ex.printStackTrace();
-				}
 			} else {
-				name = new String[] { "账户", "账户别名", "账户类型", "币种", "余额", "账户状态",
-						"是否绑定", "开户行", "开户日" };
-				value = new String[name.length];
 				json = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
 						EOperation.GET_ACC_INFO, account);
+				
+			}
+			if (json.length() > 0) {
 				try {
 					for (int i = 0; i < name.length; i++) {
 						value[i] = json.getString(name[i]);
@@ -99,6 +80,9 @@ public class AccountInfoShow extends GeneralListActivity{
 				} catch (JSONException ex) {
 					ex.printStackTrace();
 				}
+			}else{
+				Toast.makeText(this, "对不起，没有查到该账户的信息！", Toast.LENGTH_SHORT).show();
+				finish();
 			}
 
 			this.setListAdapter(createText_Text_GrayText(name, value, this

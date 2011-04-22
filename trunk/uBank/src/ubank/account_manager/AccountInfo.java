@@ -93,7 +93,7 @@ public class AccountInfo extends GeneralActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				if (accountSelect.getAccTypValue() != null) {
+				if (accountSelect.getAccNumValue() != "") {
 					Intent intent = new Intent();
 					intent.putExtra("accNumValue", accountSelect
 							.getAccNumValue());

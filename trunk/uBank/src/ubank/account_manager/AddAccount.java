@@ -91,9 +91,9 @@ public class AddAccount extends GeneralActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				if (account.getText().toString() != null
-						&& nickName.getText().toString() != null
-						&& accPwd.getText().toString() != null) {
+				if (account.getText().toString() != ""
+						&& nickName.getText().toString() != ""
+						&& accPwd.getText().toString() != "") {
 					if (EHelper.hasInternet(AddAccount.this)) {
 						try {
 							JSONObject json = new JSONObject();

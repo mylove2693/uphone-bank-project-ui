@@ -102,7 +102,7 @@ public class AccountBind extends GeneralActivity {
 				String accType = accountSelect.getAccTypValue();
 				String account = accountSelect.getAccNumValue();
 				password = pdsEdit.getText().toString();
-				if (account != null && password != null) {
+				if (account != "" && password != "") {
 					if (EHelper.hasInternet(AccountBind.this)) {
 						JSONObject json = null;
 						try {
