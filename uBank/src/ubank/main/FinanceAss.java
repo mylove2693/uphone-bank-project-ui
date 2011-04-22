@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import ubank.base.GeneralActivity;
 import ubank.base.Lock;
 import ubank.base.MyDialogOne;
 
@@ -111,6 +112,13 @@ public class FinanceAss extends Activity {
 
 	}
 
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		GeneralActivity.isHide = false;
+	}
+
 	class ItemClickListener implements OnItemClickListener {
 
 		@Override
@@ -152,7 +160,7 @@ public class FinanceAss extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// TODO 菜单生成
 		menu.add(0, 0, Menu.NONE, "退出");// 退出
-		menu.add(0, 1, Menu.NONE, "锁定");
+//		menu.add(0, 1, Menu.NONE, "锁定");
 		menu.add(0, 2, Menu.NONE, "关于");
 		return super.onCreateOptionsMenu(menu);
 
