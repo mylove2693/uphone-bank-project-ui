@@ -178,7 +178,7 @@ public class BankMain extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// TODO 菜单生成
 		menu.add(0, 0, Menu.NONE, "退出");// 退出
-		menu.add(0, 1, Menu.NONE, "锁定");
+//		menu.add(0, 1, Menu.NONE, "锁定");
 		menu.add(0, 2, Menu.NONE, "关于");
 		return super.onCreateOptionsMenu(menu);
 
