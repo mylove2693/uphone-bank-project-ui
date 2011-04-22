@@ -74,6 +74,7 @@ public class TradeCardDetail extends GeneralListActivity {
 							EOperation.GET_ORDER_INFO, intent
 									.getStringExtra("accNumValue"));
 				}
+				if(json.length() > 0){
 				try {
 					for (int i = 0; i < name.length; i++) {
 						value[i] = json.getString(name[i]);
@@ -82,6 +83,10 @@ public class TradeCardDetail extends GeneralListActivity {
 					ex.printStackTrace();
 				}
 				setListAdapter(createText_Text(name, value));
+				}else{
+					Toast.makeText(this, "对不起，该账户没有预约信息！", Toast.LENGTH_SHORT).show();
+					finish();
+				}
 			} catch (IOException e) {
 				Toast.makeText(this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
 				finish();

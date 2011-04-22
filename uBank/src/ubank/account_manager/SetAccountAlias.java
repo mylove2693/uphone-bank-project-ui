@@ -62,14 +62,22 @@ public class SetAccountAlias extends GeneralActivity{
 				
 				@Override
 				public void onClick(View v) {
-					Intent intent=new Intent();
+				if (accountInfo.getAccTypValue() != "") {
+					Intent intent = new Intent();
 					/**
 					 * 将服务器上取得的值传给下一个Activity
 					 */
-					intent.putExtra("accNumValue", accountInfo.getAccNumValue());
-					intent.putExtra("accTypeValue", accountInfo.getAccTypValue());
-					intent.setClass(SetAccountAlias.this, SetAccountAliasSecond.class);
+					intent
+							.putExtra("accNumValue", accountInfo
+									.getAccNumValue());
+					intent.putExtra("accTypeValue", accountInfo
+							.getAccTypValue());
+					intent.setClass(SetAccountAlias.this,
+							SetAccountAliasSecond.class);
 					SetAccountAlias.this.startActivity(intent);
+				}else{
+					Toast.makeText(SetAccountAlias.this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
+				}
 				}
 			});
 	  }

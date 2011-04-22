@@ -64,8 +64,6 @@ public class ReservationChangeCardSecond extends GeneralActivity{
 			
 			@Override
 			public void onClick(View v) {
-				System.out.println(changerCard_spinner.getSelectedItem().toString());
-				System.out.println(net_spinner.getSelectedItem().toString());
 				Intent intent = new Intent();
 				intent.putExtra("accNumValue", accNumValue);
 				intent.putExtra("accTypeValue", accTypeValue);

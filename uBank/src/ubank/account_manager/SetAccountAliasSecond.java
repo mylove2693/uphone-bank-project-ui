@@ -62,8 +62,9 @@ public class SetAccountAliasSecond extends GeneralActivity {
 			
 			@Override
 			public void onClick(View v) {
-				
-				boolean result = setAliss(aliss_edit.getText().toString());
+				String temp = aliss_edit.getText().toString();
+				if(temp != null && temp != ""){
+				boolean result = setAliss(temp);
 				MyDialogOne  d1=new MyDialogOne(SetAccountAliasSecond.this,R.style.dialog);
 				if(result){
 					d1.setTitleAndInfo("提示", "别名设置成功！");
@@ -72,6 +73,9 @@ public class SetAccountAliasSecond extends GeneralActivity {
 				}
 				d1.Listener(SetAccountAliasSecond.this,ManagerHome.class);
 				d1.show();
+			}else{
+				Toast.makeText(SetAccountAliasSecond.this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
+			}
 			}
 		});
 	}

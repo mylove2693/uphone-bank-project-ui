@@ -61,7 +61,7 @@ public class ReservationChangeCard extends GeneralActivity {
 
 			@Override
 			public void onClick(View v) {
-				if(accountInfo.getAccNumValue() != null){
+				if(accountInfo.getAccNumValue() != ""){
 					Intent intent = new Intent();
 					intent.putExtra("accTypeValue", accountInfo.getAccTypValue());
 					intent.putExtra("accNumValue", accountInfo.getAccNumValue());

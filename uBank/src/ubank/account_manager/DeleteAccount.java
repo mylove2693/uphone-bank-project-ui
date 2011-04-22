@@ -68,10 +68,16 @@ public class DeleteAccount extends GeneralActivity{
 					 */
 //					String[] value={"6212121","我是别名","定期存储卡"};
 //					intent.putExtra("value", value);
+				if (accountInfo.getAccNumValue() != "") {
 					intent.putExtra("accNumValue", accountInfo.getAccNumValue());
 					intent.putExtra("accTypeValue", accountInfo.getAccTypValue());
 					intent.setClass(DeleteAccount.this, DelOK.class);
 					DeleteAccount.this.startActivity(intent);
+				} else {
+					Toast.makeText(DeleteAccount.this,
+							"对不起，您未选择账号！", Toast.LENGTH_SHORT)
+							.show();
+				}
 				}
 			});
 	  }
