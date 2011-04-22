@@ -64,13 +64,19 @@ public class AccountInventoryDetail extends GeneralListActivity {
 					json = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
 							EOperation.GET_LISTQUERY_INFO, type, id);
 				}
-				for(int i = 0;i < name.length;i++){
-					value[i] = json.get(name[i]).toString();
+				if (json.length() > 0) {
+					for (int i = 0; i < name.length; i++) {
+						value[i] = json.get(name[i]).toString();
+					}
+
+					setListAdapter(createText_Text(name, value));
+
+					right_edit.setText(json.getString("描述").toString());
+				} else {
+					Toast.makeText(this, "对不起，查询的时间段没有交易明细记录！",
+							Toast.LENGTH_SHORT).show();
+					finish();
 				}
-				
-				setListAdapter(createText_Text(name, value));
-				
-				right_edit.setText(json.getString("描述").toString());
 				
 			} catch (IOException e) {
 				Toast.makeText(this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();

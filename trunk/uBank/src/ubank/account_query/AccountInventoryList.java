@@ -61,9 +61,6 @@ public class AccountInventoryList extends GeneralListActivity {
 		above_txt.setText(title);
 
 		setListData();
-		// String[] name = new String[]{"2011-3-8","2011-3-9","2011-3-10"};
-		// String[] value = new String[]{"支出","收入","支出"};
-		// setListAdapter(createText_Text_Img(name, value));
 	}
 
 	@Override
@@ -78,7 +75,11 @@ public class AccountInventoryList extends GeneralListActivity {
 	}
 
 	private void setListData() {
-		
+		if(start_time == null || end_time == null){
+			Toast.makeText(this, "请您输入查询的时间！", Toast.LENGTH_SHORT).show();
+			finish();
+			return ;
+		}
 		if (EHelper.hasInternet(this)) {
 			try {
 				JSONObject json = new JSONObject();

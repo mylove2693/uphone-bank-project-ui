@@ -41,10 +41,6 @@ public class AccountComeDetail extends GeneralListActivity {
 		tvClassThird.setText("来账查询");
 		setListener(tvClassThird, this, AccountCome.class);
 		
-//		String[] name = new String[]{"来账时间","来账类型","来账金额","付款人姓名","付款账号种类","付款账号"};
-//		String[] value = new String[]{"2011-3-8","转账","100000","李华","中国农业银行","62220220145454"};
-//		setListAdapter(createText_Text(name, value));
-		
 		left_txt = (TextView)findViewById(R.id.below_list_left_txt).findViewById(R.id.blue_Text_View);
 		left_txt.setText("描述");
 		
@@ -69,13 +65,19 @@ public class AccountComeDetail extends GeneralListActivity {
 					json = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
 							EOperation.GET_COMEQUERY_INFO, type, id);
 				}
-				for(int i = 0;i < name.length;i++){
-					value[i] = json.get(name[i]).toString();
+				if (json.length() > 0) {
+					for (int i = 0; i < name.length; i++) {
+						value[i] = json.get(name[i]).toString();
+					}
+
+					setListAdapter(createText_Text(name, value));
+
+					right_edit.setText(json.getString("描述").toString());
+				} else {
+					Toast.makeText(this, "对不起，查询的时间段没有来账记录！",
+							Toast.LENGTH_SHORT).show();
+					finish();
 				}
-				
-				setListAdapter(createText_Text(name, value));
-				
-				right_edit.setText(json.getString("描述").toString());
 				
 			} catch (IOException e) {
 				Toast.makeText(this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
