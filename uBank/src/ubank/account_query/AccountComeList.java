@@ -76,8 +76,12 @@ public class AccountComeList extends GeneralListActivity {
 	}
 
 	private void setListData() {
+		if(start_time == null || end_time == null){
+			Toast.makeText(this, "请您输入查询的时间！", Toast.LENGTH_SHORT).show();
+			finish();
+			return ;
+		}
 		if (EHelper.hasInternet(this)) {
-			
 			JSONObject json;
 			try {
 				json = new JSONObject();
