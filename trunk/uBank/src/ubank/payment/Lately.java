@@ -31,6 +31,7 @@ public class Lately extends GeneralListActivity {
 	private String start_time;// 上一个页面传来的时间
 	private String end_time;// 上一个页面传来的时间
 	private int item=1;//点击项
+	private String title;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,8 @@ public class Lately extends GeneralListActivity {
 		end_time = intent.getStringExtra("end_time");
 		name = intent.getStringArrayExtra("field");
 		value = intent.getStringArrayExtra("value");
+		title = intent.getStringExtra("title");
+		if(title==null){title="历史缴费记录";}
 		if (name == null || value == null) {
 			if (start_time == null || end_time == null) {
 				start_time = "2011-4-14";
@@ -107,7 +110,7 @@ public class Lately extends GeneralListActivity {
 		// 监听
 		setListener(tvClassSecond, this, AllPaymentSer.class);
 		tvClassThird.setVisibility(View.VISIBLE);
-		tvClassThird.setText("历史缴费记录");
+		tvClassThird.setText(title);
 		addLayout(R.layout.above_list_txt);
 		txt = (TextView) findViewById(R.id.above_list_txt).findViewById(
 				R.id.Text_View_16_Gray);

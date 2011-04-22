@@ -139,6 +139,7 @@ public class AllPaymentSer extends GeneralListActivity {
 					intent.putExtra("start_time", start_time);
 					intent.putExtra("end_time", end_time);
 					intent.putExtra("bundle", bundle);
+					intent.putExtra("title", "最近一个月缴费");
 					intent.setClass(AllPaymentSer.this, Lately.class);
 					AllPaymentSer.this.startActivity(intent);
 				} catch (IOException e) {
@@ -158,6 +159,7 @@ public class AllPaymentSer extends GeneralListActivity {
 		case 3:// 历史缴费记录
 			intent = new Intent();
 			intent.setClass(AllPaymentSer.this, HistoryCost.class);
+			intent.putExtra("title", "历史缴费记录");
 			AllPaymentSer.this.startActivity(intent);
 			break;
 
