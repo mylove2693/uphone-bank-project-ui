@@ -120,7 +120,7 @@ public class Transfer_inpsd extends GeneralActivity {
 		// 这个是类型 是小字
 		TextView transfer_acctype = (TextView) findViewById(R.id.acc_type)
 				.findViewById(R.id.Text_View_16);
-		transfer_acctype.setText(acc_type);
+		transfer_acctype.setText(acc_type+":");
 
 		// 这个是帐号 是小字
 		transfer_accnum = (TextView) findViewById(R.id.acc_num)
