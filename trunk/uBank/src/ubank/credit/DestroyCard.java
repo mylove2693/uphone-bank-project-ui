@@ -44,12 +44,12 @@ public class DestroyCard extends GeneralActivity {
 	}
 
 	private void initializeData() {
-		((TextView) (findViewById(R.id.cc_tv_openName).findViewById(R.id.blue_Text_View))).setText("开户名");
-		((TextView) (findViewById(R.id.cc_tv_ccNo).findViewById(R.id.blue_Text_View))).setText("信用卡号");
-		((TextView) (findViewById(R.id.cc_tv_idType).findViewById(R.id.blue_Text_View))).setText("证件类型");
-		((TextView) (findViewById(R.id.cc_tv_id).findViewById(R.id.blue_Text_View))).setText("证件号");
-		((TextView) (findViewById(R.id.cc_tv_phone).findViewById(R.id.blue_Text_View))).setText("手机号");
-		((TextView) (findViewById(R.id.cc_tv_pwd).findViewById(R.id.blue_Text_View))).setText("账户密码");
+		((TextView) (findViewById(R.id.cc_tv_openName).findViewById(R.id.blue_Text_View))).setText("*开户名");
+		((TextView) (findViewById(R.id.cc_tv_ccNo).findViewById(R.id.blue_Text_View))).setText("*信用卡号");
+		((TextView) (findViewById(R.id.cc_tv_idType).findViewById(R.id.blue_Text_View))).setText("*证件类型");
+		((TextView) (findViewById(R.id.cc_tv_id).findViewById(R.id.blue_Text_View))).setText("*证件号");
+		((TextView) (findViewById(R.id.cc_tv_phone).findViewById(R.id.blue_Text_View))).setText("*手机号");
+		((TextView) (findViewById(R.id.cc_tv_pwd).findViewById(R.id.blue_Text_View))).setText("*账户密码");
 		// 检查网络
 		if (EHelper.hasInternet(this)) {
 
