@@ -145,7 +145,7 @@ public class FinanceAss extends Activity {
 				intent = new Intent(FinanceAss.this, LoanRates.class);
 				startActivity(intent);
 				break;
-			case 3:
+			case 7:
 				intent = new Intent(FinanceAss.this, ExchangeCalc.class);
 				startActivity(intent);
 				break;

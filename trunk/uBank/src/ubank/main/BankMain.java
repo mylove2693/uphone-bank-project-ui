@@ -38,20 +38,22 @@ public class BankMain extends Activity {
 
 	private String logintimes;
 
-	/** Called when the activity is first created. */
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main_gridview);
-
-		// 显示登录信息
-		Intent r_intent = getIntent();
-		logintimes = r_intent.getStringExtra("logintimes");
-
-		MyDialogOne dialog = new MyDialogOne(BankMain.this, R.style.dialog);
-		dialog.setTitleAndInfo("欢迎使用手机银行", "尊敬的" + Login.userName + ":" + "\n" + "这是您第" + logintimes
-				+ "次登录手机银行。");
+	
+    /** Called when the activity is first created. */
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main_gridview);
+        
+        //显示登录信息
+        Intent r_intent = getIntent();
+        logintimes = r_intent.getStringExtra("logintimes");
+        if(logintimes!=null){
+        MyDialogOne dialog = new MyDialogOne(BankMain.this,R.style.dialog);
+		dialog.setTitleAndInfo("欢迎使用手机银行","尊敬的"+Login.userName+":"+"\n"+"这是您第"+logintimes+"次登录手机银行。");
 		dialog.show();
+
+        }
 
 		// gridview中的文字和图标数组
 		Object[] icon = new Object[] { R.drawable.ma2_actmanager, R.drawable.ma2_actactivate,
@@ -125,11 +127,11 @@ public class BankMain extends Activity {
 				startActivity(intent);
 				break;
 			case 1:
-				intent = new Intent(BankMain.this, AccountBind.class);
+				intent = new Intent(BankMain.this, AccountQueryType.class);
 				startActivity(intent);
 				break;
 			case 2:
-				intent = new Intent(BankMain.this, AccountQueryType.class);
+				intent = new Intent(BankMain.this, AccountBind.class);
 				startActivity(intent);
 				break;
 			case 3:
