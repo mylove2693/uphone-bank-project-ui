@@ -10,6 +10,13 @@
   -->
 	<include android:id="@+id/transfer_amt_txt" layout="@xml/text_view_18"
 		android:layout_marginLeft="20dip" android:layout_width="wrap_content"
+		android:layout_marginTop="5dip"
+		android:layout_marginBottom="5dip"
+		android:layout_height="wrap_content" />
+		<!--
+	白线
+	-->
+	<include layout="@xml/white_line" android:layout_width="fill_parent"
 		android:layout_height="wrap_content" />
 	<!--
 		转账金额输入框
@@ -29,6 +36,13 @@
   -->
 	<include android:id="@+id/transfer_acc_txt" layout="@xml/text_view_18"
 		android:layout_marginLeft="20dip" android:layout_width="wrap_content"
+		android:layout_marginTop="5dip"
+		android:layout_marginBottom="5dip" 
+		android:layout_height="wrap_content" />
+		<!--
+	白线
+	-->
+	<include layout="@xml/white_line" android:layout_width="fill_parent"
 		android:layout_height="wrap_content" />
 	<!--
 		转账账户输入框
@@ -48,6 +62,13 @@
   -->
 	<include android:id="@+id/transfer_psd_txt" layout="@xml/text_view_18"
 		android:layout_marginLeft="20dip" android:layout_width="wrap_content"
+		android:layout_marginTop="5dip"
+		android:layout_marginBottom="5dip" 
+		android:layout_height="wrap_content" />
+		<!--
+	白线
+	-->
+	<include layout="@xml/white_line" android:layout_width="fill_parent"
 		android:layout_height="wrap_content" />
 	<!--
 		账户密码输入框
