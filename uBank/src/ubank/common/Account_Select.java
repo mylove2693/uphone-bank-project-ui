@@ -75,13 +75,17 @@ public class Account_Select extends LinearLayout {
 	 * 获取spinner的值
 	 */
 	public String getAccTypValue() {
-
-		return this.AccTypSpinner.getSelectedItem().toString();
+		if(AccTypSpinner.getCount() > 0)
+			return this.AccTypSpinner.getSelectedItem().toString();
+		else
+			return "";
 	}
 
 	public String getAccNumValue() {
-
-		return this.AccNumSpinner.getSelectedItem().toString();
+		if(this.AccNumSpinner.getCount() > 0)
+			return this.AccNumSpinner.getSelectedItem().toString();
+		else
+			return "";
 	}
 
 	// 创建一个有数据的适配器
