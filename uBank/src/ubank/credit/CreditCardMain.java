@@ -33,7 +33,7 @@ public class CreditCardMain extends GeneralListActivity {
 		tvClassThird.setVisibility(View.VISIBLE);
 		tvClassThird.setText("信用卡还款");
 
-		SimpleAdapter adapter = createImg_Text_ImgAdapter(new String[] { "账户信息", "交易明细查看", "账户来账查看?", "开卡",
+		SimpleAdapter adapter = createImg_Text_ImgAdapter(new String[] { "账户信息", "交易明细查看", "账户来账查看", "开卡",
 				"销卡", "信用卡还款" });
 		setListAdapter(adapter);
 	}
