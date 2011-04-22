@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.json.JSONObject;
 
+import ubank.base.GeneralActivity;
 import ubank.base.Lock;
 import ubank.base.MyDialogOne;
 import ubank.enum_type.EAccType;
@@ -25,13 +26,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class Login extends Activity {
-	
+
 	private String extraCode;
 	private String passWord;
 	private String InputCode;
 	private String logintimes;
-	private boolean loginflag=false;
-	
+	private boolean loginflag = false;
+
 	private ImageView bankmain;
 	private ImageView bankhelp;
 	private EditText userid;
@@ -39,10 +40,10 @@ public class Login extends Activity {
 	private EditText extracode;
 	private TextView showec;
 	public static String userName = "张三";
-	public static String userId="1";
+	public static String userId = "1";
 	private Button btn_login;
-	
-	private Intent intent=new Intent();
+
+	private Intent intent = new Intent();
 
 	/** Called when the activity is first created. */
 	@Override
@@ -50,21 +51,21 @@ public class Login extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_login);
 
-		//获取附加码
+		// 获取附加码
 		loaderData();
-		
-		//显示附加码
-		showec = (TextView)findViewById(R.id.loginbox).findViewById(R.id.extraCode);
+
+		// 显示附加码
+		showec = (TextView) findViewById(R.id.loginbox).findViewById(R.id.extraCode);
 		showec.setText(extraCode);
-		
-		userid = (EditText)findViewById(R.id.login_box).findViewById(R.id.nameEdit);
-		password = (EditText)findViewById(R.id.login_box).findViewById(R.id.passwdEdit);
-		extracode = (EditText)findViewById(R.id.login_box).findViewById(R.id.pyramidEdit);
-		
+
+		userid = (EditText) findViewById(R.id.login_box).findViewById(R.id.nameEdit);
+		password = (EditText) findViewById(R.id.login_box).findViewById(R.id.passwdEdit);
+		extracode = (EditText) findViewById(R.id.login_box).findViewById(R.id.pyramidEdit);
+
 		// 登录按钮
 		btn_login = (Button) findViewById(R.id.login_box).findViewById(R.id.btn_userlogin);
 		btn_login.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
@@ -72,145 +73,154 @@ public class Login extends Activity {
 				passWord = password.getText().toString();
 				InputCode = extracode.getText().toString();
 				if (InputCode.equals(extraCode)) {
-				
+
 					if (userId.equals("")) {
 
-						//用Dialog提示用户名为空
-						MyDialogOne dialog = new MyDialogOne(Login.this,R.style.dialog);
-						dialog.setTitleAndInfo("登录手机银行","用户号不能为空！");
+						// 用Dialog提示用户名为空
+						MyDialogOne dialog = new MyDialogOne(Login.this, R.style.dialog);
+						dialog.setTitleAndInfo("登录手机银行", "用户号不能为空！");
 						dialog.show();
-					}else {
-						
+					} else {
+
 						if (passWord.equals("")) {
-							
-							//用Dialog提示密码为空
-							MyDialogOne dialog = new MyDialogOne(Login.this,R.style.dialog);
-							dialog.setTitleAndInfo("登录手机银行","密码不能为空！");
+
+							// 用Dialog提示密码为空
+							MyDialogOne dialog = new MyDialogOne(Login.this, R.style.dialog);
+							dialog.setTitleAndInfo("登录手机银行", "密码不能为空！");
 							dialog.show();
-						}else {
-							
+						} else {
+
 							if (EHelper.hasInternet(Login.this)) {
 								try {
-									//将用户名和密码发送到服务端进行验证
-									JSONObject json = ConnectWs.connect(Login.this, EAccType.NULL, EOperation.LOGIN,userId,passWord,InputCode);
-									//将JSON数据转换为boolean型
+									// 将用户名和密码发送到服务端进行验证
+									JSONObject json = ConnectWs.connect(Login.this, EAccType.NULL,
+											EOperation.LOGIN, userId, passWord, InputCode);
+									// 将JSON数据转换为boolean型
 									loginflag = EHelper.toBoolean(json);
-									
+
 								} catch (IOException e) {
 									Toast.makeText(Login.this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
 									finish();
 									e.printStackTrace();
 								}
-								
-								}else {
-									Toast.makeText(Login.this, "没有连接网络", Toast.LENGTH_SHORT).show();
-									finish();
-								}
-							}
-							if(loginflag){
-								//登录成功
-								FinanceAss.loginstatus = true;
-								
-								if (EHelper.hasInternet(Login.this)) {
-									try {
-										//将用户名和密码发送到服务端进行验证
-										JSONObject json = ConnectWs.connect(Login.this, EAccType.NULL, EOperation.GET_USER_INFO,userId);
-										//将JSON数据转换为MAP型
-										Map<String, String>userinfo = EHelper.toMap(json);
-										System.out.println(json.toString());
-										userName = userinfo.get("userName").toString();
-										logintimes = userinfo.get("loginTimes").toString();
-										
-									} catch (IOException e) {
-										Toast.makeText(Login.this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
-										finish();
-										e.printStackTrace();
-									}
-									
-									}else {
-										Toast.makeText(Login.this, "没有连接网络", Toast.LENGTH_SHORT).show();
-										finish();
-									}
-								intent.putExtra("logintimes", logintimes);
-								intent.setClass(Login.this, BankMain.class);
-								Login.this.startActivity(intent);
-								
-							}else {
-								//登录失败
-								MyDialogOne dialog = new MyDialogOne(Login.this,R.style.dialog);
-								dialog.setTitleAndInfo("登录手机银行","登录失败！\n用户名或密码输入错误！");
-								dialog.show();
+
+							} else {
+								Toast.makeText(Login.this, "没有连接网络", Toast.LENGTH_SHORT).show();
+								finish();
 							}
 						}
-				}else {
-					//用Dialog提示附加码不正确
-					MyDialogOne dialog = new MyDialogOne(Login.this,R.style.dialog);
-					dialog.setTitleAndInfo("登录手机银行","附加码不正确！");
+						if (loginflag) {
+							// 登录成功
+							FinanceAss.loginstatus = true;
+
+							if (EHelper.hasInternet(Login.this)) {
+								try {
+									// 将用户名和密码发送到服务端进行验证
+									JSONObject json = ConnectWs.connect(Login.this, EAccType.NULL,
+											EOperation.GET_USER_INFO, userId);
+									// 将JSON数据转换为MAP型
+									Map<String, String> userinfo = EHelper.toMap(json);
+									System.out.println(json.toString());
+									userName = userinfo.get("userName").toString();
+									logintimes = userinfo.get("loginTimes").toString();
+
+								} catch (IOException e) {
+									Toast.makeText(Login.this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
+									finish();
+									e.printStackTrace();
+								}
+
+							} else {
+								Toast.makeText(Login.this, "没有连接网络", Toast.LENGTH_SHORT).show();
+								finish();
+							}
+							intent.putExtra("logintimes", logintimes);
+							intent.setClass(Login.this, BankMain.class);
+							Login.this.startActivity(intent);
+
+						} else {
+							// 登录失败
+							MyDialogOne dialog = new MyDialogOne(Login.this, R.style.dialog);
+							dialog.setTitleAndInfo("登录手机银行", "登录失败！\n用户名或密码输入错误！");
+							dialog.show();
+						}
+					}
+				} else {
+					// 用Dialog提示附加码不正确
+					MyDialogOne dialog = new MyDialogOne(Login.this, R.style.dialog);
+					dialog.setTitleAndInfo("登录手机银行", "附加码不正确！");
 					dialog.show();
 				}
 			}
 		});
-		
-		//设置底部选项卡
-        bankmain = (ImageView)findViewById(R.id.mainbelow).findViewById(R.id.btnMain);
+
+		// 设置底部选项卡
+		bankmain = (ImageView) findViewById(R.id.mainbelow).findViewById(R.id.btnMain);
 //        bankmain.setImageResource(R.drawable.main_sjyh);
-        bankmain.setImageResource(R.drawable.main_sjyh2);
-        bankmain.setOnClickListener(new OnClickListener() {
-			
+		bankmain.setImageResource(R.drawable.main_sjyh2);
+		bankmain.setOnClickListener(new OnClickListener() {
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
-        
-        bankhelp = (ImageView)findViewById(R.id.mainbelow).findViewById(R.id.btnHelper);
+
+		bankhelp = (ImageView) findViewById(R.id.mainbelow).findViewById(R.id.btnHelper);
 //        bankhelp.setImageResource(R.drawable.main_jrzs);
-        bankhelp.setImageResource(R.drawable.main_jrzs2);
-        bankhelp.setOnClickListener(new OnClickListener() {
-			
+		bankhelp.setImageResource(R.drawable.main_jrzs2);
+		bankhelp.setOnClickListener(new OnClickListener() {
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				
-				intent = new Intent(Login.this,FinanceAss.class);
+
+				intent = new Intent(Login.this, FinanceAss.class);
 				intent.addFlags(intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 				Login.this.startActivity(intent);
-				
+
 			}
 		});
 	}
-	
-	//当不再需要时finish该页面
-    @Override
+
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		GeneralActivity.isHide = false;
+	}
+
+	// 当不再需要时finish该页面
+	@Override
 	protected void onStop() {
 		// TODO Auto-generated method stub
 		super.onStop();
 		Login.this.finish();
 	}
-	
-	//从服务器读取附加码
-    private void loaderData(){
+
+	// 从服务器读取附加码
+	private void loaderData() {
 		if (EHelper.hasInternet(this)) {
-		try {
-			//从服务器取出所有币种
-			JSONObject json = ConnectWs.connect(this, EAccType.NULL, EOperation.GET_EXTRA_CODE,"");
-			//将JSON数据转换为MAP型
-			extraCode = EHelper.toStr(json);
-			
-		} catch (IOException e) {
-			Toast.makeText(this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
-			finish();
-			e.printStackTrace();
-		}
-		
-		}else {
+			try {
+				// 从服务器取出所有币种
+				JSONObject json = ConnectWs.connect(this, EAccType.NULL, EOperation.GET_EXTRA_CODE, "");
+				// 将JSON数据转换为MAP型
+				extraCode = EHelper.toStr(json);
+
+			} catch (IOException e) {
+				Toast.makeText(this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
+				finish();
+				e.printStackTrace();
+			}
+
+		} else {
 			Toast.makeText(this, "没有连接网络", Toast.LENGTH_SHORT).show();
 			finish();
 		}
 	}
-    
-    @Override
+
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// TODO 菜单生成
 		menu.add(0, 0, Menu.NONE, "退出");// 退出
@@ -219,8 +229,8 @@ public class Login extends Activity {
 		return super.onCreateOptionsMenu(menu);
 
 	}
-    
-    @Override
+
+	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// TODO 菜单点击
 		switch (item.getItemId()) {
