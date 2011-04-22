@@ -20,7 +20,7 @@ import android.widget.TextView;
 
 public class Time_Select extends LinearLayout {
 	OnDateSetListener onDateSetListener1, onDateSetListener2;
-	String StartTime = null, EndTime;
+	String StartTime = null, EndTime = null;
 	Button start, end, btn = null;
 	Activity fromActivity = null;
 	@SuppressWarnings("unchecked")
