@@ -4,7 +4,8 @@
 	android:layout_width="fill_parent" android:layout_height="match_parent"
 	android:orientation="vertical">
 <!--账户号-->	
-	<include android:id="@+id/above_txt" layout="@xml/text_view_16_gray" android:layout_marginLeft="20dip"></include> 
+	<include android:id="@+id/above_txt" layout="@xml/text_view_16_gray" android:layout_marginLeft="20dip" android:layout_width="wrap_content"
+		android:layout_height="wrap_content"></include> 
 <!--请选择账户类型-->
 	<include android:id="@+id/txt_acc_type" layout="@xml/text_view_18"
 		android:layout_marginLeft="20dip" android:layout_width="wrap_content"
