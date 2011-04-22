@@ -43,7 +43,7 @@ public class Time_Select extends LinearLayout {
 		//提示栏
 		TextView information_textview=(TextView) findViewById(R.id.information_text).findViewById(
 				R.id.Text_View_18);
-		information_textview.setText("请选择你要查询的时间区间");
+		information_textview.setText("请选择你要查询的时间区间：");
 		
 		TextView from_textview = (TextView) findViewById(R.id.from_text).findViewById(
 				R.id.Text_View_18);
