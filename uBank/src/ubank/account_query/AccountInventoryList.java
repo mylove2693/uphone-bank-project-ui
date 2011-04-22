@@ -88,6 +88,7 @@ public class AccountInventoryList extends GeneralListActivity {
 						end_time);
 				String result = json.getString("info");
 				String[] temp = result.split(",");
+				if(temp.length > 0){
 				paramId = new String[temp.length];
 				name = new String[temp.length];
 				value = new String[temp.length];
@@ -98,6 +99,10 @@ public class AccountInventoryList extends GeneralListActivity {
 					value[i] = temp1[2];
 				}
 				setListAdapter(createText_Text_Img(name, value));
+				}else{
+					Toast.makeText(this, "对不起，查询的时间段没有交易明细记录！", Toast.LENGTH_SHORT).show();
+					finish();
+				}
 				
 			} catch (IOException e) {
 				Toast.makeText(this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
