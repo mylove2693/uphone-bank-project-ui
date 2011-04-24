@@ -1,6 +1,7 @@
 package ubank.account_query;
 
 import java.io.IOException;
+import java.sql.Date;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -76,10 +77,17 @@ public class AccountInventoryList extends GeneralListActivity {
 
 	private void setListData() {
 		if(start_time == null || end_time == null){
-			Toast.makeText(this, "请您输入查询的时间！", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "请您选择查询的时间！", Toast.LENGTH_SHORT).show();
 			finish();
 			return ;
 		}
+		
+		if(Date.valueOf(start_time).after(Date.valueOf(end_time))){
+			Toast.makeText(this, "起始时间要在结束时间之前！", Toast.LENGTH_SHORT).show();
+			finish();
+			return ;
+		}
+		
 		if (EHelper.hasInternet(this)) {
 			try {
 				JSONObject json = new JSONObject();
@@ -87,8 +95,8 @@ public class AccountInventoryList extends GeneralListActivity {
 						EOperation.GET_LIST_HISTORY, Login.userId, start_time,
 						end_time);
 				String result = json.getString("info");
+				if(result.trim().length() > 0){
 				String[] temp = result.split(",");
-				if(temp.length > 0){
 				paramId = new String[temp.length];
 				name = new String[temp.length];
 				value = new String[temp.length];
@@ -102,6 +110,7 @@ public class AccountInventoryList extends GeneralListActivity {
 				}else{
 					Toast.makeText(this, "对不起，查询的时间段没有交易明细记录！", Toast.LENGTH_SHORT).show();
 					finish();
+					return ;
 				}
 				
 			} catch (IOException e) {
