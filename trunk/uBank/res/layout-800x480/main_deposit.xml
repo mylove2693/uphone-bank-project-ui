@@ -16,7 +16,7 @@ xmlns:android="http://schemas.android.com/apk/res/android">
 <LinearLayout 	
 android:id = "@+id/liner_one"
 	android:layout_width = "440px"
-	android:layout_height = "90px"	
+	android:layout_height = "95px"	
 	android:layout_marginLeft = "20px"
 	android:background = "@drawable/deposite_rate_one"
 	android:orientation = "vertical">
@@ -30,12 +30,7 @@ android:id = "@+id/liner_one"
 		android:text = "活期存款"	
 		>
 	</TextView>
-	<TextView 
-			android:layout_width = "400px"
-			android:layout_height = "2dip"
-			android:layout_marginLeft = "20px"
-			android:background = "#808080ff">
-	</TextView>
+	<include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content"></include>
 	<LinearLayout
 		android:layout_width = "fill_parent"
 		android:layout_height = "fill_parent"
@@ -45,6 +40,7 @@ android:id = "@+id/liner_one"
 		android:layout_height = "40px"
 		android:layout_marginLeft = "100px"
 		android:text = "当前利率"
+		android:paddingBottom="2dip"
 		android:gravity = "center_vertical"
 		android:textColor = "#000000"
 		android:textSize = "22px">
@@ -81,12 +77,7 @@ android:id = "@+id/liner_two"
 	android:gravity = "center_vertical"
 	android:text = "定期存款"></TextView>
 <!-- 划线 -->
-<TextView 
-			android:layout_width = "400px"
-			android:layout_height = "2dip"
-			android:layout_marginLeft = "20px"
-			android:background = "#808080ff">
-	</TextView>
+<include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content"></include>
        
        <LinearLayout    
        android:layout_width = "fill_parent"
@@ -102,12 +93,8 @@ android:id = "@+id/liner_two"
       android:gravity = "center_vertical"
        android:text = "整存零取"></TextView>
        <!-- 划线 -->
-		<TextView 
-			android:layout_width = "400px"
-			android:layout_height = "2dip"
-			android:layout_marginLeft = "20px"
-			android:background = "#808080ff">
-	</TextView>
+<include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content"></include>
+
        <LinearLayout     
        android:layout_width = "fill_parent"
        android:layout_height = "wrap_content"
@@ -132,12 +119,7 @@ android:id = "@+id/liner_two"
        android:text = "0.12%"></TextView>
        </LinearLayout>   
        <!-- 划线 -->
-		<TextView 
-			android:layout_width = "400px"
-			android:layout_height = "2dip"
-			android:layout_marginLeft = "20px"
-			android:background = "#808080ff">
-	</TextView>
+<include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content"></include>
        <LinearLayout   
        android:layout_width = "fill_parent"
        android:layout_height = "wrap_content"
@@ -162,12 +144,7 @@ android:id = "@+id/liner_two"
        android:text = "0.12%"></TextView>
        </LinearLayout>   
        <!-- 划线 -->
-		<TextView 
-			android:layout_width = "400px"
-			android:layout_height = "2dip"
-			android:layout_marginLeft = "20px"
-			android:background = "#808080ff">
-	</TextView>
+<include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content"></include>
        <LinearLayout    
        android:layout_width = "fill_parent"
        android:layout_height = "wrap_content"
@@ -192,12 +169,7 @@ android:id = "@+id/liner_two"
        android:text = "0.12%"></TextView>
        </LinearLayout>   
        <!-- 划线 -->
-		<TextView 
-			android:layout_width = "400px"
-			android:layout_height = "2dip"
-			android:layout_marginLeft = "20px"
-			android:background = "#808080ff">
-	</TextView>
+<include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content"></include>
        <LinearLayout    
        android:layout_width = "fill_parent"
        android:layout_height = "wrap_content"
@@ -222,12 +194,7 @@ android:id = "@+id/liner_two"
        android:text = "0.12%"></TextView>
        </LinearLayout>    
        <!-- 划线 -->
-		<TextView 
-			android:layout_width = "400px"
-			android:layout_height = "2dip"
-			android:layout_marginLeft = "20px"
-			android:background = "#808080ff">
-	</TextView>
+<include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content"></include>
        <LinearLayout    
        android:layout_width = "fill_parent"
        android:layout_height = "wrap_content"
@@ -252,12 +219,7 @@ android:id = "@+id/liner_two"
        android:text = "0.12%"></TextView>
        </LinearLayout>    
        <!-- 划线 -->
-		<TextView 
-			android:layout_width = "400px"
-			android:layout_height = "2dip"
-			android:layout_marginLeft = "20px"
-			android:background = "#808080ff">
-	</TextView>
+<include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content"></include>
        <LinearLayout    
        android:layout_width = "fill_parent"
        android:layout_height = "wrap_content"
@@ -285,12 +247,7 @@ android:id = "@+id/liner_two"
        
        <!-- 零存整取 -->
       <!-- 划线 -->
-<TextView 
-			android:layout_width = "400px"
-			android:layout_height = "2dip"
-			android:layout_marginLeft = "20px"
-			android:background = "#808080ff">
-	</TextView>
+<include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content"></include>
        
        <LinearLayout    
        android:layout_width = "fill_parent"
@@ -307,12 +264,7 @@ android:id = "@+id/liner_two"
        android:text = "零存整取"></TextView>
        
        <!-- 划线 -->
-		<TextView 
-			android:layout_width = "400px"
-			android:layout_height = "2dip"
-			android:layout_marginLeft = "20px"
-			android:background = "#808080ff">
-	</TextView>
+<include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content"></include>
        <LinearLayout    
        android:layout_width = "fill_parent"
        android:layout_height = "wrap_content"
@@ -338,12 +290,7 @@ android:id = "@+id/liner_two"
        </LinearLayout>   
        
        <!-- 划线 -->
-		<TextView 
-			android:layout_width = "400px"
-			android:layout_height = "2dip"
-			android:layout_marginLeft = "20px"
-			android:background = "#808080ff">
-	</TextView>
+<include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content"></include>
        <LinearLayout    
        android:layout_width = "fill_parent"
        android:layout_height = "wrap_content"
@@ -368,12 +315,7 @@ android:id = "@+id/liner_two"
        android:text = "0.12%"></TextView>
        </LinearLayout>    
        <!-- 划线 -->
-		<TextView 
-			android:layout_width = "400px"
-			android:layout_height = "2dip"
-			android:layout_marginLeft = "20px"
-			android:background = "#808080ff">
-	</TextView>
+<include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content"></include>
        <LinearLayout    
        android:layout_width = "fill_parent"
        android:layout_height = "wrap_content"
@@ -402,12 +344,7 @@ android:id = "@+id/liner_two"
        
       
        <!-- 划线 -->
-<TextView 
-			android:layout_width = "400px"
-			android:layout_height = "2dip"
-			android:layout_marginLeft = "20px"
-			android:background = "#808080ff">
-	</TextView>
+<include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content"></include>
        
        <LinearLayout    
        android:layout_width = "fill_parent"
@@ -424,12 +361,7 @@ android:id = "@+id/liner_two"
        android:text = "存本取息"></TextView>
        
        <!-- 划线 -->
-		<TextView 
-			android:layout_width = "400px"
-			android:layout_height = "2dip"
-			android:layout_marginLeft = "20px"
-			android:background = "#808080ff">
-	</TextView>
+<include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content"></include>
        <LinearLayout    
        android:layout_width = "fill_parent"
        android:layout_height = "wrap_content"
@@ -455,12 +387,7 @@ android:id = "@+id/liner_two"
        </LinearLayout>   
        
        <!-- 划线 -->
-		<TextView 
-			android:layout_width = "400px"
-			android:layout_height = "2dip"
-			android:layout_marginLeft = "20px"
-			android:background = "#808080ff">
-	</TextView>
+<include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content"></include>
        <LinearLayout    
        android:layout_width = "fill_parent"
        android:layout_height = "wrap_content"
@@ -485,12 +412,7 @@ android:id = "@+id/liner_two"
        android:text = "0.12%"></TextView>
        </LinearLayout>    
        <!-- 划线 -->
-		<TextView 
-			android:layout_width = "400px"
-			android:layout_height = "2dip"
-			android:layout_marginLeft = "20px"
-			android:background = "#808080ff">
-	</TextView>
+<include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content"></include>
        <LinearLayout    
        android:layout_width = "fill_parent"
        android:layout_height = "wrap_content"
@@ -538,12 +460,7 @@ android:id = "@+id/liner_two"
 		android:text = "通知存款"			
 		>
 	</TextView>
-		<TextView 
-			android:layout_width = "400px"
-			android:layout_height = "2dip"
-			android:layout_marginLeft = "20px"
-			android:background = "#808080ff">
-		</TextView>
+<include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content"></include>
 	<LinearLayout
 		android:layout_width = "fill_parent"
 		android:layout_height = "wrap_content"
@@ -574,12 +491,7 @@ android:id = "@+id/liner_two"
 		android:textSize = "22px">
 	</TextView>
 	</LinearLayout>
-	<TextView 
-			android:layout_width = "400px"
-			android:layout_height = "2dip"
-			android:layout_marginLeft = "20px"
-			android:background = "#808080ff">
-	</TextView>
+<include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content"></include>
 	<LinearLayout
 			android:layout_width = "fill_parent"
 			android:layout_height = "wrap_content"
@@ -611,7 +523,7 @@ android:id = "@+id/liner_two"
 <!-- 第四级 协定存款 -->
 <LinearLayout 
 	android:layout_width = "440px"
-	android:layout_height = "90px"
+	android:layout_height = "95px"
 	android:layout_marginTop = "20px"
 	android:layout_marginLeft = "20px"
 	android:background = "@drawable/deposite_rate_one"
@@ -626,12 +538,7 @@ android:id = "@+id/liner_two"
 		android:text = "协定存款"	
 		>
 	</TextView>
-	<TextView 
-			android:layout_width = "400px"
-			android:layout_height = "2dip"
-			android:layout_marginLeft = "20px"
-			android:background = "#808080ff">
-	</TextView>
+<include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content"></include>
 	<LinearLayout
 		android:layout_width = "fill_parent"	
 		android:layout_height = "wrap_content"
@@ -642,6 +549,7 @@ android:id = "@+id/liner_two"
 		android:layout_marginLeft = "100px"
 		android:textColor = "#000000"
 		android:text = "当前利率"
+		android:paddingBottom="2dip"
 		android:gravity = "center_vertical"
 		android:textSize = "22px">
 	</TextView>

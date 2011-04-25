@@ -50,16 +50,13 @@ public class BankMain extends Activity {
         logintimes = r_intent.getStringExtra("logintimes");
         if(logintimes!=null){
         MyDialogOne dialog = new MyDialogOne(BankMain.this,R.style.dialog);
-		dialog.setTitleAndInfo("欢迎使用手机银行","尊敬的"+Login.userName+":"+"\n"+"这是您第"+logintimes+"次登录手机银行。");
+		dialog.setTitleAndInfo("欢迎使用手机银行","\n尊敬的"+Login.userName+":"+"\n"+"这是您第"+logintimes+"次登录手机银行。");
 		dialog.show();
-
         }
 
 		// gridview中的文字和图标数组
-		Object[] icon = new Object[] { R.drawable.ma2_actmanager, R.drawable.ma2_actactivate,
-				R.drawable.ma2_actquery, R.drawable.ma2_transfermoney, R.drawable.ma2_payment,
-				R.drawable.ma2_credit };
-		String[] text = new String[] { "账户管理", "账户绑定", "账户查询", "转账汇款", "自助缴费", "信用卡" };
+		Object[] icon = new Object[] { R.drawable.ma2_actmanager,R.drawable.ma2_actquery, R.drawable.ma2_actactivate, R.drawable.ma2_transfermoney, R.drawable.ma2_payment,R.drawable.ma2_credit,R.drawable.ma2_phonepay,R.drawable.ma2_exchangemag };
+		String[] text = new String[] { "账户管理", "账户查询","账户绑定", "转账汇款", "自助缴费", "信用卡", "手机支付","外汇管理"};
 		List<Map<String, Object>> itemlist = new ArrayList<Map<String, Object>>();
 		Map<String, Object> item = new HashMap<String, Object>();
 		for (int i = 0; i < text.length; i++) {

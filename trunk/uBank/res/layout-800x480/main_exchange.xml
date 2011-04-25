@@ -32,11 +32,7 @@ android:textColor="#000000"
 />
 
 
-<TextView 
-			android:layout_width = "fill_parent"
-			android:layout_height = "2dip"
-			android:background = "#808080ff">
-	</TextView>
+<include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content"></include>
 
 
 <!-- 输入兑换货币面值 编辑框 -->
@@ -45,35 +41,29 @@ android:id="@+id/currencyInputEdit"
 android:layout_width="360px"
 android:layout_height="60px"
 android:textSize="22px"
+android:layout_marginTop="2dip"
 android:layout_marginLeft = "30px"
 android:singleLine="true"
 ></EditText>
 
 
-<TextView 
-			android:layout_width = "fill_parent"
-			android:layout_height = "2dip"
-			android:background = "#808080ff">
-	</TextView>
+<include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content"></include>
 
 
 <!-- 选择原始货币单位 文本 -->
 <TextView
 android:id="@+id/sourceCurrencyText"
 android:layout_width="fill_parent"
-android:layout_height="50px"
+android:layout_height="30dip"
 android:text="原始货币:"
 android:textSize="24px"
+android:layout_marginTop="8dip"
 android:layout_marginLeft = "30px"
 android:textColor="#000000"
 />
 
 
-<TextView 
-			android:layout_width = "fill_parent"
-			android:layout_height = "2dip"
-			android:background = "#808080ff">
-	</TextView>
+<include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content"></include>
 
 
 <Spinner
@@ -82,39 +72,33 @@ android:textColor="#000000"
 	android:layout_height="50px"
 	android:prompt="@string/exchange1"
 	android:layout_marginLeft = "30px"
+	android:layout_marginTop="2dip"
+	android:layout_marginBottom="2dip"
 	android:background = "@drawable/selection"
 />
 
 
-<TextView 
-			android:layout_width = "fill_parent"
-			android:layout_height = "2dip"
-			android:background = "#808080ff">
-	</TextView>
+<include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content"></include>
 
 <!-- 选择目标货币单位 文本 -->
 <TextView
 android:id="@+id/delatinCurrencyText"
 android:layout_width="fill_parent"
-android:layout_height="50px"
-android:layout_gravity = "center"
+android:layout_height="30dip"
 android:text="目标货币:"
 android:textSize="24px"
+android:layout_marginTop="8dip"
 android:layout_marginLeft = "30px"
 android:textColor="#000000"
 />
 
-<TextView 
-			android:layout_width = "fill_parent"
-			android:layout_height = "2dip"
-			android:background = "#808080ff">
-	</TextView>
+<include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content"></include>
 
 <Spinner
 	android:id="@+id/delatinCurrencySpinner"
 	android:layout_width="360px"
 	android:layout_height="50px"
-	android:layout_marginTop = "5px"
+	android:layout_marginTop = "2dip"
 	android:prompt="@string/exchange2"
 	android:layout_marginLeft = "30px"
 	android:background = "@drawable/selection"
@@ -125,6 +109,8 @@ android:id="@+id/currencyConCulate"
 android:layout_width="120px"
 android:layout_height="50px"
 android:layout_marginTop="10dip"
+android:layout_marginBottom="10dip"
+android:textSize="18sp"
 android:text="开始计算"
 android:layout_gravity="center_horizontal"
 android:background = "@color/selector"
