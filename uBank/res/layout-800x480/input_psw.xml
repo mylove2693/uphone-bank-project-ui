@@ -11,7 +11,7 @@
 	<include layout="@xml/white_line" />
 
 	<include android:id="@+id/pws_txt_two" layout="@xml/text_view_20"
-		android:layout_marginLeft="20dip" android:layout_width="fill_parent"
+		android:layout_marginLeft="35dip" android:layout_width="fill_parent"
 		android:layout_height="wrap_content" />
 
 	<!-- 白线 -->
@@ -25,7 +25,7 @@
 	<include layout="@xml/white_line" />
 
 	<include android:id="@+id/pws_txt_four" layout="@xml/text_view_20"
-		android:layout_marginLeft="20dip" android:layout_width="fill_parent"
+		android:layout_marginLeft="35dip" android:layout_width="fill_parent"
 		android:layout_height="wrap_content" />
 
 	<!-- 白线 -->
