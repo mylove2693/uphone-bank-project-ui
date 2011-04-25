@@ -75,7 +75,7 @@ public class FirstAccount extends GeneralActivity {
 					try {
 						JSONObject json = new JSONObject();
 						json = ConnectWs.connect(FirstAccount.this, EAccType.NULL,
-								EOperation.SET_PRE_ACC, "2",select_acc.getSelectedItem().toString());
+								EOperation.SET_PRE_ACC, Login.userId,select_acc.getSelectedItem().toString());
 						boolean result = EHelper.toBoolean(json);
 						MyDialogOne  d1=new MyDialogOne(FirstAccount.this,R.style.dialog);
 						if(result){
