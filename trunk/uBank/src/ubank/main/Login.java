@@ -62,6 +62,21 @@ public class Login extends Activity {
 		// 显示附加码
 		showec = (TextView) findViewById(R.id.loginbox).findViewById(R.id.extraCode);
 		showec.setText(extraCode);
+		
+		//刷新附加码
+		showec.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+				// 获取附加码
+				loaderData();
+				
+				// 显示附加码
+				showec.setText(extraCode);
+			}
+		});
 
 		userid = (EditText) findViewById(R.id.login_box).findViewById(R.id.nameEdit);
 		password = (EditText) findViewById(R.id.login_box).findViewById(R.id.passwdEdit);
@@ -146,7 +161,7 @@ public class Login extends Activity {
 						} else {
 							// 登录失败
 							MyDialogOne dialog = new MyDialogOne(Login.this, R.style.dialog);
-							dialog.setTitleAndInfo("登录手机银行", "登录失败！\n用户名或密码输入错误！");
+							dialog.setTitleAndInfo("登录手机银行", "\n登录失败！\n用户名或密码输入错误！");
 							dialog.show();
 						}
 					}

@@ -104,7 +104,7 @@ public class ExchangeCalc extends GeneralFinanceActivity{
 				// TODO Auto-generated method stub
 				InputAmt = (EditText)findViewById(R.id.currencyInputEdit);
 				amt = InputAmt.getText().toString();
-				
+				if(Double.parseDouble(amt)>0){
 				if (EHelper.hasInternet(ExchangeCalc.this)) {
 				try {
 					//服务器计算转换后的结果
@@ -115,7 +115,7 @@ public class ExchangeCalc extends GeneralFinanceActivity{
 					//计算结果用Dialog显示
 					
 					MyDialogOne dialog = new MyDialogOne(ExchangeCalc.this,R.style.dialog);
-					dialog.setTitleAndInfo("汇率计算", amt+currencySource+"兑换为：\n"+calcamt+currencyDestinations);
+					dialog.setTitleAndInfo("汇率计算", "\n"+amt+currencySource+"兑换为：\n"+calcamt+currencyDestinations);
 					//dialog.Listener(intent, ExchangeCalc.this);
 					dialog.show();
 					
@@ -129,6 +129,12 @@ public class ExchangeCalc extends GeneralFinanceActivity{
 					Toast.makeText(ExchangeCalc.this, "没有连接网络", Toast.LENGTH_SHORT).show();
 					finish();
 				}
+			}else{
+				MyDialogOne dialog = new MyDialogOne(ExchangeCalc.this,R.style.dialog);
+				dialog.setTitleAndInfo("输入错误", "\n\n转换金额必须大于零！");
+				//dialog.Listener(intent, ExchangeCalc.this);
+				dialog.show();
+			}
 			}
 		});
     }
