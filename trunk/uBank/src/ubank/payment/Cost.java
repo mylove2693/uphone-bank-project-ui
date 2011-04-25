@@ -177,7 +177,7 @@ public class Cost extends GeneralActivity {
 				R.id.Text_View_20);
 		// 初始化数据
 		ininData();
-		txt.setText("请输入目标" + num + "号");
+		txt.setText("请输入目标" + num + "号:");
 		// 号码输入框
 		edit = (EditText) findViewById(R.id.edit).findViewById(R.id.et_amt);
 		// editNum = edit.getText().toString().trim();
