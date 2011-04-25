@@ -110,7 +110,7 @@ public class BankMain extends Activity {
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		GeneralActivity.isHide = false;
+//		GeneralActivity.isHide = false;
 	}
 
 	class ItemClickListener implements OnItemClickListener {

@@ -21,6 +21,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -99,38 +100,17 @@ public class GeneralListActivity extends ListActivity implements IGeneralActivit
 		return super.onOptionsItemSelected(item);
 	}
 
-//	@Override
-//	public boolean onKeyDown(int keyCode, KeyEvent event) {
-//		// TODO Auto-generated method stub
-//		if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-//			// 如果想退出程序
-//			Intent startMain = new Intent(Intent.ACTION_MAIN);
-//			startMain.addCategory(Intent.CATEGORY_HOME);
-//			startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//			startActivity(startMain);
-//			System.exit(0);
-//		}
-//		return super.onKeyDown(keyCode, event);
-//	}
-
 	@Override
-	protected void onResume() {
-		// TODO Auto-generated method stub
-		super.onResume();
-		GeneralActivity.isHide = false;
-		Log.v("Ubank", getClass() + " onResume,hide= " + GeneralActivity.isHide);
-
+	public void onAttachedToWindow() {
+		// TODO 为了实现获取HOME键
+		this.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD);
+		super.onAttachedToWindow();
 	}
 
 	@Override
-	protected void onStop() {
-		// TODO Auto-generated method stub
-		Log.v("Ubank", getClass() + " onStop now,hide= " + GeneralActivity.isHide);
-
-		super.onStop();
-		if (GeneralActivity.isHide) {
-			Log.v("Ubank", getClass() + " onStop conut. hide must true,so notificaty");
-
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		switch (keyCode) {
+		case KeyEvent.KEYCODE_HOME:// 如果是Home键
 			Intent notifyIntent = new Intent(Intent.ACTION_MAIN);
 			notifyIntent.addCategory(Intent.CATEGORY_LAUNCHER);
 			notifyIntent.setClass(this, getClass());
@@ -150,12 +130,60 @@ public class GeneralListActivity extends ListActivity implements IGeneralActivit
 			myNoti.setLatestEventInfo(this, "手机银行", "为了避免信息泄露，请及时完成或退出", appIntent);
 			NotificationManager myNotiManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 			myNotiManager.notify(0, myNoti);
-			//锁定
+
+			// 锁定
 			Intent intent = new Intent(this, Lock.class);
 			startActivity(intent);
+			moveTaskToBack(true);
+			return true;
 		}
-		GeneralActivity.isHide = true;
-		Log.v("Ubank", getClass() + " onStop count. hide= " + GeneralActivity.isHide);
+
+		return super.onKeyDown(keyCode, event);
+	}
+
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+//		GeneralActivity.isHide = false;
+//		Log.v("Ubank", getClass() + " onResume,hide= " + GeneralActivity.isHide);
+
+	}
+
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+//		Log.v("Ubank", getClass() + " onStop now,hide= " + GeneralActivity.isHide);
+
+		super.onStop();
+//		if (GeneralActivity.isHide) {
+//			Log.v("Ubank", getClass() + " onStop conut. hide must true,so notificaty");
+//
+//			Intent notifyIntent = new Intent(Intent.ACTION_MAIN);
+//			notifyIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+//			notifyIntent.setClass(this, getClass());
+//			notifyIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+//
+//			/* 创建PendingIntent作为设置递延运行的Activity */
+//			PendingIntent appIntent = PendingIntent.getActivity(this, 0, notifyIntent, 0);
+//
+//			Notification myNoti = new Notification();
+//			// 设置如果被点击可以自动删除
+//			myNoti.flags = Notification.FLAG_AUTO_CANCEL;
+//			/* 设置statusbar显示的icon */
+//			myNoti.icon = android.R.drawable.stat_notify_chat;
+//			myNoti.tickerText = "你的手机银行正在运行";
+//			/* 设置notification发生时同时发出默认声音 */
+//			myNoti.defaults = Notification.DEFAULT_SOUND;
+//			myNoti.setLatestEventInfo(this, "手机银行", "为了避免信息泄露，请及时完成或退出", appIntent);
+//			NotificationManager myNotiManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+//			myNotiManager.notify(0, myNoti);
+//			//锁定
+//			Intent intent = new Intent(this, Lock.class);
+//			startActivity(intent);
+//		}
+//		GeneralActivity.isHide = true;
+//		Log.v("Ubank", getClass() + " onStop count. hide= " + GeneralActivity.isHide);
 	}
 
 	/** Called when the activity is first created. */

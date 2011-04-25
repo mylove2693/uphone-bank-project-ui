@@ -13,11 +13,16 @@ import ubank.enum_type.EOperation;
 import ubank.helper.EHelper;
 import ubank.webservice.ConnectWs;
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
@@ -156,7 +161,7 @@ public class Login extends Activity {
 
 		// 设置底部选项卡
 		bankmain = (ImageView) findViewById(R.id.mainbelow).findViewById(R.id.btnMain);
-        bankmain.setImageResource(R.drawable.main_sjyh);
+		bankmain.setImageResource(R.drawable.main_sjyh);
 //		bankmain.setImageResource(R.drawable.main_sjyh2);
 		bankmain.setOnClickListener(new OnClickListener() {
 
@@ -168,7 +173,7 @@ public class Login extends Activity {
 		});
 
 		bankhelp = (ImageView) findViewById(R.id.mainbelow).findViewById(R.id.btnHelper);
-        bankhelp.setImageResource(R.drawable.main_jrzs);
+		bankhelp.setImageResource(R.drawable.main_jrzs);
 //		bankhelp.setImageResource(R.drawable.main_jrzs2);
 		bankhelp.setOnClickListener(new OnClickListener() {
 
@@ -188,7 +193,48 @@ public class Login extends Activity {
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		GeneralActivity.isHide = false;
+//		GeneralActivity.isHide = false;
+	}
+
+	@Override
+	public void onAttachedToWindow() {
+		// TODO 为了实现获取HOME键
+		this.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD);
+		super.onAttachedToWindow();
+	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		switch (keyCode) {
+		case KeyEvent.KEYCODE_HOME:// 如果是Home键
+			Intent notifyIntent = new Intent(Intent.ACTION_MAIN);
+			notifyIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+			notifyIntent.setClass(this, getClass());
+			notifyIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+
+			/* 创建PendingIntent作为设置递延运行的Activity */
+			PendingIntent appIntent = PendingIntent.getActivity(this, 0, notifyIntent, 0);
+
+			Notification myNoti = new Notification();
+			// 设置如果被点击可以自动删除
+			myNoti.flags = Notification.FLAG_AUTO_CANCEL;
+			/* 设置statusbar显示的icon */
+			myNoti.icon = android.R.drawable.stat_notify_chat;
+			myNoti.tickerText = "你的手机银行正在运行";
+			/* 设置notification发生时同时发出默认声音 */
+			myNoti.defaults = Notification.DEFAULT_SOUND;
+			myNoti.setLatestEventInfo(this, "手机银行", "为了避免信息泄露，请及时完成或退出", appIntent);
+			NotificationManager myNotiManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+			myNotiManager.notify(0, myNoti);
+
+			// 锁定
+			Intent intent = new Intent(this, Lock.class);
+			startActivity(intent);
+			moveTaskToBack(true);
+			return true;
+		}
+
+		return super.onKeyDown(keyCode, event);
 	}
 
 	// 当不再需要时finish该页面

@@ -11,10 +11,12 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -48,22 +50,26 @@ public class GeneralActivity extends Activity implements IGeneralActivity {
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		GeneralActivity.isHide = false;
-		Log.v("Ubank", getClass() + " onResume,hide= " + GeneralActivity.isHide);
+//		GeneralActivity.isHide = false;
+//		Log.v("Ubank", getClass() + " onResume,hide= " + GeneralActivity.isHide);
 	}
 
 	@Override
-	protected void onStop() {
-		// TODO Auto-generated method stub
-		super.onStop();
-		if (GeneralActivity.isHide) {
-			Log.v("Ubank", getClass() + " onStop now,hide= " + GeneralActivity.isHide);
+	public void onAttachedToWindow() {
+		// TODO 为了实现获取HOME键
+		this.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD);
+		super.onAttachedToWindow();
+	}
 
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		switch (keyCode) {
+		case KeyEvent.KEYCODE_HOME:// 如果是Home键
 			Intent notifyIntent = new Intent(Intent.ACTION_MAIN);
 			notifyIntent.addCategory(Intent.CATEGORY_LAUNCHER);
 			notifyIntent.setClass(this, getClass());
 			notifyIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-			
+
 			/* 创建PendingIntent作为设置递延运行的Activity */
 			PendingIntent appIntent = PendingIntent.getActivity(this, 0, notifyIntent, 0);
 
@@ -78,13 +84,50 @@ public class GeneralActivity extends Activity implements IGeneralActivity {
 			myNoti.setLatestEventInfo(this, "手机银行", "为了避免信息泄露，请及时完成或退出", appIntent);
 			NotificationManager myNotiManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 			myNotiManager.notify(0, myNoti);
-			
-			//锁定
+
+			// 锁定
 			Intent intent = new Intent(this, Lock.class);
 			startActivity(intent);
+			moveTaskToBack(true);
+			return true;
 		}
-		GeneralActivity.isHide = true;
-		Log.v("Ubank", getClass() + " onStop count. hide= " + GeneralActivity.isHide);
+
+		return super.onKeyDown(keyCode, event);
+	}
+
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+//		if (GeneralActivity.isHide) {
+//			Log.v("Ubank", getClass() + " onStop now,hide= " + GeneralActivity.isHide);
+//
+//			Intent notifyIntent = new Intent(Intent.ACTION_MAIN);
+//			notifyIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+//			notifyIntent.setClass(this, getClass());
+//			notifyIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+//
+//			/* 创建PendingIntent作为设置递延运行的Activity */
+//			PendingIntent appIntent = PendingIntent.getActivity(this, 0, notifyIntent, 0);
+//
+//			Notification myNoti = new Notification();
+//			// 设置如果被点击可以自动删除
+//			myNoti.flags = Notification.FLAG_AUTO_CANCEL;
+//			/* 设置statusbar显示的icon */
+//			myNoti.icon = android.R.drawable.stat_notify_chat;
+//			myNoti.tickerText = "你的手机银行正在运行";
+//			/* 设置notification发生时同时发出默认声音 */
+//			myNoti.defaults = Notification.DEFAULT_SOUND;
+//			myNoti.setLatestEventInfo(this, "手机银行", "为了避免信息泄露，请及时完成或退出", appIntent);
+//			NotificationManager myNotiManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+//			myNotiManager.notify(0, myNoti);
+//
+//			// 锁定
+//			Intent intent = new Intent(this, Lock.class);
+//			startActivity(intent);
+//		}
+//		GeneralActivity.isHide = true;
+//		Log.v("Ubank", getClass() + " onStop count. hide= " + GeneralActivity.isHide);
 	}
 
 	@Override
