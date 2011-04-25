@@ -6,7 +6,7 @@
 	<application android:icon="@drawable/phone" android:label="@string/app_name"
 		android:theme="@android:style/Theme.NoTitleBar">
 		<!-- punan's activity -->
-		<activity android:name=".FinanceAss"> <!-- the first activity -->
+		<activity android:name=".FinanceAss" android:screenOrientation="portrait"> <!-- the first activity -->
 
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
@@ -16,19 +16,19 @@
 
 		</activity>
 
-		<activity android:name=".Login">
+		<activity android:name=".Login" android:screenOrientation="portrait">
 
 		</activity>
-		<activity android:name=".BankMain">
+		<activity android:name=".BankMain" android:screenOrientation="portrait">
 
 		</activity>
-		<activity android:name=".DepositRates">
+		<activity android:name=".DepositRates" android:screenOrientation="portrait">
 
 		</activity>
-		<activity android:name=".LoanRates">
+		<activity android:name=".LoanRates" android:screenOrientation="portrait">
 
 		</activity>
-		<activity android:name=".ExchangeCalc">
+		<activity android:name=".ExchangeCalc" android:screenOrientation="portrait">
 
 		</activity>
 		<!-- end punan's activity -->
