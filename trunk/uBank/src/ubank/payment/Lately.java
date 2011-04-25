@@ -1,6 +1,7 @@
 package ubank.payment;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +31,7 @@ public class Lately extends GeneralListActivity {
 	private TextView txt = null;
 	private String start_time;// 上一个页面传来的时间
 	private String end_time;// 上一个页面传来的时间
-	private int item=1;//点击项
+	private int item = 1;// 点击项
 	private String title;
 
 	@Override
@@ -42,7 +43,9 @@ public class Lately extends GeneralListActivity {
 		name = intent.getStringArrayExtra("field");
 		value = intent.getStringArrayExtra("value");
 		title = intent.getStringExtra("title");
-		if(title==null){title="历史缴费记录";}
+		if (title == null) {
+			title = "历史缴费记录";
+		}
 		if (name == null || value == null) {
 			if (start_time == null || end_time == null) {
 				start_time = "2011-4-14";
@@ -51,6 +54,16 @@ public class Lately extends GeneralListActivity {
 				String[] value2 = { "煤气费" };
 				name = field2;
 				value = value2;
+
+				Toast.makeText(this, "请您选择查询的时间！", Toast.LENGTH_SHORT).show();
+				finish();
+				return;
+
+			} else if (Date.valueOf(start_time).after(Date.valueOf(end_time))) {
+				Toast.makeText(this, "起始时间要在结束时间之前！", Toast.LENGTH_SHORT)
+						.show();
+				finish();
+				return;
 			} else {
 				// 连接数据库查询
 				// System.out.println("连接数据库查询");
@@ -76,7 +89,7 @@ public class Lately extends GeneralListActivity {
 							}
 							name = nameField;
 							value = nameValue;
-							item=2;
+							item = 2;
 						} else {
 							start_time = "2011-4-14";
 							end_time = "2011-4-17";
