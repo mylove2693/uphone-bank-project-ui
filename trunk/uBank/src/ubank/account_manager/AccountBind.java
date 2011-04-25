@@ -90,7 +90,7 @@ public class AccountBind extends GeneralActivity {
 		loderValueData();
 		TextView psdText = (TextView) findViewById(R.id.text_psd).findViewById(
 				R.id.Text_View_18);
-		psdText.setText(res.getString(R.string.input_password));
+		psdText.setText(res.getString(R.string.input_password)+":");
 		pdsEdit = (EditText) findViewById(R.id.psd).findViewById(R.id.et_psd);
 		Button bind = (Button) findViewById(R.id.bind)
 				.findViewById(R.id.button);

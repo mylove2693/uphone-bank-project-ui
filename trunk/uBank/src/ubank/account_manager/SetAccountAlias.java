@@ -49,7 +49,7 @@ public class SetAccountAlias extends GeneralActivity{
 	       //监听
 	        setListener(tvClassSecond, this, ManagerHome.class);
 	        tvClassThird.setVisibility(View.VISIBLE);
-	        tvClassThird.setText("账户别名");
+	        tvClassThird.setText("设置账户别名");
 	        
 	        accountInfo = (Account_Select)this.findViewById(R.id.account_select);
 	        
