@@ -41,7 +41,7 @@ public class AccountInventoryDetail extends GeneralListActivity {
 		
 		intent = this.getIntent();
 		
-		left_txt = (TextView)findViewById(R.id.below_list_left_txt).findViewById(R.id.blue_Text_View);
+		left_txt = (TextView)findViewById(R.id.blue_txt3);
 		left_txt.setText("描述");
 		right_edit = (EditText)findViewById(R.id.below_list_right_txt).findViewById(R.id.et_user);
 		
