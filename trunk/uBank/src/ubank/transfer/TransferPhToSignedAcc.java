@@ -65,18 +65,17 @@ public class TransferPhToSignedAcc extends GeneralActivity {
 				to_acc_num = num_tv.getText().toString();
 				// 金额框中的金额
 				to_amt = amt_tv.getText().toString();
+//				System.out.println(to_amt+"11111111111111111111111111111111");
 				/**
 				 * 信息输出的检测
 				 */
-				if(to_amt==null||to_amt==""){
+				if(to_amt.equals("")||to_amt==null){
 					Toast.makeText(TransferPhToSignedAcc.this, "转账金额不能为空！", Toast.LENGTH_SHORT).show();
-					finish();
 				}else{
 				
 				String msg = isNumPsdAmt(acc_num, psd, to_acc_num, to_amt);
 				//提示对话框的实现
-				MyDialogOne dialog = new MyDialogOne(
-						TransferPhToSignedAcc.this, R.style.dialog);
+				MyDialogOne dialog = new MyDialogOne(TransferPhToSignedAcc.this, R.style.dialog);
 				
 				if (msg.equals("转账成功")) {
 
@@ -93,12 +92,6 @@ public class TransferPhToSignedAcc extends GeneralActivity {
 					dialog.Listener(TransferPhToSignedAcc.this, null);
 
 				}
-				if (acc_balance - (Double.valueOf(to_amt)) < 0) {
-					dialog.setTitleAndInfo("失败提示", "余额不足");
-					TransferPhToSignedAcc.this.amt_tv.setText("");
-					dialog.Listener(TransferPhToSignedAcc.this, null);
-
-				}
 				if (msg.equals("密码错误"))
 
 				{
@@ -106,6 +99,13 @@ public class TransferPhToSignedAcc extends GeneralActivity {
 					TransferPhToSignedAcc.this.psd_tv.setText("");
 					dialog.Listener(TransferPhToSignedAcc.this, null);
 				}
+				if (acc_balance - (Double.valueOf(to_amt)) < 0) {
+					dialog.setTitleAndInfo("失败提示", "余额不足");
+					TransferPhToSignedAcc.this.amt_tv.setText("");
+					dialog.Listener(TransferPhToSignedAcc.this, null);
+
+				}
+				
 
 				dialog.show();
 			}
