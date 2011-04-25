@@ -5,7 +5,6 @@ import java.util.Map;
 
 import org.json.JSONObject;
 
-import ubank.base.GeneralActivity;
 import ubank.base.Lock;
 import ubank.base.MyDialogOne;
 import ubank.enum_type.EAccType;
@@ -22,8 +21,8 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
