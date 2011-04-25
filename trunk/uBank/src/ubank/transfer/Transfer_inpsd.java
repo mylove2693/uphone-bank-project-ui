@@ -61,11 +61,13 @@ public class Transfer_inpsd extends GeneralActivity {
 					payment_intent.putExtra("acc_num", acc_num);//放入帐号  便于下一界面查询数据
 					payment_intent.putExtra("acc_type", acc_type);
 					payment_intent.setClass(Transfer_inpsd.this,Transfer_information.class);
-					//创建一个新的dialog出来  用来提示信息
-					MyDialogOne dialog = new MyDialogOne(Transfer_inpsd.this,R.style.dialog);
-					dialog.setTitleAndInfo("成功提示", "成功");
-					dialog.Listener(payment_intent, Transfer_inpsd.this);
-					dialog.show();
+					
+					Transfer_inpsd.this.startActivity(payment_intent);
+//					//创建一个新的dialog出来  用来提示信息
+//					MyDialogOne dialog = new MyDialogOne(Transfer_inpsd.this,R.style.dialog);
+//					dialog.setTitleAndInfo("成功提示", "成功");
+//					dialog.Listener(payment_intent, Transfer_inpsd.this);
+//					dialog.show();
 				}
 				else{
 					
@@ -78,6 +80,7 @@ public class Transfer_inpsd extends GeneralActivity {
 							R.style.dialog);
 					dialog.setTitleAndInfo("失败提示", "密码错误。。。");
 					dialog.Listener(Transfer_inpsd.this,null);
+					Transfer_inpsd.this.inPsd.setText("");
 					dialog.show();	
 				}
 			}
@@ -134,7 +137,12 @@ public class Transfer_inpsd extends GeneralActivity {
 		//密码输入框  便于取数据
 		inPsd=(EditText)findViewById(R.id.transfer_inpsd_edit).findViewById(R.id.et_psd);
 	}
-	
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		inPsd.setText("");
+	}
 	
 /**
  * 验证密码是否是正确的  返回bool变量
