@@ -125,7 +125,7 @@ android:layout_height="wrap_content"
 android:textSize = "32px"
 android:layout_below="@id/loginbox"
 android:layout_marginTop = "25dip"
-android:layout_marginLeft = "125dip"
+android:layout_marginLeft = "100dip"
 android:background="@color/selector"
 android:text="登录"
 />
