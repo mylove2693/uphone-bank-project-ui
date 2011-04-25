@@ -78,8 +78,8 @@ public class BankMain extends Activity {
 
 		// 设置底部选项卡
 		bankmain = (ImageView) findViewById(R.id.mainbelow).findViewById(R.id.btnMain);
-//        bankmain.setImageResource(R.drawable.main_sjyh);
-		bankmain.setImageResource(R.drawable.main_sjyh2);
+        bankmain.setImageResource(R.drawable.main_sjyh);
+//		bankmain.setImageResource(R.drawable.main_sjyh2);
 		bankmain.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -90,8 +90,8 @@ public class BankMain extends Activity {
 		});
 
 		bankhelp = (ImageView) findViewById(R.id.mainbelow).findViewById(R.id.btnHelper);
-//        bankhelp.setImageResource(R.drawable.main_jrzs);
-		bankhelp.setImageResource(R.drawable.main_jrzs2);
+        bankhelp.setImageResource(R.drawable.main_jrzs);
+//		bankhelp.setImageResource(R.drawable.main_jrzs2);
 		bankhelp.setOnClickListener(new OnClickListener() {
 
 			@Override

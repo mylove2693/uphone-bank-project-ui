@@ -146,8 +146,8 @@ public class GeneralFinanceActivity extends Activity implements IGeneralActivity
 		});
 
 		//设置底部选项卡样式
-		btnbank.setImageResource(R.drawable.main_sjyh);
-//		btnbank.setImageResource(R.drawable.main_sjyh2);
+//		btnbank.setImageResource(R.drawable.main_sjyh);
+		btnbank.setImageResource(R.drawable.main_sjyh2);
 		// 给底部的手机银行图片添加监听
 		btnbank.setOnClickListener(new OnClickListener() {
 			
@@ -171,8 +171,8 @@ public class GeneralFinanceActivity extends Activity implements IGeneralActivity
 		});
 
 		//设置底部选项卡样式
-		btnhelper.setImageResource(R.drawable.main_jrzs);
-//		btnhelper.setImageResource(R.drawable.main_jrzs2);
+//		btnhelper.setImageResource(R.drawable.main_jrzs);
+		btnhelper.setImageResource(R.drawable.main_jrzs2);
 		// 给底部的金融助手图片添加监听
 		btnhelper.setOnClickListener(new OnClickListener() {
 			

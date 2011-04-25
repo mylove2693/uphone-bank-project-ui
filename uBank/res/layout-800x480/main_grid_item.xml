@@ -12,7 +12,7 @@
    />
 <TextView android:id="@+id/text_item"
    android:layout_width="wrap_content"
-   android:layout_height="20dip"
+   android:layout_height="22dip"
    android:padding="2dip"
    android:textColor="#FFFFFF"
    android:layout_gravity="center"
