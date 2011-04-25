@@ -83,7 +83,7 @@ android:id = "@+id/liner_two"
        android:layout_width = "fill_parent"
        android:layout_height = "wrap_content"
        android:orientation = "vertical">
-       <!-- 整存零取 -->
+       <!-- 整存整取 -->
        <TextView
        android:layout_width = "fill_parent"
        android:layout_height = "40px"
@@ -91,7 +91,7 @@ android:id = "@+id/liner_two"
        android:textSize = "22px"
        android:textColor = "#000000"
       android:gravity = "center_vertical"
-       android:text = "整存零取"></TextView>
+       android:text = "整存整取"></TextView>
        <!-- 划线 -->
 <include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content"></include>
 
@@ -253,7 +253,7 @@ android:id = "@+id/liner_two"
        android:layout_width = "fill_parent"
        android:layout_height = "wrap_content"
        android:orientation = "vertical">
-       <!-- 整存零取 -->
+       <!-- 整存整取 -->
        <TextView
        android:layout_width = "fill_parent"
        android:layout_height = "40px"

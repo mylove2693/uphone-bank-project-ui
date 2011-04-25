@@ -160,7 +160,7 @@ public class BankMain extends Activity {
 
 	protected void ExitTips() {
 		MyDialogTwo dialog = new MyDialogTwo(BankMain.this, R.style.dialog);
-		dialog.setTitleAndInfo("提示", "您确定要退出程序吗？");
+		dialog.setTitleAndInfo("提示", "\n\n您确定要退出程序吗？");
 
 		Intent startMain = new Intent(Intent.ACTION_MAIN);
 		startMain.addCategory(Intent.CATEGORY_HOME);
