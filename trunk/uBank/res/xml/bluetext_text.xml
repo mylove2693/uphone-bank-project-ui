@@ -13,6 +13,6 @@
 	</TextView>
 	<TextView android:id="@+id/data_txt2" android:layout_width="140dip"
 		android:layout_height="wrap_content" android:layout_gravity="center_vertical"
-		android:paddingTop="6dip" android:singleLine="true" android:textColor="#000000"
+     android:singleLine="true" android:textColor="#000000"
 		android:textSize="18dip" />
 </LinearLayout>
