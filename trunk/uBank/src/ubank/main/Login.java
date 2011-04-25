@@ -93,21 +93,9 @@ public class Login extends Activity {
 				InputCode = extracode.getText().toString();
 				if (InputCode.equals(extraCode)) {
 
-					if (userId.equals("")) {
+					if (!userId.equals("")) {
 
-						// 用Dialog提示用户名为空
-						MyDialogOne dialog = new MyDialogOne(Login.this, R.style.dialog);
-						dialog.setTitleAndInfo("登录手机银行", "\n\n用户号不能为空！");
-						dialog.show();
-					} else {
-
-						if (passWord.equals("")) {
-
-							// 用Dialog提示密码为空
-							MyDialogOne dialog = new MyDialogOne(Login.this, R.style.dialog);
-							dialog.setTitleAndInfo("登录手机银行", "\n\n密码不能为空！");
-							dialog.show();
-						} else {
+						if (!passWord.equals("")) {
 
 							if (EHelper.hasInternet(Login.this)) {
 								try {
@@ -116,6 +104,43 @@ public class Login extends Activity {
 											EOperation.LOGIN, userId, passWord, InputCode);
 									// 将JSON数据转换为boolean型
 									loginflag = EHelper.toBoolean(json);
+									
+
+									if (loginflag) {
+										// 登录成功
+										FinanceAss.loginstatus = true;
+
+										if (EHelper.hasInternet(Login.this)) {
+											try {
+												// 获取用户详细信息
+												JSONObject json2 = ConnectWs.connect(Login.this, EAccType.NULL,
+														EOperation.GET_USER_INFO, userId);
+												// 将JSON数据转换为MAP型
+												Map<String, String> userinfo = EHelper.toMap(json2);
+												System.out.println(json2.toString());
+												userName = userinfo.get("userName").toString();
+												logintimes = userinfo.get("loginTimes").toString();
+
+											} catch (IOException e) {
+												Toast.makeText(Login.this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
+												finish();
+												e.printStackTrace();
+											}
+
+										} else {
+											Toast.makeText(Login.this, "没有连接网络", Toast.LENGTH_SHORT).show();
+											finish();
+										}
+										intent.putExtra("logintimes", logintimes);
+										intent.setClass(Login.this, BankMain.class);
+										Login.this.startActivity(intent);
+
+									} else {
+										// 登录失败
+										MyDialogOne dialog = new MyDialogOne(Login.this, R.style.dialog);
+										dialog.setTitleAndInfo("登录手机银行", "\n登录失败！\n用户名或密码输入错误！");
+										dialog.show();
+									}
 
 								} catch (IOException e) {
 									Toast.makeText(Login.this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
@@ -127,42 +152,20 @@ public class Login extends Activity {
 								Toast.makeText(Login.this, "没有连接网络", Toast.LENGTH_SHORT).show();
 								finish();
 							}
-						}
-						if (loginflag) {
-							// 登录成功
-							FinanceAss.loginstatus = true;
-
-							if (EHelper.hasInternet(Login.this)) {
-								try {
-									// 将用户名和密码发送到服务端进行验证
-									JSONObject json = ConnectWs.connect(Login.this, EAccType.NULL,
-											EOperation.GET_USER_INFO, userId);
-									// 将JSON数据转换为MAP型
-									Map<String, String> userinfo = EHelper.toMap(json);
-									System.out.println(json.toString());
-									userName = userinfo.get("userName").toString();
-									logintimes = userinfo.get("loginTimes").toString();
-
-								} catch (IOException e) {
-									Toast.makeText(Login.this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
-									finish();
-									e.printStackTrace();
-								}
-
-							} else {
-								Toast.makeText(Login.this, "没有连接网络", Toast.LENGTH_SHORT).show();
-								finish();
-							}
-							intent.putExtra("logintimes", logintimes);
-							intent.setClass(Login.this, BankMain.class);
-							Login.this.startActivity(intent);
-
+							
 						} else {
-							// 登录失败
+
+							// 用Dialog提示密码为空
 							MyDialogOne dialog = new MyDialogOne(Login.this, R.style.dialog);
-							dialog.setTitleAndInfo("登录手机银行", "\n登录失败！\n用户名或密码输入错误！");
+							dialog.setTitleAndInfo("登录手机银行", "\n\n密码不能为空！");
 							dialog.show();
 						}
+					} else {
+
+						// 用Dialog提示用户名为空
+						MyDialogOne dialog = new MyDialogOne(Login.this, R.style.dialog);
+						dialog.setTitleAndInfo("登录手机银行", "\n\n用户号不能为空！");
+						dialog.show();
 					}
 				} else {
 					// 用Dialog提示附加码不正确
@@ -170,6 +173,7 @@ public class Login extends Activity {
 					dialog.setTitleAndInfo("登录手机银行", "\n\n附加码不正确！");
 					dialog.show();
 				}
+				
 			}
 		});
 

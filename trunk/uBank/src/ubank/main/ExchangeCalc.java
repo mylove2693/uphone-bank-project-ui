@@ -104,7 +104,7 @@ public class ExchangeCalc extends GeneralFinanceActivity{
 				// TODO Auto-generated method stub
 				InputAmt = (EditText)findViewById(R.id.currencyInputEdit);
 				amt = InputAmt.getText().toString();
-				if(Double.parseDouble(amt)>0){
+				if(!amt.equals("") && Double.parseDouble(amt)>0){
 				if (EHelper.hasInternet(ExchangeCalc.this)) {
 				try {
 					//服务器计算转换后的结果
@@ -131,7 +131,7 @@ public class ExchangeCalc extends GeneralFinanceActivity{
 				}
 			}else{
 				MyDialogOne dialog = new MyDialogOne(ExchangeCalc.this,R.style.dialog);
-				dialog.setTitleAndInfo("输入错误", "\n\n转换金额必须大于零！");
+				dialog.setTitleAndInfo("输入错误", "\n\n请输入正确的兑换金额");
 				//dialog.Listener(intent, ExchangeCalc.this);
 				dialog.show();
 			}
