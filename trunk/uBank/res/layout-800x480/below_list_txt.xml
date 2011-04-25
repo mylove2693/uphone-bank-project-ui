@@ -3,13 +3,13 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="fill_parent"
   android:layout_height="match_parent"
-  android:paddingLeft="20dip"
+  android:paddingLeft="18dip"
   android:paddingRight="10dip">
-  <include 
-  	android:id="@+id/below_list_left_txt" 
-  	android:layout_width="50dip"
-  	android:layout_height="wrap_content"
-  	layout="@xml/blue_text_view"/>
+  <TextView android:id="@+id/blue_txt3"
+		android:layout_marginTop="2dip" android:textSize="18dip"
+		android:layout_gravity="center_vertical" android:layout_width="50dip"
+		android:textColor="#253e81" android:layout_height="wrap_content">
+	</TextView>
   <include 
   	android:id="@+id/below_list_right_txt" 
   	android:layout_width="250dip"
