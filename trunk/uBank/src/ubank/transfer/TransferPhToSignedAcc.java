@@ -180,7 +180,7 @@ public class TransferPhToSignedAcc extends GeneralActivity {
 						EOperation.TRANSFE_ACC, NUM, PSD, amtph, amtnum);
 			}
 			if (title.indexOf("签约账户") != -1) {// 手机到签约账户的
-//				System.out.println("签约账户");
+				System.out.println("签约账户");
 				jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
 						EOperation.TRANSFE_ACC_ACC, NUM, PSD, amtph, amtnum);
 			}
