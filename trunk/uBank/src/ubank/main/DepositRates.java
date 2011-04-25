@@ -103,7 +103,6 @@ public class DepositRates extends GeneralFinanceActivity{
 		 ratesText.add((TextView)findViewById(R.id.three_1));
 		 ratesText.add((TextView)findViewById(R.id.three_2));
 		 ratesText.add((TextView)findViewById(R.id.four));
-		 
 		 for(int i = 0; i < ratesText.size(); i ++)
 		 {
 			 ratesText.get(i).setText(data.get(i));

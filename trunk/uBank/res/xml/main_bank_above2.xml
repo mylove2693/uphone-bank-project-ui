@@ -7,9 +7,10 @@
 	>
 <ImageView
 	android:layout_width="fill_parent"
-	android:layout_height="wrap_content"
+	android:layout_height="fill_parent"
 	android:src="@drawable/bank_logo"
 	android:paddingTop="3dip"
+	android:paddingBottom="4dip"
 	android:layout_gravity="center_horizontal"
 	/>
 </LinearLayout>
