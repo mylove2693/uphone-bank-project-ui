@@ -46,7 +46,7 @@ public class FirstAccount extends GeneralActivity {
 		// 监听
 		setListener(tvClassSecond, this, ManagerHome.class);
 		tvClassThird.setVisibility(View.VISIBLE);
-		tvClassThird.setText("首选账户");
+		tvClassThird.setText("设置首选账户");
 		/**
 		 * 接收上一个Activity穿过来的 值
 		 */

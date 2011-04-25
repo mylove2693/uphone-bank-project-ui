@@ -49,7 +49,7 @@ public class DeleteAccount extends GeneralActivity{
 	       //监听
 	        setListener(tvClassSecond, this, ManagerHome.class);
 	        tvClassThird.setVisibility(View.VISIBLE);
-	        tvClassThird.setText("删除账户");
+	        tvClassThird.setText("删除已有账户");
 	        
 	        accountInfo = (Account_Select)this.findViewById(R.id.account_select);
 			loaderData();
