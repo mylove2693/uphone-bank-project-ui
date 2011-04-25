@@ -68,13 +68,20 @@ public class TransferPhToSignedAcc extends GeneralActivity {
 				/**
 				 * 信息输出的检测
 				 */
+				if(to_amt==null||to_amt==""){
+					Toast.makeText(TransferPhToSignedAcc.this, "转账金额不能为空！", Toast.LENGTH_SHORT).show();
+					finish();
+				}else{
+				
 				String msg = isNumPsdAmt(acc_num, psd, to_acc_num, to_amt);
 				//提示对话框的实现
 				MyDialogOne dialog = new MyDialogOne(
 						TransferPhToSignedAcc.this, R.style.dialog);
+				
 				if (msg.equals("转账成功")) {
 
 					dialog.setTitleAndInfo("成功提示", msg);
+					TransferPhToSignedAcc.this.psd_tv.setText("");
 					dialog.Listener(TransferPhToSignedAcc.this,
 							TransferMain.class);
 
@@ -82,11 +89,13 @@ public class TransferPhToSignedAcc extends GeneralActivity {
 				if (msg.equals("账号不存在")) {
 
 					dialog.setTitleAndInfo("失败提示", msg);
+					TransferPhToSignedAcc.this.num_tv.setText("");
 					dialog.Listener(TransferPhToSignedAcc.this, null);
 
 				}
 				if (acc_balance - (Double.valueOf(to_amt)) < 0) {
 					dialog.setTitleAndInfo("失败提示", "余额不足");
+					TransferPhToSignedAcc.this.amt_tv.setText("");
 					dialog.Listener(TransferPhToSignedAcc.this, null);
 
 				}
@@ -94,15 +103,23 @@ public class TransferPhToSignedAcc extends GeneralActivity {
 
 				{
 					dialog.setTitleAndInfo("失败提示", msg);
+					TransferPhToSignedAcc.this.psd_tv.setText("");
 					dialog.Listener(TransferPhToSignedAcc.this, null);
 				}
 
 				dialog.show();
 			}
+			}
 		});
 
 	}
 
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		psd_tv.setText("");
+	}
 	/**
 	 * 加载无需从后台访问的数据
 	 */
@@ -180,7 +197,7 @@ public class TransferPhToSignedAcc extends GeneralActivity {
 						EOperation.TRANSFE_ACC, NUM, PSD, amtph, amtnum);
 			}
 			if (title.indexOf("签约账户") != -1) {// 手机到签约账户的
-				System.out.println("签约账户");
+//				System.out.println("签约账户");
 				jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
 						EOperation.TRANSFE_ACC_ACC, NUM, PSD, amtph, amtnum);
 			}
@@ -195,5 +212,7 @@ public class TransferPhToSignedAcc extends GeneralActivity {
 		return result;
 
 	}
+	
+	
 
 }
