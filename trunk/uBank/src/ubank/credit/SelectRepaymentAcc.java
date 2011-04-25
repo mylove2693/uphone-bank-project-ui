@@ -112,8 +112,8 @@ public class SelectRepaymentAcc extends GeneralActivity {
 				}
 				if (!isActive) {
 					// 如果没有激活
-					dialogTwo = new MyDialogTwo(SelectRepaymentAcc.this, R.style.dialog).setTitleAndInfo("提示信息",
-							"此账户第一次使用，是否激活").setPwdVisibility();
+					dialogTwo = new MyDialogTwo(SelectRepaymentAcc.this, R.style.dialog).setTitleAndInfo(
+							"提示信息", "此账户第一次使用，是否激活").setPwdVisibility();
 					dialogTwo.setOkToService(new OnClickListener() {
 
 						@Override
@@ -121,35 +121,47 @@ public class SelectRepaymentAcc extends GeneralActivity {
 							String pwd = dialogTwo.getPwd();
 							try {
 								JSONObject jsonObj = ConnectWs.connect(SelectRepaymentAcc.this,
-										EAccType.getEAccTypeByName(accType), EOperation.SET_ACC_ACTIVE, accNum, pwd);
+										EAccType.getEAccTypeByName(accType), EOperation.SET_ACC_ACTIVE,
+										accNum, pwd);
 								boolean flag = jsonObj.getBoolean("result");
 								dialogTwo.dismiss();
 								if (flag) {
 									// 如果激活成功
-									Toast.makeText(SelectRepaymentAcc.this, "激活成功", Toast.LENGTH_SHORT).show();
+									Toast.makeText(SelectRepaymentAcc.this, "激活成功", Toast.LENGTH_SHORT)
+											.show();
+									Intent intent = getIntent();
+									intent.setClass(SelectRepaymentAcc.this, ConfrimRepayment.class);
+									// 添加还款账户
+									Bundle bundle = new Bundle();
+									bundle.putString("accType", accType);
+									bundle.putString("fromAcc", accNum);
+									intent.putExtras(bundle);
+									startActivity(intent);
 								} else {
-									Toast.makeText(SelectRepaymentAcc.this, "激活不成功，请检查密码", Toast.LENGTH_SHORT).show();
+									Toast.makeText(SelectRepaymentAcc.this, "激活不成功，请检查密码", Toast.LENGTH_SHORT)
+											.show();
 									return;
 								}
 							} catch (IOException e) {
-								Toast.makeText(SelectRepaymentAcc.this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
+								Toast.makeText(SelectRepaymentAcc.this, "对不起，服务器未连接", Toast.LENGTH_SHORT)
+										.show();
 								e.printStackTrace();
 							} catch (JSONException e) {
 								e.printStackTrace();
 							}
 						}
 					}).show();
-
+				} else {
+					// 如果已经激活了
+					Intent intent = getIntent();
+					intent.setClass(SelectRepaymentAcc.this, ConfrimRepayment.class);
+					// 添加还款账户
+					Bundle bundle = new Bundle();
+					bundle.putString("accType", accType);
+					bundle.putString("fromAcc", accNum);
+					intent.putExtras(bundle);
+					startActivity(intent);
 				}
-
-				Intent intent = getIntent();
-				intent.setClass(SelectRepaymentAcc.this, ConfrimRepayment.class);
-				// 添加还款账户
-				Bundle bundle = new Bundle();
-				bundle.putString("accType", accType);
-				bundle.putString("fromAcc", accNum);
-				intent.putExtras(bundle);
-				startActivity(intent);
 			} else {
 				// 如果没有网络直接返回
 				Toast.makeText(SelectRepaymentAcc.this, "没有网络", Toast.LENGTH_SHORT).show();
@@ -181,8 +193,8 @@ public class SelectRepaymentAcc extends GeneralActivity {
 						// 连接服务器...
 						JSONObject jsonObj = new JSONObject();
 						try {
-							jsonObj = ConnectWs.connect(SelectRepaymentAcc.this, EAccType.NULL, EOperation.GET_ACC,
-									Login.userId, accType, accState);
+							jsonObj = ConnectWs.connect(SelectRepaymentAcc.this, EAccType.NULL,
+									EOperation.GET_ACC, Login.userId, accType, accState);
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							Toast.makeText(SelectRepaymentAcc.this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
