@@ -18,8 +18,8 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="20dip"
     android:numColumns="3"
-    android:verticalSpacing="10dp"
-    android:horizontalSpacing="10dp"
+    android:verticalSpacing="10dip"
+    android:horizontalSpacing="2dip"
     android:stretchMode="columnWidth"
     android:gravity="center"
     />

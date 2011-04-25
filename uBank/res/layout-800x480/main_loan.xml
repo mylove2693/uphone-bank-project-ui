@@ -27,12 +27,7 @@ android:orientation = "vertical"
 		android:text = "短期贷款"			
 		>
 	</TextView>
-		<TextView 
-			android:layout_width = "400px"
-			android:layout_height = "2dip"
-			android:layout_marginLeft = "20px"
-			android:background = "#808080ff">
-		</TextView>
+<include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content"></include>
 	<LinearLayout
 		android:layout_width = "fill_parent"
 		android:layout_height = "wrap_content"
@@ -45,7 +40,7 @@ android:orientation = "vertical"
 		<TextView
 		android:layout_width = "wrap_content"
 		android:layout_height = "40px"
-		android:layout_marginLeft = "80px"
+		android:layout_marginLeft = "60px"
 		android:text = "六个月以内（含六个月）"
 		android:gravity = "center_vertical"
 		android:textColor = "#000000"
@@ -62,12 +57,7 @@ android:orientation = "vertical"
 		android:textSize = "22px">
 	</TextView>
 	</LinearLayout>
-	<TextView 
-			android:layout_width = "400px"
-			android:layout_height = "2dip"
-			android:layout_marginLeft = "20px"
-			android:background = "#808080ff">
-	</TextView>
+<include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content"></include>
 	<LinearLayout
 			android:layout_width = "fill_parent"
 			android:layout_height = "wrap_content"
@@ -75,7 +65,7 @@ android:orientation = "vertical"
 			<TextView
 		android:layout_width = "wrap_content"
 		android:layout_height = "40px"
-		android:layout_marginLeft = "80px"
+		android:layout_marginLeft = "60px"
 		android:textColor = "#000000"
 		android:text = "六个月至一年（含一年）"
 		android:gravity = "center_vertical"
@@ -115,12 +105,7 @@ android:orientation = "vertical"
 		android:text = "中长期贷款"			
 		>
 	</TextView>
-		<TextView 
-			android:layout_width = "400px"
-			android:layout_height = "2dip"
-			android:layout_marginLeft = "20px"
-			android:background = "#808080ff">
-		</TextView>
+<include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content"></include>
 	<LinearLayout
 		android:layout_width = "fill_parent"
 		android:layout_height = "wrap_content"
@@ -133,7 +118,7 @@ android:orientation = "vertical"
 		<TextView
 		android:layout_width = "wrap_content"
 		android:layout_height = "40px"
-		android:layout_marginLeft = "80px"
+		android:layout_marginLeft = "60px"
 		android:text = "一年至三年（含三年）"
 		android:gravity = "center_vertical"
 		android:textColor = "#000000"
@@ -150,12 +135,7 @@ android:orientation = "vertical"
 		android:textSize = "22px">
 	</TextView>
 	</LinearLayout>
-	<TextView 
-			android:layout_width = "400px"
-			android:layout_height = "2dip"
-			android:layout_marginLeft = "20px"
-			android:background = "#808080ff">
-	</TextView>
+<include layout="@xml/white_line" android:layout_width="fill_parent" android:layout_height="wrap_content"></include>
 	<LinearLayout
 			android:layout_width = "fill_parent"
 			android:layout_height = "wrap_content"
@@ -163,7 +143,7 @@ android:orientation = "vertical"
 			<TextView
 		android:layout_width = "wrap_content"
 		android:layout_height = "40px"
-		android:layout_marginLeft = "80px"
+		android:layout_marginLeft = "60px"
 		android:textColor = "#000000"
 		android:text = "三年至五年（含五年）"
 		android:gravity = "center_vertical"

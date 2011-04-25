@@ -78,7 +78,7 @@ public class Login extends Activity {
 
 						// 用Dialog提示用户名为空
 						MyDialogOne dialog = new MyDialogOne(Login.this, R.style.dialog);
-						dialog.setTitleAndInfo("登录手机银行", "用户号不能为空！");
+						dialog.setTitleAndInfo("登录手机银行", "\n\n用户号不能为空！");
 						dialog.show();
 					} else {
 
@@ -86,7 +86,7 @@ public class Login extends Activity {
 
 							// 用Dialog提示密码为空
 							MyDialogOne dialog = new MyDialogOne(Login.this, R.style.dialog);
-							dialog.setTitleAndInfo("登录手机银行", "密码不能为空！");
+							dialog.setTitleAndInfo("登录手机银行", "\n\n密码不能为空！");
 							dialog.show();
 						} else {
 
@@ -148,7 +148,7 @@ public class Login extends Activity {
 				} else {
 					// 用Dialog提示附加码不正确
 					MyDialogOne dialog = new MyDialogOne(Login.this, R.style.dialog);
-					dialog.setTitleAndInfo("登录手机银行", "附加码不正确！");
+					dialog.setTitleAndInfo("登录手机银行", "\n\n附加码不正确！");
 					dialog.show();
 				}
 			}
