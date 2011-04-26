@@ -26,22 +26,22 @@ import ubank.main.R;
 import ubank.webservice.ConnectWs;
 
 /**
- * 杨勇
- * 转账的密码输入界面
+ * 杨勇 转账的密码输入界面
+ * 
  * @author Administrator
  * 
  */
 public class Transfer_inpsd extends GeneralActivity {
-	String title = null;	// 导航栏三级标题
+	String title = null; // 导航栏三级标题
 	String acc_type = null;
 	String acc_num = null;
-	EditText inPsd;//密码框
-	TextView transfer_accnum;//帐号
+	EditText inPsd;// 密码框
+	TextView transfer_accnum;// 帐号
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		init();//加载无需从后台访问的数据
+		init();// 加载无需从后台访问的数据
 		Button transfer_next = (Button) findViewById(R.id.transfer_inpsd_next)
 				.findViewById(R.id.button);
 		transfer_next.setText("下一步");
@@ -50,27 +50,24 @@ public class Transfer_inpsd extends GeneralActivity {
 		transfer_next.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if (psdIsRight(acc_num, inPsd.getText().toString())) {//判断密码是否正确
+				if (psdIsRight(acc_num, inPsd.getText().toString())) {// 判断密码是否正确
 					// 传递数据到后台 在后台返回结果后 再执行相应的操作
-					// 如果密码错误 就弹出提示的对话框		
+					// 如果密码错误 就弹出提示的对话框
 					Intent payment_intent = new Intent();
 					/**
 					 * 将服务器上取得的值传给下一个Activity
 					 */
 					payment_intent.putExtra("title", Transfer_inpsd.this.title);
-					payment_intent.putExtra("acc_num", acc_num);//放入帐号  便于下一界面查询数据
+					payment_intent.putExtra("acc_num", acc_num);// 放入帐号
+																// 便于下一界面查询数据
 					payment_intent.putExtra("acc_type", acc_type);
-					payment_intent.setClass(Transfer_inpsd.this,Transfer_information.class);
-					
+					payment_intent.setClass(Transfer_inpsd.this,
+							Transfer_information.class);
+
 					Transfer_inpsd.this.startActivity(payment_intent);
-//					//创建一个新的dialog出来  用来提示信息
-//					MyDialogOne dialog = new MyDialogOne(Transfer_inpsd.this,R.style.dialog);
-//					dialog.setTitleAndInfo("成功提示", "成功");
-//					dialog.Listener(payment_intent, Transfer_inpsd.this);
-//					dialog.show();
-				}
-				else{
-					
+				        }
+				else {
+
 					Intent payment_intent = new Intent();
 					/**
 					 * 将服务器上取得的值传给下一个Activity
@@ -79,20 +76,20 @@ public class Transfer_inpsd extends GeneralActivity {
 					MyDialogOne dialog = new MyDialogOne(Transfer_inpsd.this,
 							R.style.dialog);
 					dialog.setTitleAndInfo("失败提示", "密码错误。。。");
-					dialog.Listener(Transfer_inpsd.this,null);
+					dialog.Listener(Transfer_inpsd.this, null);
 					Transfer_inpsd.this.inPsd.setText("");
-					dialog.show();	
+					dialog.show();
 				}
 			}
 		});
 
 	}
-/**
- * 添加无需从后台访问的数据
- * 和获取各个控件
- */
-	private void init(){
-		
+
+	/**
+	 * 添加无需从后台访问的数据 和获取各个控件
+	 */
+	private void init() {
+
 		Intent up_intent = getIntent();
 		// 获得传过来的导航栏标题
 		title = up_intent.getStringExtra("title");
@@ -123,36 +120,41 @@ public class Transfer_inpsd extends GeneralActivity {
 		// 这个是类型 是小字
 		TextView transfer_acctype = (TextView) findViewById(R.id.acc_type)
 				.findViewById(R.id.Text_View_16);
-		transfer_acctype.setText(acc_type+":");
+		transfer_acctype.setText(acc_type + ":");
 
 		// 这个是帐号 是小字
-		transfer_accnum = (TextView) findViewById(R.id.acc_num)
-				.findViewById(R.id.Text_View_16);
+		transfer_accnum = (TextView) findViewById(R.id.acc_num).findViewById(
+				R.id.Text_View_16);
 		transfer_accnum.setText(acc_num);
 
 		// 提示输入密码的文本框
 		TextView transfer_psd_txtview = (TextView) findViewById(
 				R.id.acc_inpsd_mation).findViewById(R.id.Text_View_18);
 		transfer_psd_txtview.setText("请输入账户密码:");
-		//密码输入框  便于取数据
-		inPsd=(EditText)findViewById(R.id.transfer_inpsd_edit).findViewById(R.id.et_psd);
+		// 密码输入框 便于取数据
+		inPsd = (EditText) findViewById(R.id.transfer_inpsd_edit).findViewById(
+				R.id.et_psd);
 	}
+
 	@Override
 	protected void onStop() {
 		// TODO Auto-generated method stub
 		super.onStop();
 		inPsd.setText("");
 	}
-	
-/**
- * 验证密码是否是正确的  返回bool变量
- * @param NUM 帐号
- * @param PSD  密码
- * @return
- */
+
+	/**
+	 * 验证密码是否是正确的 返回bool变量
+	 * 
+	 * @param NUM
+	 *            帐号
+	 * @param PSD
+	 *            密码
+	 * @return
+	 */
 	private boolean psdIsRight(String NUM, String PSD) {
 
-		JSONObject jsonObj=null;
+		JSONObject jsonObj = null;
 		try {
 			jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
 					EOperation.GET_VERIFY_PASSWORD, NUM, PSD);
@@ -166,4 +168,5 @@ public class Transfer_inpsd extends GeneralActivity {
 		boolean result = Boolean.valueOf(EHelper.toList(jsonObj).get(0));
 		return result;
 	}
+
 }
