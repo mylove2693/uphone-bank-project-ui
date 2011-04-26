@@ -54,8 +54,8 @@ public class AccountInventoryList extends GeneralListActivity {
 		accNumValue = intent.getStringExtra("accNumValue");
 		accTypeValue = intent.getStringExtra("accTypeValue");
 		
-		String title = accTypeValue + accNumValue + "在" + start_time + "到"
-				+ end_time + "之间的交易记录如下：";
+		String title = accTypeValue + accNumValue + "\n在" + start_time + "到"
+		+ end_time + "之间交易记录如下：";
 
 		above_txt = (TextView) findViewById(R.id.above_list_txt).findViewById(
 				R.id.Text_View_16_Gray);
