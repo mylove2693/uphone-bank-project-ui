@@ -34,112 +34,112 @@
 		<!-- end punan's activity -->
 
 		<!-- wangting's activity -->
-		<activity android:name="ubank.account_query.AccountQueryType">
+		<activity android:name="ubank.account_query.AccountQueryType" android:screenOrientation="portrait">
 		</activity>
-		<activity android:name="ubank.account_query.AccountQuery">
+		<activity android:name="ubank.account_query.AccountQuery" android:screenOrientation="portrait">
 		</activity>
-		<activity android:name="ubank.account_query.AccountQueryInfo">
+		<activity android:name="ubank.account_query.AccountQueryInfo" android:screenOrientation="portrait">
 		</activity>
-		<activity android:name="ubank.account_query.AccountInventory">
+		<activity android:name="ubank.account_query.AccountInventory" android:screenOrientation="portrait">
 		</activity>
-		<activity android:name="ubank.account_query.AccountInventoryList">
+		<activity android:name="ubank.account_query.AccountInventoryList" android:screenOrientation="portrait">
 		</activity>
-		<activity android:name="ubank.account_query.AccountInventoryDetail">
+		<activity android:name="ubank.account_query.AccountInventoryDetail" android:screenOrientation="portrait">
 		</activity>
-		<activity android:name="ubank.account_query.AccountCome">
+		<activity android:name="ubank.account_query.AccountCome" android:screenOrientation="portrait">
 		</activity>
-		<activity android:name="ubank.account_query.AccountComeList">
+		<activity android:name="ubank.account_query.AccountComeList" android:screenOrientation="portrait">
 		</activity>
-		<activity android:name="ubank.account_query.AccountComeDetail">
+		<activity android:name="ubank.account_query.AccountComeDetail" android:screenOrientation="portrait">
 		</activity>
 		<!-- end wangting's activity -->
 
 		<!-- ZXiaohui's activity -->
-		<activity android:name="ubank.account_manager.AccountBind"></activity>
+		<activity android:name="ubank.account_manager.AccountBind" android:screenOrientation="portrait"></activity>
 
-		<activity android:name="ubank.account_manager.ManagerHome">
+		<activity android:name="ubank.account_manager.ManagerHome" android:screenOrientation="portrait">
 		</activity>
-		<activity android:name="ubank.account_manager.AccountBind">
+		<activity android:name="ubank.account_manager.AccountBind" android:screenOrientation="portrait">
 		</activity>
-		<activity android:name="ubank.account_manager.AccountInfo">
-
-		</activity>
-		<activity android:name="ubank.account_manager.TradeCardDetail">
+		<activity android:name="ubank.account_manager.AccountInfo" android:screenOrientation="portrait">
 
 		</activity>
-		<activity android:name="ubank.account_manager.AccountInfoShow"></activity>
-		<activity android:name="ubank.account_manager.AccountReportLoss"></activity>
-		<activity android:name="ubank.account_manager.AccountReportLossSecond"></activity>
-		<activity android:name="ubank.account_manager.AddAccount"></activity>
-		<activity android:name="ubank.account_manager.DeleteAccount"></activity>
-		<activity android:name="ubank.account_manager.FirstAccount"></activity>
+		<activity android:name="ubank.account_manager.TradeCardDetail" android:screenOrientation="portrait">
 
-		<activity android:name="ubank.account_manager.ReservationChangeCard"></activity>
-		<activity android:name="ubank.account_manager.ReservationChangeCardSecond"></activity>
-		<activity android:name="ubank.account_manager.ReservationChangeCardThird"></activity>
-		<activity android:name="ubank.account_manager.SetAccountAlias"></activity>
-		<activity android:name="ubank.account_manager.SetAccountAliasSecond"></activity>
+		</activity>
+		<activity android:name="ubank.account_manager.AccountInfoShow" android:screenOrientation="portrait"></activity>
+		<activity android:name="ubank.account_manager.AccountReportLoss" android:screenOrientation="portrait"></activity>
+		<activity android:name="ubank.account_manager.AccountReportLossSecond" android:screenOrientation="portrait"></activity>
+		<activity android:name="ubank.account_manager.AddAccount" android:screenOrientation="portrait"></activity>
+		<activity android:name="ubank.account_manager.DeleteAccount" android:screenOrientation="portrait"></activity>
+		<activity android:name="ubank.account_manager.FirstAccount" android:screenOrientation="portrait"></activity>
+
+		<activity android:name="ubank.account_manager.ReservationChangeCard" android:screenOrientation="portrait"></activity>
+		<activity android:name="ubank.account_manager.ReservationChangeCardSecond" android:screenOrientation="portrait"></activity>
+		<activity android:name="ubank.account_manager.ReservationChangeCardThird" android:screenOrientation="portrait"></activity>
+		<activity android:name="ubank.account_manager.SetAccountAlias" android:screenOrientation="portrait"></activity>
+		<activity android:name="ubank.account_manager.SetAccountAliasSecond" android:screenOrientation="portrait"></activity>
 
 		<!-- gsm -->
-		<activity android:name="ubank.account_manager.DelOK" />
+		<activity android:name="ubank.account_manager.DelOK" android:screenOrientation="portrait"/>
 		<!-- end gsm -->
 
 		<!-- end ZXiaohui's activity -->
 
 
 		<!-- gsm's activity -->
-		<activity android:name="ubank.payment.AllPaymentSer">
+		<activity android:name="ubank.payment.AllPaymentSer" android:screenOrientation="portrait">
 
 		</activity>
-		<activity android:name="ubank.payment.WaitCost" />
-		<activity android:name="ubank.payment.WaitCostItem" />
-		<activity android:name="ubank.payment.Speedy" />
-		<activity android:name="ubank.payment.Lately" />
-		<activity android:name="ubank.payment.LatelyCost" />
-		<activity android:name="ubank.payment.HistoryCost" />
-		<activity android:name="ubank.payment.ManageCost" />
-		<activity android:name="ubank.payment.SelectAcc" />
-		<activity android:name="ubank.payment.InputPsw" />
-		<activity android:name="ubank.payment.InputPswElse" />
-		<activity android:name="ubank.payment.ElseAcc" />
-		<activity android:name="ubank.payment.Cost" />
+		<activity android:name="ubank.payment.WaitCost" android:screenOrientation="portrait"/>
+		<activity android:name="ubank.payment.WaitCostItem" android:screenOrientation="portrait"/>
+		<activity android:name="ubank.payment.Speedy" android:screenOrientation="portrait"/>
+		<activity android:name="ubank.payment.Lately" android:screenOrientation="portrait"/>
+		<activity android:name="ubank.payment.LatelyCost" android:screenOrientation="portrait"/>
+		<activity android:name="ubank.payment.HistoryCost" android:screenOrientation="portrait"/>
+		<activity android:name="ubank.payment.ManageCost" android:screenOrientation="portrait"/>
+		<activity android:name="ubank.payment.SelectAcc" android:screenOrientation="portrait"/>
+		<activity android:name="ubank.payment.InputPsw" android:screenOrientation="portrait"/>
+		<activity android:name="ubank.payment.InputPswElse" android:screenOrientation="portrait"/>
+		<activity android:name="ubank.payment.ElseAcc" android:screenOrientation="portrait"/>
+		<activity android:name="ubank.payment.Cost" android:screenOrientation="portrait"/>
 		<!-- 错误信息一个按钮 -->
 		<activity android:name="ubank.payment.PaymentFailResultOne"
-			android:theme="@android:style/Theme.Dialog" />
+			android:theme="@android:style/Theme.Dialog" android:screenOrientation="portrait"/>
 		<!-- 正确信息一个按钮 -->
 		<activity android:name="ubank.payment.PaymentResult"
-			android:theme="@android:style/Theme.Dialog" />
+			android:theme="@android:style/Theme.Dialog" android:screenOrientation="portrait"/>
 		<!-- end gsm's activity -->
 
 
 		<!-- solo -->
-		<activity android:name="ubank.credit.CreditCardMain">
+		<activity android:name="ubank.credit.CreditCardMain" android:screenOrientation="portrait">
 		</activity>
-		<activity android:name="ubank.credit.CardRepayment"></activity>
-		<activity android:name="ubank.credit.CreditCardInfo"></activity>
-		<activity android:name="ubank.credit.DestroyCard"></activity>
-		<activity android:name="ubank.credit.OpenCard"></activity>
-		<activity android:name="ubank.credit.SelectRepaymentAcc"></activity>
-		<activity android:name="ubank.credit.ConfrimRepayment"></activity>
-		<activity android:name="ubank.base.ShutDown"></activity>
-		<activity android:name="ubank.credit.SelectCreditCard"></activity>
-		<activity android:name="ubank.base.Lock" android:theme="@style/lock"></activity>
+		<activity android:name="ubank.credit.CardRepayment" android:screenOrientation="portrait"></activity>
+		<activity android:name="ubank.credit.CreditCardInfo" android:screenOrientation="portrait"></activity>
+		<activity android:name="ubank.credit.DestroyCard" android:screenOrientation="portrait"></activity>
+		<activity android:name="ubank.credit.OpenCard" android:screenOrientation="portrait"></activity>
+		<activity android:name="ubank.credit.SelectRepaymentAcc" android:screenOrientation="portrait"></activity>
+		<activity android:name="ubank.credit.ConfrimRepayment" android:screenOrientation="portrait"></activity>
+		<activity android:name="ubank.base.ShutDown" android:screenOrientation="portrait"></activity>
+		<activity android:name="ubank.credit.SelectCreditCard" android:screenOrientation="portrait"></activity>
+		<activity android:name="ubank.base.Lock" android:theme="@style/lock" android:screenOrientation="portrait"></activity>
 		<!-- end solo -->
 
 
 		<!-- yy's activity -->
-		<activity android:name="ubank.transfer.TransferMain">
+		<activity android:name="ubank.transfer.TransferMain" android:screenOrientation="portrait">
 		</activity>
 
-		<activity android:name="ubank.transfer.TransferAccSelect">
+		<activity android:name="ubank.transfer.TransferAccSelect" android:screenOrientation="portrait">
 		</activity>
-		<activity android:name="ubank.transfer.Transfer_OtherAccSelect">
+		<activity android:name="ubank.transfer.Transfer_OtherAccSelect" android:screenOrientation="portrait">
 		</activity>
-		<activity android:name="ubank.transfer.TransferPhToSignedAcc">
+		<activity android:name="ubank.transfer.TransferPhToSignedAcc" android:screenOrientation="portrait">
 		</activity>
-		<activity android:name="ubank.transfer.Transfer_inpsd">
+		<activity android:name="ubank.transfer.Transfer_inpsd" android:screenOrientation="portrait">
 		</activity>
-		<activity android:name="ubank.transfer.Transfer_information">
+		<activity android:name="ubank.transfer.Transfer_information" android:screenOrientation="portrait">
 		</activity>
 		<!-- end yy's activity -->
 		
