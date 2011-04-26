@@ -65,7 +65,7 @@ public class Account_Select extends LinearLayout {
 	public void AddNumData(String[] s) {
 
 		// 设置下拉框的标题
-		this.AccNumSpinner.setPrompt("请选择账户类型");
+		this.AccNumSpinner.setPrompt("请选择账户帐号");
 		// 为spiiner添加自己有数据的适配器
 		this.AccNumSpinner.setAdapter(CreAda(s));
 
