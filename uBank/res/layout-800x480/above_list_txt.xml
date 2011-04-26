@@ -2,8 +2,8 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical" 
 	android:layout_width="fill_parent"
-	android:layout_height="fill_parent">
-<TableRow android:paddingTop="5dip" android:paddingLeft="10dip">       
+	android:layout_height="wrap_content">
+<TableRow android:paddingTop="5dip" android:paddingLeft="10dip" android:paddingBottom="5dip">       
 	 <include android:id="@+id/above_list_txt" layout="@xml/text_view_16_gray"></include>   
 </TableRow>
 <!-- 白线 -->
