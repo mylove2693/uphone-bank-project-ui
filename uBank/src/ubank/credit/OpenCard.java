@@ -100,7 +100,10 @@ public class OpenCard extends GeneralActivity {
 			String cellPhone = etPhone.getText().toString().trim();
 			String tel = etTel.getText().toString().trim();
 			String pwd = etPwd.getText().toString().trim();
-
+			if("".equals(creditCardNo) || "".equals(pwd)){
+				Toast.makeText(OpenCard.this, "请输入账号和密码！", Toast.LENGTH_SHORT).show();
+				return ;
+			}
 			// 检查网络连接
 			if (EHelper.hasInternet(OpenCard.this)) {
 				// 连线等待中...

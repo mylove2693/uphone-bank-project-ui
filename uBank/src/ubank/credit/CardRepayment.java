@@ -113,16 +113,21 @@ public class CardRepayment extends GeneralActivity {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
+			String acc = et.getText().toString().trim();
+			if("".equals(acc)){
+				Toast.makeText(CardRepayment.this, "请输入账号！", Toast.LENGTH_SHORT).show();
+				return ;
+			}
 			Intent intent = new Intent(CardRepayment.this, CreditCardInfo.class);
 			Bundle bundle = new Bundle();
-			bundle.putString("toAcc", et.getText().toString().trim());
+			bundle.putString("toAcc", acc);
 			intent.putExtras(bundle);
 			startActivity(intent);
 		}
 
 	};
 
-	// 字节点的监听器
+	// 子节点的监听器
 	private OnChildClickListener onClickListener = new OnChildClickListener() {
 
 		@Override

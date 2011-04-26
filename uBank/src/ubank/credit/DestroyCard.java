@@ -8,6 +8,7 @@ import ubank.base.GeneralActivity;
 import ubank.enum_type.EAccType;
 import ubank.enum_type.EOperation;
 import ubank.helper.EHelper;
+import ubank.main.BankMain;
 import ubank.main.R;
 import ubank.webservice.ConnectWs;
 import android.app.Dialog;
@@ -44,6 +45,15 @@ public class DestroyCard extends GeneralActivity {
 	}
 
 	private void initializeData() {
+		tvClassFirst.setVisibility(View.VISIBLE);
+		tvClassFirst.setText("首页>");
+		setListener(tvClassFirst, this, BankMain.class);
+		tvClassSecond.setVisibility(View.VISIBLE);
+		tvClassSecond.setText("信用卡>");
+		setListener(tvClassSecond, this, CreditCardMain.class);
+		tvClassThird.setVisibility(View.VISIBLE);
+		tvClassThird.setText("销卡");
+		
 		((TextView) (findViewById(R.id.cc_tv_openName).findViewById(R.id.blue_Text_View))).setText("*开户名");
 		((TextView) (findViewById(R.id.cc_tv_ccNo).findViewById(R.id.blue_Text_View))).setText("*信用卡号");
 		((TextView) (findViewById(R.id.cc_tv_idType).findViewById(R.id.blue_Text_View))).setText("*证件类型");
@@ -106,6 +116,10 @@ public class DestroyCard extends GeneralActivity {
 			String idNo = etId.getText().toString().trim();
 			String cellPhone = etPhone.getText().toString().trim();
 			String pwd = etPwd.getText().toString().trim();
+			if("".equals(pwd)){
+				Toast.makeText(DestroyCard.this, "请输入密码！", Toast.LENGTH_SHORT).show();
+				return ;
+			}
 			// 检查网络连接
 			if (EHelper.hasInternet(DestroyCard.this)) {
 				// 连接服务器...
