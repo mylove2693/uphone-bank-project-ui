@@ -3,10 +3,12 @@ package ubank.transfer;
 import java.io.IOException;
 import java.util.List;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import ubank.account_query.AccountQueryType;
 import ubank.base.GeneralActivity;
+import ubank.base.MyDialogTwo;
 import ubank.common.Account_Select;
 import ubank.enum_type.EAccState;
 import ubank.enum_type.EAccType;
@@ -42,7 +44,7 @@ public class Transfer_OtherAccSelect extends GeneralActivity {
 	private String[] accountValues = null;  //Spinner中的填充账号数组
 	String userid = "";
 	String title = null;	// 导航栏三级标题
-
+	String acc_type,acc_num;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -59,7 +61,7 @@ public class Transfer_OtherAccSelect extends GeneralActivity {
 				.findViewById(R.id.button);
 		next_btn.setText("下一步");
 		next_btn.setOnClickListener(new OnClickListener() {
-
+			 MyDialogTwo dialogTwo ;
 			@Override
 			public void onClick(View v) {
 				/**
@@ -67,22 +69,66 @@ public class Transfer_OtherAccSelect extends GeneralActivity {
 				 * 首先将此Activity上的数据提取传到下一个 
 				 * 主要是帐号和类型
 				 */
-				String acc_type,acc_num;
+			
 				//提取账户类型
 				acc_type = Transfer_OtherAccSelect.this.accountInfo.AccTypSpinner
 						.getSelectedItem().toString();
 				//提取帐号
 				acc_num = Transfer_OtherAccSelect.this.accountInfo.AccNumSpinner
 						.getSelectedItem().toString();
-				
-				Intent elseAcc_intent = new Intent();
-				elseAcc_intent.putExtra("acc_type", acc_type);
-				elseAcc_intent.putExtra("acc_num", acc_num);
-				elseAcc_intent.putExtra("title",
-						Transfer_OtherAccSelect.this.title);
-				elseAcc_intent.setClass(Transfer_OtherAccSelect.this,
-						Transfer_inpsd.class);
-				Transfer_OtherAccSelect.this.startActivity(elseAcc_intent);
+				/**
+				 * 将服务器上取得的值传给下一个Activity
+				 */
+
+				if(!isTrue(acc_num)){
+					// 如果没有激活
+					dialogTwo = new MyDialogTwo(Transfer_OtherAccSelect.this, R.style.dialog).setTitleAndInfo("提示信息",
+							"此账户第一次使用，是否激活").setPwdVisibility();
+					dialogTwo.setOkToService(new OnClickListener() {
+
+						@Override
+						public void onClick(View v) {
+							String pwd = dialogTwo.getPwd();
+							try {//激活这个账户
+								JSONObject jsonObj = ConnectWs.connect(Transfer_OtherAccSelect.this,
+										EAccType.CURRENT_DEPOSIT, EOperation.SET_ACC_ACTIVE, acc_num, pwd);
+								boolean flag = jsonObj.getBoolean("result");
+								dialogTwo.dismiss();
+								if (flag) {
+									// 如果激活成功
+									Toast.makeText(Transfer_OtherAccSelect.this, "激活成功", Toast.LENGTH_SHORT).show();
+								} else {
+									Toast.makeText(Transfer_OtherAccSelect.this, "激活不成功，请检查密码", Toast.LENGTH_SHORT).show();
+									return;
+								}
+							} catch (IOException e) {
+								Toast.makeText(Transfer_OtherAccSelect.this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
+								e.printStackTrace();
+							} catch (JSONException e) {
+								e.printStackTrace();
+							}
+						}
+					});
+					Intent elseAcc_intent = new Intent();
+					elseAcc_intent.putExtra("acc_type", acc_type);
+					elseAcc_intent.putExtra("acc_num", acc_num);
+					elseAcc_intent.putExtra("title",
+							Transfer_OtherAccSelect.this.title);
+					elseAcc_intent.setClass(Transfer_OtherAccSelect.this,
+							Transfer_inpsd.class);
+				dialogTwo.Listener(elseAcc_intent, Transfer_OtherAccSelect.this);
+				dialogTwo.show();
+				}else
+				{
+					Intent elseAcc_intent = new Intent();
+					elseAcc_intent.putExtra("acc_type", acc_type);
+					elseAcc_intent.putExtra("acc_num", acc_num);
+					elseAcc_intent.putExtra("title",
+							Transfer_OtherAccSelect.this.title);
+					elseAcc_intent.setClass(Transfer_OtherAccSelect.this,
+							Transfer_inpsd.class);
+					Transfer_OtherAccSelect.this.startActivity(elseAcc_intent);
+				}
 			}
 		});
 	}
@@ -172,5 +218,25 @@ public class Transfer_OtherAccSelect extends GeneralActivity {
 
 					}
 				});
+	}
+	/**
+	 * 账户激活的判断
+	 */
+	private boolean isTrue(String actnum) {
+		JSONObject js = null;
+		boolean isActive;
+		try {
+			js = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
+					EOperation.ACC_IS_ACTIVE, actnum);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			Toast.makeText(this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
+			finish();
+			e.printStackTrace();
+		}
+//		System.out.println("js"+js.toString());
+		isActive=EHelper.toBoolean(js);
+//		System.out.println("isActive"+isActive);
+		return isActive;
 	}
 }
