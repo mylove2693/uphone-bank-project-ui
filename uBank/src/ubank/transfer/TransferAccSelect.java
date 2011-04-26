@@ -2,17 +2,22 @@ package ubank.transfer;
 
 import java.io.IOException;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import ubank.base.GeneralActivity;
 import ubank.base.GeneralListActivity;
+import ubank.base.MyDialogOne;
+import ubank.base.MyDialogTwo;
 import ubank.common.Account_Select;
+import ubank.credit.SelectRepaymentAcc;
 import ubank.enum_type.EAccType;
 import ubank.enum_type.EOperation;
 import ubank.helper.EHelper;
@@ -25,9 +30,7 @@ import ubank.payment.SelectAcc;
 import ubank.webservice.ConnectWs;
 
 /**
- * 杨勇 
- * 转账
- * 首选和其他账户 的选择
+ * 杨勇 转账 首选和其他账户 的选择
  * 
  * @author Administrator
  * 
@@ -82,6 +85,7 @@ public class TransferAccSelect extends GeneralListActivity {
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 
 		super.onListItemClick(l, v, position, id);
+		final MyDialogTwo dialogTwo ;
 		if (id == 0) {
 			// 首选账户
 			/**
@@ -97,27 +101,66 @@ public class TransferAccSelect extends GeneralListActivity {
 				finish();
 				e.printStackTrace();
 			}
+
 			String str = EHelper.toStr(jsonObj);
-			// System.out.println(str+"2222222222222");
 			if (str == null) {
-				// String acc_type,acc_num;
-				acc_type = "110";
+				acc_type = "活期存储卡：";
 				acc_num = "100000";
 			} else {
-				// 取出后台传递过来的数据
 				acc_type = str.split("#")[3];
 				acc_num = str.split("#")[1];
 			}
 			/**
 			 * 将服务器上取得的值传给下一个Activity
 			 */
-			Intent elseAcc_intent = new Intent();
+
+			if(!isTrue(acc_num)){
+				// 如果没有激活
+				dialogTwo = new MyDialogTwo(TransferAccSelect.this, R.style.dialog).setTitleAndInfo("提示信息",
+						"此账户第一次使用，是否激活").setPwdVisibility();
+				dialogTwo.setOkToService(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						String pwd = dialogTwo.getPwd();
+						try {//激活这个账户
+							JSONObject jsonObj = ConnectWs.connect(TransferAccSelect.this,
+									EAccType.CURRENT_DEPOSIT, EOperation.SET_ACC_ACTIVE, acc_num, pwd);
+							boolean flag = jsonObj.getBoolean("result");
+							dialogTwo.dismiss();
+							if (flag) {
+								// 如果激活成功
+								Toast.makeText(TransferAccSelect.this, "激活成功", Toast.LENGTH_SHORT).show();
+							} else {
+								Toast.makeText(TransferAccSelect.this, "激活不成功，请检查密码", Toast.LENGTH_SHORT).show();
+								return;
+							}
+						} catch (IOException e) {
+							Toast.makeText(TransferAccSelect.this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
+							e.printStackTrace();
+						} catch (JSONException e) {
+							e.printStackTrace();
+						}
+					}
+				});
+					Intent elseAcc_intent = new Intent();
 			elseAcc_intent.putExtra("acc_type", acc_type);
 			elseAcc_intent.putExtra("acc_num", acc_num);
 			elseAcc_intent.putExtra("title", TransferAccSelect.this.title);
 			elseAcc_intent.setClass(TransferAccSelect.this,
 					Transfer_inpsd.class);
-			TransferAccSelect.this.startActivity(elseAcc_intent);
+			dialogTwo.Listener(elseAcc_intent, TransferAccSelect.this);
+			dialogTwo.show();
+			}else
+			{
+				Intent elseAcc_intent = new Intent();
+				elseAcc_intent.putExtra("acc_type", acc_type);
+				elseAcc_intent.putExtra("acc_num", acc_num);
+				elseAcc_intent.putExtra("title", TransferAccSelect.this.title);
+				elseAcc_intent.setClass(TransferAccSelect.this,
+						Transfer_inpsd.class);
+				TransferAccSelect.this.startActivity(elseAcc_intent);
+			}
 		} else if (id == 1) {
 			// 其他账户
 			Intent elseAcc_intent = new Intent();
@@ -127,5 +170,28 @@ public class TransferAccSelect extends GeneralListActivity {
 			TransferAccSelect.this.startActivity(elseAcc_intent);
 		}
 	}
-
+	
+	
+	
+	
+	/**
+	 * 账户激活的判断
+	 */
+	private boolean isTrue(String actnum) {
+		JSONObject js = null;
+		boolean isActive;
+		try {
+			js = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
+					EOperation.ACC_IS_ACTIVE, actnum);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			Toast.makeText(this, "对不起，服务器未连接", Toast.LENGTH_SHORT).show();
+			finish();
+			e.printStackTrace();
+		}
+//		System.out.println("js"+js.toString());
+		isActive=EHelper.toBoolean(js);
+//		System.out.println("isActive"+isActive);
+		return isActive;
+	}
 }
