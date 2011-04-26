@@ -1,6 +1,7 @@
 package ubank.payment;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.Map.Entry;
 import org.json.JSONObject;
@@ -15,8 +16,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+import ubank.main.R;
 
 public class WaitCostItem extends GeneralListActivity {
 
@@ -25,6 +29,7 @@ public class WaitCostItem extends GeneralListActivity {
 	private String[] nextName = { "项目名称:", "缴费合同号:", "缴费金额:", "收费方:", "缴费期限:" };// 下一个界面要显示的名称
 
 	private String[] valueDB;// 服务端获得数据需发送下去
+	private TextView txt = null;
 	// private Intent intent;
 
 	/**
@@ -42,6 +47,27 @@ public class WaitCostItem extends GeneralListActivity {
 		initializeData();// 初始化数据
 		setTile();// 设置导航栏
 		this.setListAdapter(createText_Text_Img(firstName, firstValue));
+
+		addLayoutBlow(R.layout.more_list);
+		txt = (TextView) findViewById(R.id.more);
+		txt.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Log.d("WaitCostItem", "--btn------");
+				firstName = new String[] { "水费", "房租费", "煤气费", "电费","水费", "房租费", "煤气费", "电费","交通违规费"};
+				firstValue = new String[] { "30.00元", "200.00元", "150.00元","80.00元","30.00元", "200.00元", "150.00元","80.00元","2500.00元"};
+				
+//				firstName=new String[firstName.length*2];
+//				firstValue=new String[firstValue.length*2];
+				// firstName = name1;
+				// firstValue = value1;
+				WaitCostItem.this.setListAdapter(createText_Text_Img(firstName,
+						firstValue));
+				// 重新刷新Listview的adapter里面数据
+				adapter.notifyDataSetChanged();
+			}
+		});
+
 	}
 
 	// 初始化数据
@@ -125,152 +151,152 @@ public class WaitCostItem extends GeneralListActivity {
 				finish();
 			}
 			break;
-
-		case 1:// 房租费
-			intent = new Intent();
-			// 从服务器上取数据
-			/**
-			 * 在pendingform.txt表中查 参数为 <userid>1</userid> <id>1</id>
-			 * <name>水费</name> <dunum>s323454</dunum>
-			 */
-			if (EHelper.hasInternet(WaitCostItem.this)) {
-				try {
-					jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
-							EOperation.GET_PAYMENT_INFO, "1", "4");
-					map = EHelper.toMap(jsonObj);
-					valueDB = new String[map.size()];// 获取值
-					i = 0;// 使用i之前要将i赋值为0
-					for (Entry<String, String> kv : map.entrySet()) {
-						valueDB[i++] = kv.getValue();
-					}
-					if (valueDB == null) {
-						String[] value1 = { "房租费", "s0101003", "200.00",
-								"无锡房地产公司", "2011-7-12" };
-						valueDB = value1;
-						Log.e("--class-WaitCostItem", "id==0 is value is null");
-					}
-					/**
-					 * 创建 Bundle对象包装"paymoney"
-					 */
-					bubdle = new Bundle();
-					bubdle.putString("payname", valueDB[0]);// 要交费的名称
-					bubdle.putString("paynum", valueDB[1]);// 要交费的和同号
-					bubdle.putString("paymoney", valueDB[2]);// 要交费的金额
-					bubdle.putString("payaddress", valueDB[3]);// 收费方
-					intent.putExtras(bubdle);
-					intent.putExtra("name", nextName);
-					intent.putExtra("value", valueDB);
-					intent.setClass(WaitCostItem.this, WaitCost.class);
-					WaitCostItem.this.startActivity(intent);
-				} catch (IOException e) {
-					Toast.makeText(WaitCostItem.this, "对不起，服务器未连接",
-							Toast.LENGTH_SHORT).show();
-					finish();
-					e.printStackTrace();
-				}
-			} else {
-				Toast.makeText(WaitCostItem.this, "没有连接网络", Toast.LENGTH_SHORT)
-						.show();
-				finish();
-			}
-			break;
-		case 2:// 煤气费
-			intent = new Intent();
-			// 从服务器上取数据
-			/**
-			 * 在pendingform.txt表中查 参数为 <userid>1</userid> <id>1</id>
-			 * <name>水费</name> <dunum>s323454</dunum>
-			 */
-			if (EHelper.hasInternet(WaitCostItem.this)) {
-				try {
-					jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
-							EOperation.GET_PAYMENT_INFO, "1", "3");
-					map = EHelper.toMap(jsonObj);
-					valueDB = new String[map.size()];// 获取值
-					i = 0;// 使用i之前要将i赋值为0
-					for (Entry<String, String> kv : map.entrySet()) {
-						valueDB[i++] = kv.getValue();
-					}
-					if (valueDB == null) {
-						String[] value1 = { "煤气费", "s0101002", "150.00",
-								"无锡煤气公司", "2011-7-12" };
-						valueDB = value1;
-						Log.e("--class-WaitCostItem", "id==0 is value is null");
-					}
-					/**
-					 * 创建 Bundle对象包装"paymoney"
-					 */
-					bubdle = new Bundle();
-					bubdle.putString("payname", valueDB[0]);// 要交费的名称
-					bubdle.putString("paynum", valueDB[1]);// 要交费的和同号
-					bubdle.putString("paymoney", valueDB[2]);// 要交费的金额
-					bubdle.putString("payaddress", valueDB[3]);// 收费方
-					intent.putExtras(bubdle);
-					intent.putExtra("name", nextName);
-					intent.putExtra("value", valueDB);
-					intent.setClass(WaitCostItem.this, WaitCost.class);
-					WaitCostItem.this.startActivity(intent);
-				} catch (IOException e) {
-					Toast.makeText(WaitCostItem.this, "对不起，服务器未连接",
-							Toast.LENGTH_SHORT).show();
-					finish();
-					e.printStackTrace();
-				}
-			} else {
-				Toast.makeText(WaitCostItem.this, "没有连接网络", Toast.LENGTH_SHORT)
-						.show();
-				finish();
-			}
-			break;
-
-		case 3:// 电费
-			intent = new Intent();
-			// 从服务器上取数据
-			/**
-			 * 在pendingform.txt表中查 参数为 <userid>1</userid> <id>1</id>
-			 * <name>水费</name> <dunum>s323454</dunum>
-			 */
-			if (EHelper.hasInternet(WaitCostItem.this)) {
-				try {
-					jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
-							EOperation.GET_PAYMENT_INFO, "1", "2");
-					map = EHelper.toMap(jsonObj);
-					valueDB = new String[map.size()];// 获取值
-					i = 0;// 使用i之前要将i赋值为0
-					for (Entry<String, String> kv : map.entrySet()) {
-						valueDB[i++] = kv.getValue();
-					}
-					if (valueDB == null) {
-						String[] value1 = { "电费", "s0101001", "80.00",
-								"无锡电力公司", "2011-7-12" };
-						valueDB = value1;
-						Log.e("--class-WaitCostItem", "id==0 is value is null");
-					}
-					/**
-					 * 创建 Bundle对象包装"paymoney"
-					 */
-					bubdle = new Bundle();
-					bubdle.putString("payname", valueDB[0]);// 要交费的名称
-					bubdle.putString("paynum", valueDB[1]);// 要交费的和同号
-					bubdle.putString("paymoney", valueDB[2]);// 要交费的金额
-					bubdle.putString("payaddress", valueDB[3]);// 收费方
-					intent.putExtras(bubdle);
-					intent.putExtra("name", nextName);
-					intent.putExtra("value", valueDB);
-					intent.setClass(WaitCostItem.this, WaitCost.class);
-					WaitCostItem.this.startActivity(intent);
-				} catch (IOException e) {
-					Toast.makeText(WaitCostItem.this, "对不起，服务器未连接",
-							Toast.LENGTH_SHORT).show();
-					finish();
-					e.printStackTrace();
-				}
-			} else {
-				Toast.makeText(WaitCostItem.this, "没有连接网络", Toast.LENGTH_SHORT)
-						.show();
-				finish();
-			}
-			break;
+//
+//		case 1:// 房租费
+//			intent = new Intent();
+//			// 从服务器上取数据
+//			/**
+//			 * 在pendingform.txt表中查 参数为 <userid>1</userid> <id>1</id>
+//			 * <name>水费</name> <dunum>s323454</dunum>
+//			 */
+//			if (EHelper.hasInternet(WaitCostItem.this)) {
+//				try {
+//					jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
+//							EOperation.GET_PAYMENT_INFO, "1", "4");
+//					map = EHelper.toMap(jsonObj);
+//					valueDB = new String[map.size()];// 获取值
+//					i = 0;// 使用i之前要将i赋值为0
+//					for (Entry<String, String> kv : map.entrySet()) {
+//						valueDB[i++] = kv.getValue();
+//					}
+//					if (valueDB == null) {
+//						String[] value1 = { "房租费", "s0101003", "200.00",
+//								"无锡房地产公司", "2011-7-12" };
+//						valueDB = value1;
+//						Log.e("--class-WaitCostItem", "id==0 is value is null");
+//					}
+//					/**
+//					 * 创建 Bundle对象包装"paymoney"
+//					 */
+//					bubdle = new Bundle();
+//					bubdle.putString("payname", valueDB[0]);// 要交费的名称
+//					bubdle.putString("paynum", valueDB[1]);// 要交费的和同号
+//					bubdle.putString("paymoney", valueDB[2]);// 要交费的金额
+//					bubdle.putString("payaddress", valueDB[3]);// 收费方
+//					intent.putExtras(bubdle);
+//					intent.putExtra("name", nextName);
+//					intent.putExtra("value", valueDB);
+//					intent.setClass(WaitCostItem.this, WaitCost.class);
+//					WaitCostItem.this.startActivity(intent);
+//				} catch (IOException e) {
+//					Toast.makeText(WaitCostItem.this, "对不起，服务器未连接",
+//							Toast.LENGTH_SHORT).show();
+//					finish();
+//					e.printStackTrace();
+//				}
+//			} else {
+//				Toast.makeText(WaitCostItem.this, "没有连接网络", Toast.LENGTH_SHORT)
+//						.show();
+//				finish();
+//			}
+//			break;
+//		case 2:// 煤气费
+//			intent = new Intent();
+//			// 从服务器上取数据
+//			/**
+//			 * 在pendingform.txt表中查 参数为 <userid>1</userid> <id>1</id>
+//			 * <name>水费</name> <dunum>s323454</dunum>
+//			 */
+//			if (EHelper.hasInternet(WaitCostItem.this)) {
+//				try {
+//					jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
+//							EOperation.GET_PAYMENT_INFO, "1", "3");
+//					map = EHelper.toMap(jsonObj);
+//					valueDB = new String[map.size()];// 获取值
+//					i = 0;// 使用i之前要将i赋值为0
+//					for (Entry<String, String> kv : map.entrySet()) {
+//						valueDB[i++] = kv.getValue();
+//					}
+//					if (valueDB == null) {
+//						String[] value1 = { "煤气费", "s0101002", "150.00",
+//								"无锡煤气公司", "2011-7-12" };
+//						valueDB = value1;
+//						Log.e("--class-WaitCostItem", "id==0 is value is null");
+//					}
+//					/**
+//					 * 创建 Bundle对象包装"paymoney"
+//					 */
+//					bubdle = new Bundle();
+//					bubdle.putString("payname", valueDB[0]);// 要交费的名称
+//					bubdle.putString("paynum", valueDB[1]);// 要交费的和同号
+//					bubdle.putString("paymoney", valueDB[2]);// 要交费的金额
+//					bubdle.putString("payaddress", valueDB[3]);// 收费方
+//					intent.putExtras(bubdle);
+//					intent.putExtra("name", nextName);
+//					intent.putExtra("value", valueDB);
+//					intent.setClass(WaitCostItem.this, WaitCost.class);
+//					WaitCostItem.this.startActivity(intent);
+//				} catch (IOException e) {
+//					Toast.makeText(WaitCostItem.this, "对不起，服务器未连接",
+//							Toast.LENGTH_SHORT).show();
+//					finish();
+//					e.printStackTrace();
+//				}
+//			} else {
+//				Toast.makeText(WaitCostItem.this, "没有连接网络", Toast.LENGTH_SHORT)
+//						.show();
+//				finish();
+//			}
+//			break;
+//
+//		case 3:// 电费
+//			intent = new Intent();
+//			// 从服务器上取数据
+//			/**
+//			 * 在pendingform.txt表中查 参数为 <userid>1</userid> <id>1</id>
+//			 * <name>水费</name> <dunum>s323454</dunum>
+//			 */
+//			if (EHelper.hasInternet(WaitCostItem.this)) {
+//				try {
+//					jsonObj = ConnectWs.connect(this, EAccType.CURRENT_DEPOSIT,
+//							EOperation.GET_PAYMENT_INFO, "1", "2");
+//					map = EHelper.toMap(jsonObj);
+//					valueDB = new String[map.size()];// 获取值
+//					i = 0;// 使用i之前要将i赋值为0
+//					for (Entry<String, String> kv : map.entrySet()) {
+//						valueDB[i++] = kv.getValue();
+//					}
+//					if (valueDB == null) {
+//						String[] value1 = { "电费", "s0101001", "80.00",
+//								"无锡电力公司", "2011-7-12" };
+//						valueDB = value1;
+//						Log.e("--class-WaitCostItem", "id==0 is value is null");
+//					}
+//					/**
+//					 * 创建 Bundle对象包装"paymoney"
+//					 */
+//					bubdle = new Bundle();
+//					bubdle.putString("payname", valueDB[0]);// 要交费的名称
+//					bubdle.putString("paynum", valueDB[1]);// 要交费的和同号
+//					bubdle.putString("paymoney", valueDB[2]);// 要交费的金额
+//					bubdle.putString("payaddress", valueDB[3]);// 收费方
+//					intent.putExtras(bubdle);
+//					intent.putExtra("name", nextName);
+//					intent.putExtra("value", valueDB);
+//					intent.setClass(WaitCostItem.this, WaitCost.class);
+//					WaitCostItem.this.startActivity(intent);
+//				} catch (IOException e) {
+//					Toast.makeText(WaitCostItem.this, "对不起，服务器未连接",
+//							Toast.LENGTH_SHORT).show();
+//					finish();
+//					e.printStackTrace();
+//				}
+//			} else {
+//				Toast.makeText(WaitCostItem.this, "没有连接网络", Toast.LENGTH_SHORT)
+//						.show();
+//				finish();
+//			}
+//			break;
 
 		default:
 			break;
