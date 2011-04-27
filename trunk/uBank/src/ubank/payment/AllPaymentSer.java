@@ -33,7 +33,6 @@ public class AllPaymentSer extends GeneralListActivity {
 	private JSONObject jsonObj;
 	private Map<String, String> map;
 	private int i = 0;// map遍历时需要用到的变量
-	private Bundle bundle;
 	private String start_time = "2011-4-14";
 	private String end_time = "2011-5-14";
 	private String[] field;
@@ -144,7 +143,7 @@ public class AllPaymentSer extends GeneralListActivity {
 					intent.putExtra("item", item);
 					intent.putExtra("start_time", start_time);
 					intent.putExtra("end_time", end_time);
-//					intent.putExtra("bundle", bundle);
+					// intent.putExtra("bundle", bundle);
 					intent.putExtra("title", "最近一个月缴费");
 					intent.setClass(AllPaymentSer.this, Lately.class);
 					AllPaymentSer.this.startActivity(intent);
