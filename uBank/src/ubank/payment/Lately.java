@@ -31,7 +31,7 @@ public class Lately extends GeneralListActivity {
 	private TextView txt = null;
 	private String start_time;// 上一个页面传来的时间
 	private String end_time;// 上一个页面传来的时间
-	private int item = 1;// 点击项
+	private String[] item;// 点击项
 	private String title;
 
 	@Override
@@ -42,6 +42,7 @@ public class Lately extends GeneralListActivity {
 		end_time = intent.getStringExtra("end_time");
 		name = intent.getStringArrayExtra("field");
 		value = intent.getStringArrayExtra("value");
+		item = intent.getStringArrayExtra("item");
 		title = intent.getStringExtra("title");
 		if (title == null) {
 			title = "历史缴费记录";
@@ -80,16 +81,16 @@ public class Lately extends GeneralListActivity {
 							for (Entry<String, String> kv : map.entrySet()) {
 								s = kv.getValue();
 							}
-							String[] ss = s.split("#");
-							String[] nameField = new String[ss.length / 2];
-							String[] nameValue = new String[ss.length / 2];
-							for (int i = 1, j = 0; i < ss.length; i += 2, j++) {
-								nameField[j] = ss[i - 1];// 双数赋给字段数组
-								nameValue[j] = ss[i];// 单数赋给字值数组
+							String[] ss1 = s.split(",");
+							name = new String[ss1.length];
+							value = new String[ss1.length];
+							item = new String[ss1.length];
+							for (int i = 0; i < ss1.length; i++) {
+								String[] temp = ss1[i].split("#");
+								name[i] = temp[0];
+								value[i] = temp[1];
+								item[i] = temp[2];
 							}
-							name = nameField;
-							value = nameValue;
-							item = 2;
 						} else {
 							start_time = "2011-4-14";
 							end_time = "2011-4-17";
@@ -139,8 +140,7 @@ public class Lately extends GeneralListActivity {
 			try {
 				JSONObject jsonObj = ConnectWs.connect(this,
 						EAccType.CURRENT_DEPOSIT,
-						EOperation.GET_PAYMENT_HIS_INFO, String
-								.valueOf((int) id + item));
+						EOperation.GET_PAYMENT_HIS_INFO, item[position]);
 				Map<String, String> map = EHelper.toMap(jsonObj);
 				value1 = new String[map.size()];// 获取值
 				int i = 0;// 使用i之前要初始化为0
