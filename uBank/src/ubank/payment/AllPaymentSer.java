@@ -126,7 +126,6 @@ public class AllPaymentSer extends GeneralListActivity {
 					for (Entry<String, String> kv : map.entrySet()) {
 						s = kv.getValue();
 					}
-					System.out.println(s + "S:");
 					String[] ss1 = s.split(",");
 					name = new String[ss1.length];
 					value = new String[ss1.length];
