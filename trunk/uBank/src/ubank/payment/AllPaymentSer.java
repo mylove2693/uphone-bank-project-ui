@@ -28,6 +28,7 @@ public class AllPaymentSer extends GeneralListActivity {
 
 	private String[] name;
 	private String[] value;
+	private String[] item;
 	private Intent intent;
 	private JSONObject jsonObj;
 	private Map<String, String> map;
@@ -126,19 +127,24 @@ public class AllPaymentSer extends GeneralListActivity {
 					for (Entry<String, String> kv : map.entrySet()) {
 						s = kv.getValue();
 					}
-					String[] ss = s.split("#");
-					field = new String[ss.length / 2];
-					value = new String[ss.length / 2];
-					for (int i = 1, j = 0; i < ss.length; i += 2, j++) {
-						field[j] = ss[i - 1];// 双数赋给字段数组
-						value[j] = ss[i];// 单数赋给字值数组
+					System.out.println(s + "S:");
+					String[] ss1 = s.split(",");
+					name = new String[ss1.length];
+					value = new String[ss1.length];
+					item = new String[ss1.length];
+					for (int i = 0; i < ss1.length; i++) {
+						String[] temp = ss1[i].split("#");
+						name[i] = temp[0];
+						value[i] = temp[1];
+						item[i] = temp[2];
 					}
 					intent = new Intent();
 					intent.putExtra("field", field);
 					intent.putExtra("value", value);
+					intent.putExtra("item", item);
 					intent.putExtra("start_time", start_time);
 					intent.putExtra("end_time", end_time);
-					intent.putExtra("bundle", bundle);
+//					intent.putExtra("bundle", bundle);
 					intent.putExtra("title", "最近一个月缴费");
 					intent.setClass(AllPaymentSer.this, Lately.class);
 					AllPaymentSer.this.startActivity(intent);
